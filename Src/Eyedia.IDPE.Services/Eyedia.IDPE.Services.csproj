@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProductVersion>10.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A2E85C34-A292-43CF-ADA6-8200FA375BD1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Eyedia.IDPE.Services</RootNamespace>
+    <AssemblyName>Eyedia.IDPE.Services</AssemblyName>
+    <ProjectTypeGuids>{3D9AD99F-2412-4246-B90B-4EAA41C64699};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <StartArguments>/client:"WcfTestClient.exe"</StartArguments>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;WEB</DefineConstants>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Eyedia.IDPE.Services.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ErikEJ.SqlCe40, Version=2.1.6.14, Culture=neutral, PublicKeyToken=03b0b5a60fec3719, processorArchitecture=MSIL">
+      <HintPath>..\packages\ErikEJ.SqlCeBulkCopy.2.1.6.15\lib\net40\ErikEJ.SqlCe40.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Excel">
+      <HintPath>..\..\ExternalLibs\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RestSharp">
+      <HintPath>..\..\ExternalLibs\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Salient.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=03b0b5a60fec3719, processorArchitecture=MSIL">
+      <HintPath>..\packages\ErikEJ.SqlCeBulkCopy.2.1.6.15\lib\net40\Salient.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Activities.Core.Presentation" />
+    <Reference Include="System.Activities.Presentation" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel.Activities" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Workflow.Activities" />
+    <Reference Include="System.Workflow.ComponentModel" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BOs\BusinessRule.cs" />
+    <Compile Include="BOs\Column.cs" />
+    <Compile Include="BOs\Job.2.cs" />
+    <Compile Include="BOs\JobSlice.cs" />
+    <Compile Include="BOs\RestApiClient.cs" />
+    <Compile Include="BOs\Row.cs" />
+    <Compile Include="BOs\DataSource.cs" />
+    <Compile Include="BOs\Attribute.cs" />
+    <Compile Include="BOs\Parameters.cs" />
+    <Compile Include="BOs\SreTraceLogWriter.cs" />
+    <Compile Include="BOs\SreType.cs" />
+    <Compile Include="Clients\SreClient.cs" />
+    <Compile Include="Clients\SreClientConfigExtracter.cs" />
+    <Compile Include="Clients\SreesClient.cs" />
+    <Compile Include="EnvironmentService\DeploymentService.cs" />
+    <Compile Include="EnvironmentService\Contracts\DataSourceBundle.cs" />
+    <Compile Include="EnvironmentService\Contracts\DataSourcePatch.cs" />
+    <Compile Include="EnvironmentService\Contracts\EnvironmentServicePacket.cs" />
+    <Compile Include="EnvironmentService\Contracts\SreEnvironments.cs" />
+    <Compile Include="EnvironmentService\EnvironmentServiceDispatcherFactory.cs" />
+    <Compile Include="EnvironmentService\EnvironmentServiceDispatcherUsingFileSystem.cs" />
+    <Compile Include="EnvironmentService\IIdpeEnvironmentService.cs" />
+    <Compile Include="EnvironmentService\EnvironmentServiceDispatcher.cs" />
+    <Compile Include="EnvironmentService\EnvironmentServiceDispatcherUsingWcf.cs" />
+    <Compile Include="SreVersionManager.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="GlobalEvents\GlobalEvents.cs" />
+    <Compile Include="GlobalEvents\GlobalEventsOnComplete.cs" />
+    <Compile Include="GlobalEvents\GlobalEventsOnCompletes.cs" />
+    <Compile Include="GlobalSearch\GlobalSearch.cs" />
+    <Compile Include="GlobalSearch\GSearchResultCube.cs" />
+    <Compile Include="SreCommandParser.cs" />
+    <Compile Include="Utilities\CSharpCodeInformation.cs" />
+    <Compile Include="Utilities\DataParsers\CSharpCodeToDataTable.cs" />
+    <Compile Include="Utilities\DataParsers\EdiX12Parser.cs" />
+    <Compile Include="Utilities\DataParsers\ExcelDataReaderInstantiator.cs" />
+    <Compile Include="Utilities\DataParsers\SpreadsheetToDataTable.cs" />
+    <Compile Include="Utilities\DataParsers\XmlToDataTable.cs" />
+    <Compile Include="EnvironmentService\CommandExecutor.cs" />
+    <Compile Include="EnvironmentService\PacketReceiver.cs" />
+    <Compile Include="Utilities\JobProcessorFileHandler.cs" />
+    <Compile Include="Utilities\OutputWriters\OutputWriter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utilities\OutputWriters\OutputWriterCSharpCode.cs" />
+    <Compile Include="Utilities\OutputWriters\OutputWriterDatabase\ColumnMap.cs" />
+    <Compile Include="Utilities\OutputWriters\OutputWriterDatabase\ColumnMapInfo.cs" />
+    <Compile Include="Utilities\OutputWriters\OutputWriterDatabase\OutputWriterDatabase.cs" />
+    <Compile Include="Utilities\OutputWriters\OutputWriterDelimited.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utilities\OutputWriters\OutputWriterErrored.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utilities\OutputWriters\OutputWriterFixedLength.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utilities\OutputWriters\OutputWriterGeneric.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utilities\PostMan\PostMan.cs" />
+    <Compile Include="Utilities\Pullers\EDIX12FileWatcher.cs" />
+    <Compile Include="Utilities\Pullers\SreFileSystemWatcher.cs" />
+    <Compile Include="Utilities\Pushers\PusherDosCommands.cs" />
+    <Compile Include="Utilities\Pushers\PusherFtp.cs" />
+    <Compile Include="Utilities\Pushers\PusherSqlQuery.cs" />
+    <Compile Include="Utilities\SqlWatcherHelper.cs" />
+    <Compile Include="Utility.cs" />
+    <Compile Include="Validators\DataSourceCSharpCodeReferenceExtractor.cs" />
+    <Compile Include="Validators\DataSourceReferenceExtractor.cs" />
+    <Compile Include="Validators\RuleReferenceExtractor.cs" />
+    <Compile Include="WorkflowActivities\Library\ExecuteCSCode.cs" />
+    <Compile Include="WorkflowActivities\Library\GetSreEnvironmentVariable.cs" />
+    <Compile Include="WorkflowActivities\Library\SendEmail.cs" />
+    <Compile Include="WorkflowActivities\Library\ExecuteRule.cs" />
+    <Compile Include="WorkflowActivities\Library\SetDefaultValue.cs" />
+    <Compile Include="WorkflowActivities\Library\LockedSequence.cs" />
+    <Compile Include="WorkflowActivities\Library\BulkInsert.cs" />
+    <Compile Include="WorkflowActivities\Library\AddError.cs" />
+    <Compile Include="WorkflowActivities\Library\AssignAttribute.cs" />
+    <Compile Include="WorkflowActivities\Library\AddOrUpdateProcessVariable.cs" />
+    <Compile Include="WorkflowActivities\Library\ClearCache.cs" />
+    <Compile Include="WorkflowActivities\Library\MarkValid.cs" />
+    <Compile Include="WorkflowActivities\Library\WriteTrace.cs" />
+    <Compile Include="WorkflowActivities\Library\ExecuteQuery.cs" />
+    <Compile Include="WorkflowActivities\Library\LookupInCache.cs" />
+    <Compile Include="WorkflowActivities\Library\InitCache.cs" />
+    <Compile Include="WorkflowActivities\Library\ExecuteNonQuery.cs" />
+    <Compile Include="WorkflowActivities\Library\DeletePersistVariable.cs" />
+    <Compile Include="WorkflowActivities\Library\GetPersistVariable.cs" />
+    <Compile Include="WorkflowActivities\Library\PersistVariable.cs" />
+    <Compile Include="WorkflowActivities\Library\Lookup.cs" />
+    <Compile Include="WorkflowActivities\Library\RestApiCall.cs" />
+    <Compile Include="WorkflowActivities\Library\DuplicateCheck.cs" />
+    <Compile Include="WorkflowActivities\Library\PreValidationFailed.cs" />
+    <Compile Include="WorkflowActivities\Library\CodeActivityTraceWriter.cs" />
+    <Compile Include="WorkflowActivities\Library\WriteTraceToCurrentRow.cs" />
+    <Compile Include="WorkflowActivities\LogException.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\AnyToDataTable.cs" />
+    <Compile Include="Utilities\ASPNetWebTask\WebTaskHost.cs" />
+    <Compile Include="Utilities\ASPNetWebTask\WebTaskTimer.cs" />
+    <Compile Include="Utilities\Build.cs" />
+    <Compile Include="Utilities\DataContainerValidators\DataContainerValidator.cs" />
+    <Compile Include="Utilities\DataContainerValidators\DataContainerValidatorGeneric.cs" />
+    <Compile Include="Utilities\DataParsers\CsvToDataTable.cs" />
+    <Compile Include="Utilities\AttributeParser.cs" />
+    <Compile Include="Sre.cs" />
+    <Compile Include="Utilities\DataParsers\DataParser.cs" />
+    <Compile Include="Utilities\DataParsers\FixedLengthToDataTable.cs" />
+    <Compile Include="Utilities\DataParsers\SreXmlToDataTable.cs" />
+    <Compile Include="Utilities\InputFileGenerator.cs" />
+    <Compile Include="Utilities\JobProcessor.cs" />
+    <Compile Include="Utilities\ManifestResourceHandler.cs" />
+    <Compile Include="Utilities\PerformanceCounter.cs" />
+    <Compile Include="Utilities\PlugIns\PlugIns.cs" />
+    <Compile Include="Utilities\PlugIns\PlugInsGeneric.cs" />
+    <Compile Include="Utilities\Pullers\SqlWatcher.cs" />
+    <Compile Include="Utilities\Pullers\ZipFileWatcher.cs" />
+    <Compile Include="Utilities\WebPublishers\BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Utilities\WebPublishers\HttpModuleRegistry.cs" />
+    <Compile Include="Utilities\WebPublishers\InformationPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Utilities\WebPublishers\MonitorPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Utilities\WebPublishers\PageFactory.cs" />
+    <Compile Include="Utilities\Pullers\FtpFileSystemWatcher.cs" />
+    <Compile Include="Utilities\Pullers\Watchers.cs" />
+    <Compile Include="Utilities\Pullers\LocalFileSystemWatcher.cs">
+    </Compile>
+    <Compile Include="Utilities\Pullers\Pullers.cs" />
+    <Compile Include="Utilities\Pushers\Pushers.cs" />
+    <Compile Include="Utilities\Registry.cs" />
+    <Compile Include="BOs\WorkerData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BOs\Job.1.cs" />
+    <AppDesigner Include="Properties\" />
+    <Compile Include="WorkflowActivities\ExecuteBusinessRules.cs" />
+    <Compile Include="WorkflowActivities\ExecuteWorker.cs" />
+    <Compile Include="WorkflowActivities\Initialize.cs" />
+    <Compile Include="WorkflowActivities\MandatoryRowValidate.cs" />
+    <Compile Include="WorkflowActivities\ParseDataTypes.cs" />
+    <Compile Include="WorkflowActivities\ParseDataTypesAgain.cs" />
+    <Compile Include="WorkflowActivities\PrepareProcessing.cs" />
+    <Compile Include="WorkflowActivities\StoreBadData.cs" />
+    <Compile Include="WorkflowActivities\ValidateAttributes.cs" />
+    <Compile Include="WorkflowActivities\WorkerLoopPreset.cs" />
+    <Compile Include="WorkflowActivities\WorkerLoopReset.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\WebPublishers\Images\running.png" />
+    <EmbeddedResource Include="Utilities\WebPublishers\Images\stopped.png" />
+    <EmbeddedResource Include="Utilities\WebPublishers\sre.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Utilities\WebPublishers\sre.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <XamlAppDef Include="WorkflowActivities\Worker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </XamlAppDef>
+    <XamlAppDef Include="WorkflowActivities\WorkerManager.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </XamlAppDef>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Eyedia.Core\Eyedia.Core.csproj">
+      <Project>{48b94db6-6836-46ef-9d09-5b4c9aa12885}</Project>
+      <Name>Eyedia.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eyedia.IDPE.Common\Eyedia.IDPE.Common.csproj">
+      <Project>{0a7352c7-5e95-4438-9058-98f6a4cf0bea}</Project>
+      <Name>Eyedia.IDPE.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eyedia.IDPE.DataManager\Eyedia.IDPE.DataManager.csproj">
+      <Project>{3E7D2F46-7A4E-4393-BF96-393F0BF2C7AE}</Project>
+      <Name>Eyedia.IDPE.DataManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eyedia.IDPE.Services.WorkflowActivities\Eyedia.IDPE.Services.WorkflowActivities.csproj">
+      <Project>{ad44e5e6-b5ce-4fa3-9599-0b0f82771862}</Project>
+      <Name>Eyedia.IDPE.Services.WorkflowActivities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Clients\generate.bat" />
+    <EmbeddedResource Include="Clients\SreClient.config" />
+    <None Include="Clients\SreesClient.config" />
+    <EmbeddedResource Include="EnvironmentService\sreupdate.cmd" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Utilities\PostMan\EmailTemplate.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Utilities\PostMan\EmailTemplateGeneric.htm" />
+  </ItemGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{3D9AD99F-2412-4246-B90B-4EAA41C64699}">
+        <WcfProjectProperties>
+          <AutoStart>True</AutoStart>
+        </WcfProjectProperties>
+      </FlavorProperties>
+      <UserProperties BuildVersion_UseGlobalSettings="False" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AD44E5E6-B5CE-4FA3-9599-0B0F82771862}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eyedia.IDPE.Services.WorkflowActivities</RootNamespace>
+    <AssemblyName>Eyedia.IDPE.Services.WorkflowActivities</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Eyedia.IDPE.Services, Version=1.1.8.18005, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Executables\Eyedia.IDPE.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Activities.Presentation" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Workflow.Activities" />
+    <Reference Include="System.Workflow.ComponentModel" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExecuteCSCode.xaml.cs">
+      <DependentUpon>ExecuteCSCode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GetSreEnvironmentVariable.xaml.cs">
+      <DependentUpon>GetSreEnvironmentVariable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SetDefaultValue.xaml.cs">
+      <DependentUpon>SetDefaultValue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SendEmail.xaml.cs">
+      <DependentUpon>SendEmail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BulkInsert.xaml.cs">
+      <DependentUpon>BulkInsert.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExecuteRule.xaml.cs">
+      <DependentUpon>ExecuteRule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MarkValid.xaml.cs">
+      <DependentUpon>MarkValid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ComboBoxItemConverter.cs" />
+    <Compile Include="AddError.xaml.cs">
+      <DependentUpon>AddError.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddOrUpdateProcessVariable.xaml.cs">
+      <DependentUpon>AddOrUpdateProcessVariable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AssignAttribute.xaml.cs">
+      <DependentUpon>AssignAttribute.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClearCache.xaml.cs">
+      <DependentUpon>ClearCache.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WriteTrace.xaml.cs">
+      <DependentUpon>WriteTrace.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExecuteQuery.xaml.cs">
+      <DependentUpon>ExecuteQuery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExecuteNonQuery.xaml.cs">
+      <DependentUpon>ExecuteNonQuery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeletePersistVariable.xaml.cs">
+      <DependentUpon>DeletePersistVariable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GetPersistVariable.xaml.cs">
+      <DependentUpon>GetPersistVariable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PersistVariable.xaml.cs">
+      <DependentUpon>PersistVariable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InitCache.xaml.cs">
+      <DependentUpon>InitCache.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LookupInCache.xaml.cs">
+      <DependentUpon>LookupInCache.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lookup.xaml.cs">
+      <DependentUpon>Lookup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RestApiCall.xaml.cs">
+      <DependentUpon>RestApiCall.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PreValidationFailed.xaml.cs">
+      <DependentUpon>PreValidationFailed.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WriteTraceToCurrentRow.xaml.cs">
+      <DependentUpon>WriteTraceToCurrentRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DuplicateCheckDesigner.xaml.cs">
+      <DependentUpon>DuplicateCheckDesigner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ExecuteCSCode.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GetSreEnvironmentVariable.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SetDefaultValue.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SendEmail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BulkInsert.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ExecuteRule.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MarkValid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AddError.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AddOrUpdateProcessVariable.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AssignAttribute.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClearCache.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WriteTrace.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ExecuteQuery.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ExecuteNonQuery.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeletePersistVariable.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GetPersistVariable.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PersistVariable.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="InitCache.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LookupInCache.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lookup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RestApiCall.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PreValidationFailed.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WriteTraceToCurrentRow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DuplicateCheckDesigner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Graphics\AddError.png" />
+    <Resource Include="Graphics\AddOrUpdateProcessVariable.png" />
+    <Resource Include="Graphics\AddToCollection.png" />
+    <Resource Include="Graphics\Assign.png" />
+    <Resource Include="Graphics\AssignAttribute.png" />
+    <Resource Include="Graphics\CancellationScope.png" />
+    <Resource Include="Graphics\ClearCollection.png" />
+    <Resource Include="Graphics\CompensableActivity.png" />
+    <Resource Include="Graphics\Compensate.png" />
+    <Resource Include="Graphics\Confirm.png" />
+    <Resource Include="Graphics\CorrelationScope.png" />
+    <Resource Include="Graphics\Delay.png" />
+    <Resource Include="Graphics\DeletePersistVariable.png" />
+    <Resource Include="Graphics\DoWhile.png" />
+    <Resource Include="Graphics\DuplicateCheck.png" />
+    <Resource Include="Graphics\ExecuteNonQuery.png" />
+    <Resource Include="Graphics\ExistsInCollection.png" />
+    <Resource Include="Graphics\Flowchart.png" />
+    <Resource Include="Graphics\FlowDecision.png" />
+    <Resource Include="Graphics\FlowSwitch.png" />
+    <Resource Include="Graphics\ForEach.png" />
+    <Resource Include="Graphics\GetPersistVariable.png" />
+    <Resource Include="Graphics\If.png" />
+    <Resource Include="Graphics\InitializeCorrelation.png" />
+    <Resource Include="Graphics\InvokeMethod.png" />
+    <Resource Include="Graphics\Lookup.png" />
+    <Resource Include="Graphics\Parallel.png" />
+    <Resource Include="Graphics\ParallelForEach.png" />
+    <Resource Include="Graphics\Persist.png" />
+    <Resource Include="Graphics\PersistVariable.png" />
+    <Resource Include="Graphics\Pick.png" />
+    <Resource Include="Graphics\PickBranch.png" />
+    <Resource Include="Graphics\PreValidationFailed.png" />
+    <Resource Include="Graphics\Receive.png" />
+    <Resource Include="Graphics\ReceiveAndSendReplyFactory.png" />
+    <Resource Include="Graphics\ReceiveReply.png" />
+    <Resource Include="Graphics\RemoveFromCollection.png" />
+    <Resource Include="Graphics\RestApiCall.png" />
+    <Resource Include="Graphics\Rethrow.png" />
+    <Resource Include="Graphics\Send.png" />
+    <Resource Include="Graphics\SendAndReceiveReplyFactory.png" />
+    <Resource Include="Graphics\SendReply.png" />
+    <Resource Include="Graphics\Sequence.png" />
+    <Resource Include="Graphics\Switch.png" />
+    <Resource Include="Graphics\TerminateWorkflow.png" />
+    <Resource Include="Graphics\Throw.png" />
+    <Resource Include="Graphics\TransactedReceiveScope.png" />
+    <Resource Include="Graphics\TransactionScope.png" />
+    <Resource Include="Graphics\TryCatch.png" />
+    <Resource Include="Graphics\While.png" />
+    <Resource Include="Graphics\WriteLine.png" />
+    <Resource Include="Graphics\WriteTraceToCurrentRow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Graphics\InitCache.png" />
+    <Resource Include="Graphics\LookupInCache.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Graphics\ClearCache.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Graphics\ExecuteQuery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Graphics\WriteTrace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Eyedia.IDPE.Common\Eyedia.IDPE.Common.csproj">
+      <Project>{0a7352c7-5e95-4438-9058-98f6a4cf0bea}</Project>
+      <Name>Eyedia.IDPE.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eyedia.IDPE.DataManager\Eyedia.IDPE.DataManager.csproj">
+      <Project>{3e7d2f46-7a4e-4393-bf96-393f0bf2c7ae}</Project>
+      <Name>Eyedia.IDPE.DataManager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Graphics\BulkInsert.png" />
+    <Resource Include="Graphics\MarkValid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Graphics\ExecuteRule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Graphics\SendEmail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Graphics\GetSreEnvironmentVariable.png" />
+    <Resource Include="Graphics\SetDefaultValue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Graphics\ExecuteCSCode.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

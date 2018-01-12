@@ -1,0 +1,15 @@
+﻿delete from SrePersistentVariable
+delete from SreVersion
+delete from SreLog
+delete from SreRuleDataSource
+delete from SreRule
+delete from SreKeyDatasource
+delete from SreKey
+delete from SreAttributeDataSource
+delete from SreAttribute where Name != 'IsValid'
+delete from SymplusAVPair
+delete from SymplusCodeSet
+delete from SymplusUser where username != 'root'
+delete from SreDataSource where issystem = 0 and id not in (-99,100)
+delete from SreDataSource where issystem = 1 and id not in (-99,100)
+delete from SymplusEmailTracker

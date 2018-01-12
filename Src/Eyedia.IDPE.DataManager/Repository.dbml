@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SymplusRuleEngine" EntityNamespace="Eyedia.IDPE.DataManager" Class="RepositoryDataContext" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=CHARLOTTE-CORE\SQLEXPRESS;Initial Catalog=SymplusRuleEngine;Integrated Security=True" SettingsObjectName="Eyedia.IDPE.DataManager.Properties.Settings" SettingsPropertyName="SymplusRuleEngineConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.SreAttribute" Member="SreAttributes">
+    <Type Name="SreAttribute">
+      <Column Name="AttributeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Minimum" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Maximum" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Formula" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="IsAcceptable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Position" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AttributePrintValueType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AttributePrintValueCustom" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="SreAttribute_SreAttributeDataSource" Member="SreAttributeDataSources" ThisKey="AttributeId" OtherKey="AttributeId" Type="SreAttributeDataSource" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SreVersion" Member="SreVersions">
+    <Type Name="SreVersion">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Version" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ReferenceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Data" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SreAttributeDataSource" Member="SreAttributeDataSources">
+    <Type Name="SreAttributeDataSource">
+      <Column Name="AttributeDataSourceId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DataSourceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AttributeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Position" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsAcceptable" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AttributePrintValueType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AttributePrintValueCustom" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="SreAttribute_SreAttributeDataSource" Member="SreAttribute" ThisKey="AttributeId" OtherKey="AttributeId" Type="SreAttribute" IsForeignKey="true" />
+      <Association Name="SreDataSource_SreAttributeDataSource" Member="SreDataSource" ThisKey="DataSourceId" OtherKey="Id" Type="SreDataSource" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SreDataSource" Member="SreDataSources">
+    <Type Name="SreDataSource">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="IsSystem" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DataFeederType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DataFormatType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Delimiter" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="SystemDataSourceId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DataContainerValidatorType" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="OutputType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OutputWriterTypeFullName" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="PlugInsType" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ProcessingBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="PusherType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PusherTypeFullName" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="SreDataSource_SreAttributeDataSource" Member="SreAttributeDataSources" ThisKey="Id" OtherKey="DataSourceId" Type="SreAttributeDataSource" />
+      <Association Name="SreDataSource_SreDataSource" Member="SreDataSources" ThisKey="Id" OtherKey="SystemDataSourceId" Type="SreDataSource" />
+      <Association Name="SreDataSource_SreLog" Member="SreLogs" ThisKey="Id" OtherKey="DataSourceId" Type="SreLog" />
+      <Association Name="SreDataSource_SrePersistentVariable" Member="SrePersistentVariables" ThisKey="Id" OtherKey="DataSourceId" Type="SrePersistentVariable" />
+      <Association Name="SreDataSource_SreRuleDataSource" Member="SreRuleDataSources" ThisKey="Id" OtherKey="DataSourceId" Type="SreRuleDataSource" />
+      <Association Name="SreDataSource_SreKeyDataSource" Member="SreKeyDataSources" ThisKey="Id" OtherKey="DataSourceId" Type="SreKeyDataSource" />
+      <Association Name="SreDataSource_SreDataSource" Member="SreDataSource1" ThisKey="SystemDataSourceId" OtherKey="Id" Type="SreDataSource" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SreLog" Member="SreLogs">
+    <Type Name="SreLog">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="SubFileName" Type="System.String" DbType="VarChar(260)" CanBeNull="true" />
+      <Column Name="DataSourceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DataSourceName" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="TotalRecords" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TotalValidRecords" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Started" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Finished" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Environment" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="SreDataSource_SreLog" Member="SreDataSource" ThisKey="DataSourceId" OtherKey="Id" Type="SreDataSource" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SrePersistentVariable" Member="SrePersistentVariables">
+    <Type Name="SrePersistentVariable">
+      <Column Name="DataSourceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Value" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="SreDataSource_SrePersistentVariable" Member="SreDataSource" ThisKey="DataSourceId" OtherKey="Id" Type="SreDataSource" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SreRule" Member="SreRules">
+    <Type Name="SreRule">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Xaml" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Priority" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RuleSetType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="SreRule_SreRuleDataSource" Member="SreRuleDataSources" ThisKey="Id" OtherKey="RuleId" Type="SreRuleDataSource" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SreRuleDataSource" Member="SreRuleDataSources">
+    <Type Name="SreRuleDataSource">
+      <Column Name="RuleDataSourceId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RuleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DataSourceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Priority" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RuleSetType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="SreDataSource_SreRuleDataSource" Member="SreDataSource" ThisKey="DataSourceId" OtherKey="Id" Type="SreDataSource" IsForeignKey="true" />
+      <Association Name="SreRule_SreRuleDataSource" Member="SreRule" ThisKey="RuleId" OtherKey="Id" Type="SreRule" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SreKeyDataSource" Member="SreKeyDataSources">
+    <Type Name="SreKeyDataSource">
+      <Column Name="KeyDataSourceId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="KeyId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DataSourceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsDeployable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="SreDataSource_SreKeyDataSource" Member="SreDataSource" ThisKey="DataSourceId" OtherKey="Id" Type="SreDataSource" IsForeignKey="true" />
+      <Association Name="SreKey_SreKeyDataSource" Member="SreKey" ThisKey="KeyId" OtherKey="KeyId" Type="SreKey" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SreKey" Member="SreKeys">
+    <Type Name="SreKey">
+      <Column Name="KeyId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Value" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="ValueBinary" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsDeployable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DataSourceId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NextKeyId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="SreKey_SreKeyDataSource" Member="SreKeyDataSources" ThisKey="KeyId" OtherKey="KeyId" Type="SreKeyDataSource" />
+      <Association Name="SreKey_SreKey" Member="SreKeys" ThisKey="KeyId" OtherKey="NextKeyId" Type="SreKey" />
+      <Association Name="SreKey_SreKey" Member="SreKey1" ThisKey="NextKeyId" OtherKey="KeyId" Type="SreKey" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

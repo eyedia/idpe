@@ -1,0 +1,40 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="SRERequest" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="Attribute">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1" />
+        <xs:element name="Value" type="xs:string" minOccurs="1" maxOccurs="1" />        
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SystemDetails">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ApplicationId" type="xs:string" minOccurs="1" maxOccurs="1" />
+        <xs:element name="ApplicationName" type="xs:string" minOccurs="1" maxOccurs="1" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Rows">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Row" minOccurs="1" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>              
+              <xs:element ref="Attribute" minOccurs="1" maxOccurs="unbounded" />                       
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SRERequest" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:sequence minOccurs="1" maxOccurs="unbounded">
+        <xs:element ref="SystemDetails" minOccurs="1" maxOccurs="1" />
+        <xs:element ref="Rows" minOccurs ="1" maxOccurs="1" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

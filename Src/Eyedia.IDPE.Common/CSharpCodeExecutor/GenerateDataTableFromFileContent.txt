@@ -1,0 +1,33 @@
+﻿using System;
+using System.Data;
+using System.Text;
+using System.Collections.Generic;
+using System.Diagnostics;
+using Eyedia.Core;
+using Eyedia.IDPE.Services;
+using Eyedia.IDPE.DataManager;
+USING
+namespace Eyedia.IDPE.Common
+{
+    public class CSharpCodeInputFileGenerator : InputFileGenerator
+	{
+	    public CSharpCodeInputFileGenerator(Job job) : base(job) { }
+       
+		public override StringBuilder GenerateFileContent(DataTable data)
+        {            
+            throw new NotImplementedException();
+        }
+
+		public override DataTable GenerateFileContent(string fileName)
+        {
+            throw new NotImplementedException();
+        }
+
+		public override DataTable GenerateFileContent(StringBuilder fileContent)
+        {
+            EXPRESSION
+        }
+
+		HELPERMETHODS
+    }
+}

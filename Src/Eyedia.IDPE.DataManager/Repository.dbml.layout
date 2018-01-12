@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.25, 8.5" name="AttributeRepository">
+  <DataContextMoniker Name="/RepositoryDataContext" />
+  <nestedChildShapes>
+    <classShape Id="76fb3e19-ce11-4e11-b1ee-37dd165aac90" isExpanded="false" absoluteBounds="0.625, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/RepositoryDataContext/SreAttribute" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d06b614f-53e0-4b7d-b8e5-0c3875c333a9" absoluteBounds="0.64000000000000057, 0.96, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="28ed7bf7-6a33-469b-9678-f2458b48524b" isExpanded="false" absoluteBounds="9, 3.125, 2, 0.45">
+      <DataClassMoniker Name="/RepositoryDataContext/SreVersion" />
+      <nestedChildShapes>
+        <elementListCompartment Id="aaf5d931-cb60-48f9-aa75-2389f4043663" absoluteBounds="9.015, 3.5850000000000009, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9f9e37c7-1109-4375-b46e-580cd55912cd" isExpanded="false" absoluteBounds="0.625, 1.75, 2, 0.45">
+      <DataClassMoniker Name="/RepositoryDataContext/SreAttributeDataSource" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8611798c-3bdd-4839-a0f5-84f9e0aebb0a" absoluteBounds="0.64000000000000057, 2.2100000000000009, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ac87011c-c363-448d-afa2-1140b1ed87f9" isExpanded="false" absoluteBounds="3.625, 1.875, 2, 0.45">
+      <DataClassMoniker Name="/RepositoryDataContext/SreDataSource" />
+      <nestedChildShapes>
+        <elementListCompartment Id="82c2c622-1e0d-4cff-8a89-bf7facf1ba20" absoluteBounds="3.6400000000000006, 2.3350000000000009, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5aaf5c56-f08c-4868-af1f-3166625c32e5" isExpanded="false" absoluteBounds="5.5, 3.375, 2, 0.45">
+      <DataClassMoniker Name="/RepositoryDataContext/SreLog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e35a9fb4-db67-4a79-b738-bea7ab2d4012" absoluteBounds="5.5150000000000006, 3.8350000000000009, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="21663c08-4374-4c36-aadf-1cbc79275561" isExpanded="false" absoluteBounds="3.875, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/RepositoryDataContext/SrePersistentVariable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="681aa658-00aa-4e4b-ad10-a4503640e41b" absoluteBounds="3.8900000000000006, 0.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5fe56795-c1d1-4feb-9811-20e81ba4218d" isExpanded="false" absoluteBounds="9, 2, 2, 0.45">
+      <DataClassMoniker Name="/RepositoryDataContext/SreRule" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d095c3c2-2c59-4224-bd26-101ec4bb9d6a" absoluteBounds="9.015, 2.4600000000000009, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b937eb1c-e43a-4a38-967f-946210b1b253" isExpanded="false" absoluteBounds="6.375, 2, 2, 0.45">
+      <DataClassMoniker Name="/RepositoryDataContext/SreRuleDataSource" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f1593f7c-7212-450f-a649-503ede6aaea0" absoluteBounds="6.3900000000000006, 2.4600000000000009, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.625 : 0.95); (1.625 : 1.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/RepositoryDataContext/SreAttribute/SreAttribute_SreAttributeDataSource" />
+      <nodes>
+        <classShapeMoniker Id="76fb3e19-ce11-4e11-b1ee-37dd165aac90" />
+        <classShapeMoniker Id="9f9e37c7-1109-4375-b46e-580cd55912cd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.625 : 2.0375); (2.625 : 2.0375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/RepositoryDataContext/SreDataSource/SreDataSource_SreAttributeDataSource" />
+      <nodes>
+        <classShapeMoniker Id="ac87011c-c363-448d-afa2-1140b1ed87f9" />
+        <classShapeMoniker Id="9f9e37c7-1109-4375-b46e-580cd55912cd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.30919230769231 : 2.325); (4.30919230769231 : 2.575); (4.95584615384615 : 2.575); (4.95584615384615 : 2.325)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/RepositoryDataContext/SreDataSource/SreDataSource_SreDataSource" />
+      <nodes>
+        <classShapeMoniker Id="ac87011c-c363-448d-afa2-1140b1ed87f9" />
+        <classShapeMoniker Id="ac87011c-c363-448d-afa2-1140b1ed87f9" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5625 : 2.325); (5.5625 : 3.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/RepositoryDataContext/SreDataSource/SreDataSource_SreLog" />
+      <nodes>
+        <classShapeMoniker Id="ac87011c-c363-448d-afa2-1140b1ed87f9" />
+        <classShapeMoniker Id="5aaf5c56-f08c-4868-af1f-3166625c32e5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.75 : 1.875); (4.75 : 0.95)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/RepositoryDataContext/SreDataSource/SreDataSource_SrePersistentVariable" />
+      <nodes>
+        <classShapeMoniker Id="ac87011c-c363-448d-afa2-1140b1ed87f9" />
+        <classShapeMoniker Id="21663c08-4374-4c36-aadf-1cbc79275561" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.625 : 2.1625); (6.375 : 2.1625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/RepositoryDataContext/SreDataSource/SreDataSource_SreRuleDataSource" />
+      <nodes>
+        <classShapeMoniker Id="ac87011c-c363-448d-afa2-1140b1ed87f9" />
+        <classShapeMoniker Id="b937eb1c-e43a-4a38-967f-946210b1b253" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(9 : 2.225); (8.375 : 2.225)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/RepositoryDataContext/SreRule/SreRule_SreRuleDataSource" />
+      <nodes>
+        <classShapeMoniker Id="5fe56795-c1d1-4feb-9811-20e81ba4218d" />
+        <classShapeMoniker Id="b937eb1c-e43a-4a38-967f-946210b1b253" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="cee97468-fdb3-4956-acd6-8a053a5a6b13" isExpanded="false" absoluteBounds="3.125, 3.375, 2, 0.45">
+      <DataClassMoniker Name="/RepositoryDataContext/SreKeyDataSource" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c4fc868a-2735-4051-9177-3b76dd196f92" absoluteBounds="3.14, 3.835, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.90459615384616 : 2.325); (3.90459615384616 : 3.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/RepositoryDataContext/SreDataSource/SreDataSource_SreKeyDataSource" />
+      <nodes>
+        <classShapeMoniker Id="ac87011c-c363-448d-afa2-1140b1ed87f9" />
+        <classShapeMoniker Id="cee97468-fdb3-4956-acd6-8a053a5a6b13" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="f0611d6d-9287-4f4a-a05d-9a78af53a7b8" isExpanded="false" absoluteBounds="0.5, 3.375, 2, 0.45">
+      <DataClassMoniker Name="/RepositoryDataContext/SreKey" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8a9a2a39-f5dd-4c59-9b24-50315a99c9f8" absoluteBounds="0.51500000000000012, 3.835, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.5 : 3.6); (3.125 : 3.6)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/RepositoryDataContext/SreKey/SreKey_SreKeyDataSource" />
+      <nodes>
+        <classShapeMoniker Id="f0611d6d-9287-4f4a-a05d-9a78af53a7b8" />
+        <classShapeMoniker Id="cee97468-fdb3-4956-acd6-8a053a5a6b13" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.18419230769231 : 3.825); (1.18419230769231 : 4.075); (1.83084615384615 : 4.075); (1.83084615384615 : 3.825)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/RepositoryDataContext/SreKey/SreKey_SreKey" />
+      <nodes>
+        <classShapeMoniker Id="f0611d6d-9287-4f4a-a05d-9a78af53a7b8" />
+        <classShapeMoniker Id="f0611d6d-9287-4f4a-a05d-9a78af53a7b8" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,96 @@
+﻿<Window x:Class="Eyedia.IDPE.Interface.ConfigDatabaseWriter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ViewModels="clr-namespace:Eyedia.IDPE.Interface" 
+        Title="Database Output Writer Configuration" Height="660" Width="890" WindowStartupLocation="CenterScreen" >   
+    <Window.Resources>
+        <Style TargetType="ListBox">
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="ListBoxItem">
+                        <Style.Resources>
+                            <SolidColorBrush x:Key="{x:Static Member=SystemColors.MenuHighlightBrush}" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+                            <SolidColorBrush x:Key="{x:Static  Member=SystemColors.ControlBrushKey}" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                <Setter Property="Background" Value="#19CDD6DE"></Setter>
+                            </Trigger>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                <Setter Property="Background" Value="White"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="178*" />
+            <ColumnDefinition Width="325*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="1" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal">
+            <TextBlock Text="Connection: " VerticalAlignment="Center" HorizontalAlignment="Right" Height="21" Margin="20,0,0,0"></TextBlock>
+            <ComboBox x:Name="cmbConnection"  Margin="5,3,10,3" MinWidth="200" Height="21" HorizontalAlignment="Left" VerticalContentAlignment="Center" ItemsSource="{Binding Path=DatabaseConnectionList}" 
+                  DisplayMemberPath="DatabaseType" SelectedValuePath="ConnectionString" SelectionChanged="cmbConnection_SelectionChanged">                
+            </ComboBox>
+            <Button x:Name="btnConn" Content="..." Width="26" Margin="0,5,5,5" Height="20" Command="{Binding OpenConncmd}" />
+
+            <TextBlock Text="Table: " Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20,0,0,0"></TextBlock>
+            <ComboBox x:Name="cmbTableName" Margin="5,10,10,9" MinWidth="200" Height="21" HorizontalAlignment="Left" VerticalContentAlignment="Center"  
+                 SelectionChanged="cmbTableName_SelectionChanged" />
+            <Label x:Name="label" Content="CS Process Variable" Margin="0,8,0,1"/>
+            <TextBox x:Name="txtCsProcessVariable" MinWidth="150" Text="" Margin="0,6"/>
+        </StackPanel>
+
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ListBox  SelectionMode="Single" Grid.Column="0"    
+                      Name="lbx2" ItemsSource="{Binding Path=ColumnMapInfos}" SelectedItem="{Binding Path=selectedColumnMap}" AlternationCount="2" ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                       IsSynchronizedWithCurrentItem="True" SelectedIndex="0" Margin="0,0,0,12"  ScrollViewer.ScrollChanged="lbx2_ScrollChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=(OutputColumn)}" VerticalAlignment="Center"  Margin="5,5,0,0"   Height="26"  />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <GridSplitter Grid.Column="1"   VerticalAlignment="Stretch" Width="5" HorizontalAlignment="Stretch" Margin="0,0,0,12"></GridSplitter>
+            <ListBox    SelectionMode="Single" Name="lbx1" ScrollViewer.ScrollChanged="lbx1_ScrollChanged"  Grid.Column="2" ItemsSource="{Binding Path=ColumnMapInfos}"  SelectedItem="{Binding Path=selectedColumnMap}"
+                        AlternationCount="2" IsSynchronizedWithCurrentItem="True" Margin="0,0,0,12" HorizontalContentAlignment="Stretch"
+                        >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <ComboBox  Margin="5"  Height="21" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" 
+                                       DropDownOpened="ComboBox_DropDownOpened"  GotFocus="ComboBox_GotFocus" SelectionChanged="ComboBox_SelectionChanged"  Initialized="ComboBox_Initialized" 
+                                       />
+
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnSave" Content="Save" Width="75" Margin="5,5,10,5" Height="23" Command="{Binding SaveCmd}" Click="btnSave_Click" />
+            <Button Content="Close" Width="75" Margin="10,5,5,5" Height="23" Click="Button_Click" />
+        </StackPanel>
+        <StatusBar Grid.Row="4" Grid.ColumnSpan="2">
+            <StatusBarItem>
+                <TextBlock x:Name="txtMessage" Text="Ready " VerticalAlignment="Center" HorizontalAlignment="Right"></TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+
+</Window>

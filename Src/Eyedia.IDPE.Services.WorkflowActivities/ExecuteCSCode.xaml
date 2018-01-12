@@ -1,0 +1,63 @@
+﻿<sap:ActivityDesigner xmlns:my="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"  x:Class="Eyedia.IDPE.Services.WorkflowActivities.ExecuteCSCode"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:Eyedia.IDPE.Services.WorkflowActivities"
+    xmlns:srs="clr-namespace:Eyedia.IDPE.Services;assembly=Eyedia.IDPE.Services"
+    xmlns:s="clr-namespace:System;assembly=mscorlib"
+    xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation"
+    xmlns:sapc="clr-namespace:System.Activities.Presentation.Converters;assembly=System.Activities.Presentation"
+    xmlns:sapv="clr-namespace:System.Activities.Presentation.View;assembly=System.Activities.Presentation" mc:Ignorable="d" 
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="507.056">
+
+    <sap:ActivityDesigner.Resources>
+        <ResourceDictionary>
+            <sapc:ArgumentToExpressionConverter x:Key="ArgumentToExpressionConverter" />
+            <!--<c:ComboBoxItemConverter x:Key="comboBoxItemConverter"/>-->
+        </ResourceDictionary>
+    </sap:ActivityDesigner.Resources>
+    <sap:ActivityDesigner.Icon>
+        <DrawingBrush>
+            <DrawingBrush.Drawing>
+                <ImageDrawing>
+                    <ImageDrawing.Rect>
+                        <Rect Location="0,0" Size="16,16" ></Rect>
+                    </ImageDrawing.Rect>
+                    <ImageDrawing.ImageSource>
+                        <BitmapImage UriSource="Graphics\ExecuteCSCode.png" ></BitmapImage>
+                    </ImageDrawing.ImageSource>
+                </ImageDrawing>
+            </DrawingBrush.Drawing>
+        </DrawingBrush>
+    </sap:ActivityDesigner.Icon>
+    <Grid Width="544" Margin="0,0,0,-240">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="170" />
+            <ColumnDefinition Width="374*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="200" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <TextBlock VerticalAlignment="Center" Margin="5,5,31,5" Text="Job" Height="18"  />
+        <sapv:ExpressionTextBox HintText="Job object if available" Expression="{Binding Path=ModelItem.Job, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }" OwnerActivity="{Binding Path=ModelItem}" Margin="9,5,5,5" MaxLines="1" Grid.Column="1" Width="360" Name="jobExType" />
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,5,0,5" Text="Data" Grid.Row="1"/>
+        <sapv:ExpressionTextBox HintText="WorkerData object if available (When job is not available)" Expression="{Binding Path=ModelItem.Data, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }" OwnerActivity="{Binding Path=ModelItem}" Margin="9,5,5,5" MaxLines="1" Grid.Row="1" Grid.Column="1" Width="360" Name="dataExType" />
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,5,0,5" Text="Code" Grid.Row="2"/>
+        <sapv:ExpressionTextBox HintText="Enter C# code what you want to perform on the target object, after the dot(.)" Expression="{Binding Path=ModelItem.Code, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }" ExpressionType="s:String" 
+                                OwnerActivity="{Binding Path=ModelItem}" Margin="9,5,5,5" MaxLines="100" Grid.Row="2" Grid.Column="1" Width="360" />
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,2,0,2" Text="Object" Grid.Row="3" Grid.Column="0"/>
+        <sapv:ExpressionTextBox HintText="The target object on which you want to exeucte the c# code" Expression="{Binding Path=ModelItem.Object, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }" ExpressionType="s:Object" OwnerActivity="{Binding Path=ModelItem}" Margin="9,5,5,5" MaxLines="1" Grid.Row="3" Grid.Column="1" Width="360" />
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,5,0,5" Text="ObjectType" Grid.Row="4"/>
+        <sapv:ExpressionTextBox HintText="Enter a VB Expression" Expression="{Binding Path=ModelItem.ObjectType, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }" ExpressionType="s:String" OwnerActivity="{Binding Path=ModelItem}" Margin="9,5,5,5" MaxLines="1" Grid.Row="4" Grid.Column="1" Width="360" />
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,5,0,5" Text="Additional Using Namespace" Grid.Row="5"/>
+        <sapv:ExpressionTextBox HintText="Additional namespace(e.g. using ans1;using ans2;)" Expression="{Binding Path=ModelItem.AdditionalUsingNamespace, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }" ExpressionType="s:String" OwnerActivity="{Binding Path=ModelItem}" Margin="9,5,5,5" MaxLines="1" Grid.Row="5" Grid.Column="1" Width="360" />
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,5,0,5" Text="Additional References" Grid.Row="6"/>
+        <sapv:ExpressionTextBox HintText="Additional referenced dll (e.g. myplugin.dll, myplugin2.dll)" Expression="{Binding Path=ModelItem.AdditionalReferences, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }" ExpressionType="s:String" OwnerActivity="{Binding Path=ModelItem}" Margin="9,5,5,5" MaxLines="1" Grid.Row="6" Grid.Column="1" Width="360" />
+
+    </Grid>
+</sap:ActivityDesigner>

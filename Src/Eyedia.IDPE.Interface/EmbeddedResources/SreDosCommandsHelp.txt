@@ -1,0 +1,36 @@
+﻿
+			SRE DOS Commands Help
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+_filei							-	Input file name
+_fileo							-	Output file name
+----------------------------------------------------------------------------
+
+_dira							-	Archive folder name
+_diro							-	Output folder name
+_dirp							-	Pull folder name
+----------------------------------------------------------------------------
+
+_dira(datasource id)				-	Archive folder name of data source id
+_diro(datasource id)				-	Output folder name of data source id
+_dirp(datasource id)				-	Pull folder name of data source id
+----------------------------------------------------------------------------
+
+_key(<keyname>)					-	returns key value (empty string if key is not defined)
+----------------------------------------------------------------------------
+
+_if(<processvariable>) <command>	-	executes command if the boolean processvariable is 'true'
+----------------------------------------------------------------------------
+
+DOS Command Examples:
+copy _filei _key(networkfolder)	- Make sure you defined key 'networkfolder' & it exists; this command will copy input file to the mentioned key value.
+
+mkdir _key(somefolder)			- creates folder (note that if folder already exists, it wont throw error, and will not overwrite existing folder)
+
+_if(copy_allowed) copy _filei _key(networkfolder) - Create process variable 'copy_allowed', apply rule to assign boolean value
+
+----------------------------------------------------------------------------
+
+Sql Query Examples:
+update table1 set source = '_ipaddress' where status is null
+

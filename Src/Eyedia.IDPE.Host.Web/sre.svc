@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Debug="true" Service="Symplus.RuleEngine.Services.Sre" %>

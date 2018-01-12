@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SymplusRuleEngine" Class="CoreDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=CHARLOTTE-CORE\SQLEXPRESS;Initial Catalog=SymplusRuleEngine;Integrated Security=True" SettingsObjectName="Eyedia.Core.Properties.Settings" SettingsPropertyName="SymplusRuleEngineConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="SymplusMobileDevice" Member="SymplusMobileDevices">
+    <Type Name="SymplusMobileDevice">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DeviceId" Type="System.String" DbType="VarChar(512) NOT NULL" CanBeNull="false" />
+      <Column Name="RegistrationId" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="OperatingSystem" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UpdatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SymplusAVPair" Member="SymplusAVPairs">
+    <Type Name="SymplusAVPair">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[Key]" Member="Key" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Value" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SymplusCodeSet" Member="SymplusCodeSets">
+    <Type Name="SymplusCodeSet">
+      <Column Name="CodeSetId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EnumCode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Value" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ReferenceKey" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Position" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SymplusGroup" Member="SymplusGroups">
+    <Type Name="SymplusGroup">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="SymplusGroup_SymplusGroupUser" Member="SymplusGroupUsers" ThisKey="Id" OtherKey="GroupId" Type="SymplusGroupUser" />
+      <Association Name="SymplusGroup_SymplusUser" Member="SymplusUsers" ThisKey="Id" OtherKey="GroupId" Type="SymplusUser" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SymplusGroupUser" Member="SymplusGroupUsers">
+    <Type Name="SymplusGroupUser">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GroupId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="SymplusGroup_SymplusGroupUser" Member="SymplusGroup" ThisKey="GroupId" OtherKey="Id" Type="SymplusGroup" IsForeignKey="true" />
+      <Association Name="SymplusUser_SymplusGroupUser" Member="SymplusUser" ThisKey="UserId" OtherKey="Id" Type="SymplusUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SymplusUser" Member="SymplusUsers">
+    <Type Name="SymplusUser">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FullName" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="EmailId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Preferences" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="GroupId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDebugUser" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsSystemUser" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="SymplusUser_SymplusGroupUser" Member="SymplusGroupUsers" ThisKey="Id" OtherKey="UserId" Type="SymplusGroupUser" />
+      <Association Name="SymplusGroup_SymplusUser" Member="SymplusGroup" ThisKey="GroupId" OtherKey="Id" Type="SymplusGroup" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SymplusEmailTracker" Member="SymplusEmailTrackers">
+    <Type Name="SymplusEmailTracker">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Subject" Type="System.String" DbType="VarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="Body" Type="System.String" DbType="VarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="ReferenceId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

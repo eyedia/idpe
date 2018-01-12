@@ -1,0 +1,102 @@
+#region Copyright Notice
+/* Copyright (c) 2017, Deb'jyoti Das - debjyoti@debjyoti.com
+ All rights reserved.
+ Redistribution and use in source and binary forms, with or without
+ modification, are not permitted.Neither the name of the 
+ 'Deb'jyoti Das' nor the names of its contributors may be used 
+ to endorse or promote products derived from this software without 
+ specific prior written permission.
+ THIS SOFTWARE IS PROVIDED BY Deb'jyoti Das 'AS IS' AND ANY
+ EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. IN NO EVENT SHALL Debjyoti OR Deb'jyoti OR Debojyoti Das OR Eyedia BE LIABLE FOR ANY
+ DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#region Developer Information
+/*
+Author  - Deb'jyoti Das
+Created - 3/19/2013 11:14:16 AM
+Description  - 
+Modified By - 
+Description  - 
+*/
+#endregion Developer Information
+
+#endregion Copyright Notice
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Diagnostics;
+using System.IO;
+using Eyedia.IDPE.Common;
+using Eyedia.IDPE.DataManager;
+
+namespace Eyedia.IDPE.Interface
+{
+    public class DosCommands
+    {
+        public static string Execute(string actions)
+        {
+            if (!actions.Contains(Environment.NewLine))
+            {
+                return RunOne(actions);
+            }
+            else
+            {
+                List<string> lstActions = new List<string>(actions.Split(Environment.NewLine.ToCharArray()));
+                string output = string.Empty;
+                foreach (string action in lstActions)
+                {
+                    if (string.IsNullOrEmpty(action))
+                        continue;
+
+                    output += RunOne(action) + Environment.NewLine;
+                }
+
+                return output;
+            }
+        }      
+
+        #region Helpers
+        private static string RunOne(string action)
+        {
+            try
+            {
+                string batchFile = Path.Combine(Information.TempDirectoryTempData, "temp.bat");
+                StreamWriter sw = new StreamWriter(batchFile);
+                sw.Write(action);
+                sw.Close();
+
+                Process p = new Process();
+                p.StartInfo.UseShellExecute = false;
+                p.StartInfo.RedirectStandardOutput = true;
+                p.StartInfo.CreateNoWindow = true;
+                p.StartInfo.WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                p.StartInfo.FileName = batchFile;
+                p.Start();
+                string output = p.StandardOutput.ReadToEnd();
+                p.WaitForExit();
+
+                if(File.Exists(batchFile))
+                    File.Delete(batchFile);
+                return output;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        #endregion Helpers
+    }
+}
+
+

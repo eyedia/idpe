@@ -1,0 +1,21 @@
+﻿using System;
+using System.Data;
+using System.Linq;
+using System.Diagnostics;
+using Eyedia.Core;
+using Eyedia.IDPE.Services;
+using Eyedia.IDPE.DataManager;
+USING
+
+namespace Eyedia.IDPE.Common
+{
+    public class CSharpCode
+	{       
+		public void Execute(object obj)
+        {            
+            EXPRESSION;
+        }
+
+		HELPERMETHODS
+    }
+}

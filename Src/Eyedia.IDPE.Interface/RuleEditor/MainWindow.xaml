@@ -1,0 +1,83 @@
+﻿<Window x:Class="Eyedia.IDPE.Interface.RuleEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Eyedia.IDPE.Interface.RuleEditor" 
+        Title="Integrated Data Processing Environment" Closing="Window_Closing" >
+    <Window.Resources>
+        <ResourceDictionary>
+            <local:BooleanToErrorTypeConverter x:Key="BooleanToErrorTypeConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Name="grid1" Margin="0,0,0,2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="30"/>            
+        </Grid.RowDefinitions>
+        <Grid Name="grdToolbox" Grid.Column="0" >
+
+        </Grid>
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Stretch" Width="5" Background ="CornflowerBlue"
+                      Mouse.MouseEnter ="GridVertSplitter_MouseEnter" Mouse.MouseLeave ="GridSplitter_MouseLeave"></GridSplitter>
+        <Grid Name="grdwb" Grid.Column="2">
+
+        </Grid>
+        <GridSplitter Grid.Column="3" HorizontalAlignment="Center"  VerticalAlignment="Stretch" Width="5" Background ="CornflowerBlue"
+                      Mouse.MouseEnter ="GridVertSplitter_MouseEnter" Mouse.MouseLeave ="GridSplitter_MouseLeave"></GridSplitter>
+        <Grid Name="grdproperty" Grid.Column="4" >
+
+        </Grid>
+        <!--
+        <GridSplitter  ResizeDirection="Rows" 
+                    Grid.ColumnSpan="5" 
+                      Grid.Row="1"
+                      Background ="CornflowerBlue" Mouse.MouseEnter ="GridSplitter_MouseEnter" Mouse.MouseLeave ="GridSplitter_MouseLeave"
+                    HorizontalAlignment="Stretch" 
+                     Height="50" ResizeBehavior ="PreviousAndNext"/>-->
+        <Grid Grid.Row="2" Grid.ColumnSpan="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Width="65" Content="References" Name="btnImport" Click="btnImport_Click" Height="25" />
+                <Button Width="65" Content="Save" Name="btnSave" Click="btnSave_Click" Height="25" />                
+            </StackPanel>
+            <!--
+            <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Visibility="Collapsed">
+                <DataGrid Name="ErrorsDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}"
+                          xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id" Binding="{Binding Id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Type" Binding="{Binding IsWarning, Converter={StaticResource BooleanToErrorTypeConverter}}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Message" Binding="{Binding Message}" IsReadOnly="True" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+            -->
+        </Grid>
+        <!--
+        <StatusBar Grid.Row="3" Grid.ColumnSpan="5">
+            <StatusBarItem Visibility="Hidden">
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="{Binding Path=StatusText}" Name="Status" VerticalAlignment="Center" />
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>   
+ -->
+    </Grid>
+   
+</Window>

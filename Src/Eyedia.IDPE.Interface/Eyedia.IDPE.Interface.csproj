@@ -1,0 +1,1178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BA69D076-4019-4426-98E6-A5813793FBC1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eyedia.IDPE.Interface</RootNamespace>
+    <AssemblyName>idped</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>DataSource.ico</ApplicationIcon>
+    <SignManifests>true</SignManifests>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <ManifestCertificateThumbprint>07FE5F6A7E58A8A7EF125B58C5E908833B6A0138</ManifestCertificateThumbprint>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;WITHOUT_OBJECTLISTVIEW</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.WinForms.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.SqlServer.Types.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Activities.Core.Presentation" />
+    <Reference Include="System.Activities.Presentation" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel.Activities" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Workflow.Activities">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Workflow.ComponentModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking">
+      <HintPath>..\..\ExternalLibs\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttributeRepository\ConfigCSharpInputGenerator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttributeRepository\ConfigCSharpInputGenerator.Designer.cs">
+      <DependentUpon>ConfigCSharpInputGenerator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttributeRepository\frmConfigXmlExtension.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttributeRepository\frmConfigXmlExtension.Designer.cs">
+      <DependentUpon>frmConfigXmlExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttributeRepository\frmConfigXml.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttributeRepository\frmConfigXml.Designer.cs">
+      <DependentUpon>frmConfigXml.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttributeRepository\ExportKeys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttributeRepository\ExportKeys.Designer.cs">
+      <DependentUpon>ExportKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttributeRepository\frmConfigEDI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttributeRepository\frmConfigEDI.Designer.cs">
+      <DependentUpon>frmConfigEDI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttributeRepository\frmConfigEDIExtension.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttributeRepository\frmConfigEDIExtension.Designer.cs">
+      <DependentUpon>frmConfigEDIExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttributeRepository\frmConfigSql.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttributeRepository\frmConfigSql.Designer.cs">
+      <DependentUpon>frmConfigSql.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttributeRepository\frmConfigZip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttributeRepository\frmConfigZip.Designer.cs">
+      <DependentUpon>frmConfigZip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttributeRepository\frmOutputWriterFixedLength.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttributeRepository\frmOutputWriterFixedLength.Designer.cs">
+      <DependentUpon>frmOutputWriterFixedLength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttributeRepository\RenameDataSource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttributeRepository\RenameDataSource.Designer.cs">
+      <DependentUpon>RenameDataSource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnvironmentService\DeployableKeysWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnvironmentService\DeployableKeysWindow.Designer.cs">
+      <DependentUpon>DeployableKeysWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnvironmentService\EnvironmentWindow.Actions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ColumnSorter.cs" />
+    <Compile Include="ConfigUIs\ConfigDatabaseWriter.xaml.cs">
+      <DependentUpon>ConfigDatabaseWriter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SreEnvironmentsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SreEnvironmentsControl.Designer.cs">
+      <DependentUpon>SreEnvironmentsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GlobalSearchWidget.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\GlobalSearchWidget.Designer.cs">
+      <DependentUpon>GlobalSearchWidget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SreVersionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SreVersionControl.Designer.cs">
+      <DependentUpon>SreVersionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnvironmentService\DeploymentArtifacts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnvironmentService\DeploymentArtifacts.Designer.cs">
+      <DependentUpon>DeploymentArtifacts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnvironmentService\WindowsServiceLogOnAsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnvironmentService\WindowsServiceLogOnAsDialog.Designer.cs">
+      <DependentUpon>WindowsServiceLogOnAsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerateDatabaseCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerateDatabaseCode.Designer.cs">
+      <DependentUpon>GenerateDatabaseCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GlobalSearch.Designer.cs">
+      <DependentUpon>GlobalSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Monitor.Search.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertyEditors\Attribute\EditorLovName.cs" />
+    <Compile Include="SreConfigurationManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SreConfigurationManager.Designer.cs">
+      <DependentUpon>SreConfigurationManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AttributeMapper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AttributeMapper.Designer.cs">
+      <DependentUpon>AttributeMapper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AttributeMapperRuleWizard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AttributeMapperRuleWizard.Designer.cs">
+      <DependentUpon>AttributeMapperRuleWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CoolPrintPreviewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CoolPrintPreviewDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\CoolPrintPreviewDialog.designer.cs">
+      <DependentUpon>CoolPrintPreviewDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CSharpExpression.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CSharpExpression.Designer.cs">
+      <DependentUpon>CSharpExpression.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataSourceSummary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DataSourceSummary.Designer.cs">
+      <DependentUpon>DataSourceSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HeaderFooterConfiguration.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\HeaderFooterConfiguration.Designer.cs">
+      <DependentUpon>HeaderFooterConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PageImageList.cs" />
+    <Compile Include="Controls\PrintableListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\SqlConfiguration.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SqlConfiguration.Designer.cs">
+      <DependentUpon>SqlConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SreDatabases.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SreDatabases.Designer.cs">
+      <DependentUpon>SreDatabases.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SreEmails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SreEmails.Designer.cs">
+      <DependentUpon>SreEmails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SreKeys.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SreKeys.Designer.cs">
+      <DependentUpon>SreKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SreListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SreListView.Designer.cs">
+      <DependentUpon>SreListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SreRulesEditorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SreRulesEditorControl.Designer.cs">
+      <DependentUpon>SreRulesEditorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TextGraphics.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TextGraphics.Designer.cs">
+      <DependentUpon>TextGraphics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClearCache.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClearCache.Designer.cs">
+      <DependentUpon>ClearCache.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSources.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataSources.Designer.cs">
+      <DependentUpon>DataSources.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DosCommands.cs" />
+    <Compile Include="DataSourceValidator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataSourceValidator.Designer.cs">
+      <DependentUpon>DataSourceValidator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockPanel\DockPanelMapper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockPanel\DockPanelMapper.Designer.cs">
+      <DependentUpon>DockPanelMapper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockPanel\DockPanelDataSourceAttributes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockPanel\DockPanelDataSourceAttributes.Designer.cs">
+      <DependentUpon>DockPanelDataSourceAttributes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockPanel\MainWindow.Basic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockPanel\MainWindow.MDITasks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockPanel\SREBaseFormNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmailLogs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmailLogs.Designer.cs">
+      <DependentUpon>EmailLogs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalEventsOnComplete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GlobalEventsOnComplete.Designer.cs">
+      <DependentUpon>GlobalEventsOnComplete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageActions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageActions.Designer.cs">
+      <DependentUpon>ManageActions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorLogSearchResult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MonitorLogSearchResult.Designer.cs">
+      <DependentUpon>MonitorLogSearchResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PropertyEditors\Attribute\AttributeTypeEnumTypeConverter.cs" />
+    <Compile Include="PropertyEditors\Attribute\AttributePrintFormatEnumTypeConverter.cs" />
+    <Compile Include="PropertyEditors\Attribute\SreAttributeProperty.cs" />
+    <Compile Include="PropertyEditors\DataSource\EditorSystemDataSource.cs" />
+    <Compile Include="PropertyEditors\DataSource\EditorOutputDataFormat.cs" />
+    <Compile Include="PropertyEditors\DataSource\EditorPostEvents.cs" />
+    <Compile Include="PropertyEditors\DataSource\PusherTypeEnumTypeConverter.cs" />
+    <Compile Include="PropertyEditors\DataSource\SreDataSourceProperty.PostEvent.cs" />
+    <Compile Include="PropertyEditors\DataSource\OutputFileExtensionConverter.cs" />
+    <Compile Include="PropertyEditors\DataSource\OutputFileNameFormatConverter.cs" />
+    <Compile Include="PropertyEditors\DataSource\DelimiterConverter.cs" />
+    <Compile Include="PropertyEditors\ConvertersNumeric.cs" />
+    <Compile Include="CSharpCodeEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpCodeEditor.Designer.cs">
+      <DependentUpon>CSharpCodeEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockPanel\DockPanelProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockPanel\DockPanelProperty.Designer.cs">
+      <DependentUpon>DockPanelProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockPanel\DockPanelDataSourceSystemAttributes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockPanel\DockPanelDataSourceSystemAttributes.Designer.cs">
+      <DependentUpon>DockPanelDataSourceSystemAttributes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockPanel\DockPanelDataSources.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockPanel\DockPanelDataSources.Designer.cs">
+      <DependentUpon>DockPanelDataSources.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockPanel\DockPanelGlobalAttributes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockPanel\DockPanelGlobalAttributes.Designer.cs">
+      <DependentUpon>DockPanelGlobalAttributes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockPanel\MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockPanel\MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockPanel\ToolWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockPanel\ToolWindow.Designer.cs">
+      <DependentUpon>ToolWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileLog.Designer.cs">
+      <DependentUpon>FileLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFtpConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFtpConfiguration.Designer.cs">
+      <DependentUpon>frmFtpConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSreConnections.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSreConnections.Designer.cs">
+      <DependentUpon>frmSreConnections.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVersions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVersions.Designer.cs">
+      <DependentUpon>frmVersions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HelpLabel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelpLabel.Designer.cs">
+      <DependentUpon>HelpLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBox.Designer.cs">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Log.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Log.Designer.cs">
+      <DependentUpon>Log.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plexiglass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertyEditors\DataSource\OutputTypeEnumTypeConverter.cs" />
+    <Compile Include="PropertyEditors\DataSource\SreDataSourceProperty.Output.cs" />
+    <Compile Include="PropertyEditors\DataSource\DataFeederEnumTypeConverter.cs" />
+    <Compile Include="PropertyEditors\DataSource\DataFormatEnumTypeConverter.cs" />
+    <Compile Include="PropertyEditors\DataSource\EditorDataFormat.cs" />
+    <Compile Include="PropertyEditors\DataSource\SreDataSourceProperty.Input.DataFormatType.cs" />
+    <Compile Include="PropertyEditors\DataSource\SreDataSourceProperty.Input.DataFeederType.cs" />
+    <Compile Include="PropertyEditors\DataSource\EditorDataFeeder.cs" />
+    <Compile Include="PropertyEditors\MultiLineTextEditor.cs" />
+    <Compile Include="PropertyEditors\SrePropertyGrid.cs" />
+    <Compile Include="Reports\frmReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\frmReports.Designer.cs">
+      <DependentUpon>frmReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RuleEditor\frmCopyRule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RuleEditor\frmCopyRule.Designer.cs">
+      <DependentUpon>frmCopyRule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmExportImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmExportImport.Designer.cs">
+      <DependentUpon>frmExportImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FixedLengthSchemaGenerator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FixedLengthSchemaGenerator.Designer.cs">
+      <DependentUpon>FixedLengthSchemaGenerator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\AttributeSource.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\BusinessObjects.cs" />
+    <Compile Include="Data\UtilDataManager.cs" />
+    <Compile Include="Data\ExternalSystemSource.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AttributeRepository\frmConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttributeRepository\frmConfig.Designer.cs">
+      <DependentUpon>frmConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttributeRepository\frmCopyDataSource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttributeRepository\frmCopyDataSource.Designer.cs">
+      <DependentUpon>frmCopyDataSource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKeys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKeys.Designer.cs">
+      <DependentUpon>frmKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttributeRepository\frmConfig2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttributeRepository\frmConfig2.Designer.cs">
+      <DependentUpon>frmConfig2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RuleEditor\frmSelectRule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RuleEditor\frmSelectRule.Designer.cs">
+      <DependentUpon>frmSelectRule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RuleEditor\RuleDependencies.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RuleEditor\RuleDependencies.Designer.cs">
+      <DependentUpon>RuleDependencies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RuleEditor\RuleWizards.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RuleEditor\RuleWizards.Designer.cs">
+      <DependentUpon>RuleWizards.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RuleEditor\SyntaxHighLighterWPF.cs" />
+    <Compile Include="RuleEditor\Rules.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RuleEditor\Rules.Designer.cs">
+      <DependentUpon>Rules.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListOfValues.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListOfValues.Designer.cs">
+      <DependentUpon>ListOfValues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RuleEditor\Converters\BooleanToErrorTypeConverter.cs" />
+    <Compile Include="RuleEditor\Execution\IWorkflowRunner.cs" />
+    <Compile Include="RuleEditor\InputDialog.xaml.cs">
+      <DependentUpon>InputDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RuleEditor\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RuleEditor\Properties\Resources.Designer.cs" />
+    <Compile Include="RuleEditor\RulesExtraInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RuleEditor\RulesExtraInformation.Designer.cs">
+      <DependentUpon>RulesExtraInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RuleEditor\Utilities\CheckOpenWindow.cs" />
+    <Compile Include="RuleEditor\Utilities\EditorService.cs" />
+    <Compile Include="RuleEditor\Utilities\ExpressionEditorInstance.cs" />
+    <Compile Include="RuleEditor\Validation\DebugValidationErrorService.cs" />
+    <Compile Include="RuleEditor\ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="RuleEditor\ViewModel\RelayCommand.cs" />
+    <Compile Include="RuleEditor\ViewModel\ViewModelBase.cs" />
+    <Compile Include="RuleEditor\ViewModel\ViewModelSreRule.cs" />
+    <Compile Include="RuleEditor\ViewModel\WorkflowViewModel.cs" />
+    <Compile Include="RuleEditor\Views\ValidationErrorsUserControl.xaml.cs">
+      <DependentUpon>ValidationErrorsUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SourceCodeUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SourceCodeUI.Designer.cs">
+      <DependentUpon>SourceCodeUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Preferences.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Preferences.Designer.cs">
+      <DependentUpon>Preferences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Monitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Monitor.Designer.cs">
+      <DependentUpon>Monitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EnvironmentService\EnvironmentWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnvironmentService\EnvironmentWindow.Designer.cs">
+      <DependentUpon>EnvironmentWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SreServiceCommunicator.cs" />
+    <Compile Include="SreVersionComparer.cs" />
+    <Compile Include="PropertyEditors\DataSource\SreDataSourceProperty.cs" />
+    <Compile Include="SystemDataSources.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemDataSources.Designer.cs">
+      <DependentUpon>SystemDataSources.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TextboxTraceListener.cs" />
+    <Compile Include="Utility.cs" />
+    <Compile Include="ValidateDataSource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ValidateDataSource.Designer.cs">
+      <DependentUpon>ValidateDataSource.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AttributeRepository\ConfigCSharpInputGenerator.resx">
+      <DependentUpon>ConfigCSharpInputGenerator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttributeRepository\RenameDataSource.resx">
+      <DependentUpon>RenameDataSource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SreEnvironmentsControl.resx">
+      <DependentUpon>SreEnvironmentsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GlobalSearchWidget.resx">
+      <DependentUpon>GlobalSearchWidget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SreVersionControl.resx">
+      <DependentUpon>SreVersionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnvironmentService\DeployableKeysWindow.resx">
+      <DependentUpon>DeployableKeysWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnvironmentService\DeploymentArtifacts.resx">
+      <DependentUpon>DeploymentArtifacts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnvironmentService\WindowsServiceLogOnAsDialog.resx">
+      <DependentUpon>WindowsServiceLogOnAsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerateDatabaseCode.resx">
+      <DependentUpon>GenerateDatabaseCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalSearch.resx">
+      <DependentUpon>GlobalSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SreConfigurationManager.resx">
+      <DependentUpon>SreConfigurationManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DataSourceSummary.resx">
+      <DependentUpon>DataSourceSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SreListView.resx">
+      <DependentUpon>SreListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SreRulesEditorControl.resx">
+      <DependentUpon>SreRulesEditorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataSources.resx">
+      <DependentUpon>DataSources.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataSourceValidator.resx">
+      <DependentUpon>DataSourceValidator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockPanel\DockPanelMapper.resx">
+      <DependentUpon>DockPanelMapper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockPanel\DockPanelDataSourceAttributes.resx">
+      <DependentUpon>DockPanelDataSourceAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockPanel\DockPanelProperty.resx">
+      <DependentUpon>DockPanelProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockPanel\DockPanelDataSourceSystemAttributes.resx">
+      <DependentUpon>DockPanelDataSourceSystemAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockPanel\DockPanelDataSources.resx">
+      <DependentUpon>DockPanelDataSources.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockPanel\DockPanelGlobalAttributes.resx">
+      <DependentUpon>DockPanelGlobalAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockPanel\MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockPanel\ToolWindow.resx">
+      <DependentUpon>ToolWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailLogs.resx">
+      <DependentUpon>EmailLogs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVersions.resx">
+      <DependentUpon>frmVersions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalEventsOnComplete.resx">
+      <DependentUpon>GlobalEventsOnComplete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageActions.resx">
+      <DependentUpon>ManageActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MonitorLogSearchResult.resx">
+      <DependentUpon>MonitorLogSearchResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnvironmentService\EnvironmentWindow.resx">
+      <DependentUpon>EnvironmentWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemDataSources.resx">
+      <DependentUpon>SystemDataSources.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ValidateDataSource.resx">
+      <DependentUpon>ValidateDataSource.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttributeRepository\frmConfigXmlExtension.resx">
+      <DependentUpon>frmConfigXmlExtension.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttributeRepository\frmConfigXml.resx">
+      <DependentUpon>frmConfigXml.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttributeRepository\ExportKeys.resx">
+      <DependentUpon>ExportKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttributeRepository\frmConfigEDI.resx">
+      <DependentUpon>frmConfigEDI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttributeRepository\frmConfigEDIExtension.resx">
+      <DependentUpon>frmConfigEDIExtension.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttributeRepository\frmConfigSql.resx">
+      <DependentUpon>frmConfigSql.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttributeRepository\frmConfigZip.resx">
+      <DependentUpon>frmConfigZip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttributeRepository\frmOutputWriterFixedLength.resx">
+      <DependentUpon>frmOutputWriterFixedLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\AttributeMapper.resx">
+      <DependentUpon>AttributeMapper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\AttributeMapperRuleWizard.resx">
+      <DependentUpon>AttributeMapperRuleWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CoolPrintPreviewDialog.resx">
+      <DependentUpon>CoolPrintPreviewDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CSharpExpression.resx">
+      <DependentUpon>CSharpExpression.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\HeaderFooterConfiguration.resx">
+      <DependentUpon>HeaderFooterConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SqlConfiguration.resx">
+      <DependentUpon>SqlConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SreDatabases.resx">
+      <DependentUpon>SreDatabases.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SreEmails.resx">
+      <DependentUpon>SreEmails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SreKeys.resx">
+      <DependentUpon>SreKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\TextGraphics.resx">
+      <DependentUpon>TextGraphics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClearCache.resx">
+      <DependentUpon>ClearCache.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharpCodeEditor.resx">
+      <DependentUpon>CSharpCodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileLog.resx">
+      <DependentUpon>FileLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFtpConfiguration.resx">
+      <DependentUpon>frmFtpConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSreConnections.resx">
+      <DependentUpon>frmSreConnections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpLabel.resx">
+      <DependentUpon>HelpLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBox.resx">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Log.resx">
+      <DependentUpon>Log.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rdlcAttributesParentChild.rdlc" />
+    <EmbeddedResource Include="Reports\frmReports.resx">
+      <DependentUpon>frmReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rdlcAttributes.rdlc" />
+    <EmbeddedResource Include="Reports\rdlcDataSources.rdlc" />
+    <EmbeddedResource Include="RuleEditor\frmCopyRule.resx">
+      <DependentUpon>frmCopyRule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExportImport.resx">
+      <DependentUpon>frmExportImport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttributeRepository\frmConfig.resx">
+      <DependentUpon>frmConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttributeRepository\frmCopyDataSource.resx">
+      <DependentUpon>frmCopyDataSource.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKeys.resx">
+      <DependentUpon>frmKeys.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttributeRepository\frmConfig2.resx">
+      <DependentUpon>frmConfig2.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RuleEditor\frmSelectRule.resx">
+      <DependentUpon>frmSelectRule.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FixedLengthSchemaGenerator.resx">
+      <DependentUpon>FixedLengthSchemaGenerator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RuleEditor\RuleDependencies.resx">
+      <DependentUpon>RuleDependencies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RuleEditor\RuleWizards.resx">
+      <DependentUpon>RuleWizards.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RuleEditor\Rules.resx">
+      <DependentUpon>Rules.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListOfValues.resx">
+      <DependentUpon>ListOfValues.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RuleEditor\Properties\Resources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RuleEditor\RulesExtraInformation.resx">
+      <DependentUpon>RulesExtraInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SourceCodeUI.resx">
+      <DependentUpon>SourceCodeUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Preferences.resx">
+      <DependentUpon>Preferences.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Monitor.resx">
+      <DependentUpon>Monitor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Splash.resx">
+      <DependentUpon>Splash.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Test.resx">
+      <DependentUpon>Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextArea.resx">
+      <DependentUpon>TextArea.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="EmbeddedResources\EDIX12Samples\i810.sample" />
+    <EmbeddedResource Include="EmbeddedResources\XmlSamples\xml1.sample" />
+    <None Include="Graphics\sre_text.pptx" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Splash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Splash.Designer.cs">
+      <DependentUpon>Splash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SyntaxHighLighter.cs" />
+    <Compile Include="Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Test.Designer.cs">
+      <DependentUpon>Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TextArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextArea.Designer.cs">
+      <DependentUpon>TextArea.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Graphics\WorkflowActivities\ExecuteCSCode.png" />
+    <None Include="Graphics\test.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\GetSreEnvironmentVariable.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\SetDefaultValue.png" />
+    <None Include="Graphics\status_anim.gif" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\SendEmail.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\ExecuteRule.png" />
+    <None Include="Graphics\warning45.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\LockedSequence.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\MarkValid.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\BulkInsert.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\WriteTrace.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\ExecuteQuery.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\ClearCache.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\InitCache.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\LookupInCache.png" />
+    <None Include="Graphics\SystemDataSource.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\ExecuteNonQuery.png" />
+    <EmbeddedResource Include="EmbeddedResources\DuplicateCheckInstructions.txt" />
+    <EmbeddedResource Include="EmbeddedResources\SreDosCommandsHelp.txt" />
+    <None Include="Graphics\112_RightArrowShort_Red_32x32_72.png" />
+    <Content Include="DataSource.ico" />
+    <EmbeddedResource Include="EmbeddedResources\CleanTables.txt" />
+    <Content Include="Graphics\a.png" />
+    <Content Include="Graphics\arrow.gif" />
+    <None Include="Graphics\attribute.ico" />
+    <None Include="Graphics\av.png" />
+    <Resource Include="Graphics\datatypes\BigInt.gif" />
+    <Resource Include="Graphics\datatypes\Bit.gif" />
+    <Resource Include="Graphics\datatypes\Codeset.gif" />
+    <Resource Include="Graphics\datatypes\Datetime.gif" />
+    <Resource Include="Graphics\datatypes\Decimal.gif" />
+    <Resource Include="Graphics\datatypes\Generated.gif" />
+    <Resource Include="Graphics\datatypes\Int.gif" />
+    <Resource Include="Graphics\datatypes\NotReferenced.gif" />
+    <Resource Include="Graphics\datatypes\Referenced.gif" />
+    <Resource Include="Graphics\datatypes\String.gif" />
+    <Resource Include="Graphics\datatypes\Unknown.gif" />
+    <None Include="Graphics\DataSource.png" />
+    <None Include="Graphics\attribute.png" />
+    <None Include="Graphics\attributeds.png" />
+    <None Include="Graphics\attributesds.png" />
+    <None Include="Graphics\disabled.png" />
+    <Content Include="Graphics\doc.gif" />
+    <None Include="Graphics\Import.png" />
+    <None Include="Graphics\info.png" />
+    <None Include="Graphics\logo_splash.jpg" />
+    <None Include="Graphics\lov.png" />
+    <None Include="Graphics\Map_Arrow.png" />
+    <None Include="Graphics\Map_Arrow_Right.png" />
+    <None Include="Graphics\Logo\Logo.png" />
+    <None Include="Graphics\Logo\sre_64.png" />
+    <Content Include="Graphics\Monitor.png" />
+    <None Include="Graphics\Move.png" />
+    <None Include="Graphics\PS\SREBanner.png" />
+    <None Include="Graphics\printer-tool.png" />
+    <Content Include="Graphics\readme.txt" />
+    <None Include="Graphics\rules_16.png" />
+    <Content Include="Graphics\refresh.png" />
+    <Content Include="Graphics\save.png" />
+    <None Include="Graphics\SREBanner.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\AddError.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\AddOrUpdateProcessVariable.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\AddToCollection.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\Assign.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\AssignAttribute.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\CancellationScope.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\ClearCollection.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\CompensableActivity.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\Compensate.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\Confirm.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\CorrelationScope.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\Delay.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\DeletePersistVariable.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\DoWhile.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\DuplicateCheck.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\ExistsInCollection.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\Flowchart.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\FlowDecision.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\FlowSwitch.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\ForEach.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\GetPersistVariable.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\If.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\InitializeCorrelation.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\InvokeMethod.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\Lookup.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\Parallel.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\ParallelForEach.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\Persist.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\PersistVariable.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\Pick.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\PickBranch.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\PreValidationFailed.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\Receive.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\ReceiveAndSendReplyFactory.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\ReceiveReply.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\RemoveFromCollection.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\RestApiCall.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\Rethrow.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\Send.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\SendAndReceiveReplyFactory.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\SendReply.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\Sequence.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\Switch.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\TerminateWorkflow.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\Throw.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\TransactedReceiveScope.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\TransactionScope.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\TryCatch.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\While.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\WriteLine.png" />
+    <EmbeddedResource Include="Graphics\WorkflowActivities\WriteTraceToCurrentRow.png" />
+    <EmbeddedResource Include="RuleEditor\Templates\WithData.xml" />
+    <EmbeddedResource Include="RuleEditor\Templates\WithJob.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedResources\AttributeMapper.xml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <Page Include="ConfigUIs\ConfigDatabaseWriter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RuleEditor\InputDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RuleEditor\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RuleEditor\Views\ValidationErrorsUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Eyedia.Core\Eyedia.Core.csproj">
+      <Project>{48b94db6-6836-46ef-9d09-5b4c9aa12885}</Project>
+      <Name>Eyedia.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eyedia.IDPE.Common\Eyedia.IDPE.Common.csproj">
+      <Project>{0A7352C7-5E95-4438-9058-98F6A4CF0BEA}</Project>
+      <Name>Eyedia.IDPE.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eyedia.IDPE.DataManager\Eyedia.IDPE.DataManager.csproj">
+      <Project>{3E7D2F46-7A4E-4393-BF96-393F0BF2C7AE}</Project>
+      <Name>Eyedia.IDPE.DataManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eyedia.IDPE.Services\Eyedia.IDPE.Services.csproj">
+      <Project>{A2E85C34-A292-43CF-ADA6-8200FA375BD1}</Project>
+      <Name>Eyedia.IDPE.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties BuildVersion_UseGlobalSettings="False" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_UpdateFileVersion="False" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

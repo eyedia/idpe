@@ -1,0 +1,45 @@
+﻿'Pre-Validate Duplicate check' facilitates bulk(full container) duplicate check during pre-validation. The built-in 'DuplicateCheck' rule should be associated with datasource.
+The 'DuplicateCheck' rule internally calls a store procedure 'SreDuplicateCheck' by passing datasource id and serialized input data as per uniqueness criteria you defined
+ with additional 2 columns;'Position' and 'IsDuplicate'. 'IsDuplicate' to be updated to 'true/false' and return back. If 'IsDuplicate' is true for any record, SRE will through appropriate errors.
+
+Step by step instructions...
+For example, we have a datasource(Id - 125) with attributes as Name, CheckNumber, CheckDate. And our uniqueness criteria is CheckNumber and CheckDate.
+
+1. Create a key as 'UniquenessCriteria' and define your uniqueness criteria. So, in this case we will define as 'CheckNumber+CheckDate'
+2. Create another key as 'DuplicateCheckWithInTheFileOnly' with value 'true' if you want to check duplicate only within the file and DO NOT want to check against database. If your value is true,
+   you can ignore steps 3,4,5.
+3. Create a connection string as 'DuplicateCheckCS' for your database; click 'Test' to verify that connection string is working.
+4. Click 'Generate Duplicate Check Store Procedure Code' to get the store procedure base code. Note - the code will be generated based on 'Database type' of the connection string you are using.
+5. Create the store procedure in your database; write appropriate code to update 'IsDuplicate' to true/false.
+6. Associate 'DuplicateCheck' rule in 'Pre-Validate' section.
+
+
+At run time, uniqueness criteria attributes will be extracted from input data. So, in this case the data will have 4 columns - 2 columns 'CheckNumber' and 'CheckDate' from input data 
+and additional 2 columns 'Position' (int, contains position of the record starting from 1) and 'IsDuplicate'(boolean, by default false) will be passed to the database store procedure. 
+Make sure you are returning data in same structure, same position (order by position)
+
+if any of the returned record is duplicate, SRE will throw appropriate error. It may also be noted that same rule 'DuplicateCheck' can be used for different datasources, each data source can be its
+own parameter settings, which means for datsource id 130, connection string 'DuplicateCheckCS' can have different connection string, 'UniquenessCriteria' can have different combination.
+
+
+---------------------------------------------------------------------------------------------------------------------------
+Sample input Data (to the Store Procedure):
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------
+Sample output Data (from the Store Procedure):

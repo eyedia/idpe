@@ -1,0 +1,18 @@
+﻿using System;
+using System.Diagnostics;
+
+using Symplus.Core;
+using Symplus.RuleEngine.Services;
+using Symplus.RuleEngine.DataManager;
+
+namespace Symplus.RuleEngine.Common
+{
+    public class CSharpCode
+	{       
+       public string ExecuteAndReturnString(Job job)
+        {            
+           EXPRESSION           
+        }
+
+    }
+}

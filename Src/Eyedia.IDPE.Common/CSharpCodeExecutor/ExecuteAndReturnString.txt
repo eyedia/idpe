@@ -1,0 +1,19 @@
+﻿using System;
+using System.Diagnostics;
+using Eyedia.Core;
+using Eyedia.IDPE.Services;
+using Eyedia.IDPE.DataManager;
+USING
+
+namespace Eyedia.IDPE.Common
+{
+    public class CSharpCode
+	{
+        public string ExecuteAndReturnString(Job job)
+        {            
+           EXPRESSION           
+        }
+
+		HELPERMETHODS
+    }
+}

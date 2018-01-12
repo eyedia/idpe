@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CAPFDPEXRT>
+  <LIST_G_BATCH_NAME>
+    <G_BATCH_NAME>
+      <BATCH_NAME>FUT041714</BATCH_NAME>
+      <BATCH_DATE>20140417</BATCH_DATE>
+      <SUPPLIER_NUMBER>175831</SUPPLIER_NUMBER>
+      <SUPPLIER_NAME>ROSELLE PAPER COMPANY,INC</SUPPLIER_NAME>
+      <INVOICE_NUMBER>96</INVOICE_NUMBER>
+      <INVOICE_DATE>20150508</INVOICE_DATE>
+      <INVOICE_AMOUNT>61.20</INVOICE_AMOUNT>
+      <DISCOUNT_AMOUNT>0.00</DISCOUNT_AMOUNT>
+      <PAYMENT_NUMBER>400000556</PAYMENT_NUMBER>
+      <PAYMENT_MATURITY_DATE>20140616</PAYMENT_MATURITY_DATE>
+      <TRANSACTION_TYPE>STANDARD</TRANSACTION_TYPE>
+      <CURRENCY>USD</CURRENCY>
+      <TRANSFER_DATE>20140417</TRANSFER_DATE>
+      <NET_DUE_AMOUNT>61.20</NET_DUE_AMOUNT>
+    </G_BATCH_NAME>
+    <G_BATCH_NAME>
+      <BATCH_NAME>FUT041714</BATCH_NAME>
+      <BATCH_DATE>20140417</BATCH_DATE>
+      <SUPPLIER_NUMBER>175831</SUPPLIER_NUMBER>
+      <SUPPLIER_NAME>ROSELLE PAPER COMPANY,INC</SUPPLIER_NAME>
+      <INVOICE_NUMBER>97</INVOICE_NUMBER>
+      <INVOICE_DATE>20150508</INVOICE_DATE>
+      <INVOICE_AMOUNT>61.20</INVOICE_AMOUNT>
+      <DISCOUNT_AMOUNT>0.00</DISCOUNT_AMOUNT>
+      <PAYMENT_NUMBER>400000556</PAYMENT_NUMBER>
+      <PAYMENT_MATURITY_DATE>20140616</PAYMENT_MATURITY_DATE>
+      <TRANSACTION_TYPE>STANDARD</TRANSACTION_TYPE>
+      <CURRENCY>USD</CURRENCY>
+      <TRANSFER_DATE>20140417</TRANSFER_DATE>
+      <NET_DUE_AMOUNT>61.20</NET_DUE_AMOUNT>
+    </G_BATCH_NAME>
+    <G_BATCH_NAME>
+      <BATCH_NAME>FUT041714</BATCH_NAME>
+      <BATCH_DATE>20140417</BATCH_DATE>
+      <SUPPLIER_NUMBER>175831</SUPPLIER_NUMBER>
+      <SUPPLIER_NAME>ROSELLE PAPER COMPANY,INC</SUPPLIER_NAME>
+      <INVOICE_NUMBER>98</INVOICE_NUMBER>
+      <INVOICE_DATE>20150508</INVOICE_DATE>
+      <INVOICE_AMOUNT>61.20</INVOICE_AMOUNT>
+      <DISCOUNT_AMOUNT>0.00</DISCOUNT_AMOUNT>
+      <PAYMENT_NUMBER>400000556</PAYMENT_NUMBER>
+      <PAYMENT_MATURITY_DATE>20140616</PAYMENT_MATURITY_DATE>
+      <TRANSACTION_TYPE>STANDARD</TRANSACTION_TYPE>
+      <CURRENCY>USD</CURRENCY>
+      <TRANSFER_DATE>20140417</TRANSFER_DATE>
+      <NET_DUE_AMOUNT>61.20</NET_DUE_AMOUNT>
+    </G_BATCH_NAME>
+    <G_BATCH_NAME>
+      <BATCH_NAME>FUT041714</BATCH_NAME>
+      <BATCH_DATE>20140417</BATCH_DATE>
+      <SUPPLIER_NUMBER>175831</SUPPLIER_NUMBER>
+      <SUPPLIER_NAME>ROSELLE PAPER COMPANY,INC</SUPPLIER_NAME>
+      <INVOICE_NUMBER>99</INVOICE_NUMBER>
+      <INVOICE_DATE>20150508</INVOICE_DATE>
+      <INVOICE_AMOUNT>61.20</INVOICE_AMOUNT>
+      <DISCOUNT_AMOUNT>0.00</DISCOUNT_AMOUNT>
+      <PAYMENT_NUMBER>400000556</PAYMENT_NUMBER>
+      <PAYMENT_MATURITY_DATE>20140616</PAYMENT_MATURITY_DATE>
+      <TRANSACTION_TYPE>STANDARD</TRANSACTION_TYPE>
+      <CURRENCY>USD</CURRENCY>
+      <TRANSFER_DATE>20140417</TRANSFER_DATE>
+      <NET_DUE_AMOUNT>61.20</NET_DUE_AMOUNT>
+    </G_BATCH_NAME>
+    <G_BATCH_NAME>
+      <BATCH_NAME>FUT041714</BATCH_NAME>
+      <BATCH_DATE>20140417</BATCH_DATE>
+      <SUPPLIER_NUMBER>175831</SUPPLIER_NUMBER>
+      <SUPPLIER_NAME>ROSELLE PAPER COMPANY,INC</SUPPLIER_NAME>
+      <INVOICE_NUMBER>100</INVOICE_NUMBER>
+      <INVOICE_DATE>20150508</INVOICE_DATE>
+      <INVOICE_AMOUNT>61.20</INVOICE_AMOUNT>
+      <DISCOUNT_AMOUNT>0.00</DISCOUNT_AMOUNT>
+      <PAYMENT_NUMBER>400000556</PAYMENT_NUMBER>
+      <PAYMENT_MATURITY_DATE>20140616</PAYMENT_MATURITY_DATE>
+      <TRANSACTION_TYPE>STANDARD</TRANSACTION_TYPE>
+      <CURRENCY>USD</CURRENCY>
+      <TRANSFER_DATE>20140417</TRANSFER_DATE>
+      <NET_DUE_AMOUNT>61.20</NET_DUE_AMOUNT>
+    </G_BATCH_NAME>
+  </LIST_G_BATCH_NAME>
+</CAPFDPEXRT>
+==XMLEND==
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil Consolas;}{\f1\fnil\fcharset0 Courier New;}}
+{\colortbl ;\red43\green145\blue175;\red0\green0\blue255;\red163\green21\blue21;}
+\viewkind4\uc1\pard\cf1\f0\fs19 DataTable\cf0  inputData = \cf2 new\cf0  \cf1 DataTable\cf0 ();\par
+\cf1 DataSet\cf0  ds = \cf2 new\cf0  \cf1 DataSet\cf0 ();\par
+System.IO.\cf1 StringReader\cf0  stringReader = \cf2 new\cf0  System.IO.\cf1 StringReader\cf0 (fileContent);\par
+ds.ReadXml(stringReader);\par
+\cf2 return\cf0  ds.Tables[\cf3 "G_BATCH_NAME"\cf0 ];\par
+\pard\f1\fs17\par
+}
+==C#END==
+<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:msxsl="urn:schemas-microsoft-com:xslt" exclude-result-prefixes="msxsl">
+  <xsl:output method="text" indent="yes"/>
+
+  <xsl:template match="CAPFDPEXRT">    
+  <xsl:apply-templates select="LIST_G_BATCH_NAME/G_BATCH_NAME"/>
+  </xsl:template>
+  <xsl:template match="G_BATCH_NAME" >
+    <xsl:variable name="item" select="."/>
+
+    <xsl:value-of select="$item/BATCH_NAME"/>
+    <xsl:value-of select="'|'"/>
+    <xsl:value-of select="$item/BATCH_DATE"/>
+    <xsl:value-of select="'|'"/>
+    <xsl:value-of select="$item/SUPPLIER_NUMBER"/>
+    <xsl:value-of select="'|'"/>
+    <xsl:value-of select="$item/SUPPLIER_NAME"/>
+    <xsl:value-of select="'|'"/>
+    <xsl:value-of select="$item/INVOICE_NUMBER"/>
+    <xsl:value-of select="'|'"/>
+    <xsl:value-of select="$item/INVOICE_DATE"/>
+    <xsl:value-of select="'|'"/>
+    <xsl:value-of select="$item/INVOICE_AMOUNT"/>
+    <xsl:value-of select="'|'"/>
+    <xsl:value-of select="$item/DISCOUNT_AMOUNT"/>
+    <xsl:value-of select="'|'"/>
+    <xsl:value-of select="$item/PAYMENT_NUMBER"/>
+    <xsl:value-of select="'|'"/>
+    <xsl:value-of select="$item/PAYMENT_MATURITY_DATE"/>
+    <xsl:value-of select="'|'"/>
+    <xsl:value-of select="$item/TRANSACTION_TYPE"/>
+    <xsl:value-of select="'|'"/>
+    <xsl:value-of select="$item/CURRENCY"/>
+    <xsl:value-of select="'|'"/>
+    <xsl:value-of select="$item/TRANSFER_DATE"/>
+    <xsl:value-of select="'|'"/>
+    <xsl:value-of select="$item/NET_DUE_AMOUNT"/>
+    <xsl:value-of select="'|'"/>
+    <xsl:text>&#x0A;</xsl:text>
+  </xsl:template>
+</xsl:stylesheet>
