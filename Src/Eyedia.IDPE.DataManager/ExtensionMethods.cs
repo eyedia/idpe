@@ -66,7 +66,7 @@ namespace Eyedia.IDPE.DataManager
             return false;
         }
 
-        public static DatabaseTypes GetDatabaseType(this SreKey key)
+        public static DatabaseTypes GetDatabaseType(this IdpeKey key)
         {
             SreKeyTypes sreKeyType = (SreKeyTypes)key.Type;
             switch (sreKeyType)
@@ -111,16 +111,16 @@ namespace Eyedia.IDPE.DataManager
 
         }
 
-        public static string GetKeyValue(this List<SreKey> keys, string key)
+        public static string GetKeyValue(this List<IdpeKey> keys, string key)
         {
             if (keys == null)
                 return string.Empty;
 
-            List<SreKey> filteredKeys = (from k in keys
+            List<IdpeKey> filteredKeys = (from k in keys
                                          where k.Name == key
                                          select k).ToList();
 
-            SreKey srekey = GetFirstItem(filteredKeys);
+            IdpeKey srekey = GetFirstItem(filteredKeys);
 
             if (srekey == null)
                 return string.Empty;
@@ -128,28 +128,28 @@ namespace Eyedia.IDPE.DataManager
             return string.IsNullOrEmpty(srekey.Value) ? string.Empty : srekey.Value;
         }
 
-        public static string GetKeyValue(this List<SreKey> keys, SreKeyTypes keyType)
+        public static string GetKeyValue(this List<IdpeKey> keys, SreKeyTypes keyType)
         {
             if (keys == null)
                 return string.Empty;
 
-            List<SreKey> filteredKeys = (from k in keys
+            List<IdpeKey> filteredKeys = (from k in keys
                               where k.Name == keyType.ToString()
                               select k).ToList();
 
-            SreKey key = GetFirstItem(filteredKeys);
+            IdpeKey key = GetFirstItem(filteredKeys);
             if (key == null)
                 return string.Empty;
 
             return string.IsNullOrEmpty(key.Value) ? string.Empty : key.Value;
         }
 
-        public static SreKey GetKey(this List<SreKey> keys, string key)
+        public static IdpeKey GetKey(this List<IdpeKey> keys, string key)
         {
             if (keys == null)
                 return null;
 
-            List<SreKey> filteredKeys = (from k in keys
+            List<IdpeKey> filteredKeys = (from k in keys
                                  where k.Name.Equals(key, StringComparison.OrdinalIgnoreCase)
                                  select k).ToList();
 
@@ -157,7 +157,7 @@ namespace Eyedia.IDPE.DataManager
 
         }
 
-        private static SreKey GetFirstItem(List<SreKey> keys)
+        private static IdpeKey GetFirstItem(List<IdpeKey> keys)
         {
             if (keys.Count == 1)
             {
@@ -174,19 +174,19 @@ namespace Eyedia.IDPE.DataManager
             }
         }
 
-        public static string GetDefaultConnectionString(this List<SreKey> keys)
+        public static string GetDefaultConnectionString(this List<IdpeKey> keys)
         {
             if (keys == null)
                 return string.Empty;
 
-            List<SreKey> srekeys = (from k in keys
+            List<IdpeKey> srekeys = (from k in keys
                                     where k.Type.IsConnectionStringType() == true
                                     select k).ToList();
 
             return srekeys.Count > 0 ? srekeys[0].Value : string.Empty;
         }
 
-        public static Type ConvertSreTypeIntoDotNetType(this SreAttribute attribute, DatabaseTypes databaseType)
+        public static Type ConvertSreTypeIntoDotNetType(this IdpeAttribute attribute, DatabaseTypes databaseType)
         {
             switch (databaseType)
             {

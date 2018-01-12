@@ -90,7 +90,7 @@ namespace Eyedia.IDPE.Services
 
         public static string Lookup(this DataSource dataSource, string connectionStringKeyName, string query)
         {
-            SreKey connectionStringKey = dataSource.Keys.GetKey(connectionStringKeyName);
+            IdpeKey connectionStringKey = dataSource.Keys.GetKey(connectionStringKeyName);
             if (connectionStringKey == null)
                 throw new Exception(string.Format("Can not perform lookup operation, the connection string was null! Connection string key name was '{0}'"
                     , connectionStringKeyName));
@@ -105,7 +105,7 @@ namespace Eyedia.IDPE.Services
 
         public static int ExecuteNonQuery(this DataSource dataSource, string connectionStringKeyName, string query, bool silent = false)
         {
-            SreKey connectionStringKey = dataSource.Keys.GetKey(connectionStringKeyName);
+            IdpeKey connectionStringKey = dataSource.Keys.GetKey(connectionStringKeyName);
             if (connectionStringKey == null)
                 throw new Exception(string.Format("Can not execute non query, the connection string was null! Connection string key name was '{0}'"
                     , connectionStringKeyName));
@@ -119,7 +119,7 @@ namespace Eyedia.IDPE.Services
 
         public static DataTable LoadDataTable(this DataSource dataSource, string connectionStringKeyName, string query)
         {
-            SreKey connectionStringKey = dataSource.Keys.GetKey(connectionStringKeyName);
+            IdpeKey connectionStringKey = dataSource.Keys.GetKey(connectionStringKeyName);
             if (connectionStringKey == null)
                 throw new Exception(string.Format("Can not load data table, the connection string was null! Connection string key name was '{0}'"
                     , connectionStringKeyName));
@@ -133,7 +133,7 @@ namespace Eyedia.IDPE.Services
 
         public static DataTable LoadDataTable(this DataSource dataSource, string connectionStringKeyName, string query, ref bool isErrored)
         {
-            SreKey connectionStringKey = dataSource.Keys.GetKey(connectionStringKeyName);
+            IdpeKey connectionStringKey = dataSource.Keys.GetKey(connectionStringKeyName);
             if (connectionStringKey == null)
                 throw new Exception(string.Format("Can not load data table, the connection string was null! Connection string key name was '{0}'"
                     , connectionStringKeyName));
@@ -145,7 +145,7 @@ namespace Eyedia.IDPE.Services
 
         public static DataTable LoadDataTable(this DataSource dataSource, string connectionStringKeyName, string query, ref string errorMessage, int timeOut = 5, bool silent = false)
         {
-            SreKey connectionStringKey = dataSource.Keys.GetKey(connectionStringKeyName);
+            IdpeKey connectionStringKey = dataSource.Keys.GetKey(connectionStringKeyName);
             if (connectionStringKey == null)
                 throw new Exception(string.Format("Can not load data table, the connection string was null! Connection string key name was '{0}'"
                     , connectionStringKeyName));
@@ -335,12 +335,12 @@ namespace Eyedia.IDPE.Services
             Trace.TraceError(GetTracePrefix() + format, args);
         }
 
-        public static void SetZippedBinaryValue(this SreKey key, string str)
+        public static void SetZippedBinaryValue(this IdpeKey key, string str)
         {
             key.ValueBinary = new Binary(GZipArchive.Compress(str.GetByteArray()));            
         }
 
-        public static string GetUnzippedBinaryValue(this SreKey key)
+        public static string GetUnzippedBinaryValue(this IdpeKey key)
         {            
             return GZipArchive.Decompress(key.ValueBinary.ToArray()).GetString();
         }

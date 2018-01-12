@@ -70,7 +70,7 @@ namespace Eyedia.IDPE.Interface
                     int deleted = 0;
                     foreach (ListViewItem item in sreListView1.ListView.SelectedItems)
                     {
-                        SreAttribute attrib = item.Tag as SreAttribute;
+                        IdpeAttribute attrib = item.Tag as IdpeAttribute;
                         if (manager.IsAttributeInUse(attrib.AttributeId) == false)
                         {
                             manager.DeleteAttribute(attrib.AttributeId);
@@ -90,7 +90,7 @@ namespace Eyedia.IDPE.Interface
             sreListView1.Width = (int)((this.Width / 10) * 8);
         }
 
-        public SreDataSource SelectedDataSource { get; set; }
+        public IdpeDataSource SelectedDataSource { get; set; }
 
         public DockPanelDataSourceAttributes DockPanelDataSourceAttributes
         {
@@ -125,7 +125,7 @@ namespace Eyedia.IDPE.Interface
             {
                 foreach (ListViewItem item in sreListView1.ListView.Items)
                 {
-                    if (((SreAttribute)item.Tag).AttributeId == selectedAttributeId)
+                    if (((IdpeAttribute)item.Tag).AttributeId == selectedAttributeId)
                     {
                         item.Selected = true;
                         item.EnsureVisible();
@@ -174,8 +174,8 @@ namespace Eyedia.IDPE.Interface
             int position = 1;
             foreach (ListViewItem item in listView.Items)
             {
-                SreAttribute attribute = item.Tag as SreAttribute;
-                SreAttributeDataSource sds = new SreAttributeDataSource();
+                IdpeAttribute attribute = item.Tag as IdpeAttribute;
+                IdpeAttributeDataSource sds = new IdpeAttributeDataSource();
                 sds.DataSourceId = isSystem ? (int)SelectedDataSource.SystemDataSourceId : SelectedDataSource.Id;
                 sds.AttributeId = attribute.AttributeId;
                 if (isSystem == false)
@@ -201,7 +201,7 @@ namespace Eyedia.IDPE.Interface
 
         void AddAttributeToListView(ListViewItem selectedItem, ListView listView)
         {
-            SreAttribute attribute = selectedItem.Tag as SreAttribute;
+            IdpeAttribute attribute = selectedItem.Tag as IdpeAttribute;
             ListViewItem item = new ListViewItem(attribute.Name);
             item.SubItems.Add(attribute.Type);
             item.ImageKey = attribute.Type.ToString() + ".gif";
@@ -247,7 +247,7 @@ namespace Eyedia.IDPE.Interface
 
                 foreach (ListViewItem item in sreListView1.ListView.Items)
                 {
-                    SreAttribute attrib = item.Tag as SreAttribute;
+                    IdpeAttribute attrib = item.Tag as IdpeAttribute;
                     sw.WriteLine(string.Format("\"{0}\",\"{1}\"", attrib.Name, attrib.Type));
                 }
                 sw.Close();
@@ -261,22 +261,22 @@ namespace Eyedia.IDPE.Interface
             openFileDialog1.Filter = "Comma Delimited Files (*.csv)|*.csv|All Files (*.*)|*.*";
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                List<SreAttribute> attributes = new List<SreAttribute>();
+                List<IdpeAttribute> attributes = new List<IdpeAttribute>();
                 string result = ImportAttributes(ReadData(openFileDialog1.FileName), ref attributes);
                 MessageBox.Show(result, "Bulk Insert", MessageBoxButtons.OK, MessageBoxIcon.Information);                
             }
         }
 
       
-        public string ImportAttributes(DataTable table, ref List<SreAttribute> attributes)
+        public string ImportAttributes(DataTable table, ref List<IdpeAttribute> attributes)
         {
             string result = "Total records found = " + table.Rows.Count + Environment.NewLine;
             Manager manager = new Manager();
             int counter = 0;
-            attributes = new List<SreAttribute>();
+            attributes = new List<IdpeAttribute>();
             foreach (DataRow row in table.Rows)
             {
-                SreAttribute attrib = new SreAttribute();
+                IdpeAttribute attrib = new IdpeAttribute();
                 attrib.Name = row[0].ToString();
                 attrib.Type = row[1].ToString();
                 attrib.Position = counter + 1;
@@ -316,9 +316,9 @@ namespace Eyedia.IDPE.Interface
 
         }
 
-        private string CheckAttributeDataChange(Manager manager, SreAttribute attrib)
+        private string CheckAttributeDataChange(Manager manager, IdpeAttribute attrib)
         {
-            SreAttribute existingAttribute = manager.GetAttribute(attrib.Name);
+            IdpeAttribute existingAttribute = manager.GetAttribute(attrib.Name);
             if ((existingAttribute != null)
                 && (existingAttribute.Type.ToLower() != attrib.Type.ToLower()))
                 return existingAttribute.Type;

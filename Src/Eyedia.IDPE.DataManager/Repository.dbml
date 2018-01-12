@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SymplusRuleEngine" EntityNamespace="Eyedia.IDPE.DataManager" Class="RepositoryDataContext" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=CHARLOTTE-CORE\SQLEXPRESS;Initial Catalog=SymplusRuleEngine;Integrated Security=True" SettingsObjectName="Eyedia.IDPE.DataManager.Properties.Settings" SettingsPropertyName="SymplusRuleEngineConnectionString1" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.SreAttribute" Member="SreAttributes">
-    <Type Name="SreAttribute">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="idpe" EntityNamespace="Eyedia.IDPE.DataManager" Class="RepositoryDataContext" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LPT-03084856325\SQLEXPRESS;Initial Catalog=idpe;Integrated Security=True" SettingsObjectName="Eyedia.IDPE.DataManager.Properties.Settings" SettingsPropertyName="idpeConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.IdpeAttribute" Member="IdpeAttributes">
+    <Type Name="IdpeAttribute">
       <Column Name="AttributeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Type" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
@@ -17,25 +17,11 @@
       <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Source" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Association Name="SreAttribute_SreAttributeDataSource" Member="SreAttributeDataSources" ThisKey="AttributeId" OtherKey="AttributeId" Type="SreAttributeDataSource" />
+      <Association Name="IdpeAttribute_IdpeAttributeDataSource" Member="IdpeAttributeDataSources" ThisKey="AttributeId" OtherKey="AttributeId" Type="IdpeAttributeDataSource" />
     </Type>
   </Table>
-  <Table Name="dbo.SreVersion" Member="SreVersions">
-    <Type Name="SreVersion">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Version" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ReferenceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Data" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.SreAttributeDataSource" Member="SreAttributeDataSources">
-    <Type Name="SreAttributeDataSource">
+  <Table Name="dbo.IdpeAttributeDataSource" Member="IdpeAttributeDataSources">
+    <Type Name="IdpeAttributeDataSource">
       <Column Name="AttributeDataSourceId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="DataSourceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="AttributeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -48,12 +34,12 @@
       <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Source" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Association Name="SreAttribute_SreAttributeDataSource" Member="SreAttribute" ThisKey="AttributeId" OtherKey="AttributeId" Type="SreAttribute" IsForeignKey="true" />
-      <Association Name="SreDataSource_SreAttributeDataSource" Member="SreDataSource" ThisKey="DataSourceId" OtherKey="Id" Type="SreDataSource" IsForeignKey="true" />
+      <Association Name="IdpeAttribute_IdpeAttributeDataSource" Member="IdpeAttribute" ThisKey="AttributeId" OtherKey="AttributeId" Type="IdpeAttribute" IsForeignKey="true" />
+      <Association Name="IdpeDataSource_IdpeAttributeDataSource" Member="IdpeDataSource" ThisKey="DataSourceId" OtherKey="Id" Type="IdpeDataSource" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.SreDataSource" Member="SreDataSources">
-    <Type Name="SreDataSource">
+  <Table Name="dbo.IdpeDataSource" Member="IdpeDataSources">
+    <Type Name="IdpeDataSource">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
@@ -75,17 +61,52 @@
       <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Association Name="SreDataSource_SreAttributeDataSource" Member="SreAttributeDataSources" ThisKey="Id" OtherKey="DataSourceId" Type="SreAttributeDataSource" />
-      <Association Name="SreDataSource_SreDataSource" Member="SreDataSources" ThisKey="Id" OtherKey="SystemDataSourceId" Type="SreDataSource" />
-      <Association Name="SreDataSource_SreLog" Member="SreLogs" ThisKey="Id" OtherKey="DataSourceId" Type="SreLog" />
-      <Association Name="SreDataSource_SrePersistentVariable" Member="SrePersistentVariables" ThisKey="Id" OtherKey="DataSourceId" Type="SrePersistentVariable" />
-      <Association Name="SreDataSource_SreRuleDataSource" Member="SreRuleDataSources" ThisKey="Id" OtherKey="DataSourceId" Type="SreRuleDataSource" />
-      <Association Name="SreDataSource_SreKeyDataSource" Member="SreKeyDataSources" ThisKey="Id" OtherKey="DataSourceId" Type="SreKeyDataSource" />
-      <Association Name="SreDataSource_SreDataSource" Member="SreDataSource1" ThisKey="SystemDataSourceId" OtherKey="Id" Type="SreDataSource" IsForeignKey="true" />
+      <Association Name="IdpeDataSource_IdpeAttributeDataSource" Member="IdpeAttributeDataSources" ThisKey="Id" OtherKey="DataSourceId" Type="IdpeAttributeDataSource" />
+      <Association Name="IdpeDataSource_IdpeDataSource" Member="IdpeDataSources" ThisKey="Id" OtherKey="SystemDataSourceId" Type="IdpeDataSource" />
+      <Association Name="IdpeDataSource_IdpeKeyDataSource" Member="IdpeKeyDataSources" ThisKey="Id" OtherKey="DataSourceId" Type="IdpeKeyDataSource" />
+      <Association Name="IdpeDataSource_IdpeLog" Member="IdpeLogs" ThisKey="Id" OtherKey="DataSourceId" Type="IdpeLog" />
+      <Association Name="IdpeDataSource_IdpePersistentVariable" Member="IdpePersistentVariables" ThisKey="Id" OtherKey="DataSourceId" Type="IdpePersistentVariable" />
+      <Association Name="IdpeDataSource_IdpeRuleDataSource" Member="IdpeRuleDataSources" ThisKey="Id" OtherKey="DataSourceId" Type="IdpeRuleDataSource" />
+      <Association Name="IdpeDataSource_IdpeDataSource" Member="IdpeDataSource1" ThisKey="SystemDataSourceId" OtherKey="Id" Type="IdpeDataSource" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.SreLog" Member="SreLogs">
-    <Type Name="SreLog">
+  <Table Name="dbo.IdpeKey" Member="IdpeKeys">
+    <Type Name="IdpeKey">
+      <Column Name="KeyId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Value" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="ValueBinary" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsDeployable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DataSourceId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NextKeyId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="IdpeKey_IdpeKey" Member="IdpeKeys" ThisKey="KeyId" OtherKey="NextKeyId" Type="IdpeKey" />
+      <Association Name="IdpeKey_IdpeKeyDataSource" Member="IdpeKeyDataSources" ThisKey="KeyId" OtherKey="KeyId" Type="IdpeKeyDataSource" />
+      <Association Name="IdpeKey_IdpeKey" Member="IdpeKey1" ThisKey="NextKeyId" OtherKey="KeyId" Type="IdpeKey" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.IdpeKeyDataSource" Member="IdpeKeyDataSources">
+    <Type Name="IdpeKeyDataSource">
+      <Column Name="KeyDataSourceId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="KeyId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DataSourceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsDeployable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="IdpeDataSource_IdpeKeyDataSource" Member="IdpeDataSource" ThisKey="DataSourceId" OtherKey="Id" Type="IdpeDataSource" IsForeignKey="true" />
+      <Association Name="IdpeKey_IdpeKeyDataSource" Member="IdpeKey" ThisKey="KeyId" OtherKey="KeyId" Type="IdpeKey" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.IdpeLog" Member="IdpeLogs">
+    <Type Name="IdpeLog">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="FileName" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
       <Column Name="SubFileName" Type="System.String" DbType="VarChar(260)" CanBeNull="true" />
@@ -101,11 +122,11 @@
       <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Association Name="SreDataSource_SreLog" Member="SreDataSource" ThisKey="DataSourceId" OtherKey="Id" Type="SreDataSource" IsForeignKey="true" />
+      <Association Name="IdpeDataSource_IdpeLog" Member="IdpeDataSource" ThisKey="DataSourceId" OtherKey="Id" Type="IdpeDataSource" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.SrePersistentVariable" Member="SrePersistentVariables">
-    <Type Name="SrePersistentVariable">
+  <Table Name="dbo.IdpePersistentVariable" Member="IdpePersistentVariables">
+    <Type Name="IdpePersistentVariable">
       <Column Name="DataSourceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
       <Column Name="Value" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
@@ -114,11 +135,11 @@
       <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Association Name="SreDataSource_SrePersistentVariable" Member="SreDataSource" ThisKey="DataSourceId" OtherKey="Id" Type="SreDataSource" IsForeignKey="true" />
+      <Association Name="IdpeDataSource_IdpePersistentVariable" Member="IdpeDataSource" ThisKey="DataSourceId" OtherKey="Id" Type="IdpeDataSource" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.SreRule" Member="SreRules">
-    <Type Name="SreRule">
+  <Table Name="dbo.IdpeRule" Member="IdpeRules">
+    <Type Name="IdpeRule">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
@@ -130,11 +151,11 @@
       <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Association Name="SreRule_SreRuleDataSource" Member="SreRuleDataSources" ThisKey="Id" OtherKey="RuleId" Type="SreRuleDataSource" />
+      <Association Name="IdpeRule_IdpeRuleDataSource" Member="IdpeRuleDataSources" ThisKey="Id" OtherKey="RuleId" Type="IdpeRuleDataSource" />
     </Type>
   </Table>
-  <Table Name="dbo.SreRuleDataSource" Member="SreRuleDataSources">
-    <Type Name="SreRuleDataSource">
+  <Table Name="dbo.IdpeRuleDataSource" Member="IdpeRuleDataSources">
+    <Type Name="IdpeRuleDataSource">
       <Column Name="RuleDataSourceId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="RuleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="DataSourceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -146,43 +167,22 @@
       <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Association Name="SreDataSource_SreRuleDataSource" Member="SreDataSource" ThisKey="DataSourceId" OtherKey="Id" Type="SreDataSource" IsForeignKey="true" />
-      <Association Name="SreRule_SreRuleDataSource" Member="SreRule" ThisKey="RuleId" OtherKey="Id" Type="SreRule" IsForeignKey="true" />
+      <Association Name="IdpeDataSource_IdpeRuleDataSource" Member="IdpeDataSource" ThisKey="DataSourceId" OtherKey="Id" Type="IdpeDataSource" IsForeignKey="true" />
+      <Association Name="IdpeRule_IdpeRuleDataSource" Member="IdpeRule" ThisKey="RuleId" OtherKey="Id" Type="IdpeRule" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.SreKeyDataSource" Member="SreKeyDataSources">
-    <Type Name="SreKeyDataSource">
-      <Column Name="KeyDataSourceId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="KeyId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DataSourceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="IsDeployable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Association Name="SreDataSource_SreKeyDataSource" Member="SreDataSource" ThisKey="DataSourceId" OtherKey="Id" Type="SreDataSource" IsForeignKey="true" />
-      <Association Name="SreKey_SreKeyDataSource" Member="SreKey" ThisKey="KeyId" OtherKey="KeyId" Type="SreKey" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.SreKey" Member="SreKeys">
-    <Type Name="SreKey">
-      <Column Name="KeyId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="Value" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
-      <Column Name="ValueBinary" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+  <Table Name="dbo.IdpeVersion" Member="IdpeVersions">
+    <Type Name="IdpeVersion">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Version" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="IsDeployable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="DataSourceId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="NextKeyId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ReferenceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Data" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="CreatedTS" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedTS" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Association Name="SreKey_SreKeyDataSource" Member="SreKeyDataSources" ThisKey="KeyId" OtherKey="KeyId" Type="SreKeyDataSource" />
-      <Association Name="SreKey_SreKey" Member="SreKeys" ThisKey="KeyId" OtherKey="NextKeyId" Type="SreKey" />
-      <Association Name="SreKey_SreKey" Member="SreKey1" ThisKey="NextKeyId" OtherKey="KeyId" Type="SreKey" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

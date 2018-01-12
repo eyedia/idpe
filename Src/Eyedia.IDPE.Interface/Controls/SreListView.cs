@@ -119,8 +119,8 @@ namespace Eyedia.IDPE.Interface.Controls
 
         public bool FormatIsPrintable { get; set; }        
 
-        private List<SreAttribute> _attributes;
-        public List<SreAttribute> Attributes 
+        private List<IdpeAttribute> _attributes;
+        public List<IdpeAttribute> Attributes 
         {
             get { return _attributes; }
             set
@@ -132,8 +132,8 @@ namespace Eyedia.IDPE.Interface.Controls
         }
 
         //int BindType;
-        private List<SreDataSource> _dataSources;
-        public List<SreDataSource> DataSources
+        private List<IdpeDataSource> _dataSources;
+        public List<IdpeDataSource> DataSources
         {
             get { return _dataSources; }
             set
@@ -144,8 +144,8 @@ namespace Eyedia.IDPE.Interface.Controls
             }
         }
 
-        private List<SreRule> _rules;
-        public List<SreRule> Rules
+        private List<IdpeRule> _rules;
+        public List<IdpeRule> Rules
         {
             get { return _rules; }
             set
@@ -197,7 +197,7 @@ namespace Eyedia.IDPE.Interface.Controls
 
                 listView.Columns[0].Width = column1Width == 0 ? 200 : column1Width;
                 listView.Columns[1].Width = column2Width == 0 ? 100 : column2Width;
-                foreach (SreAttribute attribute in _attributes)
+                foreach (IdpeAttribute attribute in _attributes)
                 {
                     ListViewItem item = new ListViewItem(attribute.Name);
                     item.SubItems.Add(attribute.Type);
@@ -234,7 +234,7 @@ namespace Eyedia.IDPE.Interface.Controls
                 listView.SmallImageList = null;
                 listView.HeaderStyle = ColumnHeaderStyle.None;
                 _dataSources = _dataSources.OrderBy(d => d.Name).ToList();
-                foreach (SreDataSource datasource in _dataSources)
+                foreach (IdpeDataSource datasource in _dataSources)
                 {
                     if (datasource.Id == 100)
                         continue;
@@ -267,7 +267,7 @@ namespace Eyedia.IDPE.Interface.Controls
                 listView.Columns[1].Width = column2Width == 0 ? 100 : column2Width;
                 listView.SmallImageList = null;
               
-                foreach (SreRule rule in _rules)
+                foreach (IdpeRule rule in _rules)
                 {
                     ListViewItem item = new ListViewItem(rule.Name);
                     if (ShowPosition)
@@ -315,8 +315,8 @@ namespace Eyedia.IDPE.Interface.Controls
                 listView.Items.Clear();
                 if (_dataSources != null)
                 {
-                    var filteredOnId = _ListViewItems.Where(l => ((SreDataSource)(l.Tag)).Id.ToString().Contains(txtSearch.Text.ToLower())).ToArray();
-                    var filteredOnName = _ListViewItems.Where(l => ((SreDataSource)(l.Tag)).Name.ToLower().Contains(txtSearch.Text.ToLower())).ToArray();
+                    var filteredOnId = _ListViewItems.Where(l => ((IdpeDataSource)(l.Tag)).Id.ToString().Contains(txtSearch.Text.ToLower())).ToArray();
+                    var filteredOnName = _ListViewItems.Where(l => ((IdpeDataSource)(l.Tag)).Name.ToLower().Contains(txtSearch.Text.ToLower())).ToArray();
                     var filtered = filteredOnName.Concat(filteredOnId).Distinct();
                     listView.Items.AddRange(filtered.ToArray());
                 }
@@ -560,7 +560,7 @@ namespace Eyedia.IDPE.Interface.Controls
                     var item = listView.Items[i];
 
                     item.BackColor = SystemColors.Window;
-                    SreAttribute attribute = item.Tag as SreAttribute;
+                    IdpeAttribute attribute = item.Tag as IdpeAttribute;
 
                     if ((attribute != null)
                         && (((FormatIsPrintable) && (attribute.IsAcceptable == false))))

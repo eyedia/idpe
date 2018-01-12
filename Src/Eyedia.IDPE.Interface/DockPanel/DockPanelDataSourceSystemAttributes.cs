@@ -52,7 +52,7 @@ namespace Eyedia.IDPE.Interface
             this.Text = this.TabText;
         }
 
-        public SreDataSource SelectedDataSource { get; set; }
+        public IdpeDataSource SelectedDataSource { get; set; }
 
         private int _SystemDataSourceId;
         public int SystemDataSourceId
@@ -97,7 +97,7 @@ namespace Eyedia.IDPE.Interface
             {
                 foreach (ListViewItem selectedItem in sreListView1.ListView.SelectedItems)
                 {
-                    SreAttribute attribute = selectedItem.Tag as SreAttribute;
+                    IdpeAttribute attribute = selectedItem.Tag as IdpeAttribute;
 
                     bool acceptable = true;
                     ToolStripItem tItem = sender as ToolStripItem;
@@ -113,7 +113,7 @@ namespace Eyedia.IDPE.Interface
             if (sreListView1.ListView.SelectedItems.Count == 1)
             {
                 mnuDisassociate.Enabled = true;
-                SreAttribute attribute = sreListView1.ListView.SelectedItems[0].Tag as SreAttribute;
+                IdpeAttribute attribute = sreListView1.ListView.SelectedItems[0].Tag as IdpeAttribute;
                 if (attribute.Name != "IsValid")
                 {
                     if (attribute.IsAcceptable == false)

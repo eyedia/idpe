@@ -78,16 +78,16 @@ namespace Eyedia.IDPE.Interface.Controls
         }
 
         public ToolStripStatusLabel ToolStripStatusLabel { get; set; }
-        List<SreKey> _SystemKeys;
-        List<SreKey> _Keys;
+        List<IdpeKey> _SystemKeys;
+        List<IdpeKey> _Keys;
 
         public Button SaveButton { get; set; }
 
-        private SreKey SelectedKey
+        private IdpeKey SelectedKey
         {
             get
             {
-                return lstvwKeys.SelectedItems.Count > 0 ? (SreKey)lstvwKeys.SelectedItems[0].Tag : null;
+                return lstvwKeys.SelectedItems.Count > 0 ? (IdpeKey)lstvwKeys.SelectedItems[0].Tag : null;
             }
         }
         #endregion Properties
@@ -120,7 +120,7 @@ namespace Eyedia.IDPE.Interface.Controls
        
         public void Save()
         {
-            SreKey key = new SreKey();
+            IdpeKey key = new IdpeKey();
             key.Name = txtName.Text;
             key.Value = txtValue.Text;
             key.Type = (int)SreKeyTypes.Custom;
@@ -150,10 +150,10 @@ namespace Eyedia.IDPE.Interface.Controls
             }            
         }
       
-        void BindData(SreKey selectedKey = null)
+        void BindData(IdpeKey selectedKey = null)
         {
             lstvwKeys.Items.Clear();
-            foreach (SreKey key in _SystemKeys)
+            foreach (IdpeKey key in _SystemKeys)
             {
                 ListViewItem item = new ListViewItem(key.Name);
                 item.Tag = key;               
@@ -161,7 +161,7 @@ namespace Eyedia.IDPE.Interface.Controls
                 lstvwKeys.Items.Add(item);
             }
 
-            foreach (SreKey key in _Keys)
+            foreach (IdpeKey key in _Keys)
             {
                 ListViewItem item = new ListViewItem(key.Name);
                 item.Tag = key;   
@@ -180,7 +180,7 @@ namespace Eyedia.IDPE.Interface.Controls
             {
                 foreach(ListViewItem item in lstvwKeys.Items)
                 {
-                    if(((SreKey)item.Tag).Name == selectedKey.Name)
+                    if(((IdpeKey)item.Tag).Name == selectedKey.Name)
                     {
                         item.Selected = true;
                         lstvwKeys.Select();
@@ -196,7 +196,7 @@ namespace Eyedia.IDPE.Interface.Controls
             if (lstvwKeys.SelectedItems.Count > 0)
             {                
                 txtName.Text = lstvwKeys.SelectedItems[0].SubItems[0].Text;
-                txtValue.Text = ((SreKey)lstvwKeys.SelectedItems[0].Tag).Value;
+                txtValue.Text = ((IdpeKey)lstvwKeys.SelectedItems[0].Tag).Value;
                 bool isSystemKey = lstvwKeys.SelectedItems[0].ForeColor != Color.DarkRed ? true : false;
                 txtName.ReadOnly = !isSystemKey;
                 txtValue.ReadOnly = !isSystemKey;                
@@ -207,14 +207,14 @@ namespace Eyedia.IDPE.Interface.Controls
         {
             if (txtName.Text.Equals("UniquenessCriteria", StringComparison.OrdinalIgnoreCase))
             {
-                List<SreAttribute> attributes = new Manager().GetAttributes(DataSourceId);
+                List<IdpeAttribute> attributes = new Manager().GetAttributes(DataSourceId);
                 attributes = attributes.Where(a => a.IsAcceptable == true).ToList();
 
                 string[] uniquenessAttributeNames = txtValue.Text.Split("+".ToCharArray());
                 foreach (string column in uniquenessAttributeNames)
                 {
                     bool found = false;
-                    foreach (SreAttribute attribute in attributes)
+                    foreach (IdpeAttribute attribute in attributes)
                     {
                         if (attribute.Name.Equals(column, StringComparison.OrdinalIgnoreCase))
                         {
@@ -264,8 +264,8 @@ namespace Eyedia.IDPE.Interface.Controls
                 DataSourcePatch dsp = new DataSourcePatch();
                 dsp.Name = DataSourceName;
                 Manager mgr = new Manager();
-                List<SreKey> keys = mgr.GetApplicationKeys(mgr.GetApplicationId(dsp.Name), false);
-                foreach (SreKey key in keys)
+                List<IdpeKey> keys = mgr.GetApplicationKeys(mgr.GetApplicationId(dsp.Name), false);
+                foreach (IdpeKey key in keys)
                 {
                     dsp.Keys.Add(key);
                 }
@@ -331,7 +331,7 @@ namespace Eyedia.IDPE.Interface.Controls
                 if (MessageBox.Show(string.Format("Are you sure you want to delete '{0}'? The system will try to disassociate the key from '{1}' and then try to delete the key permanently!", lstvwKeys.SelectedItems[0].Text, DataSourceName),
                     "Delete Key", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {                    
-                    SreKey key = dm.GetKey(DataSourceId, lstvwKeys.SelectedItems[0].Text);
+                    IdpeKey key = dm.GetKey(DataSourceId, lstvwKeys.SelectedItems[0].Text);
                     dm.DeleteKeyFromApplication(DataSourceId, lstvwKeys.SelectedItems[0].Text, false);
                     try
                     {
@@ -349,7 +349,7 @@ namespace Eyedia.IDPE.Interface.Controls
             {
                 foreach (ListViewItem item in lstvwKeys.SelectedItems)
                 {
-                    SreKey key = dm.GetKey(DataSourceId, item.Text);
+                    IdpeKey key = dm.GetKey(DataSourceId, item.Text);
                     dm.DeleteKeyFromApplication(DataSourceId, item.Text, false);
                     try
                     {
@@ -376,7 +376,7 @@ namespace Eyedia.IDPE.Interface.Controls
                 int counter = 0;
                 foreach (ListViewItem item in lstvwKeys.SelectedItems)
                 {
-                    SreKey key = item.Tag as SreKey;
+                    IdpeKey key = item.Tag as IdpeKey;
                     manager.Save(key, ds.SelectedDataSource.Id);
                     counter++;
                 }
@@ -399,7 +399,7 @@ namespace Eyedia.IDPE.Interface.Controls
 
         private void deployableToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<SreKey> keys = new List<SreKey>();
+            List<IdpeKey> keys = new List<IdpeKey>();
             SelectedKey.IsDeployable = deployableToolStripMenuItem.Text.Contains("not") ? false : true;
             keys.Add(SelectedKey);
             new Manager().SetIsDeployable(DataSourceId, keys);

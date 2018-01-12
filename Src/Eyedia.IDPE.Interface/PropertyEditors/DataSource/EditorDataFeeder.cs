@@ -79,7 +79,7 @@ namespace Eyedia.IDPE.Interface
 
                         frmConfig configUI = new frmConfig(true, dsProperty.Id, dsProperty.DataFeederType, selType);
 
-                        SreKey key = dsProperty.DataSourceKeys.GetKey(SreKeyTypes.FtpRemoteLocation.ToString());
+                        IdpeKey key = dsProperty.DataSourceKeys.GetKey(SreKeyTypes.FtpRemoteLocation.ToString());
                         configUI.FtpRemoteLocation = key != null ? key.Value : string.Empty;
                         key = dsProperty.DataSourceKeys.GetKey(SreKeyTypes.LocalLocation.ToString());
                         key = dsProperty.DataSourceKeys.GetKey(SreKeyTypes.FtpUserName.ToString());

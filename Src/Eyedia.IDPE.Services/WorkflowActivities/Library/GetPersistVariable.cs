@@ -55,7 +55,7 @@ namespace Eyedia.IDPE.Services
             Job job = context.GetValue(this.Job);
             string variableName = context.GetValue(this.Name);            
             int dataSourceId = context.GetValue(this.DataSourceId);
-            SrePersistentVariable variable = null;
+            IdpePersistentVariable variable = null;
 
 
             if (job != null)

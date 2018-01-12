@@ -70,7 +70,7 @@ namespace Eyedia.IDPE.Services
             if (referenceId == 0)
                 return;
 
-            SreVersion version = GetCurrentVersion(versionObjectType, referenceId);
+            IdpeVersion version = GetCurrentVersion(versionObjectType, referenceId);
             if (version == null)
                 return;
 
@@ -81,13 +81,13 @@ namespace Eyedia.IDPE.Services
             switch (versionObjectType)
             {
                 case VersionObjectTypes.DataSource:
-                    SreDataSource ds = manager.GetDataSourceDetails(referenceId);
+                    IdpeDataSource ds = manager.GetDataSourceDetails(referenceId);
                     version.Data = new Binary(GZipArchive.Compress(new DataSourceBundle().Export(referenceId, false).GetByteArray()));
                     version.CreatedTS = ds.CreatedTS;
                     break;
 
                 case VersionObjectTypes.Rule:
-                    SreRule rule = manager.GetRule(referenceId);
+                    IdpeRule rule = manager.GetRule(referenceId);
                     DataSourcePatch patch = new DataSourcePatch();
                     patch.Rules.Add(rule);
                     version.Data = new Binary(GZipArchive.Compress(patch.Export().GetByteArray()));
@@ -97,9 +97,9 @@ namespace Eyedia.IDPE.Services
             manager.Save(version);
         }
 
-        public SreVersion GetCurrentVersion(VersionObjectTypes versionObjectType, int referenceId)
+        public IdpeVersion GetCurrentVersion(VersionObjectTypes versionObjectType, int referenceId)
         {
-            SreVersion currentVersion = new SreVersion();
+            IdpeVersion currentVersion = new IdpeVersion();
             currentVersion.Type = (int)versionObjectType;
             if (versionObjectType == VersionObjectTypes.DataSource)
             {
@@ -112,7 +112,7 @@ namespace Eyedia.IDPE.Services
             }
             else if (versionObjectType == VersionObjectTypes.Rule)
             {
-                SreRule rule = new Manager().GetRule(referenceId);
+                IdpeRule rule = new Manager().GetRule(referenceId);
                 if (rule == null)
                     return null;
 

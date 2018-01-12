@@ -53,18 +53,18 @@ namespace Eyedia.IDPE.Interface
             this.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
             Bind();
         }
-        public List<SreKey> SelectedKeys
+        public List<IdpeKey> SelectedKeys
         {
             get
             {
-                return lvwKeys.Items.Cast<ListViewItem>().Where(item => item.Checked).Select(i => (SreKey)i.Tag).ToList();
+                return lvwKeys.Items.Cast<ListViewItem>().Where(item => item.Checked).Select(i => (IdpeKey)i.Tag).ToList();
             }
         }
         private void Bind()
         {
             Manager manager = new Manager();
-            List<SreKey> keys = manager.GetDeployableKeys();
-            foreach(SreKey key in keys)
+            List<IdpeKey> keys = manager.GetDeployableKeys();
+            foreach(IdpeKey key in keys)
             {               
                 ListViewItem item = new ListViewItem(manager.GetApplicationName((int)key.DataSourceId));
                 item.Tag = key;
@@ -92,7 +92,7 @@ namespace Eyedia.IDPE.Interface
 
         private void setValueToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SreKey key = lvwKeys.SelectedItems[0].Tag as SreKey;
+            IdpeKey key = lvwKeys.SelectedItems[0].Tag as IdpeKey;
             if (key != null)
             {
                 InputBox iBox = new InputBox(key.Value, "Setting new value of '" + key.Name + "' of '" + lvwKeys.SelectedItems[0].Text + "' datasource."

@@ -43,14 +43,14 @@ namespace Eyedia.IDPE.Interface
 {
     public abstract class SrePropertyGrid
     {
-        public SrePropertyGrid(SreDataSource datasource)
+        public SrePropertyGrid(IdpeDataSource datasource)
         {
             this.DataSource = datasource;
             //this.DataSourceOriginal = this.DataSource.Clone();
             Assign();
         }
 
-        public SrePropertyGrid(SreAttribute attribute, int dataSourceId = 0, bool isAssociatedWithSystemDataSource = false)
+        public SrePropertyGrid(IdpeAttribute attribute, int dataSourceId = 0, bool isAssociatedWithSystemDataSource = false)
         {
             this.Attribute = attribute;
             this.DataSourceId = dataSourceId;            
@@ -66,11 +66,11 @@ namespace Eyedia.IDPE.Interface
 
 
         [Browsable(false)]
-        public SreAttribute Attribute { get; private set; }
+        public IdpeAttribute Attribute { get; private set; }
 
 
         [Browsable(false)]
-        public SreDataSource DataSource { get; private set; }
+        public IdpeDataSource DataSource { get; private set; }
 
         [Browsable(false)]
         public string ValidationError { get; protected set; }

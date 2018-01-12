@@ -59,7 +59,7 @@ namespace Eyedia.IDPE.Services
         public FixedLengthToDataTable(Job job)
             : base(job)
         {
-            SreKey schemaKey = Job.DataSource.Key(SreKeyTypes.FixedLengthSchema);
+            IdpeKey schemaKey = Job.DataSource.Key(SreKeyTypes.FixedLengthSchema);
             if (schemaKey == null)
                 throw new ApplicationException(string.Format("'FixedLengthSchema' schema is not defined in '{0}'", Job.DataSource.Name));
 
@@ -113,7 +113,7 @@ namespace Eyedia.IDPE.Services
                     }
                     else
                     {
-                        foreach (SreAttribute attribute in DataSource.AcceptableAttributes)
+                        foreach (IdpeAttribute attribute in DataSource.AcceptableAttributes)
                         {
                             table.Columns.Add(attribute.Name);
                         }                        

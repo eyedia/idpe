@@ -62,9 +62,9 @@ namespace Eyedia.IDPE.Services
         public ConcurrentDictionary<string, List<string>> ReferencesProcessVariablesIncorrectWay { get; private set; }
         public ConcurrentDictionary<string, List<string>> ReferencesProcessVariables { get; private set; }
 
-        public List<SreAttribute> Attributes { get; private set; }
-        public List<SreAttribute> SystemAttributes { get; private set; }
-        public List<SreRule> Rules { get; private set; }
+        public List<IdpeAttribute> Attributes { get; private set; }
+        public List<IdpeAttribute> SystemAttributes { get; private set; }
+        public List<IdpeRule> Rules { get; private set; }
 
         public ConcurrentDictionary<string, List<string>> MissingAttributes { get; private set; }
         public ConcurrentDictionary<string, List<string>> MissingSystemAttributes { get; private set; }       
@@ -103,7 +103,7 @@ namespace Eyedia.IDPE.Services
         private void ParseRuleReference()
         {
             Rules = new Manager().GetRules(DataSourceId);
-            foreach (SreRule rule in Rules)
+            foreach (IdpeRule rule in Rules)
             {
                 RuleReferenceExtractor ruleReferenceExtractor = new RuleReferenceExtractor(rule.Xaml);
 

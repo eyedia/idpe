@@ -71,7 +71,7 @@ namespace Eyedia.IDPE.Services
             data.Rows.Add(new Row(originalRowPosition));
             SreTraceLogWriter traceLog = data.CurrentRow.TraceLog;
             
-            foreach (SreAttribute a in data.Job.DataSource.Attributes)
+            foreach (IdpeAttribute a in data.Job.DataSource.Attributes)
             {                
 
                 string value = string.Empty;
@@ -82,7 +82,7 @@ namespace Eyedia.IDPE.Services
                 }
                 data.CurrentRow.Columns.Add(new Attribute(a.AttributeId, a.Name, value, string.Empty, traceLog, (bool)a.IsAcceptable));
             }
-            foreach (SreAttribute a in data.Job.DataSource.AttributesSystem)
+            foreach (IdpeAttribute a in data.Job.DataSource.AttributesSystem)
             {
                 data.CurrentRow.ColumnsSystem.Add(new Attribute(a.AttributeId, a.Name, string.Empty, string.Empty, traceLog, (bool)a.IsAcceptable, true, a.AttributePrintValueType, a.AttributePrintValueCustom));
             }

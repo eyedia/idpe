@@ -84,9 +84,9 @@ namespace Eyedia.IDPE.Interface.RuleEditor
         DebugValidationErrorService _DebugValidationErrorService;
         RuleSetTypes _ruleSetTemplate;
         ActivityBuilder _activitybuilder;
-        SreRule _sreRule;
+        IdpeRule _sreRule;
         string TransactionMode = "INSERT";        
-        public MainWindow(SreRule sreRule, RuleSetTypes ruleSetType)
+        public MainWindow(IdpeRule sreRule, RuleSetTypes ruleSetType)
         {
             if (!String.IsNullOrEmpty(sreRule.Name))
             {

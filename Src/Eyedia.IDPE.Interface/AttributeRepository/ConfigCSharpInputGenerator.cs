@@ -77,7 +77,7 @@ namespace Eyedia.IDPE.Interface
 
         private void BindData()
         {
-           SreKey key = new Manager().GetKey(DataSourceId, SreKeyTypes.CSharpCodeGenerateTable.ToString());
+           IdpeKey key = new Manager().GetKey(DataSourceId, SreKeyTypes.CSharpCodeGenerateTable.ToString());
            if (key != null)
            {
                cSharpExpression1.RawString = key.Value;
@@ -96,7 +96,7 @@ namespace Eyedia.IDPE.Interface
             cSharpExpression1.AdditionalUsingNamespace = cSharpExpression1.AdditionalUsingNamespace;
             cSharpExpression1.AdditionalReferences = cSharpExpression1.AdditionalReferences;
 
-            SreKey key = new SreKey();
+            IdpeKey key = new IdpeKey();
             key.Name = SreKeyTypes.CSharpCodeGenerateTable .ToString();
             key.Type = (int)SreKeyTypes.CSharpCodeGenerateTable;
             key.Value = cSharpExpression1.RawString;

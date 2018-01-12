@@ -66,7 +66,7 @@ namespace Eyedia.IDPE.Interface
                 }
             }
         }
-        public SreDataSource SelectedDataSource { get; set; }
+        public IdpeDataSource SelectedDataSource { get; set; }
 
         public MainWindow MainWindow { get; set; }
 

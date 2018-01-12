@@ -69,7 +69,7 @@ namespace Eyedia.IDPE.Services
         public bool IsRequestFromWCF { get; private set; }
         public string JobId { get; private set; }
         public string ZipUniuqeId {get; private set; }
-        public List<SreKey> Keys { get; private set; }
+        public List<IdpeKey> Keys { get; private set; }
         public string ProcessingBy { get; private set; }
         public string ZipInterfaceName { get; private set; }
         public bool PrepareInput()
@@ -85,7 +85,7 @@ namespace Eyedia.IDPE.Services
             //string InputFileExtension = Path.GetExtension(InputFileName);
 
 
-            Keys = Cache.Instance.Bag[DataSourceId + ".keys"] as List<SreKey>;
+            Keys = Cache.Instance.Bag[DataSourceId + ".keys"] as List<IdpeKey>;
             if (Keys == null)            
                 Keys = DataSource.LoadKeys(DataSourceId);
             

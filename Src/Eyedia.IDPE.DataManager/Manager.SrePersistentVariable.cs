@@ -46,16 +46,16 @@ namespace Eyedia.IDPE.DataManager
 {
     public partial class Manager
     {
-        public List<SrePersistentVariable> GetPersistentVariables()
+        public List<IdpePersistentVariable> GetPersistentVariables()
         {
-            List<SrePersistentVariable> variables = new List<SrePersistentVariable>();
+            List<IdpePersistentVariable> variables = new List<IdpePersistentVariable>();
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand("SELECT * FROM SrePersistentVariable");
             if (table == null)
                 return variables;
 
             foreach (DataRow row in table.Rows)
             {
-                SrePersistentVariable variable = new SrePersistentVariable();
+                IdpePersistentVariable variable = new IdpePersistentVariable();
                 variable.DataSourceId = (int)row["DataSourceId"].ToString().ParseInt();
                 variable.Name = row["Name"].ToString();
                 variable.Value = row["Value"].ToString();
@@ -67,7 +67,7 @@ namespace Eyedia.IDPE.DataManager
             return variables;
         }
 
-        public SrePersistentVariable GetPersistentVariable(int dataSourceId, string name, IDal dal = null, IDbConnection connection = null)
+        public IdpePersistentVariable GetPersistentVariable(int dataSourceId, string name, IDal dal = null, IDbConnection connection = null)
         {
             bool isLocalConnection = false;
             if (dal == null)
@@ -78,7 +78,7 @@ namespace Eyedia.IDPE.DataManager
                 isLocalConnection = true;
             }
 
-            SrePersistentVariable variable = null;
+            IdpePersistentVariable variable = null;
 
             IDbCommand command = dal.CreateCommand("SELECT [Value] FROM SrePersistentVariable WHERE DataSourceId = @DataSourceId AND Name = @Name", connection);
             command.AddParameterWithValue("DataSourceId", dataSourceId);
@@ -86,7 +86,7 @@ namespace Eyedia.IDPE.DataManager
             IDataReader reader = command.ExecuteReader();
             if (reader.Read())
             {
-                variable = new SrePersistentVariable();
+                variable = new IdpePersistentVariable();
                 variable.DataSourceId = dataSourceId;
                 variable.Name = name;
                 variable.Value = reader[0].ToString();
@@ -108,7 +108,7 @@ namespace Eyedia.IDPE.DataManager
             return variable;
         }
 
-         public SrePersistentVariable SavePersistentVariable(int dataSourceId, string variableName, string variableValue)
+         public IdpePersistentVariable SavePersistentVariable(int dataSourceId, string variableName, string variableValue)
          {
              if (string.IsNullOrEmpty(variableName))
                  throw new Exception("Variable name can not be blank!");
@@ -120,7 +120,7 @@ namespace Eyedia.IDPE.DataManager
              IDbCommand command = dal.CreateCommand();
              command.Connection = connection;
 
-             SrePersistentVariable variable = GetPersistentVariable(dataSourceId, variableName, dal, connection);
+             IdpePersistentVariable variable = GetPersistentVariable(dataSourceId, variableName, dal, connection);
              if (variable == null)
              {
                  command.CommandText = "INSERT INTO SrePersistentVariable(DataSourceId, Name, Value, CreatedTS) ";
@@ -145,7 +145,7 @@ namespace Eyedia.IDPE.DataManager
              if (variable == null)
              {
                  //if we are here, then we have inserted or updated, lets just fill the object and return it
-                 variable = new SrePersistentVariable();
+                 variable = new IdpePersistentVariable();
                  variable.DataSourceId = dataSourceId;
                  variable.Name = variableName;
                  variable.Value = variableValue;

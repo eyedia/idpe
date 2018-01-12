@@ -49,8 +49,8 @@ namespace Eyedia.IDPE.Interface
 {
     public partial class SreRulesEditorControl : UserControl
     {
-        SreDataSource mDataSource;
-        public SreDataSource DataSource
+        IdpeDataSource mDataSource;
+        public IdpeDataSource DataSource
         {
             get { return mDataSource; }
             set
@@ -176,7 +176,7 @@ namespace Eyedia.IDPE.Interface
             {
 
                 this.Cursor = Cursors.WaitCursor;
-                SreRule sreRule = new Manager().GetRule((listView.SelectedItems[0].Tag as SreRule).Id);                
+                IdpeRule sreRule = new Manager().GetRule((listView.SelectedItems[0].Tag as IdpeRule).Id);                
                 RuleEditor.MainWindow ruleEditor = new RuleEditor.MainWindow(sreRule, Common.RuleSetTypes.RowPreparing);
                 string sname = sreRule.Name.Replace("-", "").Replace(" ", "");
                 ruleEditor.Name = sname;
@@ -200,8 +200,8 @@ namespace Eyedia.IDPE.Interface
             Manager manager = new Manager();
             for (int i = 0; i < selectedRuleListView.ListView.Items.Count; i++)
             {
-                SreRuleDataSource sreRuleDataSource = new SreRuleDataSource();
-                SreRule rule = selectedRuleListView.ListView.Items[i].Tag as SreRule;
+                IdpeRuleDataSource sreRuleDataSource = new IdpeRuleDataSource();
+                IdpeRule rule = selectedRuleListView.ListView.Items[i].Tag as IdpeRule;
                 if (rule == null)
                     rule = manager.GetRule(selectedRuleListView.ListView.Items[i].Text);
 
@@ -221,7 +221,7 @@ namespace Eyedia.IDPE.Interface
             if (this.DataSource == null)
                 return;
 
-            List<SreRule> rules = new Manager().GetRules(this.DataSource.Id);
+            List<IdpeRule> rules = new Manager().GetRules(this.DataSource.Id);
             if ((!ShowSqlInitRules) && (tabControl.TabPages.Count >= 5))
             {                
                 lvPreValidate.Rules = rules.Where(r => r.RuleSetType == (int)RuleSetTypes.PreValidate).ToList();
@@ -265,7 +265,7 @@ namespace Eyedia.IDPE.Interface
 
             SreDataSourceProperty.KeepVersion(this.DataSource.Id);
 
-            SreRuleDataSource sreRuleDataSource = new SreRuleDataSource();
+            IdpeRuleDataSource sreRuleDataSource = new IdpeRuleDataSource();
             sreRuleDataSource.DataSourceId = DataSource.Id;
             sreRuleDataSource.RuleId = frmSelectRuleSet.SelectedRule.Id;
             sreRuleDataSource.Priority = priority;
@@ -295,7 +295,7 @@ namespace Eyedia.IDPE.Interface
             if ((selectedRuleListView.ListView != null)
                     && (selectedRuleListView.ListView.SelectedItems.Count > 0))
             {
-                SreRule rule = selectedRuleListView.ListView.SelectedItems[0].Tag as SreRule;
+                IdpeRule rule = selectedRuleListView.ListView.SelectedItems[0].Tag as IdpeRule;
                 InputBox inputBox = new InputBox(rule.Name, "New Name", "Rename Rule");
                 inputBox.txtInput.TextChanged += new EventHandler(txtInput_TextChanged);
                 if (inputBox.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -322,7 +322,7 @@ namespace Eyedia.IDPE.Interface
             if ((selectedRuleListView != null)
                    && (selectedRuleListView.ListView.SelectedItems.Count > 0))
             {
-                SreRule rule = selectedRuleListView.ListView.SelectedItems[0].Tag as SreRule;
+                IdpeRule rule = selectedRuleListView.ListView.SelectedItems[0].Tag as IdpeRule;
                 RuleDependencies ruleDependencies = new RuleDependencies(rule.Id);
                 ruleDependencies.ShowDialog();
             }
@@ -370,7 +370,7 @@ namespace Eyedia.IDPE.Interface
         {
             SreDataSourceProperty.KeepVersion(this.DataSource.Id);
 
-            SreRule rule = (SreRule)listView.SelectedItems[0].Tag;            
+            IdpeRule rule = (IdpeRule)listView.SelectedItems[0].Tag;            
             new Manager().DeleteRuleFromDataSource(DataSource.Id, rule.Id, selectedRuleSetType, deleteRule);
             listView.Items.Remove(listView.SelectedItems[0]);
             Bind();
@@ -444,7 +444,7 @@ namespace Eyedia.IDPE.Interface
                     DataSourcePatch dsp = new DataSourcePatch();
                     foreach (ListViewItem item in selectedRuleListView.ListView.SelectedItems)
                     {
-                        dsp.Rules.Add((SreRule)item.Tag);
+                        dsp.Rules.Add((IdpeRule)item.Tag);
                     }
                     dsp.Export(saveFileDialog.FileName);
                 }

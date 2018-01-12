@@ -47,9 +47,9 @@ namespace Eyedia.IDPE.DataManager
 {
     public partial class Manager
     {
-        public List<SreRule> GetRules()
+        public List<IdpeRule> GetRules()
         {
-            List<SreRule> sreRules = new List<SreRule>();
+            List<IdpeRule> sreRules = new List<IdpeRule>();
             string commandText = "select [Id],[Name],[Description],[Xaml],[Priority],[RuleSetType],[CreatedTS],[CreatedBy] from [SreRule] order by [Name]";
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
@@ -58,7 +58,7 @@ namespace Eyedia.IDPE.DataManager
 
             foreach (DataRow row in table.Rows)
             {
-                SreRule rule = new SreRule();
+                IdpeRule rule = new IdpeRule();
                 rule.Id = (int)row["Id"].ToString().ParseInt();
                 rule.Name = row["Name"].ToString();
                 rule.Description = row["Description"] != DBNull.Value ? row["Description"].ToString() : null;
@@ -73,7 +73,7 @@ namespace Eyedia.IDPE.DataManager
             return sreRules;
         }
 
-        public SreRule GetRule(int ruleId)
+        public IdpeRule GetRule(int ruleId)
         {
             
             string commandText = "select TOP 1 [Id],[Name],[Description],[Xaml],[Priority],[RuleSetType],[CreatedTS],[CreatedBy] from [SreRule] where [Id] = " + ruleId;
@@ -84,7 +84,7 @@ namespace Eyedia.IDPE.DataManager
 
             foreach (DataRow row in table.Rows)
             {
-                SreRule rule = new SreRule();
+                IdpeRule rule = new IdpeRule();
                 rule.Id = (int)row["Id"].ToString().ParseInt();
                 rule.Name = row["Name"].ToString();
                 rule.Description = row["Description"] != DBNull.Value ? row["Description"].ToString() : null;
@@ -99,7 +99,7 @@ namespace Eyedia.IDPE.DataManager
 
         }
 
-        public SreRule GetRule(string ruleName)
+        public IdpeRule GetRule(string ruleName)
         {
 
             string commandText = "select TOP 1 [Id],[Name],[Description],[Xaml],[Priority],[RuleSetType],[CreatedTS],[CreatedBy] from [SreRule] where [Name] = '" + ruleName + "'";
@@ -107,7 +107,7 @@ namespace Eyedia.IDPE.DataManager
             if (table == null || table.Rows.Count == 0)
                 return null;
 
-            SreRule rule = new SreRule();
+            IdpeRule rule = new IdpeRule();
             DataRow row = table.Rows[0];
             rule.Id = (int)row["Id"].ToString().ParseInt();
             rule.Name = row["Name"].ToString();
@@ -123,9 +123,9 @@ namespace Eyedia.IDPE.DataManager
         }
       
 
-        private List<SreRuleDataSource> GetSreRuleDataSources()
+        private List<IdpeRuleDataSource> GetSreRuleDataSources()
         {
-            List<SreRuleDataSource> sreRuleDataSources = new List<SreRuleDataSource>();
+            List<IdpeRuleDataSource> sreRuleDataSources = new List<IdpeRuleDataSource>();
             string commandText = "select [RuleDataSourceId],[RuleId],[DataSourceId],[Priority],[RuleSetType],[IsActive] from [SreRuleDataSource]";
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
@@ -134,7 +134,7 @@ namespace Eyedia.IDPE.DataManager
 
             foreach (DataRow row in table.Rows)
             {
-                SreRuleDataSource sreRuleDataSource = new SreRuleDataSource();
+                IdpeRuleDataSource sreRuleDataSource = new IdpeRuleDataSource();
                 sreRuleDataSource.RuleDataSourceId = (int)row["RuleDataSourceId"].ToString().ParseInt();
                 sreRuleDataSource.RuleId = (int)row["RuleId"].ToString().ParseInt();
                 sreRuleDataSource.DataSourceId = (int)row["DataSourceId"].ToString().ParseInt();
@@ -146,9 +146,9 @@ namespace Eyedia.IDPE.DataManager
             return sreRuleDataSources;
         }
 
-        private SreRuleDataSource GetSreRuleDataSource(int dataSourceId, int ruleId, int ruleSetType)
+        private IdpeRuleDataSource GetSreRuleDataSource(int dataSourceId, int ruleId, int ruleSetType)
         {
-            SreRuleDataSource sreRuleDataSource = null;
+            IdpeRuleDataSource sreRuleDataSource = null;
             string commandText = string.Format("select [RuleDataSourceId],[RuleId],[DataSourceId],[Priority],[RuleSetType],[IsActive] from [SreRuleDataSource] where [DataSourceId] = {0} and [RuleId] = {1} and [RuleSetType] = {2}"
                 ,dataSourceId, ruleId, ruleSetType);
 
@@ -158,7 +158,7 @@ namespace Eyedia.IDPE.DataManager
 
             foreach (DataRow row in table.Rows)
             {
-                sreRuleDataSource = new SreRuleDataSource();
+                sreRuleDataSource = new IdpeRuleDataSource();
                 sreRuleDataSource.RuleDataSourceId = (int)row["RuleDataSourceId"].ToString().ParseInt();
                 sreRuleDataSource.RuleId = (int)row["RuleId"].ToString().ParseInt();
                 sreRuleDataSource.DataSourceId = (int)row["DataSourceId"].ToString().ParseInt();
@@ -172,9 +172,9 @@ namespace Eyedia.IDPE.DataManager
              
 
 
-        public List<SreRule> GetRules(int dataSourceId)
+        public List<IdpeRule> GetRules(int dataSourceId)
         {
-            List<SreRule> rules = new List<SreRule>();
+            List<IdpeRule> rules = new List<IdpeRule>();
 
             string qry = "select r.Id,name,description,xaml,rds.[priority],rds.rulesettype from srerule r ";
             qry += "inner join SreRuleDataSource rds on rds.ruleId = r.id ";
@@ -183,7 +183,7 @@ namespace Eyedia.IDPE.DataManager
 
             foreach (DataRow row in table.Rows)
             {
-                SreRule rule = new SreRule();
+                IdpeRule rule = new IdpeRule();
                 rule.Id = (int)row["Id"].ToString().ParseInt();
                 rule.Name = row["name"].ToString();
                 rule.Description = row["description"].ToString();
@@ -199,7 +199,7 @@ namespace Eyedia.IDPE.DataManager
 
         public List<string> GetRuleNames(int dataSourceId)
         {
-            List<SreRule> rules = new List<SreRule>();
+            List<IdpeRule> rules = new List<IdpeRule>();
 
             if (dataSourceId == 0)
             {
@@ -209,7 +209,7 @@ namespace Eyedia.IDPE.DataManager
             else
             {
                 rules = GetRules();
-                List<SreRuleDataSource> sreRuleDataSources = GetSreRuleDataSources();
+                List<IdpeRuleDataSource> sreRuleDataSources = GetSreRuleDataSources();
 
                 return (from r in rules
                         join rd in sreRuleDataSources on r.Id equals rd.RuleId
@@ -218,14 +218,14 @@ namespace Eyedia.IDPE.DataManager
             }
         }
 
-        public List<SreRuleDataSource> GetApplicationRuleSetNames(int dataSourceId)
+        public List<IdpeRuleDataSource> GetApplicationRuleSetNames(int dataSourceId)
         {
             return GetRuleSetApplication(dataSourceId);
         }
 
-        public List<SreRuleDataSource> GetRuleSetApplication(int dataSourceId)
+        public List<IdpeRuleDataSource> GetRuleSetApplication(int dataSourceId)
         {
-            List<SreRuleDataSource> sreRuleDataSources = new List<SreRuleDataSource>();
+            List<IdpeRuleDataSource> sreRuleDataSources = new List<IdpeRuleDataSource>();
             string commandText = "select [RuleDataSourceId],[RuleId],[DataSourceId],[Priority],[RuleSetType],[IsActive] from [SreRuleDataSource] where DataSourceId = " + dataSourceId;
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
@@ -234,7 +234,7 @@ namespace Eyedia.IDPE.DataManager
 
             foreach (DataRow row in table.Rows)
             {
-                SreRuleDataSource sreRuleDataSource = new SreRuleDataSource();
+                IdpeRuleDataSource sreRuleDataSource = new IdpeRuleDataSource();
                 sreRuleDataSource.RuleDataSourceId = (int)row["RuleDataSourceId"].ToString().ParseInt();
                 sreRuleDataSource.RuleId = (int)row["RuleId"].ToString().ParseInt();
                 sreRuleDataSource.DataSourceId = (int)row["DataSourceId"].ToString().ParseInt();
@@ -246,9 +246,9 @@ namespace Eyedia.IDPE.DataManager
             return sreRuleDataSources;
         }
 
-        public List<SreRule> GetApplicationRuleSets(int dataSourceId)
+        public List<IdpeRule> GetApplicationRuleSets(int dataSourceId)
         {
-            List<SreRule> sreRules = new List<SreRule>();
+            List<IdpeRule> sreRules = new List<IdpeRule>();
             string commandText = "select rs.[Id],rs.[Name],rs.[Description],rs.[Xaml],rsa.[Priority],rsa.[RuleSetType],rs.[CreatedTS],rs.[CreatedBy] from [SreRule] rs " +
                         " inner join SreRuleDataSource rsa on rs.Id = rsa.RuleId  and DataSourceId = " + dataSourceId;
 
@@ -258,7 +258,7 @@ namespace Eyedia.IDPE.DataManager
 
             foreach (DataRow row in table.Rows)
             {
-                SreRule rule = new SreRule();
+                IdpeRule rule = new IdpeRule();
                 rule.Id = (int)row["Id"].ToString().ParseInt();
                 rule.Name = row["Name"].ToString();
                 rule.Description = row["Description"] != DBNull.Value ? row["Description"].ToString() : null;
@@ -274,15 +274,15 @@ namespace Eyedia.IDPE.DataManager
 
       
 
-        public void Save(List<SreRule> rules)
+        public void Save(List<IdpeRule> rules)
         {
-            foreach (SreRule rule in rules)
+            foreach (IdpeRule rule in rules)
             {
                 Save(rule);
             }
         }
 
-        public int Save(SreRule rule, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
+        public int Save(IdpeRule rule, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
         {
             bool isInserted = false;
 
@@ -302,7 +302,7 @@ namespace Eyedia.IDPE.DataManager
             command.Connection = connection;
             command.Transaction = transaction;
 
-            SreRule existingRule = GetRule(rule.Name);
+            IdpeRule existingRule = GetRule(rule.Name);
             string commandText = string.Empty;
             int ruleSetId = 0;
             try
@@ -369,7 +369,7 @@ namespace Eyedia.IDPE.DataManager
 
         }
 
-        public void SaveRuleAssociationDuringCopy(SreRuleDataSource ruleDataSource)
+        public void SaveRuleAssociationDuringCopy(IdpeRuleDataSource ruleDataSource)
         {
             IDal dal = new DataAccessLayer(EyediaCoreConfigurationSection.CurrentConfig.Database.DatabaseType).Instance;
             IDbConnection con = dal.CreateConnection(_ConnectionString);
@@ -386,7 +386,7 @@ namespace Eyedia.IDPE.DataManager
 
         }
 
-        public int Save(SreRuleDataSource ruleDataSource, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
+        public int Save(IdpeRuleDataSource ruleDataSource, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
         {
             int ruleDataSourceId = 0;
             bool localTransaction = false;
@@ -404,7 +404,7 @@ namespace Eyedia.IDPE.DataManager
 
                 bool inserted = false;
                 string query = string.Empty;
-                SreRuleDataSource existingObject = GetSreRuleDataSource(ruleDataSource.DataSourceId, ruleDataSource.RuleId, ruleDataSource.RuleSetType);
+                IdpeRuleDataSource existingObject = GetSreRuleDataSource(ruleDataSource.DataSourceId, ruleDataSource.RuleId, ruleDataSource.RuleSetType);
 
                 if (existingObject == null)
                 {
@@ -557,7 +557,7 @@ namespace Eyedia.IDPE.DataManager
 
         public void CopyRule(int fromRuleId, string newRuleName)
         {
-            SreRule rule = GetRule(fromRuleId);
+            IdpeRule rule = GetRule(fromRuleId);
             rule.Id = 0;
             rule.Name = newRuleName;
             Save(rule); 

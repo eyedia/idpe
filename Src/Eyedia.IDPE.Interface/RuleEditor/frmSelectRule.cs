@@ -67,7 +67,7 @@ namespace Eyedia.IDPE.Interface
 
         private void RefreshRules(string keyWords = null)
         {
-            List<SreRule> rules = new Manager().GetRules();
+            List<IdpeRule> rules = new Manager().GetRules();
 
             #region Excluding DONOTINCLUDE
             List<int> ruleIdToBeExcluded = new List<int>();
@@ -102,11 +102,11 @@ namespace Eyedia.IDPE.Interface
             this.DialogResult = DialogResult.OK;
         }
 
-        public SreRule SelectedRule;
+        public IdpeRule SelectedRule;
        
         private void btnOK_Click(object sender, EventArgs e)
         {
-            SelectedRule = (SreRule)lstBoxRuleSet.SelectedItem;
+            SelectedRule = (IdpeRule)lstBoxRuleSet.SelectedItem;
             this.Close();
         }
 

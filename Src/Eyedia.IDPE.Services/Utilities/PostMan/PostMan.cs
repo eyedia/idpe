@@ -145,7 +145,7 @@ namespace Eyedia.IDPE.Services
 
         private bool KeepErrorInSubject;
 
-        private List<SreKey> Keys
+        private List<IdpeKey> Keys
         {
             get
             {
@@ -154,7 +154,7 @@ namespace Eyedia.IDPE.Services
                 else if (DataSource != null)
                     return DataSource.Keys;
                 else
-                    return new List<SreKey>();
+                    return new List<IdpeKey>();
             }
         }
 

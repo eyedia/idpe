@@ -57,7 +57,7 @@ namespace Eyedia.IDPE.Services
         /// <summary>
         /// Returns data source keys which was used to create the listener
         /// </summary>
-        public List<SreKey> Keys { get; private set; }
+        public List<IdpeKey> Keys { get; private set; }
 
 
         public string LocalFileSystemFolderPullFolder { get; private set; }
@@ -68,7 +68,7 @@ namespace Eyedia.IDPE.Services
         /// </summary>
         /// <param name="dataSourceId">DataSource Id</param>
         /// <param name="keys">The keys of data source</param>
-        public SreFileSystemWatcher(int dataSourceId, List<SreKey> keys)
+        public SreFileSystemWatcher(int dataSourceId, List<IdpeKey> keys)
         {
             this.DataSourceId = dataSourceId;
             this.Keys = keys;

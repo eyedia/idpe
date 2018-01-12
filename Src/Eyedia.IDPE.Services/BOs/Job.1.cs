@@ -162,7 +162,7 @@ namespace Eyedia.IDPE.Services
             #endregion PlugIns
 
      
-            SreKey key = DataSource.Key(SreKeyTypes.IsFirstRowHeader);
+            IdpeKey key = DataSource.Key(SreKeyTypes.IsFirstRowHeader);
             if (key != null)
                 DataSource.IsFirstRowHeader = key.Value.ParseBool();
 
@@ -537,7 +537,7 @@ namespace Eyedia.IDPE.Services
                 if ((string.IsNullOrEmpty(_DefaultConnectionString))
                     && (this.DataSource.Keys != null))
                 {
-                    foreach (SreKey key in this.DataSource.Keys)
+                    foreach (IdpeKey key in this.DataSource.Keys)
                     {
                         SreKeyTypes keyType = (SreKeyTypes)key.Type;
                         if (keyType.IsConnectionStringType())
@@ -673,8 +673,8 @@ namespace Eyedia.IDPE.Services
 
         private void ExtractHeaderFooter()
         {
-            SreKey headerAttribute = DataSource.Key(SreKeyTypes.HeaderLine1Attribute);
-            SreKey footerAttribute = DataSource.Key(SreKeyTypes.FooterLine1Attribute);
+            IdpeKey headerAttribute = DataSource.Key(SreKeyTypes.HeaderLine1Attribute);
+            IdpeKey footerAttribute = DataSource.Key(SreKeyTypes.FooterLine1Attribute);
 
             if ((headerAttribute == null)
                 && (footerAttribute == null))                

@@ -82,14 +82,14 @@ namespace Eyedia.IDPE.Services
             }
         }
 
-        public SreKey ConnectionStringKey
+        public IdpeKey ConnectionStringKey
         {
             get
             {
                 if (!string.IsNullOrEmpty(ConnectionStringNameRunTime))
                 {
                     object rtConnectionStringName = Job.GetProcessVariableValue(ConnectionStringNameRunTime);
-                    SreKey key = DataSource.Keys.GetKey(rtConnectionStringName.ToString());
+                    IdpeKey key = DataSource.Keys.GetKey(rtConnectionStringName.ToString());
 
                     if (key == null)
                         throw new Exception(string.Format("{0} - A database connection '{1}' was not defined!", DataSource.Name, rtConnectionStringName));
@@ -160,7 +160,7 @@ namespace Eyedia.IDPE.Services
         /// Keeps pulling from database (MS SQL, MS SQL CE, Oracle)
         /// </summary>
         /// <param name="dataSource">The data source object</param>       
-        public SqlWatcher(SreDataSource dataSource)
+        public SqlWatcher(IdpeDataSource dataSource)
         {            
             this.DataSource = new DataSource(dataSource.Id, string.Empty); 
             //DataSourceName = dataSource.Name;

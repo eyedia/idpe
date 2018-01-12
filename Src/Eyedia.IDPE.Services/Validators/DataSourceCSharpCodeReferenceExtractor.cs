@@ -55,7 +55,7 @@ namespace Eyedia.IDPE.Services
             ProcessVariables = new List<string>();
         }
 
-        public SreKey Key { get; private set; }
+        public IdpeKey Key { get; private set; }
         public int DataSourceId { get; set; }
         public List<string> AttributeNames { get; private set; }
         public List<string> SystemAttributeNames { get; private set; }

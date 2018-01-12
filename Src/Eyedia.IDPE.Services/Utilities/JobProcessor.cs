@@ -549,7 +549,7 @@ namespace Eyedia.IDPE.Services
                 {
                     //from WCF - we dont have to process output, wcf function will anyway call it
                     job.JobCompleted.Set();
-                    SreKey key = job.DataSource.Key(SreKeyTypes.WcfCallsGenerateStandardOutput);
+                    IdpeKey key = job.DataSource.Key(SreKeyTypes.WcfCallsGenerateStandardOutput);
                     bool boolValue = false;
                     if(key != null)
                         boolValue = key.Value.ParseBool();

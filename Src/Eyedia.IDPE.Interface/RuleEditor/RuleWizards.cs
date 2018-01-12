@@ -45,7 +45,7 @@ namespace Eyedia.IDPE.Interface
 {
     public partial class RuleWizards : Form
     {
-        public SreDataSource SelectedDataSource { get; private set; }
+        public IdpeDataSource SelectedDataSource { get; private set; }
         bool FormActivated;        
 
         public RuleWizards(Icon icon = null)
@@ -74,7 +74,7 @@ namespace Eyedia.IDPE.Interface
 
         private void cbDataSources_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SelectedDataSource = cbDataSources.SelectedItem as SreDataSource;            
+            SelectedDataSource = cbDataSources.SelectedItem as IdpeDataSource;            
             if(FormActivated)
                 BindData();
         }     

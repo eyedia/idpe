@@ -62,7 +62,7 @@ namespace Eyedia.IDPE.Interface
             }
             else
             {
-                SreRule rule = new Manager().GetRule(id);
+                IdpeRule rule = new Manager().GetRule(id);
                 RuleReferenceExtractor rrf = new RuleReferenceExtractor(rule.Xaml);
                 rrf.Parse();
                 Bind(rrf.AttributeNames, "Attributes");

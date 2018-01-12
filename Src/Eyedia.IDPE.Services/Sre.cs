@@ -298,8 +298,8 @@ namespace Eyedia.IDPE.Services
 
         public string ClearCacheRule(int ruleId, string ruleName)
         {
-            List<SreDataSource> dataSources = new Manager().GetDataSources(1);
-            foreach (SreDataSource ds in dataSources)
+            List<IdpeDataSource> dataSources = new Manager().GetDataSources(1);
+            foreach (IdpeDataSource ds in dataSources)
             {
                 if (Cache.Instance.Bag[ds.Id + ".rules"] != null)
                     Cache.Instance.Bag.Remove(ds.Id + ".rules");

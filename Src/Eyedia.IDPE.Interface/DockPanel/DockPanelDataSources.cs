@@ -82,7 +82,7 @@ namespace Eyedia.IDPE.Interface
             {
                 foreach(ListViewItem item in this.sreListView1.ListView.Items)
                 {
-                    if (((SreDataSource)item.Tag).Id == selectedDataSourceId)
+                    if (((IdpeDataSource)item.Tag).Id == selectedDataSourceId)
                     {
                         item.Selected = true;
                         item.EnsureVisible();
@@ -107,8 +107,8 @@ namespace Eyedia.IDPE.Interface
             }
         }
 
-        SreDataSource mSelectedDataSource;
-        internal SreDataSource SelectedDataSource
+        IdpeDataSource mSelectedDataSource;
+        internal IdpeDataSource SelectedDataSource
         { 
             get
             {
@@ -131,7 +131,7 @@ namespace Eyedia.IDPE.Interface
 
         private void mnuCompareWithPrevious_Click(object sender, EventArgs e)
         {
-            List<SreVersion> lastVersions = new Manager().GetVersions(VersionObjectTypes.DataSource, SelectedDataSource.Id);
+            List<IdpeVersion> lastVersions = new Manager().GetVersions(VersionObjectTypes.DataSource, SelectedDataSource.Id);
 
             if (lastVersions.Count >= 2)
                 SreVersionComparer.Compare(VersionObjectTypes.DataSource, SelectedDataSource.Name, lastVersions[0], lastVersions[1]);
@@ -199,8 +199,8 @@ namespace Eyedia.IDPE.Interface
                     DataSourcePatch dsp = new DataSourcePatch();
                     dsp.Name = sreListView1.ListView.SelectedItems[0].SubItems[0].Text;
                     Manager mgr = new Manager();
-                    List<SreKey> keys = mgr.GetApplicationKeys(mgr.GetApplicationId(dsp.Name), false);
-                    foreach (SreKey key in keys)
+                    List<IdpeKey> keys = mgr.GetApplicationKeys(mgr.GetApplicationId(dsp.Name), false);
+                    foreach (IdpeKey key in keys)
                     {
                         dsp.Keys.Add(key);
                     }
@@ -255,7 +255,7 @@ namespace Eyedia.IDPE.Interface
             if (sreListView1.ListView.SelectedItems.Count == 1)
             {
                 UserPreferences up = Information.LoggedInUser.GetUserPreferences();
-                up.DefaultDataSourceId = ((SreDataSource)sreListView1.ListView.SelectedItems[0].Tag).Id;
+                up.DefaultDataSourceId = ((IdpeDataSource)sreListView1.ListView.SelectedItems[0].Tag).Id;
                 Information.LoggedInUser.Preferences = up.Serialize();
                 CoreDatabaseObjects.Instance.UpdateUserPreferences(Information.LoggedInUser);
             }

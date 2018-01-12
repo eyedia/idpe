@@ -83,8 +83,8 @@ namespace Eyedia.IDPE.Services
         SreKeyTypes _DatabaseType;
         public SreKeyTypes DatabaseType { get { return _DatabaseType; } internal set { _DatabaseType = value; } }
 
-        List<SreKey> _DataSourceKeys;
-        public List<SreKey> DataSourceKeys { get { return _DataSourceKeys; } }
+        List<IdpeKey> _DataSourceKeys;
+        public List<IdpeKey> DataSourceKeys { get { return _DataSourceKeys; } }
 
         protected int _RecordPosition;
         public int RecordPosition { get { return _RecordPosition; } }
@@ -104,7 +104,7 @@ namespace Eyedia.IDPE.Services
         public bool IsNull { get; private set; }
 
         public SreType(string columnName, string value, AttributeTypes type, string formula, string minimum, string maximum,
-            bool isAssociatedWithSystemRow, int recordPosition, SqlClientManager sqlClientManager, List<SreKey> dataSourceKeys)
+            bool isAssociatedWithSystemRow, int recordPosition, SqlClientManager sqlClientManager, List<IdpeKey> dataSourceKeys)
         {
             _ConnectionStringKeyName = Constants.DefaultConnectionStringKeyName;
             SqlClientManager = sqlClientManager;
@@ -212,7 +212,7 @@ namespace Eyedia.IDPE.Services
     public static class SreTypeFactory
     {
         public static SreType GetInstance(string columnName, string value, string type, string formula, string minimum, string maximum,
-            bool isAssociatedWithSystemRow, int recordPosition, SqlClientManager sqlClientManager, List<SreKey> dataSourceKeys)
+            bool isAssociatedWithSystemRow, int recordPosition, SqlClientManager sqlClientManager, List<IdpeKey> dataSourceKeys)
         {
             AttributeTypes thisType = (AttributeTypes)Enum.Parse(typeof(AttributeTypes), type, true);
 
@@ -829,7 +829,7 @@ namespace Eyedia.IDPE.Services
     #region SreCodeset
     public class SreCodeset : SreType
     {
-        public SreCodeset(string columnName, string value, AttributeTypes type, string formula, string minimum, string maximum, bool isAssociatedWithSystemRow, int recordPosition, SqlClientManager sqlClientManager, List<SreKey> dataSourceKeys)
+        public SreCodeset(string columnName, string value, AttributeTypes type, string formula, string minimum, string maximum, bool isAssociatedWithSystemRow, int recordPosition, SqlClientManager sqlClientManager, List<IdpeKey> dataSourceKeys)
             : base(columnName, value, type, formula, minimum, maximum, isAssociatedWithSystemRow, recordPosition, sqlClientManager, dataSourceKeys)
         {
             //prevent null error;            
@@ -973,7 +973,7 @@ namespace Eyedia.IDPE.Services
     #region SreReferenced
     public class SreReferenced : SreType
     {
-        public SreReferenced(string columnName, string value, AttributeTypes type, string formula, string minimum, string maximum, bool isAssociatedWithSystemRow, int recordPosition, SqlClientManager sqlClientManager, List<SreKey> dataSourceKeys)
+        public SreReferenced(string columnName, string value, AttributeTypes type, string formula, string minimum, string maximum, bool isAssociatedWithSystemRow, int recordPosition, SqlClientManager sqlClientManager, List<IdpeKey> dataSourceKeys)
             : base(columnName, value, type, formula, minimum, maximum, isAssociatedWithSystemRow, recordPosition, sqlClientManager, dataSourceKeys)
         {
             _IsHavingSqlQuery = true;
@@ -1021,7 +1021,7 @@ namespace Eyedia.IDPE.Services
     #region SreNotReferenced
     public class SreNotReferenced : SreType
     {
-        public SreNotReferenced(string columnName, string value, AttributeTypes type, string formula, string minimum, string maximum, bool isAssociatedWithSystemRow, int recordPosition, SqlClientManager sqlClientManager, List<SreKey> dataSourceKeys)
+        public SreNotReferenced(string columnName, string value, AttributeTypes type, string formula, string minimum, string maximum, bool isAssociatedWithSystemRow, int recordPosition, SqlClientManager sqlClientManager, List<IdpeKey> dataSourceKeys)
             : base(columnName, value, type, formula, minimum, maximum, isAssociatedWithSystemRow, recordPosition, sqlClientManager, dataSourceKeys)
         {
             _IsHavingSqlQuery = true;
@@ -1068,7 +1068,7 @@ namespace Eyedia.IDPE.Services
     #region SreGenerated
     public class SreGenerated : SreType
     {
-        public SreGenerated(string columnName, string value, AttributeTypes type, string formula, string minimum, string maximum, bool isAssociatedWithSystemRow, int recordPosition, SqlClientManager sqlClientManager, List<SreKey> dataSourceKeys)
+        public SreGenerated(string columnName, string value, AttributeTypes type, string formula, string minimum, string maximum, bool isAssociatedWithSystemRow, int recordPosition, SqlClientManager sqlClientManager, List<IdpeKey> dataSourceKeys)
             : base(columnName, value, type, formula, minimum, maximum, isAssociatedWithSystemRow, recordPosition, sqlClientManager, dataSourceKeys)
         {
             if ((formula.Length >= 5)

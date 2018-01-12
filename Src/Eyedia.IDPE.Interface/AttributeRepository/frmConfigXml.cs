@@ -472,10 +472,10 @@ namespace Eyedia.IDPE.Interface
             Manager manager = new Manager();
             manager.UpdateDataFormatType(DataSource.Id, DataFormatTypes.Xml);
 
-            SreKey key = new SreKey();            
+            IdpeKey key = new IdpeKey();            
             manager.DeleteKeyFromApplication(DataSource.Id, SreKeyTypes.IsFirstRowHeader.ToString(), false);
 
-            key = new SreKey();
+            key = new IdpeKey();
             key.Name = SreKeyTypes.XmlFeedMechanism.ToString();
             key.Type = (int)SreKeyTypes.XmlFeedMechanism;
             if (radXslt.Checked)
@@ -485,7 +485,7 @@ namespace Eyedia.IDPE.Interface
                 key.Value = XmlFeedMechanism.Xslt.ToString();                
                 manager.Save(key, DataSource.Id);
 
-                key = new SreKey();
+                key = new IdpeKey();
                 key.Name = SreKeyTypes.Xslt.ToString();
                 key.Type = (int)SreKeyTypes.Xslt;
                 key.Value = rtbXslt.Text;
@@ -499,7 +499,7 @@ namespace Eyedia.IDPE.Interface
                 key.Value = XmlFeedMechanism.CSharpCode.ToString();                
                 manager.Save(key, DataSource.Id);
 
-                key = new SreKey();
+                key = new IdpeKey();
                 key.Name = SreKeyTypes.CSharpCodeGenerateTable.ToString();
                 key.Type = (int)SreKeyTypes.CSharpCodeGenerateTable;
                 key.Value = cSharpExpression1.Code;

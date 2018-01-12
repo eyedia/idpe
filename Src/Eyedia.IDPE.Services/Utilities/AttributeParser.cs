@@ -55,13 +55,13 @@ namespace Eyedia.IDPE.Services
         Column _SystemAttributes;
         Parameters _Parameters;
         SqlClientManager _SQLClientManager;        
-        List<SreKey> _DataSourceKeys;        
+        List<IdpeKey> _DataSourceKeys;        
 
         Column _OtherAvailableAttributes;
         public Column OtherAvailableAttributes { get { return _OtherAvailableAttributes; } set { _OtherAvailableAttributes = value; } }        
 
         internal AttributeParser(int dataSourceId, string dataSourceName, Column systemAttributes,
-            Parameters parameters, SqlClientManager sqlClientManager, List<SreKey> applicationKeys)
+            Parameters parameters, SqlClientManager sqlClientManager, List<IdpeKey> applicationKeys)
         {
             this.DataSourceId = dataSourceId;
             this.DataSourceName = dataSourceName;
@@ -84,7 +84,7 @@ namespace Eyedia.IDPE.Services
         /// <param name="rowPosition">Row position, used only in error information, to identify row. 0(Zero) in case of system attributes.</param>
         /// <param name="doNotWriteErrorInTraceFile">To avoid confusion, if this is true, it wont write sql query formatting errors into trace file.
         /// (in case of first attempt, values may not be ready to replace in queries, which is absolutely a valid scenario)</param>
-        internal void Parse(List<SreAttribute> attributes, Column column, bool isSystemRow, int rowPosition, bool doNotWriteErrorInTraceFile)
+        internal void Parse(List<IdpeAttribute> attributes, Column column, bool isSystemRow, int rowPosition, bool doNotWriteErrorInTraceFile)
         {
             try
             {
@@ -232,7 +232,7 @@ namespace Eyedia.IDPE.Services
                             {
                                 item.ConnectionStringKeyName = connectionStringKeyName;
                                 //string k_n_type = _ApplicationKeys.GetKeyValue(connectionStringKeyName);
-                                SreKey key = _DataSourceKeys.GetKey(connectionStringKeyName);
+                                IdpeKey key = _DataSourceKeys.GetKey(connectionStringKeyName);
                                 item.ConnectionString = key.Value;
                                 item.DatabaseType = (SreKeyTypes)key.Type;
 

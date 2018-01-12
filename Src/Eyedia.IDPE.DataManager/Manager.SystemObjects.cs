@@ -61,12 +61,12 @@ namespace Eyedia.IDPE.DataManager
             string sqlStatement = string.Empty;
             try
             {
-                SreDataSource sds = GetDataSourceDetails(-99);
+                IdpeDataSource sds = GetDataSourceDetails(-99);
                 if (sds == null)
                 {
                     CoreDatabaseObjects.Instance.ExecuteStatement(sdsSqlStatement, dal, connection, transaction);
                 }
-                SreDataSource ds = GetDataSourceDetails(100);
+                IdpeDataSource ds = GetDataSourceDetails(100);
                 if (ds == null)
                 {
                     CoreDatabaseObjects.Instance.ExecuteStatement(dsSqlStatement, dal, connection, transaction);
@@ -104,17 +104,17 @@ namespace Eyedia.IDPE.DataManager
                 strType = "BIT";
             }
 
-            SreAttribute attrb = GetAttribute(name);
+            IdpeAttribute attrb = GetAttribute(name);
             if (attrb == null)
             {
-                attrb = new SreAttribute();
+                attrb = new IdpeAttribute();
                 attrb.Name = name;
                 attrb.Type = strType;
                 attrb.IsAcceptable = true;
                 attrb.AttributeId = Save(attrb, dal, connection, transaction);
             }
 
-            SreAttributeDataSource sads = new SreAttributeDataSource();
+            IdpeAttributeDataSource sads = new IdpeAttributeDataSource();
             sads.AttributeId = attrb.AttributeId;
             sads.DataSourceId = -99;
             sads.Position = position;
@@ -123,7 +123,7 @@ namespace Eyedia.IDPE.DataManager
 
             if (name != "IsValid")
             {
-                sads = new SreAttributeDataSource();
+                sads = new IdpeAttributeDataSource();
                 sads.AttributeId = attrb.AttributeId;
                 sads.DataSourceId = 100;
                 sads.Position = position;
@@ -134,7 +134,7 @@ namespace Eyedia.IDPE.DataManager
 
         private void sdInsertRule(IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
         {
-            SreRule rule = new SreRule();
+            IdpeRule rule = new IdpeRule();
             rule.Name = "System Data Source - Map";
             rule.Description = "System data source rule mapping rule used by system. This rule cannot be deleted.";
             
@@ -146,7 +146,7 @@ namespace Eyedia.IDPE.DataManager
 
             rule.Id = Save(rule);
 
-            SreRuleDataSource sreRuleDataSource = new SreRuleDataSource();
+            IdpeRuleDataSource sreRuleDataSource = new IdpeRuleDataSource();
             sreRuleDataSource.DataSourceId = 100;
             sreRuleDataSource.RuleId = rule.Id;
             sreRuleDataSource.Priority = 1;
@@ -163,31 +163,31 @@ namespace Eyedia.IDPE.DataManager
             OutputDelimiter,
             OutputFileExtension	.csv	*/
 
-            SreKey key = new SreKey();
+            IdpeKey key = new IdpeKey();
             key.Name = SreKeyTypes.FileInterfaceName.ToString();
             key.Type = (int)SreKeyTypes.FileInterfaceName;
             key.Value = "Eyedia.IDPE.Services.PacketReceiver, Eyedia.IDPE.Services";
             Save(key, 100, dal, connection, transaction);
 
-            key = new SreKey();
+            key = new IdpeKey();
             key.Name = SreKeyTypes.OutputPartialRecordsAllowed.ToString();
             key.Type = (int)SreKeyTypes.OutputPartialRecordsAllowed;
             key.Value = "False";
             Save(key, 100, dal, connection, transaction);
 
-            key = new SreKey();
+            key = new IdpeKey();
             key.Name = SreKeyTypes.OutputIsFirstRowHeader.ToString();
             key.Type = (int)SreKeyTypes.OutputIsFirstRowHeader;
             key.Value = "True";
             Save(key, 100, dal, connection, transaction);
 
-            key = new SreKey();
+            key = new IdpeKey();
             key.Name = SreKeyTypes.OutputDelimiter.ToString();
             key.Type = (int)SreKeyTypes.OutputDelimiter;
             key.Value = ",";
             Save(key, 100, dal, connection, transaction);
 
-            key = new SreKey();
+            key = new IdpeKey();
             key.Name = SreKeyTypes.OutputFileExtension.ToString();
             key.Type = (int)SreKeyTypes.OutputFileExtension;
             key.Value = ".csv";

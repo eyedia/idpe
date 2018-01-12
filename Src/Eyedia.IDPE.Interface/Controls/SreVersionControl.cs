@@ -81,7 +81,7 @@ namespace Eyedia.IDPE.Interface.Controls
             else if (lvwVersions.SelectedItems.Count == 1)
             {
                 compareToolStripMenuItem.Text = __SetToTheVersion;
-                SreVersion version = lvwVersions.SelectedItems[0].Tag as SreVersion;
+                IdpeVersion version = lvwVersions.SelectedItems[0].Tag as IdpeVersion;
                 contextMenuStrip1.Enabled = version.Version == 0 ? false : true;
             }
             else
@@ -96,13 +96,13 @@ namespace Eyedia.IDPE.Interface.Controls
             if (compareToolStripMenuItem.Text == __Compare)
             {
                 if (lvwVersions.SelectedItems.Count == 2)
-                    SreVersionComparer.Compare(VersionObjectType, ObjectName, (SreVersion)lvwVersions.SelectedItems[0].Tag, (SreVersion)lvwVersions.SelectedItems[1].Tag);
+                    SreVersionComparer.Compare(VersionObjectType, ObjectName, (IdpeVersion)lvwVersions.SelectedItems[0].Tag, (IdpeVersion)lvwVersions.SelectedItems[1].Tag);
             }
             else if (compareToolStripMenuItem.Text == __SetToTheVersion)
             {
                 if (lvwVersions.SelectedItems.Count == 1)
                 {
-                    SreVersion version = lvwVersions.SelectedItems[0].Tag as SreVersion;
+                    IdpeVersion version = lvwVersions.SelectedItems[0].Tag as IdpeVersion;
                     if (MessageBox.Show(string.Format("Are you sure you want to revert '{0}' to Version {1}?", ObjectName, version.Version)
                         , "Revert Version", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes)
                     {
@@ -161,16 +161,16 @@ namespace Eyedia.IDPE.Interface.Controls
             Manager manager = new Manager();
             string myIpAddress = Eyedia.Core.Net.Dns.GetLocalIpAddress();
             ListViewItem currentItem = new ListViewItem("current");
-            SreVersion currentVersion = new SreVersionManager().GetCurrentVersion(VersionObjectType, ReferenceId);
+            IdpeVersion currentVersion = new SreVersionManager().GetCurrentVersion(VersionObjectType, ReferenceId);
             currentItem.SubItems.Add(currentVersion.CreatedBy == Information.LoggedInUser.UserName ? "Me" : currentVersion.CreatedBy);
             currentItem.SubItems.Add(currentVersion.CreatedTS.ToString());
             currentItem.SubItems.Add(currentVersion.Source == myIpAddress? "This Machine": currentVersion.Source);
             currentItem.Tag = currentVersion;
             lvwVersions.Items.Add(currentItem);
 
-            List<SreVersion> versions = manager.GetVersions(VersionObjectType, ReferenceId).OrderByDescending(v=> v.Version).ToList();
+            List<IdpeVersion> versions = manager.GetVersions(VersionObjectType, ReferenceId).OrderByDescending(v=> v.Version).ToList();
 
-            foreach (SreVersion version in versions)
+            foreach (IdpeVersion version in versions)
             {
                 ListViewItem item = new ListViewItem(version.Version.ToString());
                 item.SubItems.Add(version.CreatedBy == Information.LoggedInUser.UserName ? "Me" : version.CreatedBy);
@@ -188,7 +188,7 @@ namespace Eyedia.IDPE.Interface.Controls
             switch (VersionObjectType)
             {
                 case VersionObjectTypes.Attribute:
-                    SreAttribute attribute = new Manager().GetAttribute(ReferenceId);
+                    IdpeAttribute attribute = new Manager().GetAttribute(ReferenceId);
                     if (attribute != null)
                         ObjectName = attribute.Name;
                     break;
@@ -198,7 +198,7 @@ namespace Eyedia.IDPE.Interface.Controls
                     break;
 
                 case VersionObjectTypes.Rule:
-                    SreRule rule = new Manager().GetRule(ReferenceId);
+                    IdpeRule rule = new Manager().GetRule(ReferenceId);
                     if (rule != null)
                         ObjectName = rule.Name;
                     break;

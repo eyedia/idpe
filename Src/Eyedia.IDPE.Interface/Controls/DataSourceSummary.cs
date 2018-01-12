@@ -82,7 +82,7 @@ namespace Eyedia.IDPE.Interface.Controls
             }
             Manager manager = new Manager();
 
-            SreDataSource sysDs = manager.GetDataSourceDetails((int)DataSource.SystemDataSourceId);
+            IdpeDataSource sysDs = manager.GetDataSourceDetails((int)DataSource.SystemDataSourceId);
             tableLayoutPanel1.Visible = true;
             switch (DataSource.DataFeederType)
             {

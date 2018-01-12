@@ -46,7 +46,7 @@ namespace Eyedia.IDPE.Interface
 {
     public class SreVersionComparer
     {
-        public static void Compare(VersionObjectTypes versionObjectType, string objectName, SreVersion v1, SreVersion v2)
+        public static void Compare(VersionObjectTypes versionObjectType, string objectName, IdpeVersion v1, IdpeVersion v2)
         {
             var toolPath = Information.LoggedInUser.GetUserPreferences().ComparisonToolExecutablePath;
             if (!File.Exists(toolPath))
@@ -116,7 +116,7 @@ namespace Eyedia.IDPE.Interface
             return false;
         }
 
-        public static object ConvertToSreVersionObject(VersionObjectTypes versionObjectType, SreVersion version)
+        public static object ConvertToSreVersionObject(VersionObjectTypes versionObjectType, IdpeVersion version)
         {
             object returnObject = null;
             switch (versionObjectType)

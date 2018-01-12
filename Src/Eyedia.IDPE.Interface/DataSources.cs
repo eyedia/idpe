@@ -52,12 +52,12 @@ namespace Eyedia.IDPE.Interface
         }
 
        
-        public SreDataSource SelectedDataSource { get; set; }
+        public IdpeDataSource SelectedDataSource { get; set; }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (lbDataSources.SelectedItems.Count > 0)
-                SelectedDataSource = (SreDataSource)lbDataSources.SelectedItems[0];
+                SelectedDataSource = (IdpeDataSource)lbDataSources.SelectedItems[0];
             this.Close();
         }
      
@@ -77,7 +77,7 @@ namespace Eyedia.IDPE.Interface
                 bool found = false;
                 for (i = 0; i < lbDataSources.Items.Count; i++)
                 {
-                    SreDataSource ds = lbDataSources.Items[i] as SreDataSource;
+                    IdpeDataSource ds = lbDataSources.Items[i] as IdpeDataSource;
                     if ((ds != null) && (ds.Id == selectedDataSourceId))
                     {
                         found = true;
@@ -120,7 +120,7 @@ namespace Eyedia.IDPE.Interface
         {
             for (int i = 0; i < lbDataSources.Items.Count; i++)
             {
-                if (((SreDataSource)lbDataSources.Items[i]).Name.ToLower().Contains(txtSearch.Text.ToLower()))
+                if (((IdpeDataSource)lbDataSources.Items[i]).Name.ToLower().Contains(txtSearch.Text.ToLower()))
                 {
                     lbDataSources.SelectedIndex = i;
                     break;

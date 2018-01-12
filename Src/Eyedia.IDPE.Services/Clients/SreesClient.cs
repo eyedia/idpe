@@ -80,10 +80,10 @@ namespace Eyedia.IDPE.Clients
         System.Threading.Tasks.Task<string> DeploySdfAsync(Eyedia.IDPE.Services.EnvironmentServicePacket packet);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ISreEnvironmentService/GetDataSources", ReplyAction = "http://tempuri.org/ISreEnvironmentService/GetDataSourcesResponse")]
-        System.Collections.Generic.List<Eyedia.IDPE.DataManager.SreDataSource> GetDataSources(Eyedia.IDPE.Services.EnvironmentServicePacket packet);
+        System.Collections.Generic.List<Eyedia.IDPE.DataManager.IdpeDataSource> GetDataSources(Eyedia.IDPE.Services.EnvironmentServicePacket packet);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ISreEnvironmentService/GetDataSources", ReplyAction = "http://tempuri.org/ISreEnvironmentService/GetDataSourcesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Eyedia.IDPE.DataManager.SreDataSource>> GetDataSourcesAsync(Eyedia.IDPE.Services.EnvironmentServicePacket packet);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Eyedia.IDPE.DataManager.IdpeDataSource>> GetDataSourcesAsync(Eyedia.IDPE.Services.EnvironmentServicePacket packet);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ISreEnvironmentService/ProcessFile", ReplyAction = "http://tempuri.org/ISreEnvironmentService/ProcessFileResponse")]
         string ProcessFile(Eyedia.IDPE.Services.EnvironmentServicePacket packet);
@@ -201,12 +201,12 @@ namespace Eyedia.IDPE.Clients
             return base.Channel.DeploySdfAsync(packet);
         }
 
-        public System.Collections.Generic.List<Eyedia.IDPE.DataManager.SreDataSource> GetDataSources(Eyedia.IDPE.Services.EnvironmentServicePacket packet)
+        public System.Collections.Generic.List<Eyedia.IDPE.DataManager.IdpeDataSource> GetDataSources(Eyedia.IDPE.Services.EnvironmentServicePacket packet)
         {
             return base.Channel.GetDataSources(packet);
         }
 
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Eyedia.IDPE.DataManager.SreDataSource>> GetDataSourcesAsync(Eyedia.IDPE.Services.EnvironmentServicePacket packet)
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Eyedia.IDPE.DataManager.IdpeDataSource>> GetDataSourcesAsync(Eyedia.IDPE.Services.EnvironmentServicePacket packet)
         {
             return base.Channel.GetDataSourcesAsync(packet);
         }

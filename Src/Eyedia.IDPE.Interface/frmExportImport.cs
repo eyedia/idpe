@@ -53,7 +53,7 @@ namespace Eyedia.IDPE.Interface
     {
         bool _Working;
         bool _Exporting;
-        SreDataSource _DataSource;       
+        IdpeDataSource _DataSource;       
         public frmExportImport(int dataSourceId)
         {
             InitializeComponent();           

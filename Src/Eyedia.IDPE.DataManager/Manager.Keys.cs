@@ -48,9 +48,9 @@ namespace Eyedia.IDPE.DataManager
     public partial class Manager
     {
         
-        public List<SreKey> GetKeys()
+        public List<IdpeKey> GetKeys()
         {
-            List<SreKey> sreKeys = new List<SreKey>();
+            List<IdpeKey> sreKeys = new List<IdpeKey>();
             string commandText = "select [KeyId],[Name],[Value],[ValueBinary], [Type],[IsDeployable],[NextKeyId],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [SreKey]";
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
@@ -65,7 +65,7 @@ namespace Eyedia.IDPE.DataManager
             return sreKeys;
         }
 
-        public List<SreKey> GetKeys(int dataSourceId = 0)
+        public List<IdpeKey> GetKeys(int dataSourceId = 0)
         {
             string commandText = "select k.[KeyId],[Name],[Value],[ValueBinary],[Type],kds.[IsDeployable],[NextKeyId],k.[CreatedTS],k.[CreatedBy],k.[ModifiedTS],k.[ModifiedBy],k.[Source] ";
             commandText += "from SreKey k ";
@@ -73,7 +73,7 @@ namespace Eyedia.IDPE.DataManager
             if(dataSourceId > 0)
                 commandText += " where kds.DataSourceId = " + dataSourceId;
 
-            List<SreKey> sreKeys = new List<SreKey>();
+            List<IdpeKey> sreKeys = new List<IdpeKey>();
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null)
                 return sreKeys;
@@ -86,7 +86,7 @@ namespace Eyedia.IDPE.DataManager
             return sreKeys;
         }
 
-        public List<SreKey> GetDeployableKeys(int dataSourceId = 0)
+        public List<IdpeKey> GetDeployableKeys(int dataSourceId = 0)
         {
             string commandText = "select k.[KeyId],[Name],[Value],[ValueBinary],[Type],kds.[DataSourceId],kds.[IsDeployable],[NextKeyId],k.[CreatedTS],k.[CreatedBy],k.[ModifiedTS],k.[ModifiedBy],k.[Source] ";
             commandText += "from SreKey k ";
@@ -95,7 +95,7 @@ namespace Eyedia.IDPE.DataManager
             if (dataSourceId > 0)
                 commandText += " and kds.DataSourceId = " + dataSourceId;
 
-            List<SreKey> sreKeys = new List<SreKey>();
+            List<IdpeKey> sreKeys = new List<IdpeKey>();
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null)
                 return sreKeys;
@@ -108,7 +108,7 @@ namespace Eyedia.IDPE.DataManager
             return sreKeys;
         }
 
-        public SreKey GetKey(SreKeyTypes keyType)
+        public IdpeKey GetKey(SreKeyTypes keyType)
         {
             string commandText = "select [KeyId],[Name],[Value],[ValueBinary], [Type],[IsDeployable],[NextKeyId],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [SreKey] where [Type] = " + (int)keyType;
 
@@ -122,7 +122,7 @@ namespace Eyedia.IDPE.DataManager
             return null;
         }
        
-        public SreKey GetKey(int dataSourceId, string keyName)
+        public IdpeKey GetKey(int dataSourceId, string keyName)
         {
             string commandText = "select k.[KeyId],[Name],[Value],[ValueBinary],[Type],kds.[IsDeployable],[NextKeyId],k.[CreatedTS],k.[CreatedBy],k.[ModifiedTS],k.[ModifiedBy],k.[Source] ";
             commandText += "from SreKey k ";
@@ -141,7 +141,7 @@ namespace Eyedia.IDPE.DataManager
             return RowToSreKey(table.Rows[0]);
         }
 
-        public SreKey GetKey(int keyId)
+        public IdpeKey GetKey(int keyId)
         {
             string commandText = "select [KeyId],[Name],[Value],[ValueBinary],[Type],[IsDeployable],[NextKeyId],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [SreKey] where [keyid] = " + keyId;
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
@@ -153,9 +153,9 @@ namespace Eyedia.IDPE.DataManager
             return RowToSreKey(table.Rows[0]);
         }
 
-        private SreKey RowToSreKey(DataRow row, int dataSourceId = 0)
+        private IdpeKey RowToSreKey(DataRow row, int dataSourceId = 0)
         {
-            SreKey key = new SreKey();
+            IdpeKey key = new IdpeKey();
             key.KeyId = (int)row["KeyId"].ToString().ParseInt();
             key.Name = row["Name"].ToString();
             key.Value = row["Value"] != DBNull.Value ? row["Value"].ToString() : null;
@@ -173,9 +173,9 @@ namespace Eyedia.IDPE.DataManager
             return key;
         }
 
-        private List<SreKeyDataSource> GetSreKeyDataSources()
+        private List<IdpeKeyDataSource> GetSreKeyDataSources()
         {
-            List<SreKeyDataSource>  sreKeyDataSources = new List<SreKeyDataSource>();
+            List<IdpeKeyDataSource>  sreKeyDataSources = new List<IdpeKeyDataSource>();
             string commandText = "select [KeyDataSourceId],[KeyId],[DataSourceId],[IsDeployable] from [SreKeyDataSource]";
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
@@ -184,7 +184,7 @@ namespace Eyedia.IDPE.DataManager
 
             foreach (DataRow row in table.Rows)
             {
-                SreKeyDataSource sreKeyDataSource = new SreKeyDataSource();
+                IdpeKeyDataSource sreKeyDataSource = new IdpeKeyDataSource();
                 sreKeyDataSource.KeyDataSourceId = (int)row["KeyDataSourceId"].ToString().ParseInt();
                 sreKeyDataSource.KeyId = (int)row["KeyId"].ToString().ParseInt();
                 sreKeyDataSource.DataSourceId = (int)row["DataSourceId"].ToString().ParseInt();
@@ -232,13 +232,13 @@ namespace Eyedia.IDPE.DataManager
             return keyId;
         }
        
-        public List<SreKey> GetApplicationKeys(int dataSourceId, bool includeSystemKeys)
+        public List<IdpeKey> GetApplicationKeys(int dataSourceId, bool includeSystemKeys)
         {            
-            List<SreKey> keys = new List<SreKey>();
+            List<IdpeKey> keys = new List<IdpeKey>();
             if (includeSystemKeys)
             {
                 int parentId = GetDataSourceParentId(dataSourceId);
-                List<SreKey> syskeys = Cache.Instance.Bag[parentId + ".keys"] as List<SreKey>;
+                List<IdpeKey> syskeys = Cache.Instance.Bag[parentId + ".keys"] as List<IdpeKey>;
                 if ((syskeys == null)
                     || (syskeys.Count == 0))
                 {
@@ -253,9 +253,9 @@ namespace Eyedia.IDPE.DataManager
             return keys;
         }
 
-        public List<SreKey> GetDataSourceKeys(int dataSourceId, bool onlyCustomKeys = false)
+        public List<IdpeKey> GetDataSourceKeys(int dataSourceId, bool onlyCustomKeys = false)
         {            
-            List<SreKey> keys = new List<SreKey>();
+            List<IdpeKey> keys = new List<IdpeKey>();
             string commandText = "select k.[KeyId], k.[Name], k.[Value], k.[ValueBinary], k.[Type], k.[NextKeyId], k.[CreatedTS], k.[CreatedBy], k.[ModifiedTS], k.[ModifiedBy], k.[Source], kds.[IsDeployable] ";
             commandText += "from  SreKey k ";
             commandText += "inner join SreKeyDataSource kds on k.KeyId = kds.KeyId ";
@@ -275,9 +275,9 @@ namespace Eyedia.IDPE.DataManager
             return keys;
         }
 
-        public List<SreKey> GetDataSourceKeysConnectionStrings(int dataSourceId, bool isSystem)
+        public List<IdpeKey> GetDataSourceKeysConnectionStrings(int dataSourceId, bool isSystem)
         {
-            List<SreKey> keys = new List<SreKey>();
+            List<IdpeKey> keys = new List<IdpeKey>();
             string commandText = "select k.[KeyId], k.[Name], k.[Value], k.[ValueBinary], k.[Type], k.[NextKeyId], k.[CreatedTS], k.[CreatedBy], k.[ModifiedTS], k.[ModifiedBy], k.[Source], kds.[IsDeployable] ";
             commandText += "from  SreKey k ";
             commandText += "inner join SreKeyDataSource kds on k.KeyId = kds.KeyId ";
@@ -289,15 +289,15 @@ namespace Eyedia.IDPE.DataManager
             {
                 foreach (DataRow row in table.Rows)
                 {
-                    SreKey key = RowToSreKey(row);
+                    IdpeKey key = RowToSreKey(row);
 
                     if (dataSourceId == -99)
                     {
                         //this is added just to identify global keys
-                        SreKeyDataSource kds = new SreKeyDataSource();
+                        IdpeKeyDataSource kds = new IdpeKeyDataSource();
                         kds.KeyId = key.KeyId;
                         kds.DataSourceId = -99;
-                        key.SreKeyDataSources.Add(kds);
+                        key.IdpeKeyDataSources.Add(kds);
                     }
                     keys.Add(key);
                 }
@@ -306,16 +306,16 @@ namespace Eyedia.IDPE.DataManager
             if ((dataSourceId != -99) && (isSystem == false))
             {
                 //adding global
-                List<SreKey> gKeys = GetDataSourceKeysConnectionStrings(-99, false);
-                foreach (SreKey key in gKeys)
+                List<IdpeKey> gKeys = GetDataSourceKeysConnectionStrings(-99, false);
+                foreach (IdpeKey key in gKeys)
                 {
                     if (keys.Where(dKey => dKey.Name == key.Name).SingleOrDefault() == null)
                     {
                         //this is added just to identify global keys
-                        SreKeyDataSource kds = new SreKeyDataSource();
+                        IdpeKeyDataSource kds = new IdpeKeyDataSource();
                         kds.KeyId = key.KeyId;
                         kds.DataSourceId = -99;
-                        key.SreKeyDataSources.Add(kds);
+                        key.IdpeKeyDataSources.Add(kds);
                         keys.Add(key);
                     }
                 }
@@ -388,7 +388,7 @@ namespace Eyedia.IDPE.DataManager
             }
         }
 
-        public int Save(SreKey key, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
+        public int Save(IdpeKey key, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
         {
             IDbCommand command = null;
             bool localTransaction = false;
@@ -506,7 +506,7 @@ namespace Eyedia.IDPE.DataManager
         }
         
 
-        public void Save(SreKey key, int dataSourceId, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
+        public void Save(IdpeKey key, int dataSourceId, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
         {
             if (dataSourceId == 0)
                 throw new Exception("Data source has not been saved! Save data source first.");
@@ -682,7 +682,7 @@ namespace Eyedia.IDPE.DataManager
 
         
 
-        public void SetIsDeployable(int dataSourceId, List<SreKey> keys)
+        public void SetIsDeployable(int dataSourceId, List<IdpeKey> keys)
         {
             IDal myDal = new DataAccessLayer(EyediaCoreConfigurationSection.CurrentConfig.Database.DatabaseType).Instance;
             IDbConnection conn = myDal.CreateConnection(_ConnectionString);
@@ -694,7 +694,7 @@ namespace Eyedia.IDPE.DataManager
 
             try
             {
-                foreach (SreKey key in keys)
+                foreach (IdpeKey key in keys)
                 {
                     command.Parameters.Clear();
                     command.CommandText = "UPDATE SreKeyDataSource SET IsDeployable = @IsDeployable, ModifiedTS = @ModifiedTS, ModifiedBy = @ModifiedBy, Source = @Source WHERE KeyId = @KeyId AND DataSourceId = @DataSourceId";

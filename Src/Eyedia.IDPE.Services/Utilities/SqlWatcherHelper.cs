@@ -72,14 +72,14 @@ namespace Eyedia.IDPE.Services
             }
         }
 
-        public SreKey ConnectionStringKey
+        public IdpeKey ConnectionStringKey
         {
             get
             {
                 if (!string.IsNullOrEmpty(ConnectionStringNameRunTime))
                 {
                     object rtConnectionStringName = Job.GetProcessVariableValue(ConnectionStringNameRunTime);
-                    SreKey key = Job.DataSource.Keys.GetKey(rtConnectionStringName.ToString());
+                    IdpeKey key = Job.DataSource.Keys.GetKey(rtConnectionStringName.ToString());
 
                     if (key == null)
                         throw new Exception(string.Format("{0} - A database connection '{1}' was not defined!", Job.DataSource.Name, rtConnectionStringName));
@@ -108,7 +108,7 @@ namespace Eyedia.IDPE.Services
            // string actualConnectionString = connectionStringKey.Value;
 
 
-            SreKey recoveryQueryKey = Job.DataSource.Keys.GetKey(SreKeyTypes.SqlUpdateQueryRecovery.ToString());
+            IdpeKey recoveryQueryKey = Job.DataSource.Keys.GetKey(SreKeyTypes.SqlUpdateQueryRecovery.ToString());
             string recoveryQuery = new SreCommandParser(Job.DataSource).Parse(recoveryQueryKey.Value);
 
             ExecuteQuery(recoveryQuery);

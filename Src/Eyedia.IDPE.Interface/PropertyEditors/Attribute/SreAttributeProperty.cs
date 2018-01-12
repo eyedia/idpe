@@ -49,7 +49,7 @@ namespace Eyedia.IDPE.Interface
     {        
 
         [Browsable(false)]
-        public List<SreKey> DataSourceKeys { get; private set; }
+        public List<IdpeKey> DataSourceKeys { get; private set; }
 
         [Browsable(true)]
         [CategoryAttribute("0-Global"), Description("System generated unique identifier of the attribute")]
@@ -178,7 +178,7 @@ namespace Eyedia.IDPE.Interface
         public int? Position { get; private set; }
 
 
-        public SreAttributeProperty(SreAttribute attribute, int dataSourceId = 0, bool isSystem = false)
+        public SreAttributeProperty(IdpeAttribute attribute, int dataSourceId = 0, bool isSystem = false)
             : base(attribute, dataSourceId, isSystem)
         {
         }
@@ -280,7 +280,7 @@ namespace Eyedia.IDPE.Interface
             if (DataSourceId == 0)
                 return;
 
-            SreAttributeDataSource sads = new SreAttributeDataSource();
+            IdpeAttributeDataSource sads = new IdpeAttributeDataSource();
             sads.DataSourceId = DataSourceId;
             sads.AttributeId = Id;
             sads.Position = Position;

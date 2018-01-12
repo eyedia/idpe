@@ -46,7 +46,7 @@ namespace Eyedia.IDPE.Interface
 {
     public partial class RulesExtraInformation : Form
     {
-        public RulesExtraInformation(SreRule sreRule)
+        public RulesExtraInformation(IdpeRule sreRule)
         {
             InitializeComponent();
             this.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);

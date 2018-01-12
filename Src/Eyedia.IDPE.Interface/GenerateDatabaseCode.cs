@@ -79,7 +79,7 @@ namespace Eyedia.IDPE.Interface
             SystemDataSources sds = new SystemDataSources(this.Icon);
             if (sds.ShowDialog() == DialogResult.OK)
             {
-                SreKey uniquenessKey = new Manager().GetKey(sds.SelectedSystemDataSource.Id, "UniquenessCriteria");
+                IdpeKey uniquenessKey = new Manager().GetKey(sds.SelectedSystemDataSource.Id, "UniquenessCriteria");
                 if ((uniquenessKey != null)
                     && (!string.IsNullOrEmpty(uniquenessKey.Value)))
                 {

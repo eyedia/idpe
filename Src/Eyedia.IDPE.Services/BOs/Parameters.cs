@@ -49,7 +49,7 @@ namespace Eyedia.IDPE.Services
         private int _DataSourceId;
         string _DataSourceName;
         SqlClientManager _SQLClientManager;
-        public Parameters(int dataSourceId, string dataSourceName, SreKey generateParamFromDatabase, SqlClientManager sqlClientManager)
+        public Parameters(int dataSourceId, string dataSourceName, IdpeKey generateParamFromDatabase, SqlClientManager sqlClientManager)
         {
             this._DataSourceId = dataSourceId;
             this._DataSourceName = dataSourceName;

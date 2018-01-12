@@ -115,7 +115,7 @@ namespace Eyedia.IDPE.Services
         /// <param name="filterTable"></param>
         /// <param name="connectionStringKey"></param>
         /// <returns></returns>
-        bool CheckDuplicate(Job job, DataTable filterTable, SreKey connectionStringKey)
+        bool CheckDuplicate(Job job, DataTable filterTable, IdpeKey connectionStringKey)
         {
             string errorMessage = string.Empty;
             int oldCount = filterTable.Rows.Count;
@@ -230,7 +230,7 @@ namespace Eyedia.IDPE.Services
             return false;
         }
 
-        DataTable CallStoreProcedure(Job job, DataTable filterTable, SreKey connectionStringKey)
+        DataTable CallStoreProcedure(Job job, DataTable filterTable, IdpeKey connectionStringKey)
         {
             DatabaseTypes databaseType = connectionStringKey.GetDatabaseType();
             string actualConnectionString = connectionStringKey.Value;
@@ -361,7 +361,7 @@ namespace Eyedia.IDPE.Services
             foreach (string column in uniquenessColumns)
             {
                 bool found = false;
-                foreach (SreAttribute attribute in job.DataSource.AcceptableAttributes)
+                foreach (IdpeAttribute attribute in job.DataSource.AcceptableAttributes)
                 {
                     if (attribute.Name.Equals(column, StringComparison.OrdinalIgnoreCase))
                     {
@@ -382,9 +382,9 @@ namespace Eyedia.IDPE.Services
             }
         }
 
-        SreKey GetConnectionString(Job job, string connectionStringKeyName)
+        IdpeKey GetConnectionString(Job job, string connectionStringKeyName)
         {
-            SreKey connectionStringKey = job.DataSource.Keys.GetKey(connectionStringKeyName);
+            IdpeKey connectionStringKey = job.DataSource.Keys.GetKey(connectionStringKeyName);
             if (connectionStringKey == null)
             {
                 string errorMessage = string.Format("The connection string '{0}' was not found! Could not connect to database, duplicate check was aborted!", connectionStringKeyName);

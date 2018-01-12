@@ -50,9 +50,9 @@ namespace Eyedia.IDPE.Interface
     public partial class frmCopyDataSource : Form
     {
         bool Copying;
-        SreDataSource FromDataSource;
+        IdpeDataSource FromDataSource;
         Manager DataManager;
-        public frmCopyDataSource(SreDataSource fromDataSource)
+        public frmCopyDataSource(IdpeDataSource fromDataSource)
         {
             InitializeComponent();
             this.Icon = Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetExecutingAssembly().Location);
@@ -82,12 +82,12 @@ namespace Eyedia.IDPE.Interface
         private void BindAttributes()
         {
             Manager manager = new Manager();
-            List<SreAttribute> attributes = DataManager.GetAttributes(FromDataSource.Id);
+            List<IdpeAttribute> attributes = DataManager.GetAttributes(FromDataSource.Id);
             attributes = attributes.Where(a => a.AttributeId != 1).ToList();
-            List<SreAttributeDataSource> sadss = new List<SreAttributeDataSource>();
-            foreach (SreAttribute a in attributes)
+            List<IdpeAttributeDataSource> sadss = new List<IdpeAttributeDataSource>();
+            foreach (IdpeAttribute a in attributes)
             {
-                SreAttributeDataSource sads = new SreAttributeDataSource();
+                IdpeAttributeDataSource sads = new IdpeAttributeDataSource();
                 sads.AttributeId = a.AttributeId;
                 sads.DataSourceId = FromDataSource.Id;
                 sads.IsAcceptable = true;
@@ -107,7 +107,7 @@ namespace Eyedia.IDPE.Interface
         private void BindKeys()
         {
             Manager manager = new Manager();
-            List<SreKey> keys = DataManager.GetApplicationKeys(FromDataSource.Id, false);
+            List<IdpeKey> keys = DataManager.GetApplicationKeys(FromDataSource.Id, false);
 
             if (keys != null)
             {
@@ -115,7 +115,7 @@ namespace Eyedia.IDPE.Interface
                 {
                     if (((SreKeyTypes)keys[i].Type) == SreKeyTypes.Custom)
                     {
-                        SreKey newKey = new SreKey();
+                        IdpeKey newKey = new IdpeKey();
 
                         newKey.Name = keys[i].Name;
                         newKey.Value = keys[i].Value;
@@ -136,8 +136,8 @@ namespace Eyedia.IDPE.Interface
         private void BindRules()
         {
             Manager manager = new Manager();            
-            List<SreRule> rules = DataManager.GetRules(FromDataSource.Id);
-            foreach (SreRule rule in rules)
+            List<IdpeRule> rules = DataManager.GetRules(FromDataSource.Id);
+            foreach (IdpeRule rule in rules)
             {
                 TreeNode node = new TreeNode(manager.GetRule(rule.Id).Name);
                 node.Tag = rule;
@@ -206,7 +206,7 @@ namespace Eyedia.IDPE.Interface
             toolStripProgressBar1.Increment(10);
             toolStripStatusLabel1.Text = "Copying datsource...";
             Application.DoEvents();
-            SreDataSource newDataSource = new SreDataSource();
+            IdpeDataSource newDataSource = new IdpeDataSource();
             newDataSource.IsActive = true;
             newDataSource.Name = txtApplicationName.Text;
             newDataSource.Description = FromDataSource.Description;
@@ -229,12 +229,12 @@ namespace Eyedia.IDPE.Interface
             toolStripStatusLabel1.Text = "Copying attributes...";
             Application.DoEvents();
 
-            List<SreAttributeDataSource> sadss = new List<SreAttributeDataSource>();
+            List<IdpeAttributeDataSource> sadss = new List<IdpeAttributeDataSource>();
             foreach (TreeNode node in treeView.Nodes[0].Nodes)
             {
                 if (node.Checked)
                 {
-                    sadss.Add((SreAttributeDataSource)node.Tag);
+                    sadss.Add((IdpeAttributeDataSource)node.Tag);
                     toolStripStatusLabel1.Text = "Copying attribute..." + node.Text;
                     Application.DoEvents();
                 }
@@ -248,8 +248,8 @@ namespace Eyedia.IDPE.Interface
             #region Copy Internal Keys
             //we have to copy internal keys anyways...
 
-            List<SreKey> keys = DataManager.GetApplicationKeys(FromDataSource.Id, false);
-            foreach (SreKey key in keys)
+            List<IdpeKey> keys = DataManager.GetApplicationKeys(FromDataSource.Id, false);
+            foreach (IdpeKey key in keys)
             {
                 if (((SreKeyTypes)key.Type) != SreKeyTypes.Custom)
                 {
@@ -265,7 +265,7 @@ namespace Eyedia.IDPE.Interface
             {
                 if (node.Checked)
                 {
-                    SreKey ckey = (SreKey)node.Tag;
+                    IdpeKey ckey = (IdpeKey)node.Tag;
                     DataManager.Save(ckey, newDataSource.Id);
                     toolStripStatusLabel1.Text = "Copying key..." + ckey.Name;
                     Application.DoEvents();
@@ -283,13 +283,13 @@ namespace Eyedia.IDPE.Interface
             {
                 if (node.Checked)
                 {
-                    SreRule rule = node.Tag as SreRule;
+                    IdpeRule rule = node.Tag as IdpeRule;
                     rule.Name = rule.Name + "_" + newDataSource.Id;
                     rule.Description = rule.Description == null ? string.Empty : rule.Description;
                     rule.Id = 0;
                     int newRuleId = DataManager.Save(rule);
 
-                    SreRuleDataSource sreRuleDataSource = new SreRuleDataSource();
+                    IdpeRuleDataSource sreRuleDataSource = new IdpeRuleDataSource();
                     sreRuleDataSource.Priority = (int)rule.Priority;
                     sreRuleDataSource.RuleSetType = (int)rule.RuleSetType;
                     sreRuleDataSource.IsActive = true;

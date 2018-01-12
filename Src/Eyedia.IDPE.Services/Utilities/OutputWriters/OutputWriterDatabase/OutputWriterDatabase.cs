@@ -55,7 +55,7 @@ namespace Eyedia.IDPE.Services
 
         #region private properties
 
-        SreKey ConnectionStringKey;
+        IdpeKey ConnectionStringKey;
         ColumnMap DatabaseMap;
 
         #endregion Private Properties
@@ -232,7 +232,7 @@ namespace Eyedia.IDPE.Services
                         insertStatementPart2 += string.Format(":{0},", counter);
                     }
 
-                    SreAttribute attributeAvailable = _Job.DataSource.AcceptableAttributesSystem.Where(a => a.Name == columnMapInfo.InputColumn).SingleOrDefault();
+                    IdpeAttribute attributeAvailable = _Job.DataSource.AcceptableAttributesSystem.Where(a => a.Name == columnMapInfo.InputColumn).SingleOrDefault();
                     if (attributeAvailable == null)
                         continue;
 
@@ -295,7 +295,7 @@ namespace Eyedia.IDPE.Services
         #region Helpers
         private void InitConfig()
         {           
-            SreKey OutputWriterDatabaseConfiguration = new Manager().GetKey(_Job.DataSource.Id, SreKeyTypes.OutputWriterDatabaseConfiguration.ToString());
+            IdpeKey OutputWriterDatabaseConfiguration = new Manager().GetKey(_Job.DataSource.Id, SreKeyTypes.OutputWriterDatabaseConfiguration.ToString());
 
             if ((OutputWriterDatabaseConfiguration != null)
                 && (!string.IsNullOrEmpty(OutputWriterDatabaseConfiguration.Name)))

@@ -332,7 +332,7 @@ namespace Eyedia.IDPE.Interface.Controls
         private void BindDataPullSql()
         {
 
-            List<SreKey> keys = new Manager().GetApplicationKeys(DataSourceId, false);
+            List<IdpeKey> keys = new Manager().GetApplicationKeys(DataSourceId, false);
 
             cmbConnectionString.Text = keys.GetKeyValue(SreKeyTypes.PullSqlConnectionString);
             txtRunTimeCononectionStringName.Text = keys.GetKeyValue(SreKeyTypes.PullSqlConnectionStringRunTime);
@@ -354,7 +354,7 @@ namespace Eyedia.IDPE.Interface.Controls
         void ValidateSelectQuery(bool testing = false)
         {
             DataSource ds = new DataSource(DataSourceId, string.Empty);
-            SreKey connectionStringKey = cmbConnectionString.SelectedItem as SreKey;
+            IdpeKey connectionStringKey = cmbConnectionString.SelectedItem as IdpeKey;
             DatabaseTypes databaseType = connectionStringKey.GetDatabaseType();
             string actualConnectionString = connectionStringKey.Value;
 
@@ -420,7 +420,7 @@ namespace Eyedia.IDPE.Interface.Controls
             DataSource ds = new DataSource(DataSourceId, string.Empty);
             updateQuery = new SreCommandParser(ds).Parse(updateQuery);
             //DoNotClose = false;
-            SreKey connectionStringKey = cmbConnectionString.SelectedItem as SreKey;
+            IdpeKey connectionStringKey = cmbConnectionString.SelectedItem as IdpeKey;
             DatabaseTypes databaseType = connectionStringKey.GetDatabaseType();
             string actualConnectionString = connectionStringKey.Value;
             IDbConnection conn = null;

@@ -46,9 +46,9 @@ namespace Eyedia.IDPE.DataManager
 {
     public partial class Manager
     {
-        public List<SreLog> GetLogs(DateTime? fromDate = null, DateTime? toDate = null, string fileName = null, string dataSourceName = null)
+        public List<IdpeLog> GetLogs(DateTime? fromDate = null, DateTime? toDate = null, string fileName = null, string dataSourceName = null)
         {
-            List<SreLog> sreLogs = new List<SreLog>();
+            List<IdpeLog> sreLogs = new List<IdpeLog>();
             string commandText = "select  l.Id, [FileName],[SubFileName], DataSourceId,ds.Name as [DataSourceName], TotalRecords,TotalValidRecords, Started, l.Finished, [Environment] ";
             commandText += "from SreDataSource ds ";
             commandText += "inner join SreLog l on ds.Id = l.DataSourceId";
@@ -122,7 +122,7 @@ namespace Eyedia.IDPE.DataManager
 
             foreach (DataRow row in table.Rows)
             {
-                SreLog log = new SreLog();
+                IdpeLog log = new IdpeLog();
                 log.Id = (int)row["Id"].ToString().ParseInt();
                 log.FileName = row["FileName"].ToString();
                 log.SubFileName = row["SubFileName"].ToString();
@@ -139,9 +139,9 @@ namespace Eyedia.IDPE.DataManager
             return sreLogs;
         }
 
-        public List<SreLog> GetLogs_old(DateTime? fromDate = null, DateTime? toDate = null, string fileName = null, string dataSourceName = null)
+        public List<IdpeLog> GetLogs_old(DateTime? fromDate = null, DateTime? toDate = null, string fileName = null, string dataSourceName = null)
         {            
-            List<SreLog> sreLogs = new List<SreLog>();
+            List<IdpeLog> sreLogs = new List<IdpeLog>();
             string commandText = "select  l.Id, [FileName],[SubFileName], DataSourceId,ds.Name as [DataSourceName], TotalRecords,TotalValidRecords, Started, l.Finished, [Environment] ";
             commandText += "from SreDataSource ds ";
             commandText += "inner join SreLog l on ds.Id = l.DataSourceId";
@@ -197,7 +197,7 @@ namespace Eyedia.IDPE.DataManager
 
             foreach (DataRow row in table.Rows)
             {
-                SreLog log = new SreLog();
+                IdpeLog log = new IdpeLog();
                 log.Id = (int)row["Id"].ToString().ParseInt();
                 log.FileName = row["FileName"].ToString();
                 log.SubFileName = row["SubFileName"].ToString();

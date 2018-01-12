@@ -56,8 +56,8 @@ namespace Eyedia.IDPE.Services
     {
         public DataSourcePatch()
         {
-            this.Keys = new List<SreKey>();
-            this.Rules = new List<SreRule>();
+            this.Keys = new List<IdpeKey>();
+            this.Rules = new List<IdpeRule>();
             this.CodeSets = new List<CodeSet>();
         }
 
@@ -65,8 +65,8 @@ namespace Eyedia.IDPE.Services
         {
             if ((fileName == null) && (serializedObject == null))
             {
-                this.Keys = new List<SreKey>();
-                this.Rules = new List<SreRule>();
+                this.Keys = new List<IdpeKey>();
+                this.Rules = new List<IdpeRule>();
                 this.CodeSets = new List<CodeSet>();
             }
             else if (fileName != null)
@@ -92,10 +92,10 @@ namespace Eyedia.IDPE.Services
         public string FileName { get; private set; }
 
         [DataMember]
-        public List<SreKey> Keys { get; set; }
+        public List<IdpeKey> Keys { get; set; }
 
         [DataMember]
-        public List<SreRule> Rules { get; set; }
+        public List<IdpeRule> Rules { get; set; }
 
         [DataMember]
         public List<CodeSet> CodeSets { get; set; }
@@ -182,7 +182,7 @@ namespace Eyedia.IDPE.Services
 
             #region Rules
 
-            foreach (SreRule rule in this.Rules)
+            foreach (IdpeRule rule in this.Rules)
             {
                 Trace.TraceInformation("Inserting:Rule.Name={0}", rule.Name);
                 new SreVersionManager().KeepVersion(VersionObjectTypes.Rule, rule.Id);

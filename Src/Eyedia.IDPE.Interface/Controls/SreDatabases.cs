@@ -79,12 +79,12 @@ namespace Eyedia.IDPE.Interface.Controls
         public bool EnableGlobalKeys { get; set; }
 
         [Browsable(false)]
-        public List<SreKey> Keys { get; private set; }
+        public List<IdpeKey> Keys { get; private set; }
 
         [Browsable(false)]
-        public List<SreKey> SystemKeys { get; private set; }
+        public List<IdpeKey> SystemKeys { get; private set; }
 
-        SreKey SelectedKey { get; set; }
+        IdpeKey SelectedKey { get; set; }
 
         [Browsable(false)]
         public Button SaveButton { get; set; }
@@ -102,7 +102,7 @@ namespace Eyedia.IDPE.Interface.Controls
             if (DataSourceId != -99)
                 SystemKeys = manager.GetDataSourceKeysConnectionStrings(manager.GetDataSourceParentId(DataSourceId), true);
             else
-                SystemKeys = new List<SreKey>();
+                SystemKeys = new List<IdpeKey>();
 
             BindData();
         }
@@ -112,7 +112,7 @@ namespace Eyedia.IDPE.Interface.Controls
             lvwKeys.Items.Clear();
 
             //system keys are deprecated
-            foreach (SreKey key in SystemKeys)
+            foreach (IdpeKey key in SystemKeys)
             {
                 ListViewItem item = new ListViewItem(key.Name);
                 item.Tag = key;
@@ -120,10 +120,10 @@ namespace Eyedia.IDPE.Interface.Controls
                 lvwKeys.Items.Add(item);
             }
 
-            foreach (SreKey key in Keys)
+            foreach (IdpeKey key in Keys)
             {
                 ListViewItem item = new ListViewItem(key.Name);
-                if (key.SreKeyDataSources.Count > 0)
+                if (key.IdpeKeyDataSources.Count > 0)
                     item.ForeColor = Color.DarkRed;
                 item.Tag = key;                
                 lvwKeys.Items.Add(item);
@@ -152,7 +152,7 @@ namespace Eyedia.IDPE.Interface.Controls
         //private void btnSave_Click(object sender, EventArgs e)
         public void Save()
         {
-            SreKey key = new SreKey();
+            IdpeKey key = new IdpeKey();
             SreKeyTypes selectedType = GetSreKeyType();
             key.Name = txtConnectionStringName.Text;
             key.Value = txtConnectionString.Text;
@@ -223,7 +223,7 @@ namespace Eyedia.IDPE.Interface.Controls
         {
             if (lvwKeys.SelectedItems.Count > 0)
             {
-                SelectedKey = lvwKeys.SelectedItems[0].Tag as SreKey;
+                SelectedKey = lvwKeys.SelectedItems[0].Tag as IdpeKey;
                 switch ((SreKeyTypes)SelectedKey.Type)
                 {
                     case SreKeyTypes.ConnectionStringSqlServer:
@@ -291,8 +291,8 @@ namespace Eyedia.IDPE.Interface.Controls
                 DataSourcePatch dsp = new DataSourcePatch();
                 dsp.Name = dataSourceName;
                 Manager mgr = new Manager();
-                List<SreKey> keys = mgr.GetApplicationKeys(mgr.GetApplicationId(dsp.Name), false);
-                foreach (SreKey key in keys)
+                List<IdpeKey> keys = mgr.GetApplicationKeys(mgr.GetApplicationId(dsp.Name), false);
+                foreach (IdpeKey key in keys)
                 {
                     dsp.Keys.Add(key);
                 }
@@ -355,7 +355,7 @@ namespace Eyedia.IDPE.Interface.Controls
                 if (MessageBox.Show(string.Format("Are you sure you want to delete the connection string '{0}'?", lvwKeys.SelectedItems[0].Text, dataSourceName),
                     "Delete Connection String", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {                    
-                    SreKey key = dm.GetKey(DataSourceId, lvwKeys.SelectedItems[0].Text);
+                    IdpeKey key = dm.GetKey(DataSourceId, lvwKeys.SelectedItems[0].Text);
                     dm.DeleteKeyFromApplication(DataSourceId, lvwKeys.SelectedItems[0].Text, false);
                     try
                     {
@@ -376,7 +376,7 @@ namespace Eyedia.IDPE.Interface.Controls
             {
                foreach(ListViewItem item in lvwKeys.SelectedItems)
                 {
-                    SreKey key = dm.GetKey(DataSourceId, item.Text);
+                    IdpeKey key = dm.GetKey(DataSourceId, item.Text);
                     dm.DeleteKeyFromApplication(DataSourceId, item.Text, false);
                     try
                     {
@@ -412,7 +412,7 @@ namespace Eyedia.IDPE.Interface.Controls
                 int counter = 0;
                 foreach (ListViewItem item in lvwKeys.SelectedItems)
                 {
-                    SreKey key = item.Tag as SreKey;
+                    IdpeKey key = item.Tag as IdpeKey;
                     manager.Save(key, ds.SelectedDataSource.Id);
                     counter++;
                 }

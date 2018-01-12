@@ -43,11 +43,11 @@
             // 
             // SreAttributeBindingSource
             // 
-            this.SreAttributeBindingSource.DataSource = typeof(Eyedia.IDPE.DataManager.SreAttribute);
+            this.SreAttributeBindingSource.DataSource = typeof(Eyedia.IDPE.DataManager.IdpeAttribute);
             // 
             // SreDataSourceBindingSource
             // 
-            this.SreDataSourceBindingSource.DataSource = typeof(Eyedia.IDPE.DataManager.SreDataSource);
+            this.SreDataSourceBindingSource.DataSource = typeof(Eyedia.IDPE.DataManager.IdpeDataSource);
             // 
             // reportViewerAttributes
             // 

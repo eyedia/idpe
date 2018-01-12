@@ -394,27 +394,27 @@
             Clears additional attachments, this will be executed everytime a new job is created
             </summary>
         </member>
-        <member name="M:Eyedia.IDPE.Services.DataSource.GetPullFolder(System.Int32,System.Collections.Generic.List{Eyedia.IDPE.DataManager.SreKey})">
+        <member name="M:Eyedia.IDPE.Services.DataSource.GetPullFolder(System.Int32,System.Collections.Generic.List{Eyedia.IDPE.DataManager.IdpeKey})">
             <summary>
             Returns pull folder path (when datasource object is not available)
             </summary>
         </member>
-        <member name="M:Eyedia.IDPE.Services.DataSource.GetOutputFolder(System.Int32,System.Collections.Generic.List{Eyedia.IDPE.DataManager.SreKey})">
+        <member name="M:Eyedia.IDPE.Services.DataSource.GetOutputFolder(System.Int32,System.Collections.Generic.List{Eyedia.IDPE.DataManager.IdpeKey})">
             <summary>
             Returns output folder path (when datasource object is not available)
             </summary>
         </member>
-        <member name="M:Eyedia.IDPE.Services.DataSource.GetOutputFileName(System.Int32,System.Collections.Generic.List{Eyedia.IDPE.DataManager.SreKey},System.String,System.String)">
+        <member name="M:Eyedia.IDPE.Services.DataSource.GetOutputFileName(System.Int32,System.Collections.Generic.List{Eyedia.IDPE.DataManager.IdpeKey},System.String,System.String)">
             <summary>
             Returns output file name based on data source configuration 
             </summary>
         </member>
-        <member name="M:Eyedia.IDPE.Services.DataSource.GetArchiveFolder(System.Int32,System.Collections.Generic.List{Eyedia.IDPE.DataManager.SreKey})">
+        <member name="M:Eyedia.IDPE.Services.DataSource.GetArchiveFolder(System.Int32,System.Collections.Generic.List{Eyedia.IDPE.DataManager.IdpeKey})">
             <summary>
             Returns archive folder path (when datasource object is not available)
             </summary>
         </member>
-        <member name="M:Eyedia.IDPE.Services.DataSource.IsLocalFileSystemFolderArchiveAuto(System.Collections.Generic.List{Eyedia.IDPE.DataManager.SreKey})">
+        <member name="M:Eyedia.IDPE.Services.DataSource.IsLocalFileSystemFolderArchiveAuto(System.Collections.Generic.List{Eyedia.IDPE.DataManager.IdpeKey})">
             <summary>
             Returns true if SRE to use default archive location (parallel to 'Pull')
             </summary>
@@ -441,14 +441,14 @@
             <param name="toEnvironment">Target environment</param>
             <param name="datasourceId">Data source id</param>       
         </member>
-        <member name="M:Eyedia.IDPE.Services.EnvironmentServiceDispatcherUsingFileSystem.DeployRule(Eyedia.IDPE.Services.SreEnvironmentConfig,Eyedia.IDPE.DataManager.SreRule)">
+        <member name="M:Eyedia.IDPE.Services.EnvironmentServiceDispatcherUsingFileSystem.DeployRule(Eyedia.IDPE.Services.SreEnvironmentConfig,Eyedia.IDPE.DataManager.IdpeRule)">
             <summary>
             Deploys data source into specific targetConfigironment
             </summary>
             <param name="toConfig">Target environment</param>
             <param name="rule">The rule object</param>
         </member>
-        <member name="M:Eyedia.IDPE.Services.EnvironmentServiceDispatcherUsingFileSystem.DeployKeys(Eyedia.IDPE.Services.SreEnvironmentConfig,System.Collections.Generic.List{Eyedia.IDPE.DataManager.SreKey})">
+        <member name="M:Eyedia.IDPE.Services.EnvironmentServiceDispatcherUsingFileSystem.DeployKeys(Eyedia.IDPE.Services.SreEnvironmentConfig,System.Collections.Generic.List{Eyedia.IDPE.DataManager.IdpeKey})">
             <summary>
             Deploys data source into specific targetConfigironment
             </summary>
@@ -620,7 +620,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Eyedia.IDPE.Services.ColumnMap.#ctor(System.Int32,Eyedia.IDPE.DataManager.SreKey,System.Collections.Generic.List{Eyedia.IDPE.DataManager.SreKey},System.String,System.Int32)">
+        <member name="M:Eyedia.IDPE.Services.ColumnMap.#ctor(System.Int32,Eyedia.IDPE.DataManager.IdpeKey,System.Collections.Generic.List{Eyedia.IDPE.DataManager.IdpeKey},System.String,System.Int32)">
             <summary>
             Used for new mapping information
             </summary>
@@ -707,7 +707,7 @@
             Returns data source keys which was used to create the listener
             </summary>
         </member>
-        <member name="M:Eyedia.IDPE.Services.SreFileSystemWatcher.#ctor(System.Int32,System.Collections.Generic.List{Eyedia.IDPE.DataManager.SreKey})">
+        <member name="M:Eyedia.IDPE.Services.SreFileSystemWatcher.#ctor(System.Int32,System.Collections.Generic.List{Eyedia.IDPE.DataManager.IdpeKey})">
             <summary>
             Initializes SreFileSystemWatcher with a file watcher to keep an eye on specific pull folder(taken from keys)
             </summary>
@@ -781,7 +781,7 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:Eyedia.IDPE.Services.DuplicateCheck.CheckDuplicate(Eyedia.IDPE.Services.Job,System.Data.DataTable,Eyedia.IDPE.DataManager.SreKey)">
+        <member name="M:Eyedia.IDPE.Services.DuplicateCheck.CheckDuplicate(Eyedia.IDPE.Services.Job,System.Data.DataTable,Eyedia.IDPE.DataManager.IdpeKey)">
             <summary>
             returns true if duplicate check failed
             </summary>
@@ -903,7 +903,7 @@
             M1, M2, ..., Mn, BETA1, BETA2, RC1, RC2, RTM.
             </summary>
         </member>
-        <member name="M:Eyedia.IDPE.Services.AttributeParser.Parse(System.Collections.Generic.List{Eyedia.IDPE.DataManager.SreAttribute},Eyedia.IDPE.Services.Column,System.Boolean,System.Int32,System.Boolean)">
+        <member name="M:Eyedia.IDPE.Services.AttributeParser.Parse(System.Collections.Generic.List{Eyedia.IDPE.DataManager.IdpeAttribute},Eyedia.IDPE.Services.Column,System.Boolean,System.Int32,System.Boolean)">
             <summary>
             Parses attributes
             </summary>
@@ -1173,7 +1173,7 @@
             Counts perfromance based on unique process name. Enable this by setting 'PerformanceCounter' to 'true' in config file
             </summary>
         </member>
-        <member name="M:Eyedia.IDPE.Services.SqlWatcher.#ctor(Eyedia.IDPE.DataManager.SreDataSource)">
+        <member name="M:Eyedia.IDPE.Services.SqlWatcher.#ctor(Eyedia.IDPE.DataManager.IdpeDataSource)">
             <summary>
             Keeps pulling from database (MS SQL, MS SQL CE, Oracle)
             </summary>

@@ -60,13 +60,13 @@ namespace Eyedia.IDPE.Interface
 
         #region Properties
 
-        List<SreAttribute> _Attributes;
-        public List<SreAttribute> Attributes 
+        List<IdpeAttribute> _Attributes;
+        public List<IdpeAttribute> Attributes 
         { 
             get {return _Attributes;}
             set
             {
-                SreAttribute firstItem = new SreAttribute();
+                IdpeAttribute firstItem = new IdpeAttribute();
                 firstItem.Name = "";
                 _Attributes.Add(firstItem);
                 _Attributes.AddRange(value);
@@ -75,13 +75,13 @@ namespace Eyedia.IDPE.Interface
             }
         }
 
-        List<SreAttribute> _SystemAttributes;
-        public List<SreAttribute> SystemAttributes
+        List<IdpeAttribute> _SystemAttributes;
+        public List<IdpeAttribute> SystemAttributes
         {
             get { return _SystemAttributes; }
             set
             {
-                SreAttribute firstItem = new SreAttribute();
+                IdpeAttribute firstItem = new IdpeAttribute();
                 firstItem.Name = "";
                 _SystemAttributes.Add(firstItem);
                 _SystemAttributes.AddRange(value);
@@ -139,8 +139,8 @@ namespace Eyedia.IDPE.Interface
         public AttributeMapper()
         {
             InitializeComponent();
-            _Attributes = new List<SreAttribute>();
-            _SystemAttributes = new List<SreAttribute>();            
+            _Attributes = new List<IdpeAttribute>();
+            _SystemAttributes = new List<IdpeAttribute>();            
         }
 
         private void AssignTypeChanged(object sender, EventArgs e)
@@ -209,9 +209,9 @@ namespace Eyedia.IDPE.Interface
 
         private void SetAttributeNameUsingLevenshteinDistance()
         {
-            string source = ((SreAttribute)cmbAttributesSys.SelectedItem).Name;
+            string source = ((IdpeAttribute)cmbAttributesSys.SelectedItem).Name;
             List<string> targets = new List<string>();
-            foreach (SreAttribute item in cmbAttributes.Items) { targets.Add(item.Name); }
+            foreach (IdpeAttribute item in cmbAttributes.Items) { targets.Add(item.Name); }
             string matchResult = source.TryMatchUsingLevenshteinDistance(targets, __LevenshteinDistanceThreshold);
             if (!string.IsNullOrEmpty(matchResult))
                 cmbAttributes.Text = matchResult;

@@ -64,7 +64,7 @@ namespace Eyedia.IDPE.Interface
         public int DataSourceId { get; private set; }
         public int SystemDataSourceId { get; private set; }
 
-        private List<SreAttribute> SystemAttributes;
+        private List<IdpeAttribute> SystemAttributes;
         private readonly ColumnMapInfo DatabaseColumnMapInfo;
         private ColumnMap ExistingMap;
         private int TotalRecordsInBatch = 0;
@@ -98,9 +98,9 @@ namespace Eyedia.IDPE.Interface
                 }
             }
         }
-        List<SreKey> ConnectionStringKeys;
-        private SreKey OutputWriterDatabaseConfiguration { get; set; }
-        private SreKey SelectedConnection { get; set; }
+        List<IdpeKey> ConnectionStringKeys;
+        private IdpeKey OutputWriterDatabaseConfiguration { get; set; }
+        private IdpeKey SelectedConnection { get; set; }
 
         public ColumnMapInfo SelectedColumnMap
         {
@@ -243,7 +243,7 @@ namespace Eyedia.IDPE.Interface
             ci.Content = ColumnMapInfo.CustomDefined;
             cbBox.Items.Add(ci);
 
-            foreach (SreAttribute s in SystemAttributes)
+            foreach (IdpeAttribute s in SystemAttributes)
             {
                 ci = new ComboBoxItem();
                 ci.Content = s.Name;
@@ -296,7 +296,7 @@ namespace Eyedia.IDPE.Interface
 
         private void cmbConnection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectedConnection = cmbConnection.SelectedItem as SreKey;
+            SelectedConnection = cmbConnection.SelectedItem as IdpeKey;
             PopulateTableNames();
         }
 
@@ -330,7 +330,7 @@ namespace Eyedia.IDPE.Interface
         {
             string source = strSource;
             List<string> targets = new List<string>();
-            foreach (SreAttribute item in SystemAttributes) { targets.Add(item.Name); }
+            foreach (IdpeAttribute item in SystemAttributes) { targets.Add(item.Name); }
             string matchResult = source.TryMatchUsingLevenshteinDistance(targets, __LevenshteinDistanceThreshold);
             return matchResult;           
         }
@@ -346,7 +346,7 @@ namespace Eyedia.IDPE.Interface
                     sb.Append("[" + c.OutputColumn + "|" + (int)c.OutputDataType + "," + c.InputColumn + "]");
                 }
 
-                SreKey key = new SreKey();
+                IdpeKey key = new IdpeKey();
                 if (!string.IsNullOrEmpty(sb.ToString()))
                 {
                     key.Name = SreKeyTypes.OutputWriterDatabaseConfiguration.ToString();

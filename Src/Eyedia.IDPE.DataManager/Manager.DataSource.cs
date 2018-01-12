@@ -48,7 +48,7 @@ namespace Eyedia.IDPE.DataManager
 {
     public partial class Manager
     {
-        public SreDataSource GetDataSourceDetails(int dataSourceId)
+        public IdpeDataSource GetDataSourceDetails(int dataSourceId)
         {
             IDal myDal = new DataAccessLayer(Information.EyediaCoreConfigurationSection.Database.DatabaseType).Instance;
             IDbConnection conn = myDal.CreateConnection(_ConnectionString);
@@ -59,10 +59,10 @@ namespace Eyedia.IDPE.DataManager
             command.Connection = conn;
 
             IDataReader reader = command.ExecuteReader();
-            SreDataSource dataSource = null;
+            IdpeDataSource dataSource = null;
             if (reader.Read())
             {
-                dataSource = new SreDataSource();
+                dataSource = new IdpeDataSource();
                 dataSource.Id = int.Parse(reader["Id"].ToString());
                 dataSource.Name = reader["Name"].ToString();
                 dataSource.Description = reader["Description"].ToString();
@@ -101,9 +101,9 @@ namespace Eyedia.IDPE.DataManager
             return (int)table.Rows[0][0].ToString().ParseInt();
         }
 
-        public SreDataSource GetApplicationDetails(string applicationName)
+        public IdpeDataSource GetApplicationDetails(string applicationName)
         {
-            SreDataSource dataSource = new SreDataSource();
+            IdpeDataSource dataSource = new IdpeDataSource();
             string commandText = "select top 1 [Id],[Name],[Description],[IsSystem],[DataFeederType],[DataFormatType],[Delimiter],[SystemDataSourceId],[DataContainerValidatorType], ";
             commandText += " [OutputType], [OutputWriterTypeFullName],[PlugInsType],[ProcessingBy],[PusherType],[PusherTypeFullName],[IsActive],[CreatedTS],[CreatedBy]";
             commandText += " from [SreDataSource] where Name = '" + applicationName + "'";
@@ -141,10 +141,10 @@ namespace Eyedia.IDPE.DataManager
         /// </summary>
         /// <param name="type">0 = all, 1 = non system only, 2 = system only</param>
         /// <returns></returns>
-        public List<SreDataSource> GetDataSources(int type = 0)
+        public List<IdpeDataSource> GetDataSources(int type = 0)
         {
 
-            List<SreDataSource> sreDataSources = new List<SreDataSource>();
+            List<IdpeDataSource> sreDataSources = new List<IdpeDataSource>();
 
             string commandText = string.Empty;
             if (type == 1)
@@ -172,7 +172,7 @@ namespace Eyedia.IDPE.DataManager
 
             foreach (DataRow row in table.Rows)
             {
-                SreDataSource dataSource = new SreDataSource();
+                IdpeDataSource dataSource = new IdpeDataSource();
                 dataSource.Id = (int)row["Id"].ToString().ParseInt();
                 dataSource.Name = row["Name"] != DBNull.Value ? row["Name"].ToString() : null;
                 dataSource.Description = row["Description"] != DBNull.Value ? row["Description"].ToString() : null;
@@ -259,7 +259,7 @@ namespace Eyedia.IDPE.DataManager
         }
 
 
-        public bool ApplicationExists(SreDataSource datasource)
+        public bool ApplicationExists(IdpeDataSource datasource)
         {
             int dataSourceId = GetApplicationId(datasource.Name);
             return (dataSourceId == 0) ? false : true;
@@ -294,9 +294,9 @@ namespace Eyedia.IDPE.DataManager
             return maxId;
         }
 
-        public List<SreDataSource> GetChildDataSources(int parentDataSourceId)
+        public List<IdpeDataSource> GetChildDataSources(int parentDataSourceId)
         {
-            List<SreDataSource> dataSources = new List<SreDataSource>();
+            List<IdpeDataSource> dataSources = new List<IdpeDataSource>();
 
             IDal myDal = new DataAccessLayer(Information.EyediaCoreConfigurationSection.Database.DatabaseType).Instance;
             IDbConnection conn = myDal.CreateConnection(_ConnectionString);
@@ -307,10 +307,10 @@ namespace Eyedia.IDPE.DataManager
             command.Connection = conn;
 
             IDataReader reader = command.ExecuteReader();
-            SreDataSource dataSource = null;
+            IdpeDataSource dataSource = null;
             while (reader.Read())
             {
-                dataSource = new SreDataSource();
+                dataSource = new IdpeDataSource();
                 dataSource.Id = int.Parse(reader["Id"].ToString());
                 dataSource.Name = reader["Name"].ToString();
                 dataSource.Description = reader["Description"].ToString();
@@ -340,7 +340,7 @@ namespace Eyedia.IDPE.DataManager
             return dataSources;
         }
 
-        public void SaveAssociations(int dataSourceId, List<SreAttributeDataSource> appAttributes)
+        public void SaveAssociations(int dataSourceId, List<IdpeAttributeDataSource> appAttributes)
         {
             string cmdText = string.Empty;
             IDal myDal = new DataAccessLayer(EyediaCoreConfigurationSection.CurrentConfig.Database.DatabaseType).Instance;
@@ -349,7 +349,7 @@ namespace Eyedia.IDPE.DataManager
             int position = 1;
             conn.Open();
 
-            foreach (SreAttributeDataSource attribute in appAttributes)
+            foreach (IdpeAttributeDataSource attribute in appAttributes)
             {
                 cmdText = "SELECT [AttributeDataSourceId] FROM SreAttributeDataSource WHERE [DataSourceId] = @DataSourceId and [AttributeId] = @AttributeId";
                 command.Parameters.Clear();
@@ -408,7 +408,7 @@ namespace Eyedia.IDPE.DataManager
 
         public void SaveCustomConfig(int dataSourceId, string interfaceName, bool isFirstRowIsHeader)
         {
-            SreKey key = new SreKey();
+            IdpeKey key = new IdpeKey();
             if (!string.IsNullOrEmpty(interfaceName))
             {
                 key.Name = SreKeyTypes.FileInterfaceName.ToString();
@@ -425,7 +425,7 @@ namespace Eyedia.IDPE.DataManager
         }
    
 
-        public int Save(SreDataSource dataSource)
+        public int Save(IdpeDataSource dataSource)
         {
             bool isInserted = false;
             IDal dal = new DataAccessLayer(Information.EyediaCoreConfigurationSection.Database.DatabaseType).Instance;
@@ -478,7 +478,7 @@ namespace Eyedia.IDPE.DataManager
 
         }
 
-        public int Save(SreDataSource dataSource, ref bool isInserted, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
+        public int Save(IdpeDataSource dataSource, ref bool isInserted, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
         {
             int dataSourceId = 0;
             string cmdText = string.Empty;
@@ -689,7 +689,7 @@ namespace Eyedia.IDPE.DataManager
         public void SaveFTPConfig(int dataSourceId, string ftpRemoteLocation, string ftpLocalLocation,
                     string ftpUserName, string ftpPassword, int interval, string filter)
         {
-            SreKey key = new SreKey();
+            IdpeKey key = new IdpeKey();
             key.Name = SreKeyTypes.FtpRemoteLocation.ToString();
             key.Value = ftpRemoteLocation;
             key.Type = (int)SreKeyTypes.FtpRemoteLocation;
@@ -732,7 +732,7 @@ namespace Eyedia.IDPE.DataManager
         public void SaveLocalFSConfig(int dataSourceId, string filter, bool localFileSystemFoldersOverriden,
             bool localFileSystemFolderArchiveAuto, string localFileSystemFolderPullFolder, string localFileSystemFolderArchiveFolder, string localFileSystemFolderOutputFolder)
         {
-            SreKey key = new SreKey();
+            IdpeKey key = new IdpeKey();
 
             if (!string.IsNullOrEmpty(filter))
             {
@@ -793,7 +793,7 @@ namespace Eyedia.IDPE.DataManager
 
         public void SaveXmlConfig(int dataSourceId, string interaceName)
         {
-            SreKey key = new SreKey();
+            IdpeKey key = new IdpeKey();
             if (!string.IsNullOrEmpty(interaceName))
             {
                 key.Name = SreKeyTypes.FileInterfaceName.ToString();
@@ -813,7 +813,7 @@ namespace Eyedia.IDPE.DataManager
         {
             if (wcfCallsGenerateStandardOutput)
             {
-                SreKey key = new SreKey();
+                IdpeKey key = new IdpeKey();
                 key.Name = SreKeyTypes.WcfCallsGenerateStandardOutput.ToString();
                 key.Value = "1";
                 key.Type = (int)SreKeyTypes.WcfCallsGenerateStandardOutput;
@@ -830,7 +830,7 @@ namespace Eyedia.IDPE.DataManager
             string zipIgnoreListButCopy, bool isFirstRowIsHeaderInZipFile,
             string zipInteraceName, string interaceName, string overriddenOutputFolder, string pusherTypeFullName)
         {
-            SreKey key = new SreKey();
+            IdpeKey key = new IdpeKey();
 
             if (zipDoNotCreateAcknoledgementInOutputFolder)
             {
@@ -936,7 +936,7 @@ namespace Eyedia.IDPE.DataManager
             bool isDirectFeed, string selectQuery, string updateQuery, string recoveryQuery,
             string interfaceName, int interval, bool isFirstRowIsHeader, string pullSqlConnectionStringRunTime)
         {
-            SreKey key = new SreKey();
+            IdpeKey key = new IdpeKey();
 
             if ((dataSourceId == 0)
                 || (string.IsNullOrEmpty(connectionString))
@@ -999,7 +999,7 @@ namespace Eyedia.IDPE.DataManager
         public void SaveConfig(int dataSourceId, List<string> headers, List<string> footers, string fixedLengthSchema = null, string sqlQuery = null)
         {
             int counter = 1;
-            SreKey key = new SreKey();
+            IdpeKey key = new IdpeKey();
             #region Delete Existing Headers & Footers
 
             for (int i = 1; i <= 6; i++)
@@ -1021,7 +1021,7 @@ namespace Eyedia.IDPE.DataManager
             {
                 string keyName = "HeaderLine" + counter + "Attribute";
                 SreKeyTypes keyType = (SreKeyTypes)Enum.Parse(typeof(SreKeyTypes), keyName);
-                key = new SreKey();
+                key = new IdpeKey();
                 key.Name = keyType.ToString();
                 key.Value = header;
                 key.Type = (int)keyType;
@@ -1034,7 +1034,7 @@ namespace Eyedia.IDPE.DataManager
             {
                 string keyName = "FooterLine" + counter + "Attribute";
                 SreKeyTypes keyType = (SreKeyTypes)Enum.Parse(typeof(SreKeyTypes), keyName);
-                key = new SreKey();
+                key = new IdpeKey();
                 key.Name = keyType.ToString();
                 key.Value = footer;
                 key.Type = (int)keyType;
@@ -1063,7 +1063,7 @@ namespace Eyedia.IDPE.DataManager
 
         public void SaveConfigFixedLength(int dataSourceId, string fixedLengthSchema, string fixedLegnthHeaderAttribute, string fixedLegnthFooterAttribute)
         {
-            SreKey key = new SreKey();
+            IdpeKey key = new IdpeKey();
             if (!string.IsNullOrEmpty(fixedLengthSchema))
             {
                 key.Name = SreKeyTypes.FixedLengthSchema.ToString();
@@ -1108,14 +1108,14 @@ namespace Eyedia.IDPE.DataManager
             strDynamicCode += "\t\t\tinputData.value('(Position)[1]', 'int') as 'Position'," + Environment.NewLine;
 
             //List<SreAttribute> attrbs = GetAttributes(dataSourceId);
-            SreKey keyUniquenessCriteria = GetKey(dataSourceId, "UniquenessCriteria");
+            IdpeKey keyUniquenessCriteria = GetKey(dataSourceId, "UniquenessCriteria");
             if (keyUniquenessCriteria == null)
                 throw new BusinessException(string.Format("'UniquenessCriteria' is not defined for {1}", dataSourceId));
 
             string[] uniqueAttributes = keyUniquenessCriteria.Value.Split("+".ToCharArray());
             foreach (string uniqueAttribute in uniqueAttributes)
             {
-                SreAttribute attrb = GetAttribute(uniqueAttribute);
+                IdpeAttribute attrb = GetAttribute(uniqueAttribute);
                 strDynamicCode += string.Format("\t\t\tinputData.value('({0})[1]', '{1}') as '{2}', {3}",
                     attrb.Name, ConvertSreTypeIntoDatabaseType(databaseType, attrb.Type), attrb.Name, Environment.NewLine);
             }
@@ -1195,7 +1195,7 @@ namespace Eyedia.IDPE.DataManager
 
         public void SaveOutputWriterCSharpCode(int dataSourceId, string cSharpOutputWriterCode)
         {
-            SreKey key = new SreKey();
+            IdpeKey key = new IdpeKey();
             if (!string.IsNullOrEmpty(cSharpOutputWriterCode))
             {
                 key.Name = SreKeyTypes.CSharpCodeOutputWriter.ToString();
@@ -1329,9 +1329,9 @@ namespace Eyedia.IDPE.DataManager
 
         public void DeleteDataSource(int dataSourceId, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
         {
-            List<SreAttribute> attrbs = GetAttributes(dataSourceId);
-            List<SreKey> keys = GetKeys(dataSourceId);
-            List<SreRule> rules = GetRules(dataSourceId);
+            List<IdpeAttribute> attrbs = GetAttributes(dataSourceId);
+            List<IdpeKey> keys = GetKeys(dataSourceId);
+            List<IdpeRule> rules = GetRules(dataSourceId);
 
             #region Delete DataSource & other relations
 
@@ -1396,7 +1396,7 @@ namespace Eyedia.IDPE.DataManager
 
             #region trying to delete master records
 
-            foreach (SreAttribute attrb in attrbs)
+            foreach (IdpeAttribute attrb in attrbs)
             {
                 try
                 {
@@ -1407,7 +1407,7 @@ namespace Eyedia.IDPE.DataManager
             }
 
 
-            foreach (SreKey key in keys)
+            foreach (IdpeKey key in keys)
             {
                 try
                 {
@@ -1419,7 +1419,7 @@ namespace Eyedia.IDPE.DataManager
 
 
 
-            foreach (SreRule rule in rules)
+            foreach (IdpeRule rule in rules)
             {
                 try
                 {

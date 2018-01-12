@@ -65,7 +65,7 @@ namespace Eyedia.IDPE.Interface
         public ListViewColumnSorter ColumnSorter = null;
         public void RefreshRules(string keyWords = null)
         {
-            List<SreRule> rules = new Manager().GetRules();
+            List<IdpeRule> rules = new Manager().GetRules();
             rules.Where(r => r.Description == null).ToList().ForEach( r1 => r1.Description = "");
             if(keyWords != null)
                 rules = rules.Where(r => (r.Name.ToLower().Contains(keyWords.ToLower())) || (r.Description.ToLower().Contains(keyWords.ToLower()))).ToList();
@@ -76,7 +76,7 @@ namespace Eyedia.IDPE.Interface
             listView.Columns.Add("Date Modified", 140);
             listView.Columns.Add("Modified By", 120);
             listView.Items.Clear();
-            foreach (SreRule rule in rules)
+            foreach (IdpeRule rule in rules)
             {
                 ListViewItem item = new ListViewItem(rule.Name);
                 item.SubItems.Add(rule.Description);
@@ -94,7 +94,7 @@ namespace Eyedia.IDPE.Interface
             {
                 
                 this.Cursor = Cursors.WaitCursor;           
-                SreRule sreRule = new Manager().GetRule((listView.SelectedItems[0].Tag as SreRule).Id);
+                IdpeRule sreRule = new Manager().GetRule((listView.SelectedItems[0].Tag as IdpeRule).Id);
                 RuleEditor.MainWindow ruleEditor = new RuleEditor.MainWindow(sreRule, Common.RuleSetTypes.RowPreparing);
                 string sname = sreRule.Name.Replace("-", "").Replace(" ", "");
                 ruleEditor.Name = sname;                
@@ -117,7 +117,7 @@ namespace Eyedia.IDPE.Interface
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            SreRule sreRule = new SreRule();
+            IdpeRule sreRule = new IdpeRule();
             this.Cursor = Cursors.WaitCursor;
             FormAlreadyOpened(sreRule);
             RuleEditor.MainWindow ruleEditor = new RuleEditor.MainWindow(sreRule, Common.RuleSetTypes.RowPrepared);
@@ -127,7 +127,7 @@ namespace Eyedia.IDPE.Interface
             ruleEditor.Show();
             
         }
-        private bool FormAlreadyOpened(SreRule srerule)
+        private bool FormAlreadyOpened(IdpeRule srerule)
         {
             bool IsAlreadyOpened = false;
             
@@ -139,7 +139,7 @@ namespace Eyedia.IDPE.Interface
         {
             if (listView.SelectedItems.Count > 0)
             {
-                frmCopyRule copyRule = new frmCopyRule((listView.SelectedItems[0].Tag as SreRule).Id, listView.SelectedItems[0].Text);
+                frmCopyRule copyRule = new frmCopyRule((listView.SelectedItems[0].Tag as IdpeRule).Id, listView.SelectedItems[0].Text);
                 if (copyRule.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {                    
                     try
@@ -187,7 +187,7 @@ namespace Eyedia.IDPE.Interface
                     DataSourcePatch dsp = new DataSourcePatch();                   
                     foreach (ListViewItem item in listView.SelectedItems)
                     {
-                        dsp.Rules.Add((SreRule)item.Tag);
+                        dsp.Rules.Add((IdpeRule)item.Tag);
                     }
                     dsp.Export(saveFileDialog.FileName);
                 }
@@ -231,7 +231,7 @@ namespace Eyedia.IDPE.Interface
 
             if(listView.SelectedItems.Count == 1)
             {
-                SreRule rule = listView.SelectedItems[0].Tag as SreRule;
+                IdpeRule rule = listView.SelectedItems[0].Tag as IdpeRule;
                 versionsToolStripMenuItem.Enabled = new Data.UtilDataManager().IsHavingVersion(VersionObjectTypes.Rule, rule.Id);
                 compareWithPreviousVersionToolStripMenuItem.Enabled = versionsToolStripMenuItem.Enabled;
             }
@@ -246,7 +246,7 @@ namespace Eyedia.IDPE.Interface
         {
             if (listView.SelectedItems.Count > 0)
             {
-                SreRule rule = listView.SelectedItems[0].Tag as SreRule;
+                IdpeRule rule = listView.SelectedItems[0].Tag as IdpeRule;
                 InputBox inputBox = new InputBox(rule.Name, "New Name", "Rename Rule", this.Icon);
                 if (inputBox.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
@@ -320,7 +320,7 @@ namespace Eyedia.IDPE.Interface
             if ((listView != null)
                     && (listView.SelectedItems.Count > 0))
             {                
-                SreRule rule = listView.SelectedItems[0].Tag as SreRule;
+                IdpeRule rule = listView.SelectedItems[0].Tag as IdpeRule;
                 RuleDependencies ruleDependencies = new RuleDependencies(rule.Id);
                 ruleDependencies.ShowDialog();             
             }
@@ -330,7 +330,7 @@ namespace Eyedia.IDPE.Interface
         {
             if (listView.SelectedItems.Count > 0)
             {
-                SreRule rule = listView.SelectedItems[0].Tag as SreRule;
+                IdpeRule rule = listView.SelectedItems[0].Tag as IdpeRule;
                 frmVersions versions = new frmVersions(rule.Id, VersionObjectTypes.Rule);
                 versions.ShowDialog();
             }
@@ -340,8 +340,8 @@ namespace Eyedia.IDPE.Interface
         {
             if (listView.SelectedItems.Count > 0)
             {
-                SreRule rule = listView.SelectedItems[0].Tag as SreRule;
-                List<SreVersion> lastVersions = new Manager().GetVersions(VersionObjectTypes.Rule, rule.Id);
+                IdpeRule rule = listView.SelectedItems[0].Tag as IdpeRule;
+                List<IdpeVersion> lastVersions = new Manager().GetVersions(VersionObjectTypes.Rule, rule.Id);
 
                 if (lastVersions.Count >= 2)
                     SreVersionComparer.Compare(VersionObjectTypes.Rule, rule.Name, lastVersions[0], lastVersions[1]);
@@ -355,7 +355,7 @@ namespace Eyedia.IDPE.Interface
         {
             if (listView.SelectedItems.Count > 0)
             {
-                SreRule rule = listView.SelectedItems[0].Tag as SreRule;
+                IdpeRule rule = listView.SelectedItems[0].Tag as IdpeRule;
                 DataSourceValidator dataSourceValidator = new DataSourceValidator(false, rule.Id,
                     "Attributes & Process Variables Referenced in " + rule.Name, this.Icon);
                 dataSourceValidator.Show();

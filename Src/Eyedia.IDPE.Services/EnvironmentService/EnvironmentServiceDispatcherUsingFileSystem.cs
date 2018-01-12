@@ -66,7 +66,7 @@ namespace Eyedia.IDPE.Services
         /// </summary>
         /// <param name="toConfig">Target environment</param>
         /// <param name="rule">The rule object</param>
-        public override string DeployRule(SreEnvironmentConfig toEnvironment, SreRule rule)
+        public override string DeployRule(SreEnvironmentConfig toEnvironment, IdpeRule rule)
         {
             base.DeployRule(toEnvironment, rule);
             return CreateAndCopyFile(toEnvironment, Packet) ? Constants.success : Constants.failed;
@@ -76,7 +76,7 @@ namespace Eyedia.IDPE.Services
         /// Deploys data source into specific targetConfigironment
         /// </summary>
         /// <param name="toConfig">Target environment</param>       
-        public override string DeployKeys(SreEnvironmentConfig toEnvironment, List<SreKey> keys)
+        public override string DeployKeys(SreEnvironmentConfig toEnvironment, List<IdpeKey> keys)
         {
             base.DeployKeys(toEnvironment, keys);
             return CreateAndCopyFile(toEnvironment, Packet) ? Constants.success : Constants.failed;
@@ -151,7 +151,7 @@ namespace Eyedia.IDPE.Services
             return "success";
         }
 
-        public override List<SreDataSource> GetDataSources(SreEnvironmentConfig targetConfig)
+        public override List<IdpeDataSource> GetDataSources(SreEnvironmentConfig targetConfig)
         {
             EnvironmentServicePacket packet = new EnvironmentServicePacket();
             return new IdpeEnvironmentService().GetDataSources(packet);

@@ -23,7 +23,7 @@ namespace Eyedia.IDPE.DataManager
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="SymplusRuleEngine")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="idpe")]
 	public partial class RepositoryDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -31,37 +31,37 @@ namespace Eyedia.IDPE.DataManager
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertSreAttribute(SreAttribute instance);
-    partial void UpdateSreAttribute(SreAttribute instance);
-    partial void DeleteSreAttribute(SreAttribute instance);
-    partial void InsertSreVersion(SreVersion instance);
-    partial void UpdateSreVersion(SreVersion instance);
-    partial void DeleteSreVersion(SreVersion instance);
-    partial void InsertSreAttributeDataSource(SreAttributeDataSource instance);
-    partial void UpdateSreAttributeDataSource(SreAttributeDataSource instance);
-    partial void DeleteSreAttributeDataSource(SreAttributeDataSource instance);
-    partial void InsertSreDataSource(SreDataSource instance);
-    partial void UpdateSreDataSource(SreDataSource instance);
-    partial void DeleteSreDataSource(SreDataSource instance);
-    partial void InsertSreLog(SreLog instance);
-    partial void UpdateSreLog(SreLog instance);
-    partial void DeleteSreLog(SreLog instance);
-    partial void InsertSreRule(SreRule instance);
-    partial void UpdateSreRule(SreRule instance);
-    partial void DeleteSreRule(SreRule instance);
-    partial void InsertSreRuleDataSource(SreRuleDataSource instance);
-    partial void UpdateSreRuleDataSource(SreRuleDataSource instance);
-    partial void DeleteSreRuleDataSource(SreRuleDataSource instance);
-    partial void InsertSreKeyDataSource(SreKeyDataSource instance);
-    partial void UpdateSreKeyDataSource(SreKeyDataSource instance);
-    partial void DeleteSreKeyDataSource(SreKeyDataSource instance);
-    partial void InsertSreKey(SreKey instance);
-    partial void UpdateSreKey(SreKey instance);
-    partial void DeleteSreKey(SreKey instance);
+    partial void InsertIdpeAttribute(IdpeAttribute instance);
+    partial void UpdateIdpeAttribute(IdpeAttribute instance);
+    partial void DeleteIdpeAttribute(IdpeAttribute instance);
+    partial void InsertIdpeAttributeDataSource(IdpeAttributeDataSource instance);
+    partial void UpdateIdpeAttributeDataSource(IdpeAttributeDataSource instance);
+    partial void DeleteIdpeAttributeDataSource(IdpeAttributeDataSource instance);
+    partial void InsertIdpeDataSource(IdpeDataSource instance);
+    partial void UpdateIdpeDataSource(IdpeDataSource instance);
+    partial void DeleteIdpeDataSource(IdpeDataSource instance);
+    partial void InsertIdpeKey(IdpeKey instance);
+    partial void UpdateIdpeKey(IdpeKey instance);
+    partial void DeleteIdpeKey(IdpeKey instance);
+    partial void InsertIdpeKeyDataSource(IdpeKeyDataSource instance);
+    partial void UpdateIdpeKeyDataSource(IdpeKeyDataSource instance);
+    partial void DeleteIdpeKeyDataSource(IdpeKeyDataSource instance);
+    partial void InsertIdpeLog(IdpeLog instance);
+    partial void UpdateIdpeLog(IdpeLog instance);
+    partial void DeleteIdpeLog(IdpeLog instance);
+    partial void InsertIdpeRule(IdpeRule instance);
+    partial void UpdateIdpeRule(IdpeRule instance);
+    partial void DeleteIdpeRule(IdpeRule instance);
+    partial void InsertIdpeRuleDataSource(IdpeRuleDataSource instance);
+    partial void UpdateIdpeRuleDataSource(IdpeRuleDataSource instance);
+    partial void DeleteIdpeRuleDataSource(IdpeRuleDataSource instance);
+    partial void InsertIdpeVersion(IdpeVersion instance);
+    partial void UpdateIdpeVersion(IdpeVersion instance);
+    partial void DeleteIdpeVersion(IdpeVersion instance);
     #endregion
 		
 		public RepositoryDataContext() : 
-				base(global::Eyedia.IDPE.DataManager.Properties.Settings.Default.cs, mappingSource)
+				base(global::Eyedia.IDPE.DataManager.Properties.Settings.Default.idpeConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -90,90 +90,90 @@ namespace Eyedia.IDPE.DataManager
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<SreAttribute> SreAttributes
+		public System.Data.Linq.Table<IdpeAttribute> IdpeAttributes
 		{
 			get
 			{
-				return this.GetTable<SreAttribute>();
+				return this.GetTable<IdpeAttribute>();
 			}
 		}
 		
-		public System.Data.Linq.Table<SreVersion> SreVersions
+		public System.Data.Linq.Table<IdpeAttributeDataSource> IdpeAttributeDataSources
 		{
 			get
 			{
-				return this.GetTable<SreVersion>();
+				return this.GetTable<IdpeAttributeDataSource>();
 			}
 		}
 		
-		public System.Data.Linq.Table<SreAttributeDataSource> SreAttributeDataSources
+		public System.Data.Linq.Table<IdpeDataSource> IdpeDataSources
 		{
 			get
 			{
-				return this.GetTable<SreAttributeDataSource>();
+				return this.GetTable<IdpeDataSource>();
 			}
 		}
 		
-		public System.Data.Linq.Table<SreDataSource> SreDataSources
+		public System.Data.Linq.Table<IdpeKey> IdpeKeys
 		{
 			get
 			{
-				return this.GetTable<SreDataSource>();
+				return this.GetTable<IdpeKey>();
 			}
 		}
 		
-		public System.Data.Linq.Table<SreLog> SreLogs
+		public System.Data.Linq.Table<IdpeKeyDataSource> IdpeKeyDataSources
 		{
 			get
 			{
-				return this.GetTable<SreLog>();
+				return this.GetTable<IdpeKeyDataSource>();
 			}
 		}
 		
-		public System.Data.Linq.Table<SrePersistentVariable> SrePersistentVariables
+		public System.Data.Linq.Table<IdpeLog> IdpeLogs
 		{
 			get
 			{
-				return this.GetTable<SrePersistentVariable>();
+				return this.GetTable<IdpeLog>();
 			}
 		}
 		
-		public System.Data.Linq.Table<SreRule> SreRules
+		public System.Data.Linq.Table<IdpePersistentVariable> IdpePersistentVariables
 		{
 			get
 			{
-				return this.GetTable<SreRule>();
+				return this.GetTable<IdpePersistentVariable>();
 			}
 		}
 		
-		public System.Data.Linq.Table<SreRuleDataSource> SreRuleDataSources
+		public System.Data.Linq.Table<IdpeRule> IdpeRules
 		{
 			get
 			{
-				return this.GetTable<SreRuleDataSource>();
+				return this.GetTable<IdpeRule>();
 			}
 		}
 		
-		public System.Data.Linq.Table<SreKeyDataSource> SreKeyDataSources
+		public System.Data.Linq.Table<IdpeRuleDataSource> IdpeRuleDataSources
 		{
 			get
 			{
-				return this.GetTable<SreKeyDataSource>();
+				return this.GetTable<IdpeRuleDataSource>();
 			}
 		}
 		
-		public System.Data.Linq.Table<SreKey> SreKeys
+		public System.Data.Linq.Table<IdpeVersion> IdpeVersions
 		{
 			get
 			{
-				return this.GetTable<SreKey>();
+				return this.GetTable<IdpeVersion>();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SreAttribute")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="IdpeAttribute")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class SreAttribute : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class IdpeAttribute : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -208,7 +208,7 @@ namespace Eyedia.IDPE.DataManager
 		
 		private string _Source;
 		
-		private EntitySet<SreAttributeDataSource> _SreAttributeDataSources;
+		private EntitySet<IdpeAttributeDataSource> _IdpeAttributeDataSources;
 		
 		private bool serializing;
 		
@@ -248,7 +248,7 @@ namespace Eyedia.IDPE.DataManager
     partial void OnSourceChanged();
     #endregion
 		
-		public SreAttribute()
+		public IdpeAttribute()
 		{
 			this.Initialize();
 		}
@@ -568,22 +568,22 @@ namespace Eyedia.IDPE.DataManager
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SreAttribute_SreAttributeDataSource", Storage="_SreAttributeDataSources", ThisKey="AttributeId", OtherKey="AttributeId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IdpeAttribute_IdpeAttributeDataSource", Storage="_IdpeAttributeDataSources", ThisKey="AttributeId", OtherKey="AttributeId")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=16, EmitDefaultValue=false)]
-		public EntitySet<SreAttributeDataSource> SreAttributeDataSources
+		public EntitySet<IdpeAttributeDataSource> IdpeAttributeDataSources
 		{
 			get
 			{
 				if ((this.serializing 
-							&& (this._SreAttributeDataSources.HasLoadedOrAssignedValues == false)))
+							&& (this._IdpeAttributeDataSources.HasLoadedOrAssignedValues == false)))
 				{
 					return null;
 				}
-				return this._SreAttributeDataSources;
+				return this._IdpeAttributeDataSources;
 			}
 			set
 			{
-				this._SreAttributeDataSources.Assign(value);
+				this._IdpeAttributeDataSources.Assign(value);
 			}
 		}
 		
@@ -607,21 +607,21 @@ namespace Eyedia.IDPE.DataManager
 			}
 		}
 		
-		private void attach_SreAttributeDataSources(SreAttributeDataSource entity)
+		private void attach_IdpeAttributeDataSources(IdpeAttributeDataSource entity)
 		{
 			this.SendPropertyChanging();
-			entity.SreAttribute = this;
+			entity.IdpeAttribute = this;
 		}
 		
-		private void detach_SreAttributeDataSources(SreAttributeDataSource entity)
+		private void detach_IdpeAttributeDataSources(IdpeAttributeDataSource entity)
 		{
 			this.SendPropertyChanging();
-			entity.SreAttribute = null;
+			entity.IdpeAttribute = null;
 		}
 		
 		private void Initialize()
 		{
-			this._SreAttributeDataSources = new EntitySet<SreAttributeDataSource>(new Action<SreAttributeDataSource>(this.attach_SreAttributeDataSources), new Action<SreAttributeDataSource>(this.detach_SreAttributeDataSources));
+			this._IdpeAttributeDataSources = new EntitySet<IdpeAttributeDataSource>(new Action<IdpeAttributeDataSource>(this.attach_IdpeAttributeDataSources), new Action<IdpeAttributeDataSource>(this.detach_IdpeAttributeDataSources));
 			OnCreated();
 		}
 		
@@ -647,310 +647,9 @@ namespace Eyedia.IDPE.DataManager
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SreVersion")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="IdpeAttributeDataSource")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class SreVersion : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _Version;
-		
-		private int _Type;
-		
-		private int _ReferenceId;
-		
-		private System.Data.Linq.Binary _Data;
-		
-		private System.DateTime _CreatedTS;
-		
-		private string _CreatedBy;
-		
-		private System.Nullable<System.DateTime> _ModifiedTS;
-		
-		private string _ModifiedBy;
-		
-		private string _Source;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnVersionChanging(int value);
-    partial void OnVersionChanged();
-    partial void OnTypeChanging(int value);
-    partial void OnTypeChanged();
-    partial void OnReferenceIdChanging(int value);
-    partial void OnReferenceIdChanged();
-    partial void OnDataChanging(System.Data.Linq.Binary value);
-    partial void OnDataChanged();
-    partial void OnCreatedTSChanging(System.DateTime value);
-    partial void OnCreatedTSChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
-    partial void OnModifiedTSChanging(System.Nullable<System.DateTime> value);
-    partial void OnModifiedTSChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnSourceChanging(string value);
-    partial void OnSourceChanged();
-    #endregion
-		
-		public SreVersion()
-		{
-			this.Initialize();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Version", DbType="Int NOT NULL")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
-		public int Version
-		{
-			get
-			{
-				return this._Version;
-			}
-			set
-			{
-				if ((this._Version != value))
-				{
-					this.OnVersionChanging(value);
-					this.SendPropertyChanging();
-					this._Version = value;
-					this.SendPropertyChanged("Version");
-					this.OnVersionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="Int NOT NULL")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
-		public int Type
-		{
-			get
-			{
-				return this._Type;
-			}
-			set
-			{
-				if ((this._Type != value))
-				{
-					this.OnTypeChanging(value);
-					this.SendPropertyChanging();
-					this._Type = value;
-					this.SendPropertyChanged("Type");
-					this.OnTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReferenceId", DbType="Int NOT NULL")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
-		public int ReferenceId
-		{
-			get
-			{
-				return this._ReferenceId;
-			}
-			set
-			{
-				if ((this._ReferenceId != value))
-				{
-					this.OnReferenceIdChanging(value);
-					this.SendPropertyChanging();
-					this._ReferenceId = value;
-					this.SendPropertyChanged("ReferenceId");
-					this.OnReferenceIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Data", DbType="VarBinary(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
-		public System.Data.Linq.Binary Data
-		{
-			get
-			{
-				return this._Data;
-			}
-			set
-			{
-				if ((this._Data != value))
-				{
-					this.OnDataChanging(value);
-					this.SendPropertyChanging();
-					this._Data = value;
-					this.SendPropertyChanged("Data");
-					this.OnDataChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedTS", DbType="DateTime NOT NULL")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6)]
-		public System.DateTime CreatedTS
-		{
-			get
-			{
-				return this._CreatedTS;
-			}
-			set
-			{
-				if ((this._CreatedTS != value))
-				{
-					this.OnCreatedTSChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedTS = value;
-					this.SendPropertyChanged("CreatedTS");
-					this.OnCreatedTSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=7)]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedTS", DbType="DateTime")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8)]
-		public System.Nullable<System.DateTime> ModifiedTS
-		{
-			get
-			{
-				return this._ModifiedTS;
-			}
-			set
-			{
-				if ((this._ModifiedTS != value))
-				{
-					this.OnModifiedTSChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedTS = value;
-					this.SendPropertyChanged("ModifiedTS");
-					this.OnModifiedTSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedBy", DbType="VarChar(255)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=9)]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Source", DbType="VarChar(255)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=10)]
-		public string Source
-		{
-			get
-			{
-				return this._Source;
-			}
-			set
-			{
-				if ((this._Source != value))
-				{
-					this.OnSourceChanging(value);
-					this.SendPropertyChanging();
-					this._Source = value;
-					this.SendPropertyChanged("Source");
-					this.OnSourceChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void Initialize()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Runtime.Serialization.OnDeserializingAttribute()]
-		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnDeserializing(StreamingContext context)
-		{
-			this.Initialize();
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SreAttributeDataSource")]
-	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class SreAttributeDataSource : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class IdpeAttributeDataSource : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -979,9 +678,9 @@ namespace Eyedia.IDPE.DataManager
 		
 		private string _Source;
 		
-		private EntityRef<SreAttribute> _SreAttribute;
+		private EntityRef<IdpeAttribute> _IdpeAttribute;
 		
-		private EntityRef<SreDataSource> _SreDataSource;
+		private EntityRef<IdpeDataSource> _IdpeDataSource;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1013,7 +712,7 @@ namespace Eyedia.IDPE.DataManager
     partial void OnSourceChanged();
     #endregion
 		
-		public SreAttributeDataSource()
+		public IdpeAttributeDataSource()
 		{
 			this.Initialize();
 		}
@@ -1051,7 +750,7 @@ namespace Eyedia.IDPE.DataManager
 			{
 				if ((this._DataSourceId != value))
 				{
-					if (this._SreDataSource.HasLoadedOrAssignedValue)
+					if (this._IdpeDataSource.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1076,7 +775,7 @@ namespace Eyedia.IDPE.DataManager
 			{
 				if ((this._AttributeId != value))
 				{
-					if (this._SreAttribute.HasLoadedOrAssignedValue)
+					if (this._IdpeAttribute.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1278,70 +977,70 @@ namespace Eyedia.IDPE.DataManager
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SreAttribute_SreAttributeDataSource", Storage="_SreAttribute", ThisKey="AttributeId", OtherKey="AttributeId", IsForeignKey=true)]
-		public SreAttribute SreAttribute
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IdpeAttribute_IdpeAttributeDataSource", Storage="_IdpeAttribute", ThisKey="AttributeId", OtherKey="AttributeId", IsForeignKey=true)]
+		public IdpeAttribute IdpeAttribute
 		{
 			get
 			{
-				return this._SreAttribute.Entity;
+				return this._IdpeAttribute.Entity;
 			}
 			set
 			{
-				SreAttribute previousValue = this._SreAttribute.Entity;
+				IdpeAttribute previousValue = this._IdpeAttribute.Entity;
 				if (((previousValue != value) 
-							|| (this._SreAttribute.HasLoadedOrAssignedValue == false)))
+							|| (this._IdpeAttribute.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._SreAttribute.Entity = null;
-						previousValue.SreAttributeDataSources.Remove(this);
+						this._IdpeAttribute.Entity = null;
+						previousValue.IdpeAttributeDataSources.Remove(this);
 					}
-					this._SreAttribute.Entity = value;
+					this._IdpeAttribute.Entity = value;
 					if ((value != null))
 					{
-						value.SreAttributeDataSources.Add(this);
+						value.IdpeAttributeDataSources.Add(this);
 						this._AttributeId = value.AttributeId;
 					}
 					else
 					{
 						this._AttributeId = default(int);
 					}
-					this.SendPropertyChanged("SreAttribute");
+					this.SendPropertyChanged("IdpeAttribute");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SreDataSource_SreAttributeDataSource", Storage="_SreDataSource", ThisKey="DataSourceId", OtherKey="Id", IsForeignKey=true)]
-		public SreDataSource SreDataSource
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IdpeDataSource_IdpeAttributeDataSource", Storage="_IdpeDataSource", ThisKey="DataSourceId", OtherKey="Id", IsForeignKey=true)]
+		public IdpeDataSource IdpeDataSource
 		{
 			get
 			{
-				return this._SreDataSource.Entity;
+				return this._IdpeDataSource.Entity;
 			}
 			set
 			{
-				SreDataSource previousValue = this._SreDataSource.Entity;
+				IdpeDataSource previousValue = this._IdpeDataSource.Entity;
 				if (((previousValue != value) 
-							|| (this._SreDataSource.HasLoadedOrAssignedValue == false)))
+							|| (this._IdpeDataSource.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._SreDataSource.Entity = null;
-						previousValue.SreAttributeDataSources.Remove(this);
+						this._IdpeDataSource.Entity = null;
+						previousValue.IdpeAttributeDataSources.Remove(this);
 					}
-					this._SreDataSource.Entity = value;
+					this._IdpeDataSource.Entity = value;
 					if ((value != null))
 					{
-						value.SreAttributeDataSources.Add(this);
+						value.IdpeAttributeDataSources.Add(this);
 						this._DataSourceId = value.Id;
 					}
 					else
 					{
 						this._DataSourceId = default(int);
 					}
-					this.SendPropertyChanged("SreDataSource");
+					this.SendPropertyChanged("IdpeDataSource");
 				}
 			}
 		}
@@ -1368,8 +1067,8 @@ namespace Eyedia.IDPE.DataManager
 		
 		private void Initialize()
 		{
-			this._SreAttribute = default(EntityRef<SreAttribute>);
-			this._SreDataSource = default(EntityRef<SreDataSource>);
+			this._IdpeAttribute = default(EntityRef<IdpeAttribute>);
+			this._IdpeDataSource = default(EntityRef<IdpeDataSource>);
 			OnCreated();
 		}
 		
@@ -1381,9 +1080,9 @@ namespace Eyedia.IDPE.DataManager
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SreDataSource")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="IdpeDataSource")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class SreDataSource : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class IdpeDataSource : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1430,17 +1129,17 @@ namespace Eyedia.IDPE.DataManager
 		
 		private string _Source;
 		
-		private EntitySet<SreAttributeDataSource> _SreAttributeDataSources;
+		private EntitySet<IdpeAttributeDataSource> _IdpeAttributeDataSources;
 		
-		private EntitySet<SreDataSource> _SreDataSources;
+		private EntitySet<IdpeDataSource> _IdpeDataSources;
 		
-		private EntitySet<SreLog> _SreLogs;
+		private EntitySet<IdpeKeyDataSource> _IdpeKeyDataSources;
 		
-		private EntitySet<SreRuleDataSource> _SreRuleDataSources;
+		private EntitySet<IdpeLog> _IdpeLogs;
 		
-		private EntitySet<SreKeyDataSource> _SreKeyDataSources;
+		private EntitySet<IdpeRuleDataSource> _IdpeRuleDataSources;
 		
-		private EntityRef<SreDataSource> _SreDataSource1;
+		private EntityRef<IdpeDataSource> _IdpeDataSource1;
 		
 		private bool serializing;
 		
@@ -1492,7 +1191,7 @@ namespace Eyedia.IDPE.DataManager
     partial void OnSourceChanged();
     #endregion
 		
-		public SreDataSource()
+		public IdpeDataSource()
 		{
 			this.Initialize();
 		}
@@ -1656,7 +1355,7 @@ namespace Eyedia.IDPE.DataManager
 			{
 				if ((this._SystemDataSourceId != value))
 				{
-					if (this._SreDataSource1.HasLoadedOrAssignedValue)
+					if (this._IdpeDataSource1.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1942,131 +1641,131 @@ namespace Eyedia.IDPE.DataManager
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SreDataSource_SreAttributeDataSource", Storage="_SreAttributeDataSources", ThisKey="Id", OtherKey="DataSourceId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IdpeDataSource_IdpeAttributeDataSource", Storage="_IdpeAttributeDataSources", ThisKey="Id", OtherKey="DataSourceId")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=22, EmitDefaultValue=false)]
-		public EntitySet<SreAttributeDataSource> SreAttributeDataSources
+		public EntitySet<IdpeAttributeDataSource> IdpeAttributeDataSources
 		{
 			get
 			{
 				if ((this.serializing 
-							&& (this._SreAttributeDataSources.HasLoadedOrAssignedValues == false)))
+							&& (this._IdpeAttributeDataSources.HasLoadedOrAssignedValues == false)))
 				{
 					return null;
 				}
-				return this._SreAttributeDataSources;
+				return this._IdpeAttributeDataSources;
 			}
 			set
 			{
-				this._SreAttributeDataSources.Assign(value);
+				this._IdpeAttributeDataSources.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SreDataSource_SreDataSource", Storage="_SreDataSources", ThisKey="Id", OtherKey="SystemDataSourceId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IdpeDataSource_IdpeDataSource", Storage="_IdpeDataSources", ThisKey="Id", OtherKey="SystemDataSourceId")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=23, EmitDefaultValue=false)]
-		public EntitySet<SreDataSource> SreDataSources
+		public EntitySet<IdpeDataSource> IdpeDataSources
 		{
 			get
 			{
 				if ((this.serializing 
-							&& (this._SreDataSources.HasLoadedOrAssignedValues == false)))
+							&& (this._IdpeDataSources.HasLoadedOrAssignedValues == false)))
 				{
 					return null;
 				}
-				return this._SreDataSources;
+				return this._IdpeDataSources;
 			}
 			set
 			{
-				this._SreDataSources.Assign(value);
+				this._IdpeDataSources.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SreDataSource_SreLog", Storage="_SreLogs", ThisKey="Id", OtherKey="DataSourceId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IdpeDataSource_IdpeKeyDataSource", Storage="_IdpeKeyDataSources", ThisKey="Id", OtherKey="DataSourceId")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=24, EmitDefaultValue=false)]
-		public EntitySet<SreLog> SreLogs
+		public EntitySet<IdpeKeyDataSource> IdpeKeyDataSources
 		{
 			get
 			{
 				if ((this.serializing 
-							&& (this._SreLogs.HasLoadedOrAssignedValues == false)))
+							&& (this._IdpeKeyDataSources.HasLoadedOrAssignedValues == false)))
 				{
 					return null;
 				}
-				return this._SreLogs;
+				return this._IdpeKeyDataSources;
 			}
 			set
 			{
-				this._SreLogs.Assign(value);
+				this._IdpeKeyDataSources.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SreDataSource_SreRuleDataSource", Storage="_SreRuleDataSources", ThisKey="Id", OtherKey="DataSourceId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IdpeDataSource_IdpeLog", Storage="_IdpeLogs", ThisKey="Id", OtherKey="DataSourceId")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=25, EmitDefaultValue=false)]
-		public EntitySet<SreRuleDataSource> SreRuleDataSources
+		public EntitySet<IdpeLog> IdpeLogs
 		{
 			get
 			{
 				if ((this.serializing 
-							&& (this._SreRuleDataSources.HasLoadedOrAssignedValues == false)))
+							&& (this._IdpeLogs.HasLoadedOrAssignedValues == false)))
 				{
 					return null;
 				}
-				return this._SreRuleDataSources;
+				return this._IdpeLogs;
 			}
 			set
 			{
-				this._SreRuleDataSources.Assign(value);
+				this._IdpeLogs.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SreDataSource_SreKeyDataSource", Storage="_SreKeyDataSources", ThisKey="Id", OtherKey="DataSourceId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IdpeDataSource_IdpeRuleDataSource", Storage="_IdpeRuleDataSources", ThisKey="Id", OtherKey="DataSourceId")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=26, EmitDefaultValue=false)]
-		public EntitySet<SreKeyDataSource> SreKeyDataSources
+		public EntitySet<IdpeRuleDataSource> IdpeRuleDataSources
 		{
 			get
 			{
 				if ((this.serializing 
-							&& (this._SreKeyDataSources.HasLoadedOrAssignedValues == false)))
+							&& (this._IdpeRuleDataSources.HasLoadedOrAssignedValues == false)))
 				{
 					return null;
 				}
-				return this._SreKeyDataSources;
+				return this._IdpeRuleDataSources;
 			}
 			set
 			{
-				this._SreKeyDataSources.Assign(value);
+				this._IdpeRuleDataSources.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SreDataSource_SreDataSource", Storage="_SreDataSource1", ThisKey="SystemDataSourceId", OtherKey="Id", IsForeignKey=true)]
-		public SreDataSource SreDataSource1
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IdpeDataSource_IdpeDataSource", Storage="_IdpeDataSource1", ThisKey="SystemDataSourceId", OtherKey="Id", IsForeignKey=true)]
+		public IdpeDataSource IdpeDataSource1
 		{
 			get
 			{
-				return this._SreDataSource1.Entity;
+				return this._IdpeDataSource1.Entity;
 			}
 			set
 			{
-				SreDataSource previousValue = this._SreDataSource1.Entity;
+				IdpeDataSource previousValue = this._IdpeDataSource1.Entity;
 				if (((previousValue != value) 
-							|| (this._SreDataSource1.HasLoadedOrAssignedValue == false)))
+							|| (this._IdpeDataSource1.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._SreDataSource1.Entity = null;
-						previousValue.SreDataSources.Remove(this);
+						this._IdpeDataSource1.Entity = null;
+						previousValue.IdpeDataSources.Remove(this);
 					}
-					this._SreDataSource1.Entity = value;
+					this._IdpeDataSource1.Entity = value;
 					if ((value != null))
 					{
-						value.SreDataSources.Add(this);
+						value.IdpeDataSources.Add(this);
 						this._SystemDataSourceId = value.Id;
 					}
 					else
 					{
 						this._SystemDataSourceId = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("SreDataSource1");
+					this.SendPropertyChanged("IdpeDataSource1");
 				}
 			}
 		}
@@ -2091,74 +1790,74 @@ namespace Eyedia.IDPE.DataManager
 			}
 		}
 		
-		private void attach_SreAttributeDataSources(SreAttributeDataSource entity)
+		private void attach_IdpeAttributeDataSources(IdpeAttributeDataSource entity)
 		{
 			this.SendPropertyChanging();
-			entity.SreDataSource = this;
+			entity.IdpeDataSource = this;
 		}
 		
-		private void detach_SreAttributeDataSources(SreAttributeDataSource entity)
+		private void detach_IdpeAttributeDataSources(IdpeAttributeDataSource entity)
 		{
 			this.SendPropertyChanging();
-			entity.SreDataSource = null;
+			entity.IdpeDataSource = null;
 		}
 		
-		private void attach_SreDataSources(SreDataSource entity)
+		private void attach_IdpeDataSources(IdpeDataSource entity)
 		{
 			this.SendPropertyChanging();
-			entity.SreDataSource1 = this;
+			entity.IdpeDataSource1 = this;
 		}
 		
-		private void detach_SreDataSources(SreDataSource entity)
+		private void detach_IdpeDataSources(IdpeDataSource entity)
 		{
 			this.SendPropertyChanging();
-			entity.SreDataSource1 = null;
+			entity.IdpeDataSource1 = null;
 		}
 		
-		private void attach_SreLogs(SreLog entity)
+		private void attach_IdpeKeyDataSources(IdpeKeyDataSource entity)
 		{
 			this.SendPropertyChanging();
-			entity.SreDataSource = this;
+			entity.IdpeDataSource = this;
 		}
 		
-		private void detach_SreLogs(SreLog entity)
+		private void detach_IdpeKeyDataSources(IdpeKeyDataSource entity)
 		{
 			this.SendPropertyChanging();
-			entity.SreDataSource = null;
+			entity.IdpeDataSource = null;
 		}
 		
-		private void attach_SreRuleDataSources(SreRuleDataSource entity)
+		private void attach_IdpeLogs(IdpeLog entity)
 		{
 			this.SendPropertyChanging();
-			entity.SreDataSource = this;
+			entity.IdpeDataSource = this;
 		}
 		
-		private void detach_SreRuleDataSources(SreRuleDataSource entity)
+		private void detach_IdpeLogs(IdpeLog entity)
 		{
 			this.SendPropertyChanging();
-			entity.SreDataSource = null;
+			entity.IdpeDataSource = null;
 		}
 		
-		private void attach_SreKeyDataSources(SreKeyDataSource entity)
+		private void attach_IdpeRuleDataSources(IdpeRuleDataSource entity)
 		{
 			this.SendPropertyChanging();
-			entity.SreDataSource = this;
+			entity.IdpeDataSource = this;
 		}
 		
-		private void detach_SreKeyDataSources(SreKeyDataSource entity)
+		private void detach_IdpeRuleDataSources(IdpeRuleDataSource entity)
 		{
 			this.SendPropertyChanging();
-			entity.SreDataSource = null;
+			entity.IdpeDataSource = null;
 		}
 		
 		private void Initialize()
 		{
-			this._SreAttributeDataSources = new EntitySet<SreAttributeDataSource>(new Action<SreAttributeDataSource>(this.attach_SreAttributeDataSources), new Action<SreAttributeDataSource>(this.detach_SreAttributeDataSources));
-			this._SreDataSources = new EntitySet<SreDataSource>(new Action<SreDataSource>(this.attach_SreDataSources), new Action<SreDataSource>(this.detach_SreDataSources));
-			this._SreLogs = new EntitySet<SreLog>(new Action<SreLog>(this.attach_SreLogs), new Action<SreLog>(this.detach_SreLogs));
-			this._SreRuleDataSources = new EntitySet<SreRuleDataSource>(new Action<SreRuleDataSource>(this.attach_SreRuleDataSources), new Action<SreRuleDataSource>(this.detach_SreRuleDataSources));
-			this._SreKeyDataSources = new EntitySet<SreKeyDataSource>(new Action<SreKeyDataSource>(this.attach_SreKeyDataSources), new Action<SreKeyDataSource>(this.detach_SreKeyDataSources));
-			this._SreDataSource1 = default(EntityRef<SreDataSource>);
+			this._IdpeAttributeDataSources = new EntitySet<IdpeAttributeDataSource>(new Action<IdpeAttributeDataSource>(this.attach_IdpeAttributeDataSources), new Action<IdpeAttributeDataSource>(this.detach_IdpeAttributeDataSources));
+			this._IdpeDataSources = new EntitySet<IdpeDataSource>(new Action<IdpeDataSource>(this.attach_IdpeDataSources), new Action<IdpeDataSource>(this.detach_IdpeDataSources));
+			this._IdpeKeyDataSources = new EntitySet<IdpeKeyDataSource>(new Action<IdpeKeyDataSource>(this.attach_IdpeKeyDataSources), new Action<IdpeKeyDataSource>(this.detach_IdpeKeyDataSources));
+			this._IdpeLogs = new EntitySet<IdpeLog>(new Action<IdpeLog>(this.attach_IdpeLogs), new Action<IdpeLog>(this.detach_IdpeLogs));
+			this._IdpeRuleDataSources = new EntitySet<IdpeRuleDataSource>(new Action<IdpeRuleDataSource>(this.attach_IdpeRuleDataSources), new Action<IdpeRuleDataSource>(this.detach_IdpeRuleDataSources));
+			this._IdpeDataSource1 = default(EntityRef<IdpeDataSource>);
 			OnCreated();
 		}
 		
@@ -2184,9 +1883,868 @@ namespace Eyedia.IDPE.DataManager
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SreLog")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="IdpeKey")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class SreLog : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class IdpeKey : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _KeyId;
+		
+		private string _Name;
+		
+		private string _Value;
+		
+		private System.Data.Linq.Binary _ValueBinary;
+		
+		private int _Type;
+		
+		private System.Nullable<bool> _IsDeployable;
+		
+		private System.Nullable<int> _DataSourceId;
+		
+		private System.Nullable<int> _NextKeyId;
+		
+		private System.Nullable<System.DateTime> _CreatedTS;
+		
+		private string _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _ModifiedTS;
+		
+		private string _ModifiedBy;
+		
+		private string _Source;
+		
+		private EntitySet<IdpeKey> _IdpeKeys;
+		
+		private EntitySet<IdpeKeyDataSource> _IdpeKeyDataSources;
+		
+		private EntityRef<IdpeKey> _IdpeKey1;
+		
+		private bool serializing;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnKeyIdChanging(int value);
+    partial void OnKeyIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnValueChanging(string value);
+    partial void OnValueChanged();
+    partial void OnValueBinaryChanging(System.Data.Linq.Binary value);
+    partial void OnValueBinaryChanged();
+    partial void OnTypeChanging(int value);
+    partial void OnTypeChanged();
+    partial void OnIsDeployableChanging(System.Nullable<bool> value);
+    partial void OnIsDeployableChanged();
+    partial void OnDataSourceIdChanging(System.Nullable<int> value);
+    partial void OnDataSourceIdChanged();
+    partial void OnNextKeyIdChanging(System.Nullable<int> value);
+    partial void OnNextKeyIdChanged();
+    partial void OnCreatedTSChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedTSChanged();
+    partial void OnCreatedByChanging(string value);
+    partial void OnCreatedByChanged();
+    partial void OnModifiedTSChanging(System.Nullable<System.DateTime> value);
+    partial void OnModifiedTSChanged();
+    partial void OnModifiedByChanging(string value);
+    partial void OnModifiedByChanged();
+    partial void OnSourceChanging(string value);
+    partial void OnSourceChanged();
+    #endregion
+		
+		public IdpeKey()
+		{
+			this.Initialize();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KeyId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+		public int KeyId
+		{
+			get
+			{
+				return this._KeyId;
+			}
+			set
+			{
+				if ((this._KeyId != value))
+				{
+					this.OnKeyIdChanging(value);
+					this.SendPropertyChanging();
+					this._KeyId = value;
+					this.SendPropertyChanged("KeyId");
+					this.OnKeyIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Value", DbType="VarChar(4000)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+		public string Value
+		{
+			get
+			{
+				return this._Value;
+			}
+			set
+			{
+				if ((this._Value != value))
+				{
+					this.OnValueChanging(value);
+					this.SendPropertyChanging();
+					this._Value = value;
+					this.SendPropertyChanged("Value");
+					this.OnValueChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValueBinary", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
+		public System.Data.Linq.Binary ValueBinary
+		{
+			get
+			{
+				return this._ValueBinary;
+			}
+			set
+			{
+				if ((this._ValueBinary != value))
+				{
+					this.OnValueBinaryChanging(value);
+					this.SendPropertyChanging();
+					this._ValueBinary = value;
+					this.SendPropertyChanged("ValueBinary");
+					this.OnValueBinaryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="Int NOT NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
+		public int Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this.OnTypeChanging(value);
+					this.SendPropertyChanging();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeployable", DbType="Bit")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6)]
+		public System.Nullable<bool> IsDeployable
+		{
+			get
+			{
+				return this._IsDeployable;
+			}
+			set
+			{
+				if ((this._IsDeployable != value))
+				{
+					this.OnIsDeployableChanging(value);
+					this.SendPropertyChanging();
+					this._IsDeployable = value;
+					this.SendPropertyChanged("IsDeployable");
+					this.OnIsDeployableChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataSourceId", DbType="Int")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=7)]
+		public System.Nullable<int> DataSourceId
+		{
+			get
+			{
+				return this._DataSourceId;
+			}
+			set
+			{
+				if ((this._DataSourceId != value))
+				{
+					this.OnDataSourceIdChanging(value);
+					this.SendPropertyChanging();
+					this._DataSourceId = value;
+					this.SendPropertyChanged("DataSourceId");
+					this.OnDataSourceIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NextKeyId", DbType="Int")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8)]
+		public System.Nullable<int> NextKeyId
+		{
+			get
+			{
+				return this._NextKeyId;
+			}
+			set
+			{
+				if ((this._NextKeyId != value))
+				{
+					if (this._IdpeKey1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnNextKeyIdChanging(value);
+					this.SendPropertyChanging();
+					this._NextKeyId = value;
+					this.SendPropertyChanged("NextKeyId");
+					this.OnNextKeyIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedTS", DbType="DateTime")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=9)]
+		public System.Nullable<System.DateTime> CreatedTS
+		{
+			get
+			{
+				return this._CreatedTS;
+			}
+			set
+			{
+				if ((this._CreatedTS != value))
+				{
+					this.OnCreatedTSChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedTS = value;
+					this.SendPropertyChanged("CreatedTS");
+					this.OnCreatedTSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(255)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=10)]
+		public string CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedTS", DbType="DateTime")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=11)]
+		public System.Nullable<System.DateTime> ModifiedTS
+		{
+			get
+			{
+				return this._ModifiedTS;
+			}
+			set
+			{
+				if ((this._ModifiedTS != value))
+				{
+					this.OnModifiedTSChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedTS = value;
+					this.SendPropertyChanged("ModifiedTS");
+					this.OnModifiedTSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedBy", DbType="VarChar(255)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=12)]
+		public string ModifiedBy
+		{
+			get
+			{
+				return this._ModifiedBy;
+			}
+			set
+			{
+				if ((this._ModifiedBy != value))
+				{
+					this.OnModifiedByChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedBy = value;
+					this.SendPropertyChanged("ModifiedBy");
+					this.OnModifiedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Source", DbType="VarChar(255)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=13)]
+		public string Source
+		{
+			get
+			{
+				return this._Source;
+			}
+			set
+			{
+				if ((this._Source != value))
+				{
+					this.OnSourceChanging(value);
+					this.SendPropertyChanging();
+					this._Source = value;
+					this.SendPropertyChanged("Source");
+					this.OnSourceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IdpeKey_IdpeKey", Storage="_IdpeKeys", ThisKey="KeyId", OtherKey="NextKeyId")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=14, EmitDefaultValue=false)]
+		public EntitySet<IdpeKey> IdpeKeys
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._IdpeKeys.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
+				return this._IdpeKeys;
+			}
+			set
+			{
+				this._IdpeKeys.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IdpeKey_IdpeKeyDataSource", Storage="_IdpeKeyDataSources", ThisKey="KeyId", OtherKey="KeyId")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=15, EmitDefaultValue=false)]
+		public EntitySet<IdpeKeyDataSource> IdpeKeyDataSources
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._IdpeKeyDataSources.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
+				return this._IdpeKeyDataSources;
+			}
+			set
+			{
+				this._IdpeKeyDataSources.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IdpeKey_IdpeKey", Storage="_IdpeKey1", ThisKey="NextKeyId", OtherKey="KeyId", IsForeignKey=true)]
+		public IdpeKey IdpeKey1
+		{
+			get
+			{
+				return this._IdpeKey1.Entity;
+			}
+			set
+			{
+				IdpeKey previousValue = this._IdpeKey1.Entity;
+				if (((previousValue != value) 
+							|| (this._IdpeKey1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._IdpeKey1.Entity = null;
+						previousValue.IdpeKeys.Remove(this);
+					}
+					this._IdpeKey1.Entity = value;
+					if ((value != null))
+					{
+						value.IdpeKeys.Add(this);
+						this._NextKeyId = value.KeyId;
+					}
+					else
+					{
+						this._NextKeyId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("IdpeKey1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_IdpeKeys(IdpeKey entity)
+		{
+			this.SendPropertyChanging();
+			entity.IdpeKey1 = this;
+		}
+		
+		private void detach_IdpeKeys(IdpeKey entity)
+		{
+			this.SendPropertyChanging();
+			entity.IdpeKey1 = null;
+		}
+		
+		private void attach_IdpeKeyDataSources(IdpeKeyDataSource entity)
+		{
+			this.SendPropertyChanging();
+			entity.IdpeKey = this;
+		}
+		
+		private void detach_IdpeKeyDataSources(IdpeKeyDataSource entity)
+		{
+			this.SendPropertyChanging();
+			entity.IdpeKey = null;
+		}
+		
+		private void Initialize()
+		{
+			this._IdpeKeys = new EntitySet<IdpeKey>(new Action<IdpeKey>(this.attach_IdpeKeys), new Action<IdpeKey>(this.detach_IdpeKeys));
+			this._IdpeKeyDataSources = new EntitySet<IdpeKeyDataSource>(new Action<IdpeKeyDataSource>(this.attach_IdpeKeyDataSources), new Action<IdpeKeyDataSource>(this.detach_IdpeKeyDataSources));
+			this._IdpeKey1 = default(EntityRef<IdpeKey>);
+			OnCreated();
+		}
+		
+		[global::System.Runtime.Serialization.OnDeserializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerializing(StreamingContext context)
+		{
+			this.serializing = true;
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializedAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerialized(StreamingContext context)
+		{
+			this.serializing = false;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="IdpeKeyDataSource")]
+	[global::System.Runtime.Serialization.DataContractAttribute()]
+	public partial class IdpeKeyDataSource : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _KeyDataSourceId;
+		
+		private int _KeyId;
+		
+		private int _DataSourceId;
+		
+		private System.Nullable<bool> _IsDeployable;
+		
+		private System.Nullable<System.DateTime> _CreatedTS;
+		
+		private string _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _ModifiedTS;
+		
+		private string _ModifiedBy;
+		
+		private string _Source;
+		
+		private EntityRef<IdpeDataSource> _IdpeDataSource;
+		
+		private EntityRef<IdpeKey> _IdpeKey;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnKeyDataSourceIdChanging(int value);
+    partial void OnKeyDataSourceIdChanged();
+    partial void OnKeyIdChanging(int value);
+    partial void OnKeyIdChanged();
+    partial void OnDataSourceIdChanging(int value);
+    partial void OnDataSourceIdChanged();
+    partial void OnIsDeployableChanging(System.Nullable<bool> value);
+    partial void OnIsDeployableChanged();
+    partial void OnCreatedTSChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedTSChanged();
+    partial void OnCreatedByChanging(string value);
+    partial void OnCreatedByChanged();
+    partial void OnModifiedTSChanging(System.Nullable<System.DateTime> value);
+    partial void OnModifiedTSChanged();
+    partial void OnModifiedByChanging(string value);
+    partial void OnModifiedByChanged();
+    partial void OnSourceChanging(string value);
+    partial void OnSourceChanged();
+    #endregion
+		
+		public IdpeKeyDataSource()
+		{
+			this.Initialize();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KeyDataSourceId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+		public int KeyDataSourceId
+		{
+			get
+			{
+				return this._KeyDataSourceId;
+			}
+			set
+			{
+				if ((this._KeyDataSourceId != value))
+				{
+					this.OnKeyDataSourceIdChanging(value);
+					this.SendPropertyChanging();
+					this._KeyDataSourceId = value;
+					this.SendPropertyChanged("KeyDataSourceId");
+					this.OnKeyDataSourceIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KeyId", DbType="Int NOT NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+		public int KeyId
+		{
+			get
+			{
+				return this._KeyId;
+			}
+			set
+			{
+				if ((this._KeyId != value))
+				{
+					if (this._IdpeKey.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnKeyIdChanging(value);
+					this.SendPropertyChanging();
+					this._KeyId = value;
+					this.SendPropertyChanged("KeyId");
+					this.OnKeyIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataSourceId", DbType="Int NOT NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+		public int DataSourceId
+		{
+			get
+			{
+				return this._DataSourceId;
+			}
+			set
+			{
+				if ((this._DataSourceId != value))
+				{
+					if (this._IdpeDataSource.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDataSourceIdChanging(value);
+					this.SendPropertyChanging();
+					this._DataSourceId = value;
+					this.SendPropertyChanged("DataSourceId");
+					this.OnDataSourceIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeployable", DbType="Bit")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
+		public System.Nullable<bool> IsDeployable
+		{
+			get
+			{
+				return this._IsDeployable;
+			}
+			set
+			{
+				if ((this._IsDeployable != value))
+				{
+					this.OnIsDeployableChanging(value);
+					this.SendPropertyChanging();
+					this._IsDeployable = value;
+					this.SendPropertyChanged("IsDeployable");
+					this.OnIsDeployableChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedTS", DbType="DateTime")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
+		public System.Nullable<System.DateTime> CreatedTS
+		{
+			get
+			{
+				return this._CreatedTS;
+			}
+			set
+			{
+				if ((this._CreatedTS != value))
+				{
+					this.OnCreatedTSChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedTS = value;
+					this.SendPropertyChanged("CreatedTS");
+					this.OnCreatedTSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(255)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6)]
+		public string CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedTS", DbType="DateTime")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=7)]
+		public System.Nullable<System.DateTime> ModifiedTS
+		{
+			get
+			{
+				return this._ModifiedTS;
+			}
+			set
+			{
+				if ((this._ModifiedTS != value))
+				{
+					this.OnModifiedTSChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedTS = value;
+					this.SendPropertyChanged("ModifiedTS");
+					this.OnModifiedTSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedBy", DbType="VarChar(255)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8)]
+		public string ModifiedBy
+		{
+			get
+			{
+				return this._ModifiedBy;
+			}
+			set
+			{
+				if ((this._ModifiedBy != value))
+				{
+					this.OnModifiedByChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedBy = value;
+					this.SendPropertyChanged("ModifiedBy");
+					this.OnModifiedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Source", DbType="VarChar(255)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=9)]
+		public string Source
+		{
+			get
+			{
+				return this._Source;
+			}
+			set
+			{
+				if ((this._Source != value))
+				{
+					this.OnSourceChanging(value);
+					this.SendPropertyChanging();
+					this._Source = value;
+					this.SendPropertyChanged("Source");
+					this.OnSourceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IdpeDataSource_IdpeKeyDataSource", Storage="_IdpeDataSource", ThisKey="DataSourceId", OtherKey="Id", IsForeignKey=true)]
+		public IdpeDataSource IdpeDataSource
+		{
+			get
+			{
+				return this._IdpeDataSource.Entity;
+			}
+			set
+			{
+				IdpeDataSource previousValue = this._IdpeDataSource.Entity;
+				if (((previousValue != value) 
+							|| (this._IdpeDataSource.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._IdpeDataSource.Entity = null;
+						previousValue.IdpeKeyDataSources.Remove(this);
+					}
+					this._IdpeDataSource.Entity = value;
+					if ((value != null))
+					{
+						value.IdpeKeyDataSources.Add(this);
+						this._DataSourceId = value.Id;
+					}
+					else
+					{
+						this._DataSourceId = default(int);
+					}
+					this.SendPropertyChanged("IdpeDataSource");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IdpeKey_IdpeKeyDataSource", Storage="_IdpeKey", ThisKey="KeyId", OtherKey="KeyId", IsForeignKey=true)]
+		public IdpeKey IdpeKey
+		{
+			get
+			{
+				return this._IdpeKey.Entity;
+			}
+			set
+			{
+				IdpeKey previousValue = this._IdpeKey.Entity;
+				if (((previousValue != value) 
+							|| (this._IdpeKey.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._IdpeKey.Entity = null;
+						previousValue.IdpeKeyDataSources.Remove(this);
+					}
+					this._IdpeKey.Entity = value;
+					if ((value != null))
+					{
+						value.IdpeKeyDataSources.Add(this);
+						this._KeyId = value.KeyId;
+					}
+					else
+					{
+						this._KeyId = default(int);
+					}
+					this.SendPropertyChanged("IdpeKey");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void Initialize()
+		{
+			this._IdpeDataSource = default(EntityRef<IdpeDataSource>);
+			this._IdpeKey = default(EntityRef<IdpeKey>);
+			OnCreated();
+		}
+		
+		[global::System.Runtime.Serialization.OnDeserializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="IdpeLog")]
+	[global::System.Runtime.Serialization.DataContractAttribute()]
+	public partial class IdpeLog : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -2221,7 +2779,7 @@ namespace Eyedia.IDPE.DataManager
 		
 		private string _Source;
 		
-		private EntityRef<SreDataSource> _SreDataSource;
+		private EntityRef<IdpeDataSource> _IdpeDataSource;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2259,7 +2817,7 @@ namespace Eyedia.IDPE.DataManager
     partial void OnSourceChanged();
     #endregion
 		
-		public SreLog()
+		public IdpeLog()
 		{
 			this.Initialize();
 		}
@@ -2339,7 +2897,7 @@ namespace Eyedia.IDPE.DataManager
 			{
 				if ((this._DataSourceId != value))
 				{
-					if (this._SreDataSource.HasLoadedOrAssignedValue)
+					if (this._IdpeDataSource.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -2583,36 +3141,36 @@ namespace Eyedia.IDPE.DataManager
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SreDataSource_SreLog", Storage="_SreDataSource", ThisKey="DataSourceId", OtherKey="Id", IsForeignKey=true)]
-		public SreDataSource SreDataSource
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IdpeDataSource_IdpeLog", Storage="_IdpeDataSource", ThisKey="DataSourceId", OtherKey="Id", IsForeignKey=true)]
+		public IdpeDataSource IdpeDataSource
 		{
 			get
 			{
-				return this._SreDataSource.Entity;
+				return this._IdpeDataSource.Entity;
 			}
 			set
 			{
-				SreDataSource previousValue = this._SreDataSource.Entity;
+				IdpeDataSource previousValue = this._IdpeDataSource.Entity;
 				if (((previousValue != value) 
-							|| (this._SreDataSource.HasLoadedOrAssignedValue == false)))
+							|| (this._IdpeDataSource.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._SreDataSource.Entity = null;
-						previousValue.SreLogs.Remove(this);
+						this._IdpeDataSource.Entity = null;
+						previousValue.IdpeLogs.Remove(this);
 					}
-					this._SreDataSource.Entity = value;
+					this._IdpeDataSource.Entity = value;
 					if ((value != null))
 					{
-						value.SreLogs.Add(this);
+						value.IdpeLogs.Add(this);
 						this._DataSourceId = value.Id;
 					}
 					else
 					{
 						this._DataSourceId = default(int);
 					}
-					this.SendPropertyChanged("SreDataSource");
+					this.SendPropertyChanged("IdpeDataSource");
 				}
 			}
 		}
@@ -2639,7 +3197,7 @@ namespace Eyedia.IDPE.DataManager
 		
 		private void Initialize()
 		{
-			this._SreDataSource = default(EntityRef<SreDataSource>);
+			this._IdpeDataSource = default(EntityRef<IdpeDataSource>);
 			OnCreated();
 		}
 		
@@ -2651,9 +3209,9 @@ namespace Eyedia.IDPE.DataManager
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SrePersistentVariable")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="IdpePersistentVariable")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class SrePersistentVariable
+	public partial class IdpePersistentVariable
 	{
 		
 		private int _DataSourceId;
@@ -2672,7 +3230,7 @@ namespace Eyedia.IDPE.DataManager
 		
 		private string _Source;
 		
-		public SrePersistentVariable()
+		public IdpePersistentVariable()
 		{
 		}
 		
@@ -2813,9 +3371,9 @@ namespace Eyedia.IDPE.DataManager
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SreRule")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="IdpeRule")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class SreRule : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class IdpeRule : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -2842,7 +3400,7 @@ namespace Eyedia.IDPE.DataManager
 		
 		private string _Source;
 		
-		private EntitySet<SreRuleDataSource> _SreRuleDataSources;
+		private EntitySet<IdpeRuleDataSource> _IdpeRuleDataSources;
 		
 		private bool serializing;
 		
@@ -2874,7 +3432,7 @@ namespace Eyedia.IDPE.DataManager
     partial void OnSourceChanged();
     #endregion
 		
-		public SreRule()
+		public IdpeRule()
 		{
 			this.Initialize();
 		}
@@ -3110,22 +3668,22 @@ namespace Eyedia.IDPE.DataManager
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SreRule_SreRuleDataSource", Storage="_SreRuleDataSources", ThisKey="Id", OtherKey="RuleId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IdpeRule_IdpeRuleDataSource", Storage="_IdpeRuleDataSources", ThisKey="Id", OtherKey="RuleId")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=12, EmitDefaultValue=false)]
-		public EntitySet<SreRuleDataSource> SreRuleDataSources
+		public EntitySet<IdpeRuleDataSource> IdpeRuleDataSources
 		{
 			get
 			{
 				if ((this.serializing 
-							&& (this._SreRuleDataSources.HasLoadedOrAssignedValues == false)))
+							&& (this._IdpeRuleDataSources.HasLoadedOrAssignedValues == false)))
 				{
 					return null;
 				}
-				return this._SreRuleDataSources;
+				return this._IdpeRuleDataSources;
 			}
 			set
 			{
-				this._SreRuleDataSources.Assign(value);
+				this._IdpeRuleDataSources.Assign(value);
 			}
 		}
 		
@@ -3149,21 +3707,21 @@ namespace Eyedia.IDPE.DataManager
 			}
 		}
 		
-		private void attach_SreRuleDataSources(SreRuleDataSource entity)
+		private void attach_IdpeRuleDataSources(IdpeRuleDataSource entity)
 		{
 			this.SendPropertyChanging();
-			entity.SreRule = this;
+			entity.IdpeRule = this;
 		}
 		
-		private void detach_SreRuleDataSources(SreRuleDataSource entity)
+		private void detach_IdpeRuleDataSources(IdpeRuleDataSource entity)
 		{
 			this.SendPropertyChanging();
-			entity.SreRule = null;
+			entity.IdpeRule = null;
 		}
 		
 		private void Initialize()
 		{
-			this._SreRuleDataSources = new EntitySet<SreRuleDataSource>(new Action<SreRuleDataSource>(this.attach_SreRuleDataSources), new Action<SreRuleDataSource>(this.detach_SreRuleDataSources));
+			this._IdpeRuleDataSources = new EntitySet<IdpeRuleDataSource>(new Action<IdpeRuleDataSource>(this.attach_IdpeRuleDataSources), new Action<IdpeRuleDataSource>(this.detach_IdpeRuleDataSources));
 			OnCreated();
 		}
 		
@@ -3189,9 +3747,9 @@ namespace Eyedia.IDPE.DataManager
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SreRuleDataSource")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="IdpeRuleDataSource")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class SreRuleDataSource : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class IdpeRuleDataSource : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -3218,9 +3776,9 @@ namespace Eyedia.IDPE.DataManager
 		
 		private string _Source;
 		
-		private EntityRef<SreDataSource> _SreDataSource;
+		private EntityRef<IdpeDataSource> _IdpeDataSource;
 		
-		private EntityRef<SreRule> _SreRule;
+		private EntityRef<IdpeRule> _IdpeRule;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3250,7 +3808,7 @@ namespace Eyedia.IDPE.DataManager
     partial void OnSourceChanged();
     #endregion
 		
-		public SreRuleDataSource()
+		public IdpeRuleDataSource()
 		{
 			this.Initialize();
 		}
@@ -3288,7 +3846,7 @@ namespace Eyedia.IDPE.DataManager
 			{
 				if ((this._RuleId != value))
 				{
-					if (this._SreRule.HasLoadedOrAssignedValue)
+					if (this._IdpeRule.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -3313,7 +3871,7 @@ namespace Eyedia.IDPE.DataManager
 			{
 				if ((this._DataSourceId != value))
 				{
-					if (this._SreDataSource.HasLoadedOrAssignedValue)
+					if (this._IdpeDataSource.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -3494,70 +4052,70 @@ namespace Eyedia.IDPE.DataManager
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SreDataSource_SreRuleDataSource", Storage="_SreDataSource", ThisKey="DataSourceId", OtherKey="Id", IsForeignKey=true)]
-		public SreDataSource SreDataSource
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IdpeDataSource_IdpeRuleDataSource", Storage="_IdpeDataSource", ThisKey="DataSourceId", OtherKey="Id", IsForeignKey=true)]
+		public IdpeDataSource IdpeDataSource
 		{
 			get
 			{
-				return this._SreDataSource.Entity;
+				return this._IdpeDataSource.Entity;
 			}
 			set
 			{
-				SreDataSource previousValue = this._SreDataSource.Entity;
+				IdpeDataSource previousValue = this._IdpeDataSource.Entity;
 				if (((previousValue != value) 
-							|| (this._SreDataSource.HasLoadedOrAssignedValue == false)))
+							|| (this._IdpeDataSource.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._SreDataSource.Entity = null;
-						previousValue.SreRuleDataSources.Remove(this);
+						this._IdpeDataSource.Entity = null;
+						previousValue.IdpeRuleDataSources.Remove(this);
 					}
-					this._SreDataSource.Entity = value;
+					this._IdpeDataSource.Entity = value;
 					if ((value != null))
 					{
-						value.SreRuleDataSources.Add(this);
+						value.IdpeRuleDataSources.Add(this);
 						this._DataSourceId = value.Id;
 					}
 					else
 					{
 						this._DataSourceId = default(int);
 					}
-					this.SendPropertyChanged("SreDataSource");
+					this.SendPropertyChanged("IdpeDataSource");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SreRule_SreRuleDataSource", Storage="_SreRule", ThisKey="RuleId", OtherKey="Id", IsForeignKey=true)]
-		public SreRule SreRule
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IdpeRule_IdpeRuleDataSource", Storage="_IdpeRule", ThisKey="RuleId", OtherKey="Id", IsForeignKey=true)]
+		public IdpeRule IdpeRule
 		{
 			get
 			{
-				return this._SreRule.Entity;
+				return this._IdpeRule.Entity;
 			}
 			set
 			{
-				SreRule previousValue = this._SreRule.Entity;
+				IdpeRule previousValue = this._IdpeRule.Entity;
 				if (((previousValue != value) 
-							|| (this._SreRule.HasLoadedOrAssignedValue == false)))
+							|| (this._IdpeRule.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._SreRule.Entity = null;
-						previousValue.SreRuleDataSources.Remove(this);
+						this._IdpeRule.Entity = null;
+						previousValue.IdpeRuleDataSources.Remove(this);
 					}
-					this._SreRule.Entity = value;
+					this._IdpeRule.Entity = value;
 					if ((value != null))
 					{
-						value.SreRuleDataSources.Add(this);
+						value.IdpeRuleDataSources.Add(this);
 						this._RuleId = value.Id;
 					}
 					else
 					{
 						this._RuleId = default(int);
 					}
-					this.SendPropertyChanged("SreRule");
+					this.SendPropertyChanged("IdpeRule");
 				}
 			}
 		}
@@ -3584,8 +4142,8 @@ namespace Eyedia.IDPE.DataManager
 		
 		private void Initialize()
 		{
-			this._SreDataSource = default(EntityRef<SreDataSource>);
-			this._SreRule = default(EntityRef<SreRule>);
+			this._IdpeDataSource = default(EntityRef<IdpeDataSource>);
+			this._IdpeRule = default(EntityRef<IdpeRule>);
 			OnCreated();
 		}
 		
@@ -3597,388 +4155,24 @@ namespace Eyedia.IDPE.DataManager
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SreKeyDataSource")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="IdpeVersion")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class SreKeyDataSource : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class IdpeVersion : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _KeyDataSourceId;
+		private int _Id;
 		
-		private int _KeyId;
-		
-		private int _DataSourceId;
-		
-		private System.Nullable<bool> _IsDeployable;
-		
-		private System.Nullable<System.DateTime> _CreatedTS;
-		
-		private string _CreatedBy;
-		
-		private System.Nullable<System.DateTime> _ModifiedTS;
-		
-		private string _ModifiedBy;
-		
-		private string _Source;
-		
-		private EntityRef<SreDataSource> _SreDataSource;
-		
-		private EntityRef<SreKey> _SreKey;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnKeyDataSourceIdChanging(int value);
-    partial void OnKeyDataSourceIdChanged();
-    partial void OnKeyIdChanging(int value);
-    partial void OnKeyIdChanged();
-    partial void OnDataSourceIdChanging(int value);
-    partial void OnDataSourceIdChanged();
-    partial void OnIsDeployableChanging(System.Nullable<bool> value);
-    partial void OnIsDeployableChanged();
-    partial void OnCreatedTSChanging(System.Nullable<System.DateTime> value);
-    partial void OnCreatedTSChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
-    partial void OnModifiedTSChanging(System.Nullable<System.DateTime> value);
-    partial void OnModifiedTSChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnSourceChanging(string value);
-    partial void OnSourceChanged();
-    #endregion
-		
-		public SreKeyDataSource()
-		{
-			this.Initialize();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KeyDataSourceId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
-		public int KeyDataSourceId
-		{
-			get
-			{
-				return this._KeyDataSourceId;
-			}
-			set
-			{
-				if ((this._KeyDataSourceId != value))
-				{
-					this.OnKeyDataSourceIdChanging(value);
-					this.SendPropertyChanging();
-					this._KeyDataSourceId = value;
-					this.SendPropertyChanged("KeyDataSourceId");
-					this.OnKeyDataSourceIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KeyId", DbType="Int NOT NULL")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
-		public int KeyId
-		{
-			get
-			{
-				return this._KeyId;
-			}
-			set
-			{
-				if ((this._KeyId != value))
-				{
-					if (this._SreKey.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnKeyIdChanging(value);
-					this.SendPropertyChanging();
-					this._KeyId = value;
-					this.SendPropertyChanged("KeyId");
-					this.OnKeyIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataSourceId", DbType="Int NOT NULL")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
-		public int DataSourceId
-		{
-			get
-			{
-				return this._DataSourceId;
-			}
-			set
-			{
-				if ((this._DataSourceId != value))
-				{
-					if (this._SreDataSource.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnDataSourceIdChanging(value);
-					this.SendPropertyChanging();
-					this._DataSourceId = value;
-					this.SendPropertyChanged("DataSourceId");
-					this.OnDataSourceIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeployable", DbType="Bit")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
-		public System.Nullable<bool> IsDeployable
-		{
-			get
-			{
-				return this._IsDeployable;
-			}
-			set
-			{
-				if ((this._IsDeployable != value))
-				{
-					this.OnIsDeployableChanging(value);
-					this.SendPropertyChanging();
-					this._IsDeployable = value;
-					this.SendPropertyChanged("IsDeployable");
-					this.OnIsDeployableChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedTS", DbType="DateTime")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
-		public System.Nullable<System.DateTime> CreatedTS
-		{
-			get
-			{
-				return this._CreatedTS;
-			}
-			set
-			{
-				if ((this._CreatedTS != value))
-				{
-					this.OnCreatedTSChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedTS = value;
-					this.SendPropertyChanged("CreatedTS");
-					this.OnCreatedTSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(255)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6)]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedTS", DbType="DateTime")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=7)]
-		public System.Nullable<System.DateTime> ModifiedTS
-		{
-			get
-			{
-				return this._ModifiedTS;
-			}
-			set
-			{
-				if ((this._ModifiedTS != value))
-				{
-					this.OnModifiedTSChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedTS = value;
-					this.SendPropertyChanged("ModifiedTS");
-					this.OnModifiedTSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedBy", DbType="VarChar(255)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8)]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Source", DbType="VarChar(255)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=9)]
-		public string Source
-		{
-			get
-			{
-				return this._Source;
-			}
-			set
-			{
-				if ((this._Source != value))
-				{
-					this.OnSourceChanging(value);
-					this.SendPropertyChanging();
-					this._Source = value;
-					this.SendPropertyChanged("Source");
-					this.OnSourceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SreDataSource_SreKeyDataSource", Storage="_SreDataSource", ThisKey="DataSourceId", OtherKey="Id", IsForeignKey=true)]
-		public SreDataSource SreDataSource
-		{
-			get
-			{
-				return this._SreDataSource.Entity;
-			}
-			set
-			{
-				SreDataSource previousValue = this._SreDataSource.Entity;
-				if (((previousValue != value) 
-							|| (this._SreDataSource.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SreDataSource.Entity = null;
-						previousValue.SreKeyDataSources.Remove(this);
-					}
-					this._SreDataSource.Entity = value;
-					if ((value != null))
-					{
-						value.SreKeyDataSources.Add(this);
-						this._DataSourceId = value.Id;
-					}
-					else
-					{
-						this._DataSourceId = default(int);
-					}
-					this.SendPropertyChanged("SreDataSource");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SreKey_SreKeyDataSource", Storage="_SreKey", ThisKey="KeyId", OtherKey="KeyId", IsForeignKey=true)]
-		public SreKey SreKey
-		{
-			get
-			{
-				return this._SreKey.Entity;
-			}
-			set
-			{
-				SreKey previousValue = this._SreKey.Entity;
-				if (((previousValue != value) 
-							|| (this._SreKey.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SreKey.Entity = null;
-						previousValue.SreKeyDataSources.Remove(this);
-					}
-					this._SreKey.Entity = value;
-					if ((value != null))
-					{
-						value.SreKeyDataSources.Add(this);
-						this._KeyId = value.KeyId;
-					}
-					else
-					{
-						this._KeyId = default(int);
-					}
-					this.SendPropertyChanged("SreKey");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void Initialize()
-		{
-			this._SreDataSource = default(EntityRef<SreDataSource>);
-			this._SreKey = default(EntityRef<SreKey>);
-			OnCreated();
-		}
-		
-		[global::System.Runtime.Serialization.OnDeserializingAttribute()]
-		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnDeserializing(StreamingContext context)
-		{
-			this.Initialize();
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SreKey")]
-	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class SreKey : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _KeyId;
-		
-		private string _Name;
-		
-		private string _Value;
-		
-		private System.Data.Linq.Binary _ValueBinary;
+		private int _Version;
 		
 		private int _Type;
 		
-		private System.Nullable<bool> _IsDeployable;
+		private int _ReferenceId;
 		
-		private System.Nullable<int> _DataSourceId;
+		private System.Data.Linq.Binary _Data;
 		
-		private System.Nullable<int> _NextKeyId;
-		
-		private System.Nullable<System.DateTime> _CreatedTS;
+		private System.DateTime _CreatedTS;
 		
 		private string _CreatedBy;
 		
@@ -3988,35 +4182,21 @@ namespace Eyedia.IDPE.DataManager
 		
 		private string _Source;
 		
-		private EntitySet<SreKeyDataSource> _SreKeyDataSources;
-		
-		private EntitySet<SreKey> _SreKeys;
-		
-		private EntityRef<SreKey> _SreKey1;
-		
-		private bool serializing;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnKeyIdChanging(int value);
-    partial void OnKeyIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnValueChanging(string value);
-    partial void OnValueChanged();
-    partial void OnValueBinaryChanging(System.Data.Linq.Binary value);
-    partial void OnValueBinaryChanged();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnVersionChanging(int value);
+    partial void OnVersionChanged();
     partial void OnTypeChanging(int value);
     partial void OnTypeChanged();
-    partial void OnIsDeployableChanging(System.Nullable<bool> value);
-    partial void OnIsDeployableChanged();
-    partial void OnDataSourceIdChanging(System.Nullable<int> value);
-    partial void OnDataSourceIdChanged();
-    partial void OnNextKeyIdChanging(System.Nullable<int> value);
-    partial void OnNextKeyIdChanged();
-    partial void OnCreatedTSChanging(System.Nullable<System.DateTime> value);
+    partial void OnReferenceIdChanging(int value);
+    partial void OnReferenceIdChanged();
+    partial void OnDataChanging(System.Data.Linq.Binary value);
+    partial void OnDataChanged();
+    partial void OnCreatedTSChanging(System.DateTime value);
     partial void OnCreatedTSChanged();
     partial void OnCreatedByChanging(string value);
     partial void OnCreatedByChanged();
@@ -4028,97 +4208,55 @@ namespace Eyedia.IDPE.DataManager
     partial void OnSourceChanged();
     #endregion
 		
-		public SreKey()
+		public IdpeVersion()
 		{
 			this.Initialize();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KeyId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
-		public int KeyId
+		public int Id
 		{
 			get
 			{
-				return this._KeyId;
+				return this._Id;
 			}
 			set
 			{
-				if ((this._KeyId != value))
+				if ((this._Id != value))
 				{
-					this.OnKeyIdChanging(value);
+					this.OnIdChanging(value);
 					this.SendPropertyChanging();
-					this._KeyId = value;
-					this.SendPropertyChanged("KeyId");
-					this.OnKeyIdChanged();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Version", DbType="Int NOT NULL")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
-		public string Name
+		public int Version
 		{
 			get
 			{
-				return this._Name;
+				return this._Version;
 			}
 			set
 			{
-				if ((this._Name != value))
+				if ((this._Version != value))
 				{
-					this.OnNameChanging(value);
+					this.OnVersionChanging(value);
 					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Value", DbType="VarChar(4000)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
-		public string Value
-		{
-			get
-			{
-				return this._Value;
-			}
-			set
-			{
-				if ((this._Value != value))
-				{
-					this.OnValueChanging(value);
-					this.SendPropertyChanging();
-					this._Value = value;
-					this.SendPropertyChanged("Value");
-					this.OnValueChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValueBinary", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
-		public System.Data.Linq.Binary ValueBinary
-		{
-			get
-			{
-				return this._ValueBinary;
-			}
-			set
-			{
-				if ((this._ValueBinary != value))
-				{
-					this.OnValueBinaryChanging(value);
-					this.SendPropertyChanging();
-					this._ValueBinary = value;
-					this.SendPropertyChanged("ValueBinary");
-					this.OnValueBinaryChanged();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="Int NOT NULL")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
 		public int Type
 		{
 			get
@@ -4138,76 +4276,51 @@ namespace Eyedia.IDPE.DataManager
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeployable", DbType="Bit")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReferenceId", DbType="Int NOT NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
+		public int ReferenceId
+		{
+			get
+			{
+				return this._ReferenceId;
+			}
+			set
+			{
+				if ((this._ReferenceId != value))
+				{
+					this.OnReferenceIdChanging(value);
+					this.SendPropertyChanging();
+					this._ReferenceId = value;
+					this.SendPropertyChanged("ReferenceId");
+					this.OnReferenceIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Data", DbType="VarBinary(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
+		public System.Data.Linq.Binary Data
+		{
+			get
+			{
+				return this._Data;
+			}
+			set
+			{
+				if ((this._Data != value))
+				{
+					this.OnDataChanging(value);
+					this.SendPropertyChanging();
+					this._Data = value;
+					this.SendPropertyChanged("Data");
+					this.OnDataChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedTS", DbType="DateTime NOT NULL")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6)]
-		public System.Nullable<bool> IsDeployable
-		{
-			get
-			{
-				return this._IsDeployable;
-			}
-			set
-			{
-				if ((this._IsDeployable != value))
-				{
-					this.OnIsDeployableChanging(value);
-					this.SendPropertyChanging();
-					this._IsDeployable = value;
-					this.SendPropertyChanged("IsDeployable");
-					this.OnIsDeployableChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataSourceId", DbType="Int")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=7)]
-		public System.Nullable<int> DataSourceId
-		{
-			get
-			{
-				return this._DataSourceId;
-			}
-			set
-			{
-				if ((this._DataSourceId != value))
-				{
-					this.OnDataSourceIdChanging(value);
-					this.SendPropertyChanging();
-					this._DataSourceId = value;
-					this.SendPropertyChanged("DataSourceId");
-					this.OnDataSourceIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NextKeyId", DbType="Int")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8)]
-		public System.Nullable<int> NextKeyId
-		{
-			get
-			{
-				return this._NextKeyId;
-			}
-			set
-			{
-				if ((this._NextKeyId != value))
-				{
-					if (this._SreKey1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnNextKeyIdChanging(value);
-					this.SendPropertyChanging();
-					this._NextKeyId = value;
-					this.SendPropertyChanged("NextKeyId");
-					this.OnNextKeyIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedTS", DbType="DateTime")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=9)]
-		public System.Nullable<System.DateTime> CreatedTS
+		public System.DateTime CreatedTS
 		{
 			get
 			{
@@ -4226,8 +4339,8 @@ namespace Eyedia.IDPE.DataManager
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(255)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=10)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=7)]
 		public string CreatedBy
 		{
 			get
@@ -4248,7 +4361,7 @@ namespace Eyedia.IDPE.DataManager
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedTS", DbType="DateTime")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=11)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8)]
 		public System.Nullable<System.DateTime> ModifiedTS
 		{
 			get
@@ -4269,7 +4382,7 @@ namespace Eyedia.IDPE.DataManager
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedBy", DbType="VarChar(255)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=12)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=9)]
 		public string ModifiedBy
 		{
 			get
@@ -4290,7 +4403,7 @@ namespace Eyedia.IDPE.DataManager
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Source", DbType="VarChar(255)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=13)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=10)]
 		public string Source
 		{
 			get
@@ -4306,78 +4419,6 @@ namespace Eyedia.IDPE.DataManager
 					this._Source = value;
 					this.SendPropertyChanged("Source");
 					this.OnSourceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SreKey_SreKeyDataSource", Storage="_SreKeyDataSources", ThisKey="KeyId", OtherKey="KeyId")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=14, EmitDefaultValue=false)]
-		public EntitySet<SreKeyDataSource> SreKeyDataSources
-		{
-			get
-			{
-				if ((this.serializing 
-							&& (this._SreKeyDataSources.HasLoadedOrAssignedValues == false)))
-				{
-					return null;
-				}
-				return this._SreKeyDataSources;
-			}
-			set
-			{
-				this._SreKeyDataSources.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SreKey_SreKey", Storage="_SreKeys", ThisKey="KeyId", OtherKey="NextKeyId")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=15, EmitDefaultValue=false)]
-		public EntitySet<SreKey> SreKeys
-		{
-			get
-			{
-				if ((this.serializing 
-							&& (this._SreKeys.HasLoadedOrAssignedValues == false)))
-				{
-					return null;
-				}
-				return this._SreKeys;
-			}
-			set
-			{
-				this._SreKeys.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SreKey_SreKey", Storage="_SreKey1", ThisKey="NextKeyId", OtherKey="KeyId", IsForeignKey=true)]
-		public SreKey SreKey1
-		{
-			get
-			{
-				return this._SreKey1.Entity;
-			}
-			set
-			{
-				SreKey previousValue = this._SreKey1.Entity;
-				if (((previousValue != value) 
-							|| (this._SreKey1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SreKey1.Entity = null;
-						previousValue.SreKeys.Remove(this);
-					}
-					this._SreKey1.Entity = value;
-					if ((value != null))
-					{
-						value.SreKeys.Add(this);
-						this._NextKeyId = value.KeyId;
-					}
-					else
-					{
-						this._NextKeyId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("SreKey1");
 				}
 			}
 		}
@@ -4402,35 +4443,8 @@ namespace Eyedia.IDPE.DataManager
 			}
 		}
 		
-		private void attach_SreKeyDataSources(SreKeyDataSource entity)
-		{
-			this.SendPropertyChanging();
-			entity.SreKey = this;
-		}
-		
-		private void detach_SreKeyDataSources(SreKeyDataSource entity)
-		{
-			this.SendPropertyChanging();
-			entity.SreKey = null;
-		}
-		
-		private void attach_SreKeys(SreKey entity)
-		{
-			this.SendPropertyChanging();
-			entity.SreKey1 = this;
-		}
-		
-		private void detach_SreKeys(SreKey entity)
-		{
-			this.SendPropertyChanging();
-			entity.SreKey1 = null;
-		}
-		
 		private void Initialize()
 		{
-			this._SreKeyDataSources = new EntitySet<SreKeyDataSource>(new Action<SreKeyDataSource>(this.attach_SreKeyDataSources), new Action<SreKeyDataSource>(this.detach_SreKeyDataSources));
-			this._SreKeys = new EntitySet<SreKey>(new Action<SreKey>(this.attach_SreKeys), new Action<SreKey>(this.detach_SreKeys));
-			this._SreKey1 = default(EntityRef<SreKey>);
 			OnCreated();
 		}
 		
@@ -4439,20 +4453,6 @@ namespace Eyedia.IDPE.DataManager
 		public void OnDeserializing(StreamingContext context)
 		{
 			this.Initialize();
-		}
-		
-		[global::System.Runtime.Serialization.OnSerializingAttribute()]
-		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnSerializing(StreamingContext context)
-		{
-			this.serializing = true;
-		}
-		
-		[global::System.Runtime.Serialization.OnSerializedAttribute()]
-		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnSerialized(StreamingContext context)
-		{
-			this.serializing = false;
 		}
 	}
 }

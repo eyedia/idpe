@@ -108,10 +108,10 @@ namespace Eyedia.IDPE.Services
                 Directory.CreateDirectory(sysDir);
             
             StartLocalFileSystemWatcher();          
-            List<SreDataSource> dataSources = _Manager.GetDataSources();
-            foreach (SreDataSource dataSource in dataSources)
+            List<IdpeDataSource> dataSources = _Manager.GetDataSources();
+            foreach (IdpeDataSource dataSource in dataSources)
             {
-                List<SreKey> keys = Cache.Instance.Bag[dataSource.Id + ".keys"] as List<SreKey>;
+                List<IdpeKey> keys = Cache.Instance.Bag[dataSource.Id + ".keys"] as List<IdpeKey>;
                 if (keys == null)
                 {
                     //keys = _Manager.GetApplicationKeys(dataSource.Id, true);
@@ -426,10 +426,10 @@ namespace Eyedia.IDPE.Services
 
         #region Helper Methods
 
-        bool IsLocalFileSystemFoldersOverriden(List<SreKey> keys)
+        bool IsLocalFileSystemFoldersOverriden(List<IdpeKey> keys)
         {
 
-            SreKey key = (from e in keys
+            IdpeKey key = (from e in keys
                           where e.Type == (int)SreKeyTypes.LocalFileSystemFoldersOverriden
                           select e).SingleOrDefault();
 
@@ -503,18 +503,18 @@ namespace Eyedia.IDPE.Services
         }
 
         
-        string FindSREKeyUsingType(List<SreKey> keys, SreKeyTypes sreKeyType)
+        string FindSREKeyUsingType(List<IdpeKey> keys, SreKeyTypes sreKeyType)
         {
-            SreKey key =(from e in keys
+            IdpeKey key =(from e in keys
                     where e.Type == (int)sreKeyType
                     select e).SingleOrDefault();
 
             return key != null ? key.Value : string.Empty;
         }
 
-        string FindSREKeyUsingName(List<SreKey> keys, SreKeyTypes sreKeyType)
+        string FindSREKeyUsingName(List<IdpeKey> keys, SreKeyTypes sreKeyType)
         {
-            SreKey key = (from e in keys
+            IdpeKey key = (from e in keys
                            where e.Name == sreKeyType.ToString()
                            select e).SingleOrDefault();
 
@@ -538,7 +538,7 @@ namespace Eyedia.IDPE.Services
             
         }
 
-        internal void InvokeFileProcessed(int datasourceId, string jobId, List<SreKey> appKeys, string fileName, string outputFolder, string zipUniqueId)
+        internal void InvokeFileProcessed(int datasourceId, string jobId, List<IdpeKey> appKeys, string fileName, string outputFolder, string zipUniqueId)
         {
             Trace.TraceInformation("Invoke");
             Trace.Flush();
@@ -739,7 +739,7 @@ namespace Eyedia.IDPE.Services
     #region PullersEventArgs Class
     public class PullersEventArgs
     {
-        public PullersEventArgs(int datasourceId, string jobId, List<SreKey> dataSourceKeys, string outputFileName, string outputFolder, string zipUniqueId, ZipFileInformation zipFileInformation)
+        public PullersEventArgs(int datasourceId, string jobId, List<IdpeKey> dataSourceKeys, string outputFileName, string outputFolder, string zipUniqueId, ZipFileInformation zipFileInformation)
         {
             this.DataSourceId = datasourceId;
             this.JobId = jobId;
@@ -765,7 +765,7 @@ namespace Eyedia.IDPE.Services
         }
         public int DataSourceId { get; private set; }
         public string JobId { get; private set; }
-        public List<SreKey> DataSourceKeys { get; private set; }
+        public List<IdpeKey> DataSourceKeys { get; private set; }
         public string OutputFileName { get; private set; }
         public string OutputFolder { get; private set; }
         public string ZipUniqueId { get; private set; }

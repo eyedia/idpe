@@ -87,10 +87,10 @@ namespace Eyedia.IDPE.Services
 
         void Init()
         {
-            this.DataSource = new SreDataSource();
-            this.Attributes = new List<SreAttribute>();
-            this.Keys = new List<SreKey>();           
-            this.Rules = new List<SreRule>();
+            this.DataSource = new IdpeDataSource();
+            this.Attributes = new List<IdpeAttribute>();
+            this.Keys = new List<IdpeKey>();           
+            this.Rules = new List<IdpeRule>();
             this.RuleNames = new List<string>();
         }
 
@@ -104,19 +104,19 @@ namespace Eyedia.IDPE.Services
         public string SystemDataSourceName { get; set; }
 
         [DataMember]
-        public SreDataSource DataSource { get; set; }
+        public IdpeDataSource DataSource { get; set; }
 
         [DataMember]
-        public List<SreAttribute> Attributes { get; set; }
+        public List<IdpeAttribute> Attributes { get; set; }
 
         [DataMember]
-        public List<SreRule> Rules { get; set; }
+        public List<IdpeRule> Rules { get; set; }
 
         [DataMember]
         public List<string> RuleNames { get; set; }
 
         [DataMember]
-        public List<SreKey> Keys { get; set; }        
+        public List<IdpeKey> Keys { get; set; }        
 
         #region Export
         public void Export(int dataSourceId, string fileName, bool includeRules = true)
@@ -158,7 +158,7 @@ namespace Eyedia.IDPE.Services
 
             foreach (DataRow row in table.Rows)
             {
-                SreRule rule = new SreRule();                
+                IdpeRule rule = new IdpeRule();                
                 rule.Name = row["Name"].ToString();
                 rule.Description = row["Description"] != DBNull.Value ? row["Description"].ToString() : null;
                 rule.Xaml = row["Xaml"] != DBNull.Value ? row["Xaml"].ToString() : null;
@@ -176,10 +176,10 @@ namespace Eyedia.IDPE.Services
             sqlStatement += "where rds.DataSourceId = " + dataSourceId;
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(sqlStatement);
 
-            List<SreRule> rules = new List<SreRule>();
+            List<IdpeRule> rules = new List<IdpeRule>();
             foreach (DataRow row in table.Rows)
             {
-                SreRule rule = new SreRule();
+                IdpeRule rule = new IdpeRule();
                 rule.Name = row["Name"].ToString();
                 rule.Priority = row["Priority"] != DBNull.Value ? row["Priority"].ToString().ParseInt() : null;
                 rule.RuleSetType = row["RuleSetType"] != DBNull.Value ? row["RuleSetType"].ToString().ParseInt() : null;
@@ -193,10 +193,10 @@ namespace Eyedia.IDPE.Services
             ExportRuleNames(rules, RuleSetTypes.PostValidate);
         }
 
-        void ExportRuleNames(List<SreRule> allRules, RuleSetTypes ruleSetType)
+        void ExportRuleNames(List<IdpeRule> allRules, RuleSetTypes ruleSetType)
         {
-            List<SreRule> rules = allRules.Where(r => r.RuleSetType == (int)ruleSetType).ToList();
-            foreach (SreRule rule in rules)
+            List<IdpeRule> rules = allRules.Where(r => r.RuleSetType == (int)ruleSetType).ToList();
+            foreach (IdpeRule rule in rules)
             {
                 RuleNames.Add(string.Format("{0}({1}):{2}", ruleSetType.ToString().PadRight(12), rule.Priority, rule.Name));
             }
@@ -212,7 +212,7 @@ namespace Eyedia.IDPE.Services
 
             foreach (DataRow row in table.Rows)
             {
-                SreKey key = new SreKey();                
+                IdpeKey key = new IdpeKey();                
                 key.Name = row["Name"].ToString();
                 key.Value = row["Value"] != DBNull.Value ? row["Value"].ToString() : null;
                 key.Type = (int)(row["Type"] != DBNull.Value ? row["Type"].ToString().ParseInt() : 0);
@@ -234,7 +234,7 @@ namespace Eyedia.IDPE.Services
 
             foreach (DataRow row in table.Rows)
             {
-                SreAttribute attrb = new SreAttribute();                
+                IdpeAttribute attrb = new IdpeAttribute();                
                 attrb.Name = row["Name"] != DBNull.Value ? row["Name"].ToString() : null;
                 attrb.Type = row["Type"] != DBNull.Value ? row["Type"].ToString() : null;
                 attrb.Minimum = row["Minimum"] != DBNull.Value ? row["Minimum"].ToString() : null;
@@ -260,17 +260,17 @@ namespace Eyedia.IDPE.Services
                 remoteMachineName = Environment.MachineName;
 
             this.DataSource.Source = remoteIpAddress;
-            foreach(SreAttribute attrib in this.Attributes)
+            foreach(IdpeAttribute attrib in this.Attributes)
             {
                 attrib.Source = remoteIpAddress;
             }
 
-            foreach (SreRule rule in this.Rules)
+            foreach (IdpeRule rule in this.Rules)
             {
                 rule.Source = remoteIpAddress;
             }
 
-            foreach (SreKey key in this.Keys)
+            foreach (IdpeKey key in this.Keys)
             {
                 key.Source = remoteIpAddress;
             }
@@ -335,7 +335,7 @@ namespace Eyedia.IDPE.Services
             CoreDatabaseObjects.Instance.ExecuteStatement(sqlStatement, dal, connection, transaction);
             
             int position = 1;
-            foreach (SreAttribute attribute in this.Attributes)
+            foreach (IdpeAttribute attribute in this.Attributes)
             {
                 int attributeId = manager.AttributeExists(attribute.Name);
                 if (attributeId == 0)
@@ -355,7 +355,7 @@ namespace Eyedia.IDPE.Services
 
         void ImportKeys(IDal dal, IDbConnection connection, IDbTransaction transaction, Manager manager)
         {
-            foreach (SreKey key in this.Keys)
+            foreach (IdpeKey key in this.Keys)
             {
                 int dataSourceId = DataSource.Id;
                 if ((key.DataSourceId != null) && (key.DataSourceId != 0))
@@ -367,7 +367,7 @@ namespace Eyedia.IDPE.Services
         void ImportRules(IDal dal, IDbConnection connection, IDbTransaction transaction, Manager manager)
         {
             string sqlStatement = string.Empty;
-            foreach (SreRule rule in this.Rules)
+            foreach (IdpeRule rule in this.Rules)
             {
                 if (!rule.Name.Equals("DuplicateCheck", StringComparison.OrdinalIgnoreCase))
                 {
@@ -377,7 +377,7 @@ namespace Eyedia.IDPE.Services
 
                 if (this.DataSource.Id > 0)
                 {
-                    SreRuleDataSource sra = new SreRuleDataSource();
+                    IdpeRuleDataSource sra = new IdpeRuleDataSource();
                     sra.DataSourceId = this.DataSource.Id;
                     sra.RuleId = rule.Id;
                     sra.Priority = (int)rule.Priority;

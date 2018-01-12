@@ -116,8 +116,8 @@ namespace Eyedia.IDPE.Services
 
         public string ZipUniqueId { get; private set; }
 
-        List<SreKey> _datasourceKeys;
-        public List<SreKey> DataSourceKeys
+        List<IdpeKey> _datasourceKeys;
+        public List<IdpeKey> DataSourceKeys
         {
             get
             {
@@ -125,7 +125,7 @@ namespace Eyedia.IDPE.Services
                 {
                     object obj = Cache.Instance.Bag[this.DataSourceId + ".keys"];
                     if (obj != null)
-                        _datasourceKeys = obj as List<SreKey>;
+                        _datasourceKeys = obj as List<IdpeKey>;
                     else
                         _datasourceKeys = new Manager().GetApplicationKeys(this.DataSourceId, true);
                 }
@@ -290,9 +290,9 @@ namespace Eyedia.IDPE.Services
                     }
 
                     new FileUtility().FileCopy(unzippedFileName, destFileName, false);  //ignored and copied to output folder
-                    List<SreKey> appKeys = _datasourceKeys;
+                    List<IdpeKey> appKeys = _datasourceKeys;
                     if (appKeys == null)
-                        appKeys = Cache.Instance.Bag[DataSourceId + ".keys"] as List<SreKey>;
+                        appKeys = Cache.Instance.Bag[DataSourceId + ".keys"] as List<IdpeKey>;
                     Registry.Instance.Pullers.InvokeFileProcessed(this.DataSourceId, string.Empty, appKeys, 
                         destFileName, DataSource.GetOutputFolder(DataSourceId, DataSourceKeys), this.ZipUniqueId);
                   

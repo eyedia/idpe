@@ -55,8 +55,8 @@ namespace Eyedia.IDPE.Interface
             this.Text = TabText;            
         }
 
-        SreAttribute _Attribute;
-        public SreAttribute Attribute
+        IdpeAttribute _Attribute;
+        public IdpeAttribute Attribute
         {
             get { return _Attribute; }
             set
@@ -107,8 +107,8 @@ namespace Eyedia.IDPE.Interface
         public int DataSourceId {get; set; }
         public bool IsAssociatedWithSystemDataSource { get; set; }
 
-        SreDataSource _SreDataSource;
-        public SreDataSource DataSource
+        IdpeDataSource _SreDataSource;
+        public IdpeDataSource DataSource
         {
             get { return _SreDataSource; }
             set

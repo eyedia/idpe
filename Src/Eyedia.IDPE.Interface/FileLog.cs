@@ -66,11 +66,11 @@ namespace Eyedia.IDPE.Interface
         }
         void Init()
         {
-            List<SreDataSource> dataSources = new Manager().GetDataSources(1);
+            List<IdpeDataSource> dataSources = new Manager().GetDataSources(1);
             dataSources = dataSources.OrderBy(d => d.Name).ToList();
             cbDataSources.Items.Clear();
             cbDataSources.Items.Add("");
-            foreach (SreDataSource dataSource in dataSources)
+            foreach (IdpeDataSource dataSource in dataSources)
             {
                 cbDataSources.Items.Add(dataSource.Name);
             }
@@ -109,7 +109,7 @@ namespace Eyedia.IDPE.Interface
 
         void BindDataDetailed()
         {
-            List<SreLog> logs = new Manager().GetLogs(
+            List<IdpeLog> logs = new Manager().GetLogs(
                 dtPickerFrom.Checked ? (DateTime?)dtPickerFrom.Value : null,
                 dtPickerTo.Checked ? (DateTime?)dtPickerTo.Value : null,
                 string.IsNullOrEmpty(txtFileName.Text) ? null : txtFileName.Text,
@@ -122,7 +122,7 @@ namespace Eyedia.IDPE.Interface
             }
 
             lvSreLog.Items.Clear();
-            foreach (SreLog log in logs)
+            foreach (IdpeLog log in logs)
             {                
                 ListViewItem item = new ListViewItem(log.Started.ToString());
                 item.SubItems.Add(Path.GetFileName(log.FileName));

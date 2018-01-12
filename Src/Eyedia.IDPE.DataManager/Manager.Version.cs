@@ -48,7 +48,7 @@ namespace Eyedia.IDPE.DataManager
 {
     public partial class Manager
     {                
-        public int Save(SreVersion version, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
+        public int Save(IdpeVersion version, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
         {
             ValidateVersion(version);
             int versionId = 0;
@@ -108,7 +108,7 @@ namespace Eyedia.IDPE.DataManager
             return versionId;
         }
 
-        public SreVersion GetVersion(VersionObjectTypes versionType, int referenceId, int versionNumer)
+        public IdpeVersion GetVersion(VersionObjectTypes versionType, int referenceId, int versionNumer)
         {         
             string commandText = string.Format("select [Id],[Version],[Type],[ReferenceId],[Data], [CreatedBy], [CreatedTS] from [SreVersion] where [Type] = {0} and [ReferenceId] = {1} and [Version] = {2} order by createdts desc",
                 (int)versionType, referenceId, versionNumer);
@@ -120,9 +120,9 @@ namespace Eyedia.IDPE.DataManager
             return null;
         }
 
-        public List<SreVersion> GetVersions(VersionObjectTypes versionObjectType, int referenceId)
+        public List<IdpeVersion> GetVersions(VersionObjectTypes versionObjectType, int referenceId)
         {
-            List<SreVersion> versions = new List<SreVersion>();
+            List<IdpeVersion> versions = new List<IdpeVersion>();
             string commandText = string.Format("select [Id],[Version],[Type],[ReferenceId],[Data], [CreatedBy], [CreatedTS], [Source] from [SreVersion] where [Type] = {0} and [ReferenceId] = {1} order by createdts desc",
                 (int)versionObjectType, referenceId);
 
@@ -146,7 +146,7 @@ namespace Eyedia.IDPE.DataManager
 
         #region Helpers
 
-        private void ValidateVersion(SreVersion version)
+        private void ValidateVersion(IdpeVersion version)
         {
             string allErrors = string.Empty;
 
@@ -162,7 +162,7 @@ namespace Eyedia.IDPE.DataManager
                 switch ((VersionObjectTypes)version.Type)
                 {
                     case VersionObjectTypes.Attribute:
-                        SreAttribute attribute = GetAttribute(version.ReferenceId);
+                        IdpeAttribute attribute = GetAttribute(version.ReferenceId);
                         if (attribute.AttributeId == 0)
                             allErrors += "The INSERT statement conflicted with the FOREIGN KEY constraint. The conflict occurred in database, table SreAttribute, column 'Id'." + Environment.NewLine;
                         break;
@@ -174,7 +174,7 @@ namespace Eyedia.IDPE.DataManager
                         break;
 
                     case VersionObjectTypes.Rule:
-                        SreRule rule = GetRule(version.ReferenceId);
+                        IdpeRule rule = GetRule(version.ReferenceId);
                         if (rule.Id == 0)
                             allErrors += "The INSERT statement conflicted with the FOREIGN KEY constraint. The conflict occurred in database, table SreRule, column 'Id'." + Environment.NewLine;
                         break;
@@ -186,9 +186,9 @@ namespace Eyedia.IDPE.DataManager
                 throw new Exception(allErrors);
         }
 
-        private SreVersion DataRowToSreVersion(DataRow row)
+        private IdpeVersion DataRowToSreVersion(DataRow row)
         {
-            SreVersion version = new SreVersion();
+            IdpeVersion version = new IdpeVersion();
             version.Id = (int)row["Id"].ToString().ParseInt();
             version.Version = (int)row["Version"].ToString().ParseInt();
             version.Type = (int)row["Type"].ToString().ParseInt();

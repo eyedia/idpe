@@ -94,11 +94,11 @@ namespace Eyedia.IDPE.Services
             if (batchSize == 0)
                 batchSize = 5000;//default      
 
-            SreKey connectionStringKey = null;
+            IdpeKey connectionStringKey = null;
             if (string.IsNullOrEmpty(connectionStringKeyName))
             {
                 //default is repository database
-                connectionStringKey = new SreKey();
+                connectionStringKey = new IdpeKey();
                 connectionStringKey.Name = "cs";
                 connectionStringKey.Type = (int)Information.EyediaCoreConfigurationSection.Database.DatabaseType.GetSreType();
                 connectionStringKey.Value = ConfigurationManager.ConnectionStrings[Constants.ConnectionStringName].ToString();

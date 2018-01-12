@@ -52,7 +52,7 @@ namespace Eyedia.IDPE.Interface
         }
 
        
-        public SreDataSource SelectedSystemDataSource { get; set; }
+        public IdpeDataSource SelectedSystemDataSource { get; set; }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
@@ -60,7 +60,7 @@ namespace Eyedia.IDPE.Interface
             {
                 if (!string.IsNullOrEmpty(txtSearch.Text))
                 {
-                    SreDataSource newDs = new SreDataSource();
+                    IdpeDataSource newDs = new IdpeDataSource();
                     newDs.Name = txtSearch.Text;
                     newDs.IsActive = true;
                     newDs.IsSystem = true;
@@ -73,7 +73,7 @@ namespace Eyedia.IDPE.Interface
             else
             {
                 if (lbSystemDataSources.SelectedItems.Count > 0)
-                    SelectedSystemDataSource = (SreDataSource)lbSystemDataSources.SelectedItems[0];
+                    SelectedSystemDataSource = (IdpeDataSource)lbSystemDataSources.SelectedItems[0];
                 this.Close();
             }
         }
@@ -124,7 +124,7 @@ namespace Eyedia.IDPE.Interface
                 bool found = false;
                 for (i = 0; i < lbSystemDataSources.Items.Count; i++)
                 {
-                    SreDataSource ds = lbSystemDataSources.Items[i] as SreDataSource;
+                    IdpeDataSource ds = lbSystemDataSources.Items[i] as IdpeDataSource;
                     if ((ds != null) && (ds.Id == selectedSystemDataSourceId))
                     {
                         found = true;
@@ -192,7 +192,7 @@ namespace Eyedia.IDPE.Interface
                 bool found = false;
                 for (int i = 0; i < lbSystemDataSources.Items.Count; i++)
                 {
-                    if (txtSearch.Text.Equals(((SreDataSource)lbSystemDataSources.Items[i]).Name, StringComparison.OrdinalIgnoreCase))
+                    if (txtSearch.Text.Equals(((IdpeDataSource)lbSystemDataSources.Items[i]).Name, StringComparison.OrdinalIgnoreCase))
                     {
                         found = true;
                         break;
@@ -205,7 +205,7 @@ namespace Eyedia.IDPE.Interface
             {
                 for (int i = 0; i < lbSystemDataSources.Items.Count; i++)
                 {
-                    if (((SreDataSource)lbSystemDataSources.Items[i]).Name.ToLower().Contains(txtSearch.Text.ToLower()))
+                    if (((IdpeDataSource)lbSystemDataSources.Items[i]).Name.ToLower().Contains(txtSearch.Text.ToLower()))
                     {
                         lbSystemDataSources.SelectedIndex = i;
                         break;
@@ -221,7 +221,7 @@ namespace Eyedia.IDPE.Interface
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            frmCopyDataSource copyDataSource = new frmCopyDataSource((SreDataSource)lbSystemDataSources.SelectedItem);
+            frmCopyDataSource copyDataSource = new frmCopyDataSource((IdpeDataSource)lbSystemDataSources.SelectedItem);
             if (copyDataSource.ShowDialog() == DialogResult.OK)
                 Bind();
         }
@@ -238,7 +238,7 @@ namespace Eyedia.IDPE.Interface
             try
             {
                 if(lbSystemDataSources.SelectedIndex > -1)
-                new Manager().DeleteSystemDataSource(((SreDataSource)lbSystemDataSources.SelectedItem).Id);
+                new Manager().DeleteSystemDataSource(((IdpeDataSource)lbSystemDataSources.SelectedItem).Id);
                 Bind();
             }
             catch
@@ -256,7 +256,7 @@ namespace Eyedia.IDPE.Interface
         {
             if (lbSystemDataSources.SelectedIndex > -1)
             {
-                frmExportImport exportUI = new frmExportImport(((SreDataSource)lbSystemDataSources.SelectedItem).Id);
+                frmExportImport exportUI = new frmExportImport(((IdpeDataSource)lbSystemDataSources.SelectedItem).Id);
                 exportUI.ShowDialog();
             }
         }

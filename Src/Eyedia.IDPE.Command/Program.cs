@@ -121,9 +121,9 @@ namespace Eyedia.IDPE.Command
         private static void UpgradeToIdpe()
         {
             Manager manager = new Manager();
-            List<SreRule> rules = manager.GetRules();
+            List<IdpeRule> rules = manager.GetRules();
 
-            foreach(SreRule rule in rules)
+            foreach(IdpeRule rule in rules)
             {
                 rule.Xaml = rule.Xaml.Replace("Symplus.RuleEngine.Services", "Eyedia.IDPE.Services");
                 manager.Save(rule);

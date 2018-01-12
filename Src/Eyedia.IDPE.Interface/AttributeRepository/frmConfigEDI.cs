@@ -83,14 +83,14 @@ namespace Eyedia.IDPE.Interface
         private void BindData()
         {
             Manager manager = new Manager();
-            SreDataSource ds = manager.GetDataSourceDetails(DataSourceId);
+            IdpeDataSource ds = manager.GetDataSourceDetails(DataSourceId);
             if ((ds.Delimiter != null)
                 && (ds.Delimiter.ToLower() == "\t"))
                 cmbDelmiter.Text = "Tab";
             else
                 cmbDelmiter.Text = ds.Delimiter;
 
-            List<SreKey> keys = manager.GetKeys(DataSourceId);
+            List<IdpeKey> keys = manager.GetKeys(DataSourceId);
             rtbXslt.Text = keys.GetKeyValue(SreKeyTypes.EDIX12Xslt);
             SyntaxHighLighter.HighLight(rtbXslt, _blueKeyWords, _redKeyWords);
 
@@ -281,7 +281,7 @@ namespace Eyedia.IDPE.Interface
                 delimiter = "\t";
             manager.UpdateDelimiter(DataSourceId, delimiter);
 
-            SreKey key = new SreKey();
+            IdpeKey key = new IdpeKey();
             key.Name = SreKeyTypes.IsFirstRowHeader.ToString();
             key.Value = chkFileHasHeader.Checked.ToString();
             key.Type = (int)SreKeyTypes.IsFirstRowHeader;
@@ -289,7 +289,7 @@ namespace Eyedia.IDPE.Interface
 
             if (chkRenameHeaders.Checked)
             {
-                key = new SreKey();
+                key = new IdpeKey();
                 key.Name = SreKeyTypes.RenameColumnHeader.ToString();
                 key.Value = "True";
                 key.Type = (int)SreKeyTypes.RenameColumnHeader;
@@ -300,7 +300,7 @@ namespace Eyedia.IDPE.Interface
                 manager.DeleteKeyFromApplication(DataSourceId, SreKeyTypes.RenameColumnHeader.ToString(), true);
             }
 
-            key = new SreKey();
+            key = new IdpeKey();
             key.Name = SreKeyTypes.EDIX12Xslt.ToString();
             key.Value = rtbXslt.Text;
             key.Type = (int)SreKeyTypes.EDIX12Xslt;

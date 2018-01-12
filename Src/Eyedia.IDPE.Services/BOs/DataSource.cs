@@ -53,7 +53,7 @@ namespace Eyedia.IDPE.Services
     public partial class DataSource : IDisposable
     {
 
-        SreDataSource _dbApp;
+        IdpeDataSource _dbApp;
 
         /// <summary>
         /// Data source object, generally intialized by a Job
@@ -63,10 +63,10 @@ namespace Eyedia.IDPE.Services
         public DataSource(int id, string name)
         {
             Manager am = new Manager();
-            _dbApp = new SreDataSource();
-            _dbApp = Cache.Instance.Bag[id] as SreDataSource;
+            _dbApp = new IdpeDataSource();
+            _dbApp = Cache.Instance.Bag[id] as IdpeDataSource;
             if (_dbApp == null)
-                _dbApp = Cache.Instance.Bag[name] as SreDataSource;
+                _dbApp = Cache.Instance.Bag[name] as IdpeDataSource;
 
             if (_dbApp == null)
             {
@@ -90,14 +90,14 @@ namespace Eyedia.IDPE.Services
                 this.DataFeederType = (DataFeederTypes)_dbApp.DataFeederType;
                 this.DataFormatType = (DataFormatTypes)_dbApp.DataFormatType;
 
-                this.Attributes = Cache.Instance.Bag[this.Id + ".attributes"] as List<SreAttribute>;
+                this.Attributes = Cache.Instance.Bag[this.Id + ".attributes"] as List<IdpeAttribute>;
                 if (this.Attributes == null)
                 {
                     this.Attributes = am.GetAttributes(this.Id);
                     Cache.Instance.Bag.Add(this.Id + ".attributes", this.Attributes);
                 }
 
-                this.AttributesSystem = Cache.Instance.Bag[this.Id + ".attributessystem"] as List<SreAttribute>;
+                this.AttributesSystem = Cache.Instance.Bag[this.Id + ".attributessystem"] as List<IdpeAttribute>;
                 if (this.AttributesSystem == null)
                 {
                     this.AttributesSystem = am.GetAttributes((int)_dbApp.SystemDataSourceId);
@@ -139,13 +139,13 @@ namespace Eyedia.IDPE.Services
 
             #region Adding Derrived Keys
 
-            SreKey dkey = Keys.GetKey(SreKeyTypes.EmailAfterFileProcessedAttachOtherFiles.ToString());
+            IdpeKey dkey = Keys.GetKey(SreKeyTypes.EmailAfterFileProcessedAttachOtherFiles.ToString());
             if (dkey == null)
             {
                 //this key is used to send any additional files to be sent along with email
                 //this key value can be filled anywhere, including plugins
                 //Expected value is comma separate file names
-                dkey = new SreKey();
+                dkey = new IdpeKey();
                 dkey.Name = SreKeyTypes.EmailAfterFileProcessedAttachOtherFiles.ToString();
                 dkey.Value = string.Empty;
                 this.Keys.Add(dkey);
@@ -269,22 +269,22 @@ namespace Eyedia.IDPE.Services
         public bool IsFirstRowHeader { get; internal set; }
         public DataFeederTypes DataFeederType { get; private set; }
         public DataFormatTypes DataFormatType { get; private set; }
-        public List<SreKey> Keys { get; private set; }
+        public List<IdpeKey> Keys { get; private set; }
         public BusinessRules BusinessRules { get; private set; }       
 
         /// <summary>
         /// Returns list of attributes
         /// </summary>
-        public List<SreAttribute> Attributes { get; private set; }
+        public List<IdpeAttribute> Attributes { get; private set; }
 
         /// <summary>
         /// Returns only acceptable list of attributes
         /// </summary>
-        public List<SreAttribute> AcceptableAttributes
+        public List<IdpeAttribute> AcceptableAttributes
         {
             get
             {
-                List<SreAttribute> acceptableAttributes = new List<SreAttribute>();
+                List<IdpeAttribute> acceptableAttributes = new List<IdpeAttribute>();
                 if (Attributes != null)
                     acceptableAttributes = Attributes.Where(a => a.IsAcceptable == true).ToList();
                 return acceptableAttributes;
@@ -294,11 +294,11 @@ namespace Eyedia.IDPE.Services
         /// <summary>
         /// Returns only acceptable list of system attributes
         /// </summary>
-        public List<SreAttribute> AcceptableAttributesSystem
+        public List<IdpeAttribute> AcceptableAttributesSystem
         {
             get
             {
-                List<SreAttribute> acceptableAttributes = new List<SreAttribute>();
+                List<IdpeAttribute> acceptableAttributes = new List<IdpeAttribute>();
                 if (AttributesSystem != null)
                     acceptableAttributes = AttributesSystem.Where(a => a.IsAcceptable == true).ToList();
                 return acceptableAttributes;
@@ -363,7 +363,7 @@ namespace Eyedia.IDPE.Services
         /// <summary>
         /// Returns system attributes (inherited from parent data source)
         /// </summary>
-        public List<SreAttribute> AttributesSystem { get; private set; }
+        public List<IdpeAttribute> AttributesSystem { get; private set; }
 
 
         /// <summary>
@@ -371,13 +371,13 @@ namespace Eyedia.IDPE.Services
         /// </summary>
         /// <param name="sreKeyType">specific key</param>
         /// <returns></returns>
-        public SreKey Key(SreKeyTypes sreKeyType)
+        public IdpeKey Key(SreKeyTypes sreKeyType)
         {
             if ((sreKeyType == SreKeyTypes.Custom)
                 || (sreKeyType.IsConnectionStringType()))
                 return null;
 
-            List<SreKey> keys = (from e in this.Keys
+            List<IdpeKey> keys = (from e in this.Keys
                                  where e.Type == (int)sreKeyType
                                  select e).ToList();
             if (keys.Count > 0)
@@ -401,7 +401,7 @@ namespace Eyedia.IDPE.Services
         /// returns all custom keys
         /// </summary>
         /// <returns></returns>
-        public List<SreKey> KeyCustoms()
+        public List<IdpeKey> KeyCustoms()
         {
             return (from e in this.Keys
                     where e.Type == (int)SreKeyTypes.Custom
@@ -412,7 +412,7 @@ namespace Eyedia.IDPE.Services
         /// returns all connection strings
         /// </summary>
         /// <returns></returns>
-        public List<SreKey> KeyConnectionStrings()
+        public List<IdpeKey> KeyConnectionStrings()
         {
             return (from e in this.Keys
                     where ((SreKeyTypes)e.Type).IsConnectionStringType()
@@ -426,7 +426,7 @@ namespace Eyedia.IDPE.Services
         /// <param name="fileName">The attachment name</param>
         public void AddOtherAttachments(string fileName)
         {
-            SreKey key = this.Keys.GetKey(SreKeyTypes.EmailAfterFileProcessedAttachOtherFiles.ToString());
+            IdpeKey key = this.Keys.GetKey(SreKeyTypes.EmailAfterFileProcessedAttachOtherFiles.ToString());
             if (key != null)
             {
                 if (string.IsNullOrEmpty(key.Value))
@@ -445,7 +445,7 @@ namespace Eyedia.IDPE.Services
         /// </summary>
         public void ClearAdditionalAttachments()
         {
-            SreKey key = this.Keys.GetKey(SreKeyTypes.EmailAfterFileProcessedAttachOtherFiles.ToString());
+            IdpeKey key = this.Keys.GetKey(SreKeyTypes.EmailAfterFileProcessedAttachOtherFiles.ToString());
             if (key != null)
                 key.Value = string.Empty;
         }
@@ -453,8 +453,8 @@ namespace Eyedia.IDPE.Services
         private void InitRuleSets(Manager am)
         {
             this.BusinessRules = new BusinessRules();
-            List<SreRule> rules = am.GetRules(this.Id);
-            foreach (SreRule rule in rules)
+            List<IdpeRule> rules = am.GetRules(this.Id);
+            foreach (IdpeRule rule in rules)
             {
                 this.BusinessRules.Add(new BusinessRule(rule.Xaml, (int)rule.Priority, (RuleSetTypes)rule.RuleSetType));
             }
@@ -464,13 +464,13 @@ namespace Eyedia.IDPE.Services
         /// <summary>
         /// Returns pull folder path (when datasource object is not available)
         /// </summary>
-        public static string GetPullFolder(int dataSourceId, List<SreKey> keys)
+        public static string GetPullFolder(int dataSourceId, List<IdpeKey> keys)
         {
             string folder = Path.Combine(SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, dataSourceId.ToString());
             if (!IsLocalFileSystemFoldersAreOverriden(keys))
                 return folder;
 
-            SreKey key = (from e in keys
+            IdpeKey key = (from e in keys
                           where e.Type == (int)SreKeyTypes.LocalFileSystemFolderPull
                           select e).SingleOrDefault();
 
@@ -483,14 +483,14 @@ namespace Eyedia.IDPE.Services
         /// <summary>
         /// Returns output folder path (when datasource object is not available)
         /// </summary>
-        public static string GetOutputFolder(int dataSourceId, List<SreKey> keys)
+        public static string GetOutputFolder(int dataSourceId, List<IdpeKey> keys)
         {
             string folder = Path.Combine(SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryOutput, dataSourceId.ToString());
             folder = Path.Combine(folder, DateTime.Now.ToDBDateFormat());
             if (!IsLocalFileSystemFoldersAreOverriden(keys))
                 return folder;
 
-            SreKey key = (from e in keys
+            IdpeKey key = (from e in keys
                           where e.Type == (int)SreKeyTypes.LocalFileSystemFolderOutput
                           select e).SingleOrDefault();
 
@@ -504,7 +504,7 @@ namespace Eyedia.IDPE.Services
         /// <summary>
         /// Returns output file name based on data source configuration 
         /// </summary>
-        public static string GetOutputFileName(int dataSourceId, List<SreKey> keys, string outputFolder, string inputFileNameOnly)
+        public static string GetOutputFileName(int dataSourceId, List<IdpeKey> keys, string outputFolder, string inputFileNameOnly)
         {
             if (keys == null)
                 keys = LoadKeys(dataSourceId);
@@ -546,7 +546,7 @@ namespace Eyedia.IDPE.Services
         /// <summary>
         /// Returns archive folder path (when datasource object is not available)
         /// </summary>
-        public static string GetArchiveFolder(int dataSourceId, List<SreKey> keys)
+        public static string GetArchiveFolder(int dataSourceId, List<IdpeKey> keys)
         {
             string folder = Path.Combine(SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryArchive, dataSourceId.ToString());
             folder = Path.Combine(folder, DateTime.Now.ToDBDateFormat());
@@ -560,7 +560,7 @@ namespace Eyedia.IDPE.Services
                 return folder;
             }
 
-            SreKey key = (from e in keys
+            IdpeKey key = (from e in keys
                           where e.Type == (int)SreKeyTypes.LocalFileSystemFolderArchive
                           select e).SingleOrDefault();
 
@@ -570,12 +570,12 @@ namespace Eyedia.IDPE.Services
             return folder;
         }
 
-        static bool IsLocalFileSystemFoldersAreOverriden(List<SreKey> keys)
+        static bool IsLocalFileSystemFoldersAreOverriden(List<IdpeKey> keys)
         {
             if (keys == null)
                 return false;
 
-            SreKey key = (from e in keys
+            IdpeKey key = (from e in keys
                           where e.Type == (int)SreKeyTypes.LocalFileSystemFoldersOverriden
                           select e).SingleOrDefault();
 
@@ -590,10 +590,10 @@ namespace Eyedia.IDPE.Services
         /// <summary>
         /// Returns true if SRE to use default archive location (parallel to 'Pull')
         /// </summary>
-        public static bool IsLocalFileSystemFolderArchiveAuto(List<SreKey> keys)
+        public static bool IsLocalFileSystemFolderArchiveAuto(List<IdpeKey> keys)
         {
 
-            SreKey key = (from e in keys
+            IdpeKey key = (from e in keys
                           where e.Type == (int)SreKeyTypes.LocalFileSystemFolderArchiveAuto
                           select e).SingleOrDefault();
 
@@ -604,18 +604,18 @@ namespace Eyedia.IDPE.Services
 
         }
 
-        public static List<SreKey> LoadKeys(int dataSourceId)
+        public static List<IdpeKey> LoadKeys(int dataSourceId)
         {         
-            List<SreKey> keys = new List<SreKey>();
-            keys = Cache.Instance.Bag[dataSourceId + ".keys"] as List<SreKey>;
+            List<IdpeKey> keys = new List<IdpeKey>();
+            keys = Cache.Instance.Bag[dataSourceId + ".keys"] as List<IdpeKey>;
             if (keys == null)
             {
                 Manager manager = new Manager();
                 keys = manager.GetApplicationKeys(dataSourceId, true);
 
                 //adding global
-                List<SreKey> gKeys = manager.GetApplicationKeys(-99, true);
-                foreach (SreKey key in gKeys)
+                List<IdpeKey> gKeys = manager.GetApplicationKeys(-99, true);
+                foreach (IdpeKey key in gKeys)
                 {
                     if (keys.Where(dKey => dKey.Name == key.Name).ToList().Count == 0)
                         keys.Add(key);

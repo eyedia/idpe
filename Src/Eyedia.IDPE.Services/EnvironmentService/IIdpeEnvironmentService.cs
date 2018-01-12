@@ -79,7 +79,7 @@ namespace Eyedia.IDPE.Services
         string ProcessFile(EnvironmentServicePacket packet);
 
         [OperationContract]
-        List<SreDataSource> GetDataSources(EnvironmentServicePacket packet);
+        List<IdpeDataSource> GetDataSources(EnvironmentServicePacket packet);
 
         [OperationContract]
         FileTransferPacket GetConfigFile(EnvironmentServicePacket packet);
@@ -163,9 +163,9 @@ namespace Eyedia.IDPE.Services
             return response;
         }
 
-        public List<SreDataSource> GetDataSources(EnvironmentServicePacket packet)
+        public List<IdpeDataSource> GetDataSources(EnvironmentServicePacket packet)
         {
-            List<SreDataSource> dataSources = new Manager().GetDataSources().OrderBy(ds => ds.Name).ToList();
+            List<IdpeDataSource> dataSources = new Manager().GetDataSources().OrderBy(ds => ds.Name).ToList();
             dataSources.Where(ds => ds.DataFeederType == null).ToList().ForEach(ds1 => ds1.DataFeederType = 0);
             return dataSources;
         }

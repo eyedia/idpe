@@ -69,7 +69,7 @@ namespace Eyedia.IDPE.Services
                 string connectionStringKeyName = info[1];
                 string updateQuery = info[2];
 
-                SreKey connectionStringKey = null;
+                IdpeKey connectionStringKey = null;
                 if (!string.IsNullOrEmpty(connectionStringKeyName))
                 {
                     string connectionKeyNameRuntime = e.Job.GetProcessVariableValue(connectionStringKeyName).ToString();
@@ -93,7 +93,7 @@ namespace Eyedia.IDPE.Services
 
         #region Private Methods
 
-        void ExecuteQuery(DataSource dataSource, SreKey connectionStringKey, string updateQuery)
+        void ExecuteQuery(DataSource dataSource, IdpeKey connectionStringKey, string updateQuery)
         {
             //SreKey connectionStringKey = dataSource.Keys.GetKey(connectionStringKeyName);
             //if (connectionStringKey == null)

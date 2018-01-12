@@ -49,7 +49,7 @@ namespace Eyedia.IDPE.Interface
     public partial class SreDataSourceProperty:SrePropertyGrid
     {
         [Browsable(false)]
-        public List<SreKey> DataSourceKeys { get; set; }
+        public List<IdpeKey> DataSourceKeys { get; set; }
 
         [Browsable(true)]
         [CategoryAttribute("0-Global"), Description("System generated unique identifier of the data source")]
@@ -111,7 +111,7 @@ namespace Eyedia.IDPE.Interface
         [Browsable(false)]
         public string PusherTypeFullName { get; set; }
 
-        public SreDataSourceProperty(SreDataSource dataSource)
+        public SreDataSourceProperty(IdpeDataSource dataSource)
             : base(dataSource)
         {
         }
@@ -159,14 +159,14 @@ namespace Eyedia.IDPE.Interface
 
                 if(DataFormatType == DataFormatTypes.Custom)
                 {
-                    SreKey key = new Manager().GetKey(this.DataSource.Id, SreKeyTypes.FileInterfaceName.ToString());
+                    IdpeKey key = new Manager().GetKey(this.DataSource.Id, SreKeyTypes.FileInterfaceName.ToString());
                     if (key != null)
                         ConfigureDataFormat = key.Value;
                 }
 
                 if (SystemDataSourceId > 0)
                 {
-                    SreDataSource sysDs = new Manager().GetDataSourceDetails(SystemDataSourceId);
+                    IdpeDataSource sysDs = new Manager().GetDataSourceDetails(SystemDataSourceId);
                     if (sysDs != null)
                         SystemName = sysDs.Name;
                 }
@@ -177,7 +177,7 @@ namespace Eyedia.IDPE.Interface
                 OutputDataFormatType = (OutputTypes)DataSource.OutputType;
                 OutputCustomInterfaceName = DataSource.OutputWriterTypeFullName;
 
-                SreKey keyTestFileName = new Manager().GetKey(this.DataSource.Id, SreKeyTypes.TestFileName.ToString());
+                IdpeKey keyTestFileName = new Manager().GetKey(this.DataSource.Id, SreKeyTypes.TestFileName.ToString());
                 if (keyTestFileName != null)
                     TestFileName = keyTestFileName.Value;
 
@@ -311,7 +311,7 @@ namespace Eyedia.IDPE.Interface
                     break;
 
                 case DataFormatTypes.SpreadSheet:
-                    SreKey key = new SreKey();
+                    IdpeKey key = new IdpeKey();
                     key.Name = SreKeyTypes.SpreadSheetNumber.ToString();
                     key.Value = SpreadSheetNumber.ToString();
                     manager.Save(key, DataSource.Id);
@@ -326,7 +326,7 @@ namespace Eyedia.IDPE.Interface
             {
                 if (HasHeader)
                 {
-                    SreKey key = new SreKey();
+                    IdpeKey key = new IdpeKey();
                     key.Name = SreKeyTypes.IsFirstRowHeader.ToString();
                     key.Value = "True";
                     key.Type = (int)SreKeyTypes.IsFirstRowHeader;
@@ -341,7 +341,7 @@ namespace Eyedia.IDPE.Interface
 
             if (RenameHeader)
             {
-                SreKey key = new SreKey();
+                IdpeKey key = new IdpeKey();
                 key.Name = SreKeyTypes.RenameColumnHeader.ToString();
                 key.Value = "True";
                 key.Type = (int)SreKeyTypes.RenameColumnHeader;
@@ -354,7 +354,7 @@ namespace Eyedia.IDPE.Interface
 
             if (!string.IsNullOrEmpty(TestFileName))
             {
-                SreKey keyTestFileName = new SreKey();
+                IdpeKey keyTestFileName = new IdpeKey();
                 keyTestFileName.Name = SreKeyTypes.TestFileName.ToString();
                 keyTestFileName.Value = TestFileName;
                 keyTestFileName.Type = (int)SreKeyTypes.TestFileName;
@@ -376,13 +376,13 @@ namespace Eyedia.IDPE.Interface
         {
             
             Manager dm = new Manager();
-            SreKey key = new SreKey();
+            IdpeKey key = new IdpeKey();
             key.Name = SreKeyTypes.OutputPartialRecordsAllowed.ToString();
             key.Value = AllowPartial.ToString();
             key.Type = (int)SreKeyTypes.OutputPartialRecordsAllowed;
             dm.Save(key, DataSource.Id);
 
-            key = new SreKey();
+            key = new IdpeKey();
             key.Name = SreKeyTypes.OutputIsFirstRowHeader.ToString();
             key.Value = OutputHasHeader.ToString();
             key.Type = (int)SreKeyTypes.OutputIsFirstRowHeader;
@@ -399,7 +399,7 @@ namespace Eyedia.IDPE.Interface
 
                 case OutputTypes.Delimited:
 
-                    key = new SreKey();
+                    key = new IdpeKey();
                     key.Name = SreKeyTypes.OutputDelimiter.ToString();
                     if (OutputDelimiter.ToLower() == "tab")
                         key.Value = "\t";
@@ -411,7 +411,7 @@ namespace Eyedia.IDPE.Interface
                     dm.Save(key, DataSource.Id);
 
 
-                    key = new SreKey();
+                    key = new IdpeKey();
                     key.Name = SreKeyTypes.OutputDelimiterDoNotEncloseWithDoubleQuote.ToString();
                     key.Value = (!EncloseWithDoubleQuote).ToString();
                     key.Type = (int)SreKeyTypes.OutputDelimiterDoNotEncloseWithDoubleQuote;
@@ -435,7 +435,7 @@ namespace Eyedia.IDPE.Interface
 
             if (OutputFileNameFormat.ToLower() != "same as input")
             {
-                key = new SreKey();
+                key = new IdpeKey();
                 key.Name = SreKeyTypes.OutputFileName.ToString();
                 key.Value = OutputFileNameFormat;
                 key.Type = (int)SreKeyTypes.OutputFileName;
@@ -448,7 +448,7 @@ namespace Eyedia.IDPE.Interface
 
             if (OutputFileExtension.ToLower() != ".xml")
             {
-                key = new SreKey();
+                key = new IdpeKey();
                 key.Name = SreKeyTypes.OutputFileExtension.ToString();
                 key.Value = OutputFileExtension;
                 key.Type = (int)SreKeyTypes.OutputFileExtension;

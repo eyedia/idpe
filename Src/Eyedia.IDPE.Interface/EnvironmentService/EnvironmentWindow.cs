@@ -90,8 +90,8 @@ namespace Eyedia.IDPE.Interface
 
         #region Properties
         SreEnvironments Envs;
-        private SreDataSource SelectedDataSource { get { return (SreDataSource)cbDataSources.SelectedItem; } }
-        private SreRule SelectedRule { get { return (SreRule)cbRules.SelectedItem; } }
+        private IdpeDataSource SelectedDataSource { get { return (IdpeDataSource)cbDataSources.SelectedItem; } }
+        private IdpeRule SelectedRule { get { return (IdpeRule)cbRules.SelectedItem; } }
         SreEnvironment SelectedEnvironment
         {
             get
@@ -523,7 +523,7 @@ namespace Eyedia.IDPE.Interface
         private void BindDataSources(bool onlyPullSqlType = false)
         {
             cbDataSources.DataSource = null;
-            List<SreDataSource> dataSources = new Manager().GetDataSources().OrderBy(ds => ds.Name).ToList();
+            List<IdpeDataSource> dataSources = new Manager().GetDataSources().OrderBy(ds => ds.Name).ToList();
             dataSources.Where(ds => ds.DataFeederType == null).ToList().ForEach(ds1 => ds1.DataFeederType = 0);
 
             if (onlyPullSqlType)
@@ -670,7 +670,7 @@ namespace Eyedia.IDPE.Interface
                 lblDataSources.ForeColor = SystemColors.HotTrack;
                 Log(string.Format("Retrieving data sources from '{0}' environment...", SelectedEnvironment.Name), false);
 
-                List<SreDataSource> dataSources = EnvironmentServiceDispatcherFactory.GetInstance(radTcpIp.Checked).GetDataSources(SelectedEnvironmentConfig);
+                List<IdpeDataSource> dataSources = EnvironmentServiceDispatcherFactory.GetInstance(radTcpIp.Checked).GetDataSources(SelectedEnvironmentConfig);
                 if (SelectedCommand == EnvironmentServiceCommands.ProcessFile)
                 {
                     dataSources = dataSources.Where(ds => (DataFeederTypes)ds.DataFeederType != DataFeederTypes.PullSql).ToList();
@@ -692,7 +692,7 @@ namespace Eyedia.IDPE.Interface
             else
             {
                 cbDataSources.DataSource = null;
-                List<SreDataSource> dataSources = new Manager().GetDataSources().OrderBy(ds => ds.Name).ToList();
+                List<IdpeDataSource> dataSources = new Manager().GetDataSources().OrderBy(ds => ds.Name).ToList();
                 dataSources.Where(ds => ds.DataFeederType == null).ToList().ForEach(ds1 => ds1.DataFeederType = 0);
                 if ((SelectedCommand == EnvironmentServiceCommands.StopSqlPuller)
                 || (SelectedCommand == EnvironmentServiceCommands.StartSqlPuller))

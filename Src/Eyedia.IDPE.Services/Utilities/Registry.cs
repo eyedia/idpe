@@ -303,7 +303,7 @@ namespace Eyedia.IDPE.Services
 
         public void RefreshGlobalEvents()
         {           
-            SreKey key = new Manager().GetKey(SreKeyTypes.GlobalEventsOnComplete);
+            IdpeKey key = new Manager().GetKey(SreKeyTypes.GlobalEventsOnComplete);
             if (key != null)
                 GlobalEventsOnCompletes = new GlobalEventsOnCompletes(key.Value);
             else

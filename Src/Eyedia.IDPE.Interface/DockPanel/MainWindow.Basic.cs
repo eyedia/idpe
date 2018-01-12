@@ -237,7 +237,7 @@ namespace Eyedia.IDPE.Interface
             {
                 this.Cursor = Cursors.WaitCursor;
                 DataTable table = m_dm_GlobalAttributes.ReadData(openFileDialog1.FileName);
-                List<SreAttribute> attributes = new List<SreAttribute>();
+                List<IdpeAttribute> attributes = new List<IdpeAttribute>();
                 string result = m_dm_GlobalAttributes.ImportAttributes(table, ref attributes);
                 if (!isSytem)
                 {
@@ -267,7 +267,7 @@ namespace Eyedia.IDPE.Interface
 
                 foreach (ListViewItem item in sreListView.ListView.Items)
                 {
-                    SreAttribute attrib = item.Tag as SreAttribute;
+                    IdpeAttribute attrib = item.Tag as IdpeAttribute;
                     sw.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\"", attrib.Name, attrib.Type, attrib.Position));
                 }
                 sw.Close();

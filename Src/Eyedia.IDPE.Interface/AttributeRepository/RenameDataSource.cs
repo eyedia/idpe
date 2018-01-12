@@ -47,8 +47,8 @@ namespace Eyedia.IDPE.Interface
 {
     public partial class RenameDataSource : Form
     {
-        internal SreDataSource DataSource;
-        public RenameDataSource(SreDataSource dataSource)
+        internal IdpeDataSource DataSource;
+        public RenameDataSource(IdpeDataSource dataSource)
         {
             InitializeComponent();
             ;
@@ -82,7 +82,7 @@ namespace Eyedia.IDPE.Interface
             lvw.Items.Add(item);
 
             Manager manager = new Manager();
-            List<SreRule> rules = manager.GetRules();
+            List<IdpeRule> rules = manager.GetRules();
             string[] words = DataSource.Name.Split(" ".ToCharArray());
             for(int i=0;i<words.Length;i++)
             {
@@ -93,7 +93,7 @@ namespace Eyedia.IDPE.Interface
             }
             rules = rules.Distinct().ToList();
             
-            foreach (SreRule rule in rules)
+            foreach (IdpeRule rule in rules)
             {
                 int usedBy = manager.GetRuleDependencies(rule.Id).Rows.Count;
                 item = new ListViewItem("Rule Name");

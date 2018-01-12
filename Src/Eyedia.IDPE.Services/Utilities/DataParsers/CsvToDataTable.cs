@@ -105,7 +105,7 @@ namespace Eyedia.IDPE.Services
                     }
                     else
                     {
-                        foreach (SreAttribute attribute in DataSource.AcceptableAttributes)
+                        foreach (IdpeAttribute attribute in DataSource.AcceptableAttributes)
                         {
                             table.Columns.Add(attribute.Name);
                         }

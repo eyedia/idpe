@@ -63,13 +63,13 @@ namespace Eyedia.IDPE.Services
             return Constants.success;
         }
 
-        public virtual string DeployRule(SreEnvironmentConfig toEnvironment, SreRule rule)
+        public virtual string DeployRule(SreEnvironmentConfig toEnvironment, IdpeRule rule)
         {
             Packet.DataSourceBundle = new DataSourceBundle();
             Packet.DataSourceBundle.Rules.Add(rule);
             return Constants.success;
         }
-        public virtual string DeployKeys(SreEnvironmentConfig toEnvironment, List<SreKey> keys)
+        public virtual string DeployKeys(SreEnvironmentConfig toEnvironment, List<IdpeKey> keys)
         {
             Packet.DataSourceBundle = new DataSourceBundle();
             Packet.DataSourceBundle.Keys.AddRange(keys);
@@ -99,7 +99,7 @@ namespace Eyedia.IDPE.Services
         public abstract string StartSqlPuller(SreEnvironmentConfig toEnvironment, int datasourceId);
         public abstract string ExecuteCommand(SreEnvironmentConfig toEnvironment, string commandFileName);
         public abstract string ProcessFile(SreEnvironmentConfig toEnvironment, int datasourceId, string fileName);
-        public abstract List<SreDataSource> GetDataSources(SreEnvironmentConfig toEnvironment);
+        public abstract List<IdpeDataSource> GetDataSources(SreEnvironmentConfig toEnvironment);
         public abstract FileTransferPacket GetConfigFile(SreEnvironmentConfig toEnvironment, string configFileName);
         public abstract string SetConfigFile(SreEnvironmentConfig toEnvironment, FileTransferPacket fileTransferPacket);
         public abstract FileTransferPacket GetLastDeploymentLog(SreEnvironmentConfig fromEnvironment);

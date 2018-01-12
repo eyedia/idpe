@@ -83,7 +83,7 @@ namespace Eyedia.IDPE.Interface
             mnItmManageAction4.Visible = false;
             mnItmManageAction5.Visible = false;
 
-            SreKey key = new Manager().GetKey(SreKeyTypes.CustomActions);
+            IdpeKey key = new Manager().GetKey(SreKeyTypes.CustomActions);
             if (key != null)
             {
                 if (!key.Value.Contains("|"))

@@ -51,9 +51,9 @@ namespace Eyedia.IDPE.DataManager
 {
     public partial class Manager
     {
-        public List<SreAttribute> GetAttributes()
+        public List<IdpeAttribute> GetAttributes()
         {
-            List<SreAttribute> attrbs = new List<SreAttribute>();
+            List<IdpeAttribute> attrbs = new List<IdpeAttribute>();
             string commandText = "select [AttributeId],[Name],[Type],[Minimum],[Maximum],[Formula],[IsAcceptable],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [SreAttribute]";
 
             DataTable table = Core.Data.CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
@@ -62,7 +62,7 @@ namespace Eyedia.IDPE.DataManager
 
             foreach (DataRow row in table.Rows)
             {
-                SreAttribute attrb = new SreAttribute();
+                IdpeAttribute attrb = new IdpeAttribute();
                 attrb.AttributeId = (int)row["AttributeId"].ToString().ParseInt();
                 attrb.Name = row["Name"] != DBNull.Value ? row["Name"].ToString() : null;
                 attrb.Type = row["Type"] != DBNull.Value ? new CultureInfo("en-US", false).TextInfo.ToTitleCase(row["Type"].ToString().ToLower()) : null;
@@ -113,9 +113,9 @@ namespace Eyedia.IDPE.DataManager
             return table;
         }
 
-        public SreAttribute GetAttribute(int id)
+        public IdpeAttribute GetAttribute(int id)
         {
-            SreAttribute attrb = new SreAttribute();
+            IdpeAttribute attrb = new IdpeAttribute();
             string commandText = "select [AttributeId],[Name],[Type],[Minimum],[Maximum],[Formula],[IsAcceptable],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [SreAttribute] ";
             commandText += "where [AttributeId] = " + id;
 
@@ -143,9 +143,9 @@ namespace Eyedia.IDPE.DataManager
             return attrb;
         }
 
-        public SreAttribute GetAttribute(string name)
+        public IdpeAttribute GetAttribute(string name)
         {
-            SreAttribute attrb = new SreAttribute();
+            IdpeAttribute attrb = new IdpeAttribute();
             string commandText = "select [AttributeId],[Name],[Type],[Minimum],[Maximum],[Formula],[IsAcceptable],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [SreAttribute] ";
             commandText += "where [Name] = '" + name + "'";
 
@@ -210,9 +210,9 @@ namespace Eyedia.IDPE.DataManager
         }
 
 
-        public List<SreAttributeDataSource> GetSreAttributeDataSources(int attributeDataSourceId = 0)
+        public List<IdpeAttributeDataSource> GetSreAttributeDataSources(int attributeDataSourceId = 0)
         {
-            List <SreAttributeDataSource> sreAttributeDataSources = new List<SreAttributeDataSource>();
+            List <IdpeAttributeDataSource> sreAttributeDataSources = new List<IdpeAttributeDataSource>();
             string commandText = "select [AttributeDataSourceId],[DataSourceId],[AttributeId],[Position],[IsAcceptable],[AttributePrintValueType],[AttributePrintValueCustom],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [SreAttributeDataSource]";
             if (attributeDataSourceId > 0)
                 commandText += " where [AttributeDataSourceId] = " + attributeDataSourceId;
@@ -225,7 +225,7 @@ namespace Eyedia.IDPE.DataManager
 
             foreach (DataRow row in table.Rows)
             {
-                SreAttributeDataSource sreAttributeDataSource = new SreAttributeDataSource();
+                IdpeAttributeDataSource sreAttributeDataSource = new IdpeAttributeDataSource();
                 sreAttributeDataSource.AttributeDataSourceId = (int)row["AttributeDataSourceId"].ToString().ParseInt();
                 sreAttributeDataSource.DataSourceId = (int)row["DataSourceId"].ToString().ParseInt();
                 sreAttributeDataSource.AttributeId = (int)row["AttributeId"].ToString().ParseInt();
@@ -245,9 +245,9 @@ namespace Eyedia.IDPE.DataManager
             return sreAttributeDataSources;
         }
 
-        public List<SreAttribute> GetAttributes(int dataSourceId)
+        public List<IdpeAttribute> GetAttributes(int dataSourceId)
         {         
-            List<SreAttribute> attrbs = new List<SreAttribute>();
+            List<IdpeAttribute> attrbs = new List<IdpeAttribute>();
             string commandText = "select a.[AttributeId],a.[Name],a.[Type],a.[Minimum],a.[Maximum],a.[Formula],aes.[IsAcceptable], aes.[Position], aes.[AttributePrintValueType], aes.[AttributePrintValueCustom],a.[CreatedTS],a.[CreatedBy],a.[ModifiedTS],a.[ModifiedBy],a.[Source] " +
                 " from  sreAttribute a Inner join sreAttributeDataSource aes  on a.AttributeId = aes.AttributeId " +
                          " inner join sreDataSource es on aes.DataSourceId = es.Id where es.Id =  " + dataSourceId + " order by aes.Position";
@@ -258,7 +258,7 @@ namespace Eyedia.IDPE.DataManager
 
             foreach (DataRow row in table.Rows)
             {
-                SreAttribute attrb = new SreAttribute();
+                IdpeAttribute attrb = new IdpeAttribute();
                 attrb.AttributeId = (int)row["AttributeId"].ToString().ParseInt();
                 attrb.Name = row["Name"] != DBNull.Value ? row["Name"].ToString() : null;
                 attrb.Type = row["Type"] != DBNull.Value ? new CultureInfo("en-US", false).TextInfo.ToTitleCase(row["Type"].ToString().ToLower()) : null;
@@ -280,10 +280,10 @@ namespace Eyedia.IDPE.DataManager
             return attrbs;
         }
 
-        public List<SreAttribute> GetAttributes(string dataSourceName)
+        public List<IdpeAttribute> GetAttributes(string dataSourceName)
         {
 
-            List<SreAttribute> attrbs = new List<SreAttribute>();
+            List<IdpeAttribute> attrbs = new List<IdpeAttribute>();
             string commandText = "select a.[AttributeId],a.[Name],a.[Type],a.[Minimum],a.[Maximum],a.[Formula],a.[IsAcceptable],aes.[AttributePrintValueType], aes.[AttributePrintValueCustom], a.[CreatedTS],a.[CreatedBy],a.[ModifiedTS],a.[ModifiedBy],a.[Source] " + 
                 " from  sreAttribute a Inner join sreAttributeDataSource aes  on a.AttributeId = aes.AttributeId " +
                          " inner join sreDataSource es on aes.DataSourceId = es.Id where es.Name =  '" + dataSourceName + "' order by aes.Position";
@@ -294,7 +294,7 @@ namespace Eyedia.IDPE.DataManager
 
             foreach (DataRow row in table.Rows)
             {
-                SreAttribute attrb = new SreAttribute();
+                IdpeAttribute attrb = new IdpeAttribute();
                 attrb.AttributeId = (int)row["AttributeId"].ToString().ParseInt();
                 attrb.Name = row["Name"] != DBNull.Value ? row["Name"].ToString() : null;
                 attrb.Type = row["Type"] != DBNull.Value ? new CultureInfo("en-US", false).TextInfo.ToTitleCase(row["Type"].ToString().ToLower()) : null;
@@ -319,7 +319,7 @@ namespace Eyedia.IDPE.DataManager
        
         public bool IsAttributeInUse(int attributeId)
         {
-            List<SreAttributeDataSource> sreAttributeDataSources = GetSreAttributeDataSources();
+            List<IdpeAttributeDataSource> sreAttributeDataSources = GetSreAttributeDataSources();
             var record = sreAttributeDataSources.FirstOrDefault(a => a.AttributeId == attributeId);
             return record == null ? false : true;
         }
@@ -353,7 +353,7 @@ namespace Eyedia.IDPE.DataManager
 
         }
 
-        public int Save(SreAttribute attribute, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
+        public int Save(IdpeAttribute attribute, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
         {
             if ((attribute.AttributeId == 1)
                 || (attribute.Name.ToLower() == "isvalid"))
@@ -472,7 +472,7 @@ namespace Eyedia.IDPE.DataManager
         }
 
 
-        public void Save(SreAttributeDataSource sreAttributeDataSource, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
+        public void Save(IdpeAttributeDataSource sreAttributeDataSource, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
         {
             string cmdText = string.Empty;
             bool localTransaction = false;

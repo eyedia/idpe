@@ -46,12 +46,12 @@ namespace Eyedia.IDPE.Interface.RuleEditor
         {
             this.ConnectionString = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
         }
-        public List<SreRule> GetSreRules()
+        public List<IdpeRule> GetSreRules()
         {  
            return new Manager().GetRules(101);
         }
    
-        public bool SaveSreRule(SreRule sreRule)
+        public bool SaveSreRule(IdpeRule sreRule)
         {
             new Manager().Save(sreRule);
             SreServiceCommunicator.ClearRule(sreRule.Id, sreRule.Name);

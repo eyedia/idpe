@@ -171,7 +171,7 @@ namespace Eyedia.IDPE.Services
             {
                 List<string> allFiles = RequiredFiles;
 
-                SreKey key = new Manager().GetKey(SreKeyTypes.AdditionalDeploymentArtifacts);
+                IdpeKey key = new Manager().GetKey(SreKeyTypes.AdditionalDeploymentArtifacts);
                 if (key != null)
                     allFiles.AddRange(key.GetUnzippedBinaryValue().Split(",".ToCharArray()));
 

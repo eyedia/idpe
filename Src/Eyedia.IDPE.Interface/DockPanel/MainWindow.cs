@@ -59,7 +59,7 @@ namespace Eyedia.IDPE.Interface
     {
         #region MainWindow Properties
 
-        private SreDataSource SelectedDataSource { get; set; }     
+        private IdpeDataSource SelectedDataSource { get; set; }     
         private DockPanelGlobalAttributes m_dm_GlobalAttributes;
         private DockPanelDataSources m_dm_DataSources;
         private DockPanelProperty m_dm_Property;
@@ -164,7 +164,7 @@ namespace Eyedia.IDPE.Interface
             m_EmailLog.Show(dockPanel, DockState.DockRightAutoHide);
             m_EmailLog.AutoHidePortion = 0.5;
 
-            m_Rules_Editor = new RuleEditor.MainWindow(new SreRule(), Common.RuleSetTypes.RowPreparing);            
+            m_Rules_Editor = new RuleEditor.MainWindow(new IdpeRule(), Common.RuleSetTypes.RowPreparing);            
 
             m_dm_Property = new DockPanelProperty();
             m_dm_Property.CloseButtonVisible = false;
@@ -209,7 +209,7 @@ namespace Eyedia.IDPE.Interface
         }
             void OnAttributeAddButtonClicked(object sender, EventArgs e)
         {
-            SreAttribute newAttribute = new SreAttribute();
+            IdpeAttribute newAttribute = new IdpeAttribute();
             newAttribute.IsAcceptable = true;
             newAttribute.Type = "String";
             m_dm_Property.IsAssociatedWithSystemDataSource = false;
@@ -227,7 +227,7 @@ namespace Eyedia.IDPE.Interface
 
         void OnDataSourceAddButtonClicked(object sender, EventArgs e)
         {
-            SreDataSource newDs = new SreDataSource();
+            IdpeDataSource newDs = new IdpeDataSource();
             newDs.IsSystem = false;
             newDs.IsActive = true;
             newDs.DataFeederType = (int)DataFeederTypes.PullLocalFileSystem;
@@ -287,7 +287,7 @@ namespace Eyedia.IDPE.Interface
                    "Disassociate Attribute", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                         return;
                     
-                    if (manager.DisassociateAttributeFromDataSource(dataSourceId, (sreListView1.ListView.SelectedItems[0].Tag as SreAttribute).AttributeId) == true)
+                    if (manager.DisassociateAttributeFromDataSource(dataSourceId, (sreListView1.ListView.SelectedItems[0].Tag as IdpeAttribute).AttributeId) == true)
                     {
                         sreListView1.ListView.Items.Remove(sreListView1.ListView.SelectedItems[0]);
                         saved = true;
@@ -299,7 +299,7 @@ namespace Eyedia.IDPE.Interface
                     {
                         if (selectedItem.Text != "IsValid")
                         {
-                            if (manager.DisassociateAttributeFromDataSource(dataSourceId, (selectedItem.Tag as SreAttribute).AttributeId) == true)
+                            if (manager.DisassociateAttributeFromDataSource(dataSourceId, (selectedItem.Tag as IdpeAttribute).AttributeId) == true)
                                 sreListView1.ListView.Items.Remove(sreListView1.ListView.SelectedItems[0]);
                             saved = true;
                         }
@@ -326,10 +326,10 @@ namespace Eyedia.IDPE.Interface
             int position = 1;
             foreach (ListViewItem item in listView.Items)
             {
-                SreAttribute attribute = item.Tag as SreAttribute;
+                IdpeAttribute attribute = item.Tag as IdpeAttribute;
                 if (attribute.Name == "IsValid")
                     continue;
-                SreAttributeDataSource sds = new SreAttributeDataSource();
+                IdpeAttributeDataSource sds = new IdpeAttributeDataSource();
                 sds.DataSourceId = dataSourceId;
                 sds.IsAcceptable = (bool)attribute.IsAcceptable;
                 sds.AttributeId = attribute.AttributeId;
@@ -378,7 +378,7 @@ namespace Eyedia.IDPE.Interface
             {
                 if (sreListView.ListView.SelectedItems.Count > 0)
                 {
-                    SreAttribute selectedAttribute = sreListView.ListView.SelectedItems[0].Tag as SreAttribute;
+                    IdpeAttribute selectedAttribute = sreListView.ListView.SelectedItems[0].Tag as IdpeAttribute;
                     if ((m_dm_Property.propertyGrid.SelectedObject != null)
                         && (((SrePropertyGrid)m_dm_Property.propertyGrid.SelectedObject).HasChanged))
                     {
@@ -485,16 +485,16 @@ namespace Eyedia.IDPE.Interface
                         Application.DoEvents();
                         if ((sreListView.DefaultItemId > 0) && (!MainWindowShown))
                         {
-                            SelectedDataSource = sreListView.ListView.Items.Cast<ListViewItem>().Select(x => x.Tag).ToList().Cast<SreDataSource>().Where(ds => ds.Id == sreListView.DefaultItemId).SingleOrDefault();
+                            SelectedDataSource = sreListView.ListView.Items.Cast<ListViewItem>().Select(x => x.Tag).ToList().Cast<IdpeDataSource>().Where(ds => ds.Id == sreListView.DefaultItemId).SingleOrDefault();
                             if (sreListView.DefaultItem != null)
                                 sreListView.DefaultItem.EnsureVisible();
 
                             if (SelectedDataSource == null)
-                                SelectedDataSource = sreListView.ListView.Items[0].Tag as SreDataSource;
+                                SelectedDataSource = sreListView.ListView.Items[0].Tag as IdpeDataSource;
                         }
                         else
                         {
-                            SelectedDataSource = sreListView.ListView.SelectedItems[0].Tag as SreDataSource;
+                            SelectedDataSource = sreListView.ListView.SelectedItems[0].Tag as IdpeDataSource;
                         }
 
                         m_dm_DataSources.SelectedDataSource = SelectedDataSource;

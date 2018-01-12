@@ -161,7 +161,7 @@ namespace Eyedia.IDPE.Services
 
         #region Helpers
 
-        public static CSharpCodeInformation GetCSharpCodeInformation(List<SreKey> dataSourceKeys, CSharpCodeInformation csharpCodeInformation = null)
+        public static CSharpCodeInformation GetCSharpCodeInformation(List<IdpeKey> dataSourceKeys, CSharpCodeInformation csharpCodeInformation = null)
         {
             if (csharpCodeInformation == null)
                 csharpCodeInformation = new CSharpCodeInformation(dataSourceKeys.GetKeyValue(SreKeyTypes.CSharpCodeGenerateTable));

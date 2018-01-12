@@ -69,7 +69,7 @@ namespace Eyedia.IDPE.Interface
         public DataFormatTypes DataFormatType { get; set; }
 
         BindingList<Data.Attribute> Attributes;
-        List<SreKey> Keys;        
+        List<IdpeKey> Keys;        
 
         public HeaderFooterConfiguration()
         {
@@ -374,7 +374,7 @@ namespace Eyedia.IDPE.Interface
                     string[] attributeNames = Attributes.Where(aa => aa.IsAcceptable == true).Select(a => a.Name).ToArray();
                     fixedLengthSchemaGenerator1.Attributes = attributeNames;
 
-                    SreKey key =  Keys.GetKey(SreKeyTypes.FixedLengthSchema.ToString());
+                    IdpeKey key =  Keys.GetKey(SreKeyTypes.FixedLengthSchema.ToString());
                     fixedLengthSchemaGenerator1.Schema = key != null ? key.Value : string.Empty;                    
                     break;
 
@@ -396,7 +396,7 @@ namespace Eyedia.IDPE.Interface
 
         private void BindHeaders()
         {
-            SreKey key = Keys.GetKey(SreKeyTypes.HeaderLine1Attribute.ToString());            
+            IdpeKey key = Keys.GetKey(SreKeyTypes.HeaderLine1Attribute.ToString());            
             if (key != null)
             {
                 txtHeader1.Text = key.Value;
@@ -443,7 +443,7 @@ namespace Eyedia.IDPE.Interface
 
         private void BindFooters()
         {
-            SreKey key = Keys.GetKey(SreKeyTypes.FooterLine1Attribute.ToString());
+            IdpeKey key = Keys.GetKey(SreKeyTypes.FooterLine1Attribute.ToString());
             if (key != null)
             {
                 txtFooter1.Text = key.Value;

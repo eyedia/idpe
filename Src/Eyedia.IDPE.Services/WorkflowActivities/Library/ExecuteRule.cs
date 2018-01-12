@@ -60,7 +60,7 @@ namespace Eyedia.IDPE.Services
             Job job = context.GetValue(this.Job);
             WorkerData data = context.GetValue(this.Data);
 
-            SreRule rule = null;
+            IdpeRule rule = null;
             int ruleId = context.GetValue(this.RuleId);
             string ruleName = context.GetValue(this.RuleName);
 

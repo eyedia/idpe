@@ -266,7 +266,7 @@ namespace Eyedia.IDPE.Services
         private void FeedCustom()
         {
             List<string> errors = new List<string>();
-            SreKey fileInterface = Job.DataSource.Key(SreKeyTypes.FileInterfaceName);
+            IdpeKey fileInterface = Job.DataSource.Key(SreKeyTypes.FileInterfaceName);
             if(fileInterface == null)
             {
                 //let's do one check for system datasource, keys may be missing for system ds                
@@ -487,7 +487,7 @@ namespace Eyedia.IDPE.Services
                 if (Job.DataSource.IsFirstRowHeader)
                 {
                     string columnNames = string.Empty;
-                    foreach (SreAttribute attrib in Job.DataSource.AcceptableAttributes)
+                    foreach (IdpeAttribute attrib in Job.DataSource.AcceptableAttributes)
                     {
                         columnNames += "\"" + attrib.Name + "\",";
                     }
@@ -543,7 +543,7 @@ namespace Eyedia.IDPE.Services
                 if (Job.DataSource.IsFirstRowHeader)
                 {
                     string columnNames = string.Empty;
-                    foreach (SreAttribute attrib in Job.DataSource.AcceptableAttributes)
+                    foreach (IdpeAttribute attrib in Job.DataSource.AcceptableAttributes)
                     {
                         columnNames += "\"" + attrib.Name + "\",";
                     }

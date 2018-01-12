@@ -66,7 +66,7 @@ namespace Eyedia.IDPE.Interface
                 switch (dsProperty.OutputDataFormatType)
                 {
                     case OutputTypes.CSharpCode:
-                        SreKey key = dsProperty.DataSourceKeys.GetKey(SreKeyTypes.CSharpCodeOutputWriter.ToString());
+                        IdpeKey key = dsProperty.DataSourceKeys.GetKey(SreKeyTypes.CSharpCodeOutputWriter.ToString());
                         string code = key != null ? key.Value : string.Empty;
                         CSharpCodeEditor cSharpCodeEditor = new CSharpCodeEditor(code);
                         if (cSharpCodeEditor.ShowDialog() == System.Windows.Forms.DialogResult.OK)

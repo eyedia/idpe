@@ -495,9 +495,9 @@ namespace Eyedia.IDPE.Interface
         {
             this.Cursor = Cursors.WaitCursor;
 
-            List<SrePersistentVariable> variables = new Manager().GetPersistentVariables();
+            List<IdpePersistentVariable> variables = new Manager().GetPersistentVariables();
             string data = string.Empty;
-            foreach (SrePersistentVariable variable in variables)
+            foreach (IdpePersistentVariable variable in variables)
             {
                 data += string.Format("{0},{1},{2},{3}{4}",
                     variable.DataSourceId,

@@ -81,8 +81,8 @@ namespace Eyedia.IDPE.Interface
             this.ParentForm.Cursor = Cursors.WaitCursor;
             Application.DoEvents();
 
-            List<SreAttribute> attributes = new Manager().GetAttributes(dataSourceId).ToList();
-            List<SreAttribute> sysAttributes = new Manager().GetAttributes(systemDataSourceId).Where(a => a.Name != "IsValid").ToList();
+            List<IdpeAttribute> attributes = new Manager().GetAttributes(dataSourceId).ToList();
+            List<IdpeAttribute> sysAttributes = new Manager().GetAttributes(systemDataSourceId).Where(a => a.Name != "IsValid").ToList();
             if (sysAttributes.Count == 0)
             {
                 this.ParentForm.Cursor = Cursors.Default;
@@ -94,7 +94,7 @@ namespace Eyedia.IDPE.Interface
             List<Control> controls = new List<Control>();
             int count = 1;
             bool alternateRow = false;
-            foreach (SreAttribute attribute in sysAttributes)
+            foreach (IdpeAttribute attribute in sysAttributes)
             {
                 AttributeMapper attributeMapper = new AttributeMapper();
                 attributeMapper.Attributes = attributes;
@@ -151,7 +151,7 @@ namespace Eyedia.IDPE.Interface
                 InputBox inputBox = new InputBox(dataSourceName + " - Map", "Enter Rule Name", "Save Rule", this.ParentForm.Icon);
                 if (inputBox.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    SreRule rule = new SreRule();
+                    IdpeRule rule = new IdpeRule();
                     rule.Name = inputBox.TheInput;
                     rule.Description = inputBox.TheInput + " was created by wizard";
                     rule.Xaml = string.Format(XamlBody, rule.Name, dynamicXamlBody);

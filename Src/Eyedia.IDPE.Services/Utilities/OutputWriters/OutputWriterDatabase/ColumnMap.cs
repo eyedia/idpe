@@ -53,8 +53,8 @@ namespace Eyedia.IDPE.Services
             get { return _RawString; }
             set { _RawString = value; BindFromRawString(); }
         }
-        public List<SreKey> ConnectionKeys { get; private set; }
-        public  SreKey ConnectionKey { get; set; }
+        public List<IdpeKey> ConnectionKeys { get; private set; }
+        public  IdpeKey ConnectionKey { get; set; }
         public string ConnectionKeyRunTime { get; set; }
         public string HeaderRawString { get; set; }        
         public int NoOfRecordsinBatch = 0;
@@ -70,7 +70,7 @@ namespace Eyedia.IDPE.Services
         /// <param name="connectionKeys"></param>
         /// <param name="tableName"></param>
         /// <param name="totalRecordsInBatch"></param>
-        public ColumnMap(int dataSourceId, SreKey connectionKey = null, List<SreKey> connectionKeys = null, string tableName = null, int totalRecordsInBatch = 0)
+        public ColumnMap(int dataSourceId, IdpeKey connectionKey = null, List<IdpeKey> connectionKeys = null, string tableName = null, int totalRecordsInBatch = 0)
         {
             this.DataSourceId = dataSourceId;
             this.ConnectionKey = connectionKey;            
@@ -96,7 +96,7 @@ namespace Eyedia.IDPE.Services
 
         }
         
-        private void Init(List<SreKey> connectionKeys = null)
+        private void Init(List<IdpeKey> connectionKeys = null)
         {
             if (connectionKeys != null)
                 ConnectionKeys = connectionKeys;

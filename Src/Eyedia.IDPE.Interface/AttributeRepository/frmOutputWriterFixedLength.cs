@@ -61,10 +61,10 @@ namespace Eyedia.IDPE.Interface
                 this.Icon = icon;
 
             Manager manager = new Manager();
-            List<SreAttribute> attributes = manager.GetAttributes(SystemDataSourceId);
+            List<IdpeAttribute> attributes = manager.GetAttributes(SystemDataSourceId);
             string[] attributeNames = attributes.Where(aa => aa.IsAcceptable == true).Select(a => a.Name).ToArray();
             fixedLengthSchemaGenerator1.Attributes = attributeNames;
-            SreKey key = manager.GetKey(DataSourceId, SreKeyTypes.FixedLengthSchemaOutputWriter.ToString());
+            IdpeKey key = manager.GetKey(DataSourceId, SreKeyTypes.FixedLengthSchemaOutputWriter.ToString());
             fixedLengthSchemaGenerator1.Schema = (key != null) ? key.Value : string.Empty;
 
         }
@@ -73,7 +73,7 @@ namespace Eyedia.IDPE.Interface
         {
             try
             {
-                SreKey key = new SreKey();
+                IdpeKey key = new IdpeKey();
                 key.Name = SreKeyTypes.FixedLengthSchemaOutputWriter.ToString();
                 key.Value = fixedLengthSchemaGenerator1.Schema;
                 key.Type = (int)SreKeyTypes.FixedLengthSchemaOutputWriter;

@@ -62,7 +62,7 @@ namespace Eyedia.IDPE.Interface.Data
         public BindingList<Attribute> GetAttributes(string attributeName = null)
         {
             List<Attribute> returnList = new List<Attribute>();
-            List<SreAttribute> SreAttributes = new Manager().GetAttributes();
+            List<IdpeAttribute> SreAttributes = new Manager().GetAttributes();
             if (attributeName == null)
             {
                 var result = from a in SreAttributes
@@ -272,7 +272,7 @@ namespace Eyedia.IDPE.Interface.Data
 
         public int AttributeExists(Attribute attribute)
         {
-            List<SreAttribute> sreAttributes = new Manager().GetAttributes();
+            List<IdpeAttribute> sreAttributes = new Manager().GetAttributes();
             var record = sreAttributes.FirstOrDefault(a => a.AttributeId == attribute.Id);
             return (record != null) ? record.AttributeId : 0;
         }
@@ -349,12 +349,12 @@ namespace Eyedia.IDPE.Interface.Data
         public void CopyAttributes(string fromDataSource, int toDataSourceId)
         {
             Manager manager = new Manager();
-            List<SreAttribute> fromAttributes = manager.GetAttributes(fromDataSource);
-            List<SreAttributeDataSource> appAttributes = new List<SreAttributeDataSource>();
+            List<IdpeAttribute> fromAttributes = manager.GetAttributes(fromDataSource);
+            List<IdpeAttributeDataSource> appAttributes = new List<IdpeAttributeDataSource>();
             int position = 1;
-            foreach (SreAttribute attribute in fromAttributes)
+            foreach (IdpeAttribute attribute in fromAttributes)
             {
-                SreAttributeDataSource aes = new SreAttributeDataSource();
+                IdpeAttributeDataSource aes = new IdpeAttributeDataSource();
                 aes.DataSourceId = toDataSourceId;
                 aes.AttributeId = attribute.AttributeId;
                 aes.Position = position;

@@ -86,7 +86,7 @@ namespace Eyedia.IDPE.Interface.Controls
             {
                 if (!string.IsNullOrEmpty(txtCc.Text))
                 {
-                    SreKey keyCc = new SreKey();
+                    IdpeKey keyCc = new IdpeKey();
                     keyCc.Name = SreKeyTypes.EmailCc.ToString();
                     keyCc.Type = (int)SreKeyTypes.EmailCc;
                     keyCc.Value = txtCc.Text;
@@ -99,7 +99,7 @@ namespace Eyedia.IDPE.Interface.Controls
 
                 if (!string.IsNullOrEmpty(txtBcc.Text))
                 {
-                    SreKey keyBcc = new SreKey();
+                    IdpeKey keyBcc = new IdpeKey();
                     keyBcc.Name = SreKeyTypes.EmailBcc.ToString();
                     keyBcc.Type = (int)SreKeyTypes.EmailBcc;
                     keyBcc.Value = txtBcc.Text;
@@ -112,7 +112,7 @@ namespace Eyedia.IDPE.Interface.Controls
 
                 if (chkSendEmailAfterFileProcessed.Checked)
                 {
-                    SreKey key = new SreKey();
+                    IdpeKey key = new IdpeKey();
                     key.Name = SreKeyTypes.EmailAfterFileProcessed.ToString();
                     key.Type = (int)SreKeyTypes.EmailAfterFileProcessed;
                     key.Value = "1";
@@ -125,7 +125,7 @@ namespace Eyedia.IDPE.Interface.Controls
 
                 if (chkIncludeAttachmentInput.Checked)
                 {
-                    SreKey key = new SreKey();
+                    IdpeKey key = new IdpeKey();
                     key.Name = SreKeyTypes.EmailAfterFileProcessedAttachInputFile.ToString();
                     key.Type = (int)SreKeyTypes.EmailAfterFileProcessedAttachInputFile;
                     key.Value = "1";
@@ -138,7 +138,7 @@ namespace Eyedia.IDPE.Interface.Controls
 
                 if (chkIncludeAttachmentOutput.Checked)
                 {
-                    SreKey key = new SreKey();
+                    IdpeKey key = new IdpeKey();
                     key.Name = SreKeyTypes.EmailAfterFileProcessedAttachOutputFile.ToString();
                     key.Type = (int)SreKeyTypes.EmailAfterFileProcessedAttachOutputFile;
                     key.Value = "1";
@@ -241,13 +241,13 @@ namespace Eyedia.IDPE.Interface.Controls
         {
 
             Manager manager = new Manager();
-            SreKey keyCc = manager.GetKey(DataSourceId, SreKeyTypes.EmailCc.ToString());
+            IdpeKey keyCc = manager.GetKey(DataSourceId, SreKeyTypes.EmailCc.ToString());
             if (keyCc != null)
                 txtCc.Text = keyCc.Value;
             else
                 txtCc.Text = string.Empty;
 
-            SreKey keyBcc = manager.GetKey(DataSourceId, SreKeyTypes.EmailBcc.ToString());
+            IdpeKey keyBcc = manager.GetKey(DataSourceId, SreKeyTypes.EmailBcc.ToString());
             if (keyBcc != null)
                 txtBcc.Text = keyBcc.Value;
             else
@@ -258,7 +258,7 @@ namespace Eyedia.IDPE.Interface.Controls
         {
 
             Manager manager = new Manager();
-            SreKey key = manager.GetKey(DataSourceId, SreKeyTypes.EmailAfterFileProcessed.ToString());
+            IdpeKey key = manager.GetKey(DataSourceId, SreKeyTypes.EmailAfterFileProcessed.ToString());
             if (key != null)
                 chkSendEmailAfterFileProcessed.Checked = key.Value.ParseBool();
             else

@@ -129,7 +129,7 @@ namespace Eyedia.IDPE.Interface
 
         private void Bind()
         {
-            SreKey key = new Manager().GetKey(SreKeyTypes.GlobalEventsOnComplete);
+            IdpeKey key = new Manager().GetKey(SreKeyTypes.GlobalEventsOnComplete);
             if (key != null)
             {
                 s.GlobalEventsOnCompletes gecs = new s.GlobalEventsOnCompletes(key.Value);
@@ -165,7 +165,7 @@ namespace Eyedia.IDPE.Interface
 
         private void Save(string rawString)
         {
-            SreKey key = new SreKey();
+            IdpeKey key = new IdpeKey();
             key.Name = SreKeyTypes.GlobalEventsOnComplete.ToString();
             key.Type = (int)SreKeyTypes.GlobalEventsOnComplete;
             key.Value = rawString;

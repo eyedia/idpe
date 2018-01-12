@@ -68,13 +68,13 @@ namespace Eyedia.IDPE.Services
             return GetWcfClient(toEnvironment).Deploy(Packet);            
         }
 
-        public override string DeployRule(SreEnvironmentConfig toEnvironment, SreRule rule)
+        public override string DeployRule(SreEnvironmentConfig toEnvironment, IdpeRule rule)
         {
             base.DeployRule(toEnvironment, rule);
             return GetWcfClient(toEnvironment).Deploy(Packet);
         }
       
-        public override string DeployKeys(SreEnvironmentConfig toEnvironment, List<SreKey> keys)
+        public override string DeployKeys(SreEnvironmentConfig toEnvironment, List<IdpeKey> keys)
         {
             base.DeployKeys(toEnvironment, keys);
             return GetWcfClient(toEnvironment).Deploy(Packet);
@@ -121,7 +121,7 @@ namespace Eyedia.IDPE.Services
             return GetWcfClient(toEnvironment).ProcessFile(Packet);            
         }
 
-        public override List<SreDataSource> GetDataSources(SreEnvironmentConfig toEnvironment)
+        public override List<IdpeDataSource> GetDataSources(SreEnvironmentConfig toEnvironment)
         {
             EnvironmentServicePacket packet = new EnvironmentServicePacket();
             return GetWcfClient(toEnvironment).GetDataSources(packet);

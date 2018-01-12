@@ -142,10 +142,10 @@ namespace Eyedia.IDPE.Interface
         private void ValidateCodeSets()
         {
             Manager manager = new Manager();
-            List<SreAttribute> codeSetAttributes = manager.GetAttributes(DataSourceId);
+            List<IdpeAttribute> codeSetAttributes = manager.GetAttributes(DataSourceId);
             codeSetAttributes = codeSetAttributes.Where(a => a.Type == "CODESET").ToList();
             List<CodeSet> systemCodeSets = CoreDatabaseObjects.Instance.GetCodeSets();
-            foreach (SreAttribute codeSetAttribute in codeSetAttributes)
+            foreach (IdpeAttribute codeSetAttribute in codeSetAttributes)
             {
                 ValidateCodeSet(codeSetAttribute, systemCodeSets);
             }
@@ -155,14 +155,14 @@ namespace Eyedia.IDPE.Interface
                 codeSetAttributes = manager.GetAttributes(ParentDataSourceId);
                 codeSetAttributes = codeSetAttributes.Where(a => a.Type == "CODESET").ToList();
 
-                foreach (SreAttribute codeSetAttribute in codeSetAttributes)
+                foreach (IdpeAttribute codeSetAttribute in codeSetAttributes)
                 {
                     ValidateCodeSet(codeSetAttribute, systemCodeSets);
                 }
             }
         }
 
-        private void ValidateCodeSet(SreAttribute codeSetAttribute, List<CodeSet> systemCodeSets)
+        private void ValidateCodeSet(IdpeAttribute codeSetAttribute, List<CodeSet> systemCodeSets)
         {
             ShowMessage(string.Format("Validating codesets({0})...", codeSetAttribute.Name));
 
