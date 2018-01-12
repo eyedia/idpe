@@ -44,12 +44,12 @@ namespace Eyedia.Core.Windows.Forms
 {
     public partial class ChangePassword : Form
     {
-        public SymplusUser User { get; private set; }
+        public User User { get; private set; }
         public bool SavePassword { get; private set; }
         public int PasswordMinmumLength { get; private set; }
         public string Password { get { return txtConfirmPassword.Text; } }
 
-        public ChangePassword(SymplusUser user, bool savePassword = true, int passwordMinmumLength = 8, string title = "Change Password")
+        public ChangePassword(User user, bool savePassword = true, int passwordMinmumLength = 8, string title = "Change Password")
         {
             InitializeComponent();
             User = user;

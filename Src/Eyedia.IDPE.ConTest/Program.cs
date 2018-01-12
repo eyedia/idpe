@@ -65,7 +65,7 @@ namespace ConTest
 
         private static void GetDummyUser()
         {
-            Information.LoggedInUser = new Eyedia.Core.Data.SymplusUser();
+            Information.LoggedInUser = new Eyedia.Core.Data.User();
             Information.LoggedInUser.FullName = "Deb'jyoti Das";
             Information.LoggedInUser.UserName = "DD";
             Information.LoggedInUser.IsDebugUser = true;

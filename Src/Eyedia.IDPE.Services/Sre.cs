@@ -257,7 +257,7 @@ namespace Eyedia.IDPE.Services
                 connectedTo,
                 EyediaCoreConfigurationSection.CurrentConfig.Database.DatabaseType.ToString());
             ExtensionMethods.TraceInformation("Initializing code sets.");
-            Registry.Instance.CodeSets = Cache.Instance.Bag["codesets.default"] as List<SymplusCodeSet>;
+            Registry.Instance.CodeSets = Cache.Instance.Bag["codesets.default"] as List<CodeSet>;
             if (Registry.Instance.CodeSets == null)
             {
                 Registry.Instance.CodeSets = CoreDatabaseObjects.Instance.GetCodeSets();

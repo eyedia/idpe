@@ -54,20 +54,20 @@ namespace Eyedia.IDPE.Interface
     public partial class ListOfValues : Form
     {
         Manager UtilDataManager;
-        List<SymplusCodeSet> LOVs;
+        List<CodeSet> LOVs;
 
-        List<SymplusCodeSet> UniqueCodes
+        List<CodeSet> UniqueCodes
         {
             get
             {
                 if (LOVs != null)
                     return LOVs.GroupBy(lov => lov.Code).Select(grp => grp.First()).OrderBy(l => l.Code).ToList();
                 else
-                    return new List<SymplusCodeSet>();
+                    return new List<CodeSet>();
             }
         }
-        SymplusCodeSet SelectedCode { get; set; }
-        SymplusCodeSet SelectedSet { get; set; }
+        CodeSet SelectedCode { get; set; }
+        CodeSet SelectedSet { get; set; }
         int MaxPosition { get; set; }
         int MaxEnumCode { get; set; }
 
@@ -86,7 +86,7 @@ namespace Eyedia.IDPE.Interface
 
             LOVs = CoreDatabaseObjects.Instance.GetCodeSets();
             lvCodes.Items.Clear();
-            foreach (SymplusCodeSet lov in UniqueCodes)
+            foreach (CodeSet lov in UniqueCodes)
             {
                 ListViewItem item = new ListViewItem(lov.Code);
                 item.Tag = lov;
@@ -119,7 +119,7 @@ namespace Eyedia.IDPE.Interface
         private void lvCodes_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvCodes.SelectedItems.Count > 0)
-                SelectedCode = lvCodes.SelectedItems[0].Tag as SymplusCodeSet;
+                SelectedCode = lvCodes.SelectedItems[0].Tag as CodeSet;
             else
                 SelectedCode = null;
 
@@ -130,7 +130,7 @@ namespace Eyedia.IDPE.Interface
         private void lvSets_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvSets.SelectedItems.Count > 0)
-                SelectedSet = lvSets.SelectedItems[0].Tag as SymplusCodeSet;
+                SelectedSet = lvSets.SelectedItems[0].Tag as CodeSet;
             else
                 SelectedSet = null;
 
@@ -141,7 +141,7 @@ namespace Eyedia.IDPE.Interface
         {
             if (SelectedCode != null)
             {
-                List<SymplusCodeSet> lovList = (from cs in LOVs
+                List<CodeSet> lovList = (from cs in LOVs
                                              where cs.Code == SelectedCode.Code
                                              orderby cs.Position
                                              select cs).ToList();
@@ -150,7 +150,7 @@ namespace Eyedia.IDPE.Interface
                 MaxEnumCode = lovList.Max(l => l.EnumCode);
 
                 lvSets.Items.Clear();
-                foreach (SymplusCodeSet l in lovList)
+                foreach (CodeSet l in lovList)
                 {
                     ListViewItem item = new ListViewItem(l.EnumCode.ToString());
                     item.SubItems.Add(l.Value);
@@ -257,7 +257,7 @@ namespace Eyedia.IDPE.Interface
         bool SavedJustNow;
         private void btnSave_Click(object sender, EventArgs e)
         {
-            SymplusCodeSet codeSet = new SymplusCodeSet();
+            CodeSet codeSet = new CodeSet();
 
             codeSet.CodeSetId = lblId.Text == "NULL" ? 0 : int.Parse(lblId.Text);
             codeSet.Code = txtCode.Visible ? txtCode.Text : lblCode.Text;
@@ -311,7 +311,7 @@ namespace Eyedia.IDPE.Interface
                     DataSourcePatch dsp = new DataSourcePatch();
                     foreach (ListViewItem item in lvSets.Items)
                     {
-                        SymplusCodeSet codeSet = (SymplusCodeSet)item.Tag;
+                        CodeSet codeSet = (CodeSet)item.Tag;
                         codeSet.CodeSetId = 0;
                         dsp.CodeSets.Add(codeSet);
                     }
@@ -368,7 +368,7 @@ namespace Eyedia.IDPE.Interface
             int position = 1;
             foreach (DataRow row in table.Rows)
             {
-                SymplusCodeSet codeSet = new SymplusCodeSet();
+                CodeSet codeSet = new CodeSet();
 
                 codeSet.Code = row["Code"].ToString();
                 codeSet.EnumCode = (int)row["EnumCode"].ToString().ParseInt();

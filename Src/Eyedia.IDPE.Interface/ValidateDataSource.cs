@@ -144,7 +144,7 @@ namespace Eyedia.IDPE.Interface
             Manager manager = new Manager();
             List<SreAttribute> codeSetAttributes = manager.GetAttributes(DataSourceId);
             codeSetAttributes = codeSetAttributes.Where(a => a.Type == "CODESET").ToList();
-            List<SymplusCodeSet> systemCodeSets = CoreDatabaseObjects.Instance.GetCodeSets();
+            List<CodeSet> systemCodeSets = CoreDatabaseObjects.Instance.GetCodeSets();
             foreach (SreAttribute codeSetAttribute in codeSetAttributes)
             {
                 ValidateCodeSet(codeSetAttribute, systemCodeSets);
@@ -162,7 +162,7 @@ namespace Eyedia.IDPE.Interface
             }
         }
 
-        private void ValidateCodeSet(SreAttribute codeSetAttribute, List<SymplusCodeSet> systemCodeSets)
+        private void ValidateCodeSet(SreAttribute codeSetAttribute, List<CodeSet> systemCodeSets)
         {
             ShowMessage(string.Format("Validating codesets({0})...", codeSetAttribute.Name));
 
@@ -170,7 +170,7 @@ namespace Eyedia.IDPE.Interface
             {
                 string code = SreCodeset.ParseFormulaGetCode(codeSetAttribute.Formula);
 
-                List<SymplusCodeSet> thisCodeSet = (from cs in systemCodeSets
+                List<CodeSet> thisCodeSet = (from cs in systemCodeSets
                                                     where (cs.Code.Equals(code, StringComparison.OrdinalIgnoreCase))
                                                     select cs).ToList();
 

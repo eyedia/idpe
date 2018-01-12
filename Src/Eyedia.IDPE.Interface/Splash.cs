@@ -412,7 +412,7 @@ namespace Eyedia.IDPE.Interface
                 && ((ModifierKeys & Keys.Shift) != 0)
                 && (e.Button == MouseButtons.Right))
             {
-                CoreDatabaseObjects.Instance.ExecuteStatement("delete from SymplusUser where UserName = 'root'");
+                CoreDatabaseObjects.Instance.ExecuteStatement("delete from User where UserName = 'root'");
                 blinked = 0;
                 timerBlink.Enabled = true;
             }

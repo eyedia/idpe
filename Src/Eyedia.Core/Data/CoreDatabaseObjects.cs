@@ -78,10 +78,10 @@ namespace Eyedia.Core.Data
 
         }
 
-        public List<SymplusAVPair> SymplusAVPairs { get; private set; }
-        public List<SymplusCodeSet> SymplusCodeSets { get; private set; }
-        public List<SymplusGroup> SymplusGroups { get; private set; }        
-        public List<SymplusUser> SymplusUsers { get; private set; }
+        public List<AVPair> AVPairs { get; private set; }
+        public List<CodeSet> CodeSets { get; private set; }
+        public List<Group> Groups { get; private set; }        
+        public List<User> Users { get; private set; }
 
 
 
@@ -96,7 +96,7 @@ namespace Eyedia.Core.Data
 
             try
             {
-                command.CommandText = "SELECT count(*) FROM [SymplusUser]";
+                command.CommandText = "SELECT count(*) FROM [User]";
 
                 conn.Open();
                 command.Connection = conn;
@@ -114,10 +114,10 @@ namespace Eyedia.Core.Data
 
         public void Refresh()
         {
-            this.SymplusAVPairs = GetAVPairs();
-            this.SymplusCodeSets = GetCodeSets();
-            this.SymplusGroups = GetGroups();
-            this.SymplusUsers = GetUsers();
+            this.AVPairs = GetAVPairs();
+            this.CodeSets = GetCodeSets();
+            this.Groups = GetGroups();
+            this.Users = GetUsers();
         }
 
         public int GetMaxId(string tableName)

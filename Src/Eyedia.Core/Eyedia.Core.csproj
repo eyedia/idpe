@@ -91,7 +91,6 @@
     <Compile Include="Net\EmailTracker.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="ExecuteCSharpCode.cs" />
-    <Compile Include="Data\CoreDatabaseObjects.SymplusMobileDevice.cs" />
     <Compile Include="LevenshteinDistance.cs" />
     <Compile Include="LevenshteinDistanceInfo.cs" />
     <Compile Include="MobileDevices\SymplusMobileDevice.ExtensionMethods.cs" />

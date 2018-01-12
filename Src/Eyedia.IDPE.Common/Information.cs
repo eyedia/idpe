@@ -115,15 +115,15 @@ namespace Eyedia.IDPE.Common
             }
         }
 
-        static SymplusUser _LoggedInUser;
-        public static SymplusUser LoggedInUser
+        static User _LoggedInUser;
+        public static User LoggedInUser
         {
             get
             {
                 if(_LoggedInUser == null)
                 {
                     //this happens if this property is accessed from service
-                    _LoggedInUser = new SymplusUser();
+                    _LoggedInUser = new User();
                     _LoggedInUser.UserName = "System";
                     _LoggedInUser.FullName = "IDPE Service";                    
                 }

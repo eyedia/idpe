@@ -64,7 +64,7 @@ namespace Eyedia.IDPE.Services
         public Pullers Pullers;
         public FileSystemWatcher LocalFileWatcher;
         public Dictionary<int,SreFileSystemWatcher> DataSourceFileWatcher { get; internal set;}
-        public List<SymplusCodeSet> CodeSets;
+        public List<CodeSet> CodeSets;
         public Dictionary<string, ZipFileInformation> ZipFiles;
         public List<FtpFileSystemWatcher> FtpWatchers;
         public Dictionary<string, string> EnvironmentVariables { get; internal set; }

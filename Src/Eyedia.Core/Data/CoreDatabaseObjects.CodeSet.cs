@@ -42,17 +42,17 @@ namespace Eyedia.Core.Data
 {
     public partial class CoreDatabaseObjects
     {
-        public List<SymplusCodeSet> GetCodeSets()
+        public List<CodeSet> GetCodeSets()
         {
-            List<SymplusCodeSet> codeSets = new List<SymplusCodeSet>();
-            string commandText = "select [CodeSetId],[Code],[EnumCode],[Value],[ReferenceKey],[Description],[Position] from [SymplusCodeSet]";
+            List<CodeSet> codeSets = new List<CodeSet>();
+            string commandText = "select [CodeSetId],[Code],[EnumCode],[Value],[ReferenceKey],[Description],[Position] from [CodeSet]";
             DataTable table = ExecuteCommand(commandText);
             if (table == null)
                 return codeSets;
 
             foreach (DataRow row in table.Rows)
             {
-                SymplusCodeSet codeSet = new SymplusCodeSet();
+                CodeSet codeSet = new CodeSet();
                 codeSet.CodeSetId = (int)row["CodeSetId"].ToString().ParseInt();
                 codeSet.Code = row["Code"].ToString();
                 codeSet.EnumCode = (int)row["EnumCode"].ToString().ParseInt();
@@ -71,7 +71,7 @@ namespace Eyedia.Core.Data
         public int GetCodeSetId(IDal myDal, IDbConnection conn, string code, int enumCode, IDbTransaction transaction = null)
         {
             int codesetId = 0;
-            IDbCommand command = myDal.CreateCommand("SELECT CodeSetId FROM SymplusCodeSet WHERE Code = @Code and EnumCode = @EnumCode", conn);
+            IDbCommand command = myDal.CreateCommand("SELECT CodeSetId FROM CodeSet WHERE Code = @Code and EnumCode = @EnumCode", conn);
             if (transaction != null)
                 command.Transaction = transaction;
 
@@ -87,7 +87,7 @@ namespace Eyedia.Core.Data
             return codesetId;
         }
 
-        public void Save(SymplusCodeSet codeset)
+        public void Save(CodeSet codeset)
         {
             IDal myDal = new DataAccessLayer(EyediaCoreConfigurationSection.CurrentConfig.Database.DatabaseType).Instance;
             IDbConnection conn = myDal.CreateConnection(_ConnectionString);
@@ -102,7 +102,7 @@ namespace Eyedia.Core.Data
                 int CodeSetId = GetCodeSetId(myDal, conn, codeset.Code, codeset.EnumCode, transaction);
                 if (CodeSetId == 0)
                 {
-                    command.CommandText = "INSERT INTO SymplusCodeSet(Code, EnumCode, Value, ReferenceKey, Description, Position) ";
+                    command.CommandText = "INSERT INTO CodeSet(Code, EnumCode, Value, ReferenceKey, Description, Position) ";
                     command.CommandText += " VALUES (@Code, @EnumCode, @Value, @ReferenceKey, @Description, @Position)";
                     command.AddParameterWithValue("Code", codeset.Code);
                     command.AddParameterWithValue("EnumCode", codeset.EnumCode);
@@ -114,13 +114,13 @@ namespace Eyedia.Core.Data
 
                     //Deb: I know dirty coding, need to be changed. OUTPUT INSERTED.Id not working @SQL CE
                     command.Parameters.Clear();
-                    command.CommandText = "SELECT max(CodeSetId) from SymplusCodeSet";
+                    command.CommandText = "SELECT max(CodeSetId) from CodeSet";
                     int newCodeSetId = (Int32)command.ExecuteScalar();
 
                 }
                 else
                 {
-                    command.CommandText = "UPDATE [SymplusCodeSet] SET [EnumCode] = @EnumCode,[Value] = @Value,[ReferenceKey] = @ReferenceKey, [Description] = @Description,[Position] = @Position ";
+                    command.CommandText = "UPDATE [CodeSet] SET [EnumCode] = @EnumCode,[Value] = @Value,[ReferenceKey] = @ReferenceKey, [Description] = @Description,[Position] = @Position ";
                     command.CommandText += "WHERE [CodeSetId] = @CodeSetId";
 
                     command.AddParameterWithValue("EnumCode", codeset.EnumCode);
@@ -163,7 +163,7 @@ namespace Eyedia.Core.Data
 
             try
             {
-                command.CommandText = "DELETE from [SymplusCodeSet] WHERE [Code] = @Code";
+                command.CommandText = "DELETE from [CodeSet] WHERE [Code] = @Code";
                 command.AddParameterWithValue("Code", code);                
                 command.ExecuteNonQuery();
                 transaction.Commit();

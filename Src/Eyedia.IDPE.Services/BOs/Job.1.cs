@@ -792,7 +792,7 @@ namespace Eyedia.IDPE.Services
             }
         }
 
-        public ReadOnlyCollection<SymplusCodeSet> CodeSets { get { return Registry.Instance.CodeSets.AsReadOnly(); } }
+        public ReadOnlyCollection<CodeSet> CodeSets { get { return Registry.Instance.CodeSets.AsReadOnly(); } }
 
         #region IDisposable Members
 

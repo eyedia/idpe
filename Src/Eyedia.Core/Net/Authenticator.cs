@@ -80,13 +80,13 @@ namespace Eyedia.Core.Net
         public delegate void CallbackEventHandler(string info);
         public event CallbackEventHandler Callback;
 
-        public SymplusUser Authenticate()
+        public User Authenticate()
         {            
             IsAuthenticated = true;
             return GetSymplusUser();
         }
 
-        public SymplusUser Authenticate(string groupNames)
+        public User Authenticate(string groupNames)
         {            
             Trace.TraceInformation("Active directory group authentication {0}", groupNames);
             List<string> lstGroups = null;
@@ -138,7 +138,7 @@ namespace Eyedia.Core.Net
             return null;
         }
 
-        public SymplusUser Authenticate(string userName, string password, string groupName = null)
+        public User Authenticate(string userName, string password, string groupName = null)
         {
             SetData(userName, password, groupName);           
             switch (AuthenticationType)
@@ -261,16 +261,16 @@ namespace Eyedia.Core.Net
                 Result.Add(authenticationType, isAuthenticated);
         }
 
-        private SymplusUser GetSymplusUser(string userName = null)
+        private User GetSymplusUser(string userName = null)
         {
             if (userName == null)
                 userName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
 
-            SymplusUser user = CoreDatabaseObjects.Instance.GetUser(userName);
+            User user = CoreDatabaseObjects.Instance.GetUser(userName);
 
             if (user == null)
             {
-                user = new SymplusUser();
+                user = new User();
                 user.UserName = userName;
                 user.FullName = user.UserName;
                 user.IsDebugUser = true;

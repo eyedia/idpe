@@ -43,13 +43,13 @@ namespace Eyedia.Core.Data
     public partial class CoreDatabaseObjects
     {
 
-        public List<SymplusGroup> GetGroups()
+        public List<Group> GetGroups()
         {
-            DataTable table = ExecuteCommand("select [Id],[Name],[Description] from [SymplusGroup]");
-            List<SymplusGroup> groups = new List<SymplusGroup>();
+            DataTable table = ExecuteCommand("select [Id],[Name],[Description] from [Group]");
+            List<Group> groups = new List<Group>();
             for (int i = 0; i < table.Rows.Count; i++)
             {
-                SymplusGroup group = new SymplusGroup();
+                Group group = new Group();
                 group.Id = (int)table.Rows[i]["Id"].ToString().ParseInt();
                 group.Name = table.Rows[i]["Name"].ToString();
                 group.Description = table.Rows[i]["Description"].ToString();
@@ -58,18 +58,18 @@ namespace Eyedia.Core.Data
             return groups;
         }
 
-        public SymplusGroup GetAdminGroup()
+        public Group GetAdminGroup()
         {
-            return CoreDatabaseObjects.Instance.SymplusGroups.Where(g => g.Name.ToLower() == "admins").SingleOrDefault();
+            return CoreDatabaseObjects.Instance.Groups.Where(g => g.Name.ToLower() == "admins").SingleOrDefault();
         }
 
-        public SymplusGroup GetGroup(string groupName)
+        public Group GetGroup(string groupName)
         {
-            DataTable table = ExecuteCommand("select [Id],[Name],[Description] from [SymplusGroup] where [Name] ='" + groupName + "'");
+            DataTable table = ExecuteCommand("select [Id],[Name],[Description] from [Group] where [Name] ='" + groupName + "'");
             
             if (table.Rows.Count == 1)
             {
-                SymplusGroup group = new SymplusGroup();
+                Group group = new Group();
                 group.Id = (int)table.Rows[0]["Id"].ToString().ParseInt();
                 group.Name = table.Rows[0]["Name"].ToString();
                 group.Description = table.Rows[0]["Description"].ToString();
@@ -78,13 +78,13 @@ namespace Eyedia.Core.Data
             return null;
         }
 
-        public SymplusGroup GetGroup(int groupId)
+        public Group GetGroup(int groupId)
         {
-            DataTable table = ExecuteCommand("select [Id],[Name],[Description] from [SymplusGroup] where [Id] =" + groupId);
+            DataTable table = ExecuteCommand("select [Id],[Name],[Description] from [Group] where [Id] =" + groupId);
 
             if (table.Rows.Count == 1)
             {
-                SymplusGroup group = new SymplusGroup();
+                Group group = new Group();
                 group.Id = (int)table.Rows[0]["Id"].ToString().ParseInt();
                 group.Name = table.Rows[0]["Name"].ToString();
                 group.Description = table.Rows[0]["Description"].ToString();
@@ -93,7 +93,7 @@ namespace Eyedia.Core.Data
             return null;
         }
 
-        public void Save(SymplusGroup group)
+        public void Save(Group group)
         {
             IDal myDal = new DataAccessLayer(EyediaCoreConfigurationSection.CurrentConfig.Database.DatabaseType).Instance;
             IDbConnection conn = myDal.CreateConnection(_ConnectionString);
@@ -107,7 +107,7 @@ namespace Eyedia.Core.Data
             {
                 if (group.Id == 0)
                 {
-                    command.CommandText = "INSERT INTO [SymplusGroup] (Name, Description) ";
+                    command.CommandText = "INSERT INTO [Group] (Name, Description) ";
                     command.CommandText += " VALUES (@Name, @Description)";
                     command.AddParameterWithValue("Name", group.Name);
                     command.AddParameterWithValue("Description", group.Description);                    
@@ -115,13 +115,13 @@ namespace Eyedia.Core.Data
 
                     //Deb: I know dirty coding, need to be changed. OUTPUT INSERTED.Id not working @SQL CE
                     command.Parameters.Clear();
-                    command.CommandText = "SELECT max(Id) from [SymplusGroup]";
+                    command.CommandText = "SELECT max(Id) from [Group]";
                     int newCodeSetId = (Int32)command.ExecuteScalar();
 
                 }
                 else
                 {
-                    command.CommandText = "UPDATE [SymplusGroup] SET [Name] = @Name,[Description] = @Description ";
+                    command.CommandText = "UPDATE [Group] SET [Name] = @Name,[Description] = @Description ";
                     command.CommandText += "WHERE [Id] = @Id";
 
                     command.AddParameterWithValue("Name", group.Name);

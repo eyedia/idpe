@@ -22,7 +22,7 @@ namespace Eyedia.Core.Data
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="SymplusRuleEngine")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="idpe")]
 	public partial class CoreDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -30,31 +30,28 @@ namespace Eyedia.Core.Data
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertSymplusMobileDevice(SymplusMobileDevice instance);
-    partial void UpdateSymplusMobileDevice(SymplusMobileDevice instance);
-    partial void DeleteSymplusMobileDevice(SymplusMobileDevice instance);
-    partial void InsertSymplusAVPair(SymplusAVPair instance);
-    partial void UpdateSymplusAVPair(SymplusAVPair instance);
-    partial void DeleteSymplusAVPair(SymplusAVPair instance);
-    partial void InsertSymplusCodeSet(SymplusCodeSet instance);
-    partial void UpdateSymplusCodeSet(SymplusCodeSet instance);
-    partial void DeleteSymplusCodeSet(SymplusCodeSet instance);
-    partial void InsertSymplusGroup(SymplusGroup instance);
-    partial void UpdateSymplusGroup(SymplusGroup instance);
-    partial void DeleteSymplusGroup(SymplusGroup instance);
-    partial void InsertSymplusGroupUser(SymplusGroupUser instance);
-    partial void UpdateSymplusGroupUser(SymplusGroupUser instance);
-    partial void DeleteSymplusGroupUser(SymplusGroupUser instance);
-    partial void InsertSymplusUser(SymplusUser instance);
-    partial void UpdateSymplusUser(SymplusUser instance);
-    partial void DeleteSymplusUser(SymplusUser instance);
-    partial void InsertSymplusEmailTracker(SymplusEmailTracker instance);
-    partial void UpdateSymplusEmailTracker(SymplusEmailTracker instance);
-    partial void DeleteSymplusEmailTracker(SymplusEmailTracker instance);
+    partial void InsertAVPair(AVPair instance);
+    partial void UpdateAVPair(AVPair instance);
+    partial void DeleteAVPair(AVPair instance);
+    partial void InsertCodeSet(CodeSet instance);
+    partial void UpdateCodeSet(CodeSet instance);
+    partial void DeleteCodeSet(CodeSet instance);
+    partial void InsertGroup(Group instance);
+    partial void UpdateGroup(Group instance);
+    partial void DeleteGroup(Group instance);
+    partial void InsertGroupUser(GroupUser instance);
+    partial void UpdateGroupUser(GroupUser instance);
+    partial void DeleteGroupUser(GroupUser instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
+    partial void InsertEmailTracker(EmailTracker instance);
+    partial void UpdateEmailTracker(EmailTracker instance);
+    partial void DeleteEmailTracker(EmailTracker instance);
     #endregion
 		
 		public CoreDataContext() : 
-				base(global::Eyedia.Core.Properties.Settings.Default.SymplusRuleEngineConnectionString1, mappingSource)
+				base(global::Eyedia.Core.Properties.Settings.Default.idpeConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -83,271 +80,57 @@ namespace Eyedia.Core.Data
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<SymplusMobileDevice> SymplusMobileDevices
+		public System.Data.Linq.Table<AVPair> AVPairs
 		{
 			get
 			{
-				return this.GetTable<SymplusMobileDevice>();
+				return this.GetTable<AVPair>();
 			}
 		}
 		
-		public System.Data.Linq.Table<SymplusAVPair> SymplusAVPairs
+		public System.Data.Linq.Table<CodeSet> CodeSets
 		{
 			get
 			{
-				return this.GetTable<SymplusAVPair>();
+				return this.GetTable<CodeSet>();
 			}
 		}
 		
-		public System.Data.Linq.Table<SymplusCodeSet> SymplusCodeSets
+		public System.Data.Linq.Table<Group> Groups
 		{
 			get
 			{
-				return this.GetTable<SymplusCodeSet>();
+				return this.GetTable<Group>();
 			}
 		}
 		
-		public System.Data.Linq.Table<SymplusGroup> SymplusGroups
+		public System.Data.Linq.Table<GroupUser> GroupUsers
 		{
 			get
 			{
-				return this.GetTable<SymplusGroup>();
+				return this.GetTable<GroupUser>();
 			}
 		}
 		
-		public System.Data.Linq.Table<SymplusGroupUser> SymplusGroupUsers
+		public System.Data.Linq.Table<User> Users
 		{
 			get
 			{
-				return this.GetTable<SymplusGroupUser>();
+				return this.GetTable<User>();
 			}
 		}
 		
-		public System.Data.Linq.Table<SymplusUser> SymplusUsers
+		public System.Data.Linq.Table<EmailTracker> EmailTrackers
 		{
 			get
 			{
-				return this.GetTable<SymplusUser>();
-			}
-		}
-		
-		public System.Data.Linq.Table<SymplusEmailTracker> SymplusEmailTrackers
-		{
-			get
-			{
-				return this.GetTable<SymplusEmailTracker>();
+				return this.GetTable<EmailTracker>();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute()]
-	public partial class SymplusMobileDevice : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _DeviceId;
-		
-		private string _RegistrationId;
-		
-		private int _OperatingSystem;
-		
-		private System.DateTime _CreatedOn;
-		
-		private System.Nullable<System.DateTime> _UpdatedOn;
-		
-		private string _Source;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnDeviceIdChanging(string value);
-    partial void OnDeviceIdChanged();
-    partial void OnRegistrationIdChanging(string value);
-    partial void OnRegistrationIdChanged();
-    partial void OnOperatingSystemChanging(int value);
-    partial void OnOperatingSystemChanged();
-    partial void OnCreatedOnChanging(System.DateTime value);
-    partial void OnCreatedOnChanged();
-    partial void OnUpdatedOnChanging(System.Nullable<System.DateTime> value);
-    partial void OnUpdatedOnChanged();
-    partial void OnSourceChanging(string value);
-    partial void OnSourceChanged();
-    #endregion
-		
-		public SymplusMobileDevice()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceId", DbType="VarChar(512) NOT NULL", CanBeNull=false)]
-		public string DeviceId
-		{
-			get
-			{
-				return this._DeviceId;
-			}
-			set
-			{
-				if ((this._DeviceId != value))
-				{
-					this.OnDeviceIdChanging(value);
-					this.SendPropertyChanging();
-					this._DeviceId = value;
-					this.SendPropertyChanged("DeviceId");
-					this.OnDeviceIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegistrationId", DbType="VarChar(1000) NOT NULL", CanBeNull=false)]
-		public string RegistrationId
-		{
-			get
-			{
-				return this._RegistrationId;
-			}
-			set
-			{
-				if ((this._RegistrationId != value))
-				{
-					this.OnRegistrationIdChanging(value);
-					this.SendPropertyChanging();
-					this._RegistrationId = value;
-					this.SendPropertyChanged("RegistrationId");
-					this.OnRegistrationIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OperatingSystem", DbType="Int NOT NULL")]
-		public int OperatingSystem
-		{
-			get
-			{
-				return this._OperatingSystem;
-			}
-			set
-			{
-				if ((this._OperatingSystem != value))
-				{
-					this.OnOperatingSystemChanging(value);
-					this.SendPropertyChanging();
-					this._OperatingSystem = value;
-					this.SendPropertyChanged("OperatingSystem");
-					this.OnOperatingSystemChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedOn", DbType="DateTime NOT NULL")]
-		public System.DateTime CreatedOn
-		{
-			get
-			{
-				return this._CreatedOn;
-			}
-			set
-			{
-				if ((this._CreatedOn != value))
-				{
-					this.OnCreatedOnChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedOn = value;
-					this.SendPropertyChanged("CreatedOn");
-					this.OnCreatedOnChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedOn", DbType="DateTime")]
-		public System.Nullable<System.DateTime> UpdatedOn
-		{
-			get
-			{
-				return this._UpdatedOn;
-			}
-			set
-			{
-				if ((this._UpdatedOn != value))
-				{
-					this.OnUpdatedOnChanging(value);
-					this.SendPropertyChanging();
-					this._UpdatedOn = value;
-					this.SendPropertyChanged("UpdatedOn");
-					this.OnUpdatedOnChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Source", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-		public string Source
-		{
-			get
-			{
-				return this._Source;
-			}
-			set
-			{
-				if ((this._Source != value))
-				{
-					this.OnSourceChanging(value);
-					this.SendPropertyChanging();
-					this._Source = value;
-					this.SendPropertyChanged("Source");
-					this.OnSourceChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SymplusAVPair")]
-	public partial class SymplusAVPair : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="AVPair")]
+	public partial class AVPair : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -390,7 +173,7 @@ namespace Eyedia.Core.Data
     partial void OnSourceChanged();
     #endregion
 		
-		public SymplusAVPair()
+		public AVPair()
 		{
 			OnCreated();
 		}
@@ -576,8 +359,8 @@ namespace Eyedia.Core.Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SymplusCodeSet")]
-	public partial class SymplusCodeSet : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="CodeSet")]
+	public partial class CodeSet : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -636,7 +419,7 @@ namespace Eyedia.Core.Data
     partial void OnSourceChanged();
     #endregion
 		
-		public SymplusCodeSet()
+		public CodeSet()
 		{
 			OnCreated();
 		}
@@ -902,8 +685,8 @@ namespace Eyedia.Core.Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SymplusGroup")]
-	public partial class SymplusGroup : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="[Group]")]
+	public partial class Group : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -924,9 +707,9 @@ namespace Eyedia.Core.Data
 		
 		private string _Source;
 		
-		private EntitySet<SymplusGroupUser> _SymplusGroupUsers;
+		private EntitySet<GroupUser> _GroupUsers;
 		
-		private EntitySet<SymplusUser> _SymplusUsers;
+		private EntitySet<User> _Users;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -950,10 +733,10 @@ namespace Eyedia.Core.Data
     partial void OnSourceChanged();
     #endregion
 		
-		public SymplusGroup()
+		public Group()
 		{
-			this._SymplusGroupUsers = new EntitySet<SymplusGroupUser>(new Action<SymplusGroupUser>(this.attach_SymplusGroupUsers), new Action<SymplusGroupUser>(this.detach_SymplusGroupUsers));
-			this._SymplusUsers = new EntitySet<SymplusUser>(new Action<SymplusUser>(this.attach_SymplusUsers), new Action<SymplusUser>(this.detach_SymplusUsers));
+			this._GroupUsers = new EntitySet<GroupUser>(new Action<GroupUser>(this.attach_GroupUsers), new Action<GroupUser>(this.detach_GroupUsers));
+			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
 			OnCreated();
 		}
 		
@@ -1117,29 +900,29 @@ namespace Eyedia.Core.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SymplusGroup_SymplusGroupUser", Storage="_SymplusGroupUsers", ThisKey="Id", OtherKey="GroupId")]
-		public EntitySet<SymplusGroupUser> SymplusGroupUsers
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Group_GroupUser", Storage="_GroupUsers", ThisKey="Id", OtherKey="GroupId")]
+		public EntitySet<GroupUser> GroupUsers
 		{
 			get
 			{
-				return this._SymplusGroupUsers;
+				return this._GroupUsers;
 			}
 			set
 			{
-				this._SymplusGroupUsers.Assign(value);
+				this._GroupUsers.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SymplusGroup_SymplusUser", Storage="_SymplusUsers", ThisKey="Id", OtherKey="GroupId")]
-		public EntitySet<SymplusUser> SymplusUsers
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Group_User", Storage="_Users", ThisKey="Id", OtherKey="GroupId")]
+		public EntitySet<User> Users
 		{
 			get
 			{
-				return this._SymplusUsers;
+				return this._Users;
 			}
 			set
 			{
-				this._SymplusUsers.Assign(value);
+				this._Users.Assign(value);
 			}
 		}
 		
@@ -1163,33 +946,33 @@ namespace Eyedia.Core.Data
 			}
 		}
 		
-		private void attach_SymplusGroupUsers(SymplusGroupUser entity)
+		private void attach_GroupUsers(GroupUser entity)
 		{
 			this.SendPropertyChanging();
-			entity.SymplusGroup = this;
+			entity.Group = this;
 		}
 		
-		private void detach_SymplusGroupUsers(SymplusGroupUser entity)
+		private void detach_GroupUsers(GroupUser entity)
 		{
 			this.SendPropertyChanging();
-			entity.SymplusGroup = null;
+			entity.Group = null;
 		}
 		
-		private void attach_SymplusUsers(SymplusUser entity)
+		private void attach_Users(User entity)
 		{
 			this.SendPropertyChanging();
-			entity.SymplusGroup = this;
+			entity.Group = this;
 		}
 		
-		private void detach_SymplusUsers(SymplusUser entity)
+		private void detach_Users(User entity)
 		{
 			this.SendPropertyChanging();
-			entity.SymplusGroup = null;
+			entity.Group = null;
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SymplusGroupUser")]
-	public partial class SymplusGroupUser : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="GroupUser")]
+	public partial class GroupUser : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1210,9 +993,9 @@ namespace Eyedia.Core.Data
 		
 		private string _Source;
 		
-		private EntityRef<SymplusGroup> _SymplusGroup;
+		private EntityRef<Group> _Group;
 		
-		private EntityRef<SymplusUser> _SymplusUser;
+		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1236,10 +1019,10 @@ namespace Eyedia.Core.Data
     partial void OnSourceChanged();
     #endregion
 		
-		public SymplusGroupUser()
+		public GroupUser()
 		{
-			this._SymplusGroup = default(EntityRef<SymplusGroup>);
-			this._SymplusUser = default(EntityRef<SymplusUser>);
+			this._Group = default(EntityRef<Group>);
+			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -1274,7 +1057,7 @@ namespace Eyedia.Core.Data
 			{
 				if ((this._GroupId != value))
 				{
-					if (this._SymplusGroup.HasLoadedOrAssignedValue)
+					if (this._Group.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1298,7 +1081,7 @@ namespace Eyedia.Core.Data
 			{
 				if ((this._UserId != value))
 				{
-					if (this._SymplusUser.HasLoadedOrAssignedValue)
+					if (this._User.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1411,70 +1194,70 @@ namespace Eyedia.Core.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SymplusGroup_SymplusGroupUser", Storage="_SymplusGroup", ThisKey="GroupId", OtherKey="Id", IsForeignKey=true)]
-		public SymplusGroup SymplusGroup
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Group_GroupUser", Storage="_Group", ThisKey="GroupId", OtherKey="Id", IsForeignKey=true)]
+		public Group Group
 		{
 			get
 			{
-				return this._SymplusGroup.Entity;
+				return this._Group.Entity;
 			}
 			set
 			{
-				SymplusGroup previousValue = this._SymplusGroup.Entity;
+				Group previousValue = this._Group.Entity;
 				if (((previousValue != value) 
-							|| (this._SymplusGroup.HasLoadedOrAssignedValue == false)))
+							|| (this._Group.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._SymplusGroup.Entity = null;
-						previousValue.SymplusGroupUsers.Remove(this);
+						this._Group.Entity = null;
+						previousValue.GroupUsers.Remove(this);
 					}
-					this._SymplusGroup.Entity = value;
+					this._Group.Entity = value;
 					if ((value != null))
 					{
-						value.SymplusGroupUsers.Add(this);
+						value.GroupUsers.Add(this);
 						this._GroupId = value.Id;
 					}
 					else
 					{
 						this._GroupId = default(int);
 					}
-					this.SendPropertyChanged("SymplusGroup");
+					this.SendPropertyChanged("Group");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SymplusUser_SymplusGroupUser", Storage="_SymplusUser", ThisKey="UserId", OtherKey="Id", IsForeignKey=true)]
-		public SymplusUser SymplusUser
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_GroupUser", Storage="_User", ThisKey="UserId", OtherKey="Id", IsForeignKey=true)]
+		public User User
 		{
 			get
 			{
-				return this._SymplusUser.Entity;
+				return this._User.Entity;
 			}
 			set
 			{
-				SymplusUser previousValue = this._SymplusUser.Entity;
+				User previousValue = this._User.Entity;
 				if (((previousValue != value) 
-							|| (this._SymplusUser.HasLoadedOrAssignedValue == false)))
+							|| (this._User.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._SymplusUser.Entity = null;
-						previousValue.SymplusGroupUsers.Remove(this);
+						this._User.Entity = null;
+						previousValue.GroupUsers.Remove(this);
 					}
-					this._SymplusUser.Entity = value;
+					this._User.Entity = value;
 					if ((value != null))
 					{
-						value.SymplusGroupUsers.Add(this);
+						value.GroupUsers.Add(this);
 						this._UserId = value.Id;
 					}
 					else
 					{
 						this._UserId = default(int);
 					}
-					this.SendPropertyChanged("SymplusUser");
+					this.SendPropertyChanged("User");
 				}
 			}
 		}
@@ -1500,8 +1283,8 @@ namespace Eyedia.Core.Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SymplusUser")]
-	public partial class SymplusUser : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="[User]")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1534,9 +1317,9 @@ namespace Eyedia.Core.Data
 		
 		private string _Source;
 		
-		private EntitySet<SymplusGroupUser> _SymplusGroupUsers;
+		private EntitySet<GroupUser> _GroupUsers;
 		
-		private EntityRef<SymplusGroup> _SymplusGroup;
+		private EntityRef<Group> _Group;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1572,10 +1355,10 @@ namespace Eyedia.Core.Data
     partial void OnSourceChanged();
     #endregion
 		
-		public SymplusUser()
+		public User()
 		{
-			this._SymplusGroupUsers = new EntitySet<SymplusGroupUser>(new Action<SymplusGroupUser>(this.attach_SymplusGroupUsers), new Action<SymplusGroupUser>(this.detach_SymplusGroupUsers));
-			this._SymplusGroup = default(EntityRef<SymplusGroup>);
+			this._GroupUsers = new EntitySet<GroupUser>(new Action<GroupUser>(this.attach_GroupUsers), new Action<GroupUser>(this.detach_GroupUsers));
+			this._Group = default(EntityRef<Group>);
 			OnCreated();
 		}
 		
@@ -1710,7 +1493,7 @@ namespace Eyedia.Core.Data
 			{
 				if ((this._GroupId != value))
 				{
-					if (this._SymplusGroup.HasLoadedOrAssignedValue)
+					if (this._Group.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1863,49 +1646,49 @@ namespace Eyedia.Core.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SymplusUser_SymplusGroupUser", Storage="_SymplusGroupUsers", ThisKey="Id", OtherKey="UserId")]
-		public EntitySet<SymplusGroupUser> SymplusGroupUsers
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_GroupUser", Storage="_GroupUsers", ThisKey="Id", OtherKey="UserId")]
+		public EntitySet<GroupUser> GroupUsers
 		{
 			get
 			{
-				return this._SymplusGroupUsers;
+				return this._GroupUsers;
 			}
 			set
 			{
-				this._SymplusGroupUsers.Assign(value);
+				this._GroupUsers.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SymplusGroup_SymplusUser", Storage="_SymplusGroup", ThisKey="GroupId", OtherKey="Id", IsForeignKey=true)]
-		public SymplusGroup SymplusGroup
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Group_User", Storage="_Group", ThisKey="GroupId", OtherKey="Id", IsForeignKey=true)]
+		public Group Group
 		{
 			get
 			{
-				return this._SymplusGroup.Entity;
+				return this._Group.Entity;
 			}
 			set
 			{
-				SymplusGroup previousValue = this._SymplusGroup.Entity;
+				Group previousValue = this._Group.Entity;
 				if (((previousValue != value) 
-							|| (this._SymplusGroup.HasLoadedOrAssignedValue == false)))
+							|| (this._Group.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._SymplusGroup.Entity = null;
-						previousValue.SymplusUsers.Remove(this);
+						this._Group.Entity = null;
+						previousValue.Users.Remove(this);
 					}
-					this._SymplusGroup.Entity = value;
+					this._Group.Entity = value;
 					if ((value != null))
 					{
-						value.SymplusUsers.Add(this);
+						value.Users.Add(this);
 						this._GroupId = value.Id;
 					}
 					else
 					{
 						this._GroupId = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("SymplusGroup");
+					this.SendPropertyChanged("Group");
 				}
 			}
 		}
@@ -1930,26 +1713,28 @@ namespace Eyedia.Core.Data
 			}
 		}
 		
-		private void attach_SymplusGroupUsers(SymplusGroupUser entity)
+		private void attach_GroupUsers(GroupUser entity)
 		{
 			this.SendPropertyChanging();
-			entity.SymplusUser = this;
+			entity.User = this;
 		}
 		
-		private void detach_SymplusGroupUsers(SymplusGroupUser entity)
+		private void detach_GroupUsers(GroupUser entity)
 		{
 			this.SendPropertyChanging();
-			entity.SymplusUser = null;
+			entity.User = null;
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SymplusEmailTracker")]
-	public partial class SymplusEmailTracker : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="EmailTracker")]
+	public partial class EmailTracker : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _Id;
+		
+		private int _DataSourceId;
 		
 		private string _Subject;
 		
@@ -1973,6 +1758,8 @@ namespace Eyedia.Core.Data
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
+    partial void OnDataSourceIdChanging(int value);
+    partial void OnDataSourceIdChanged();
     partial void OnSubjectChanging(string value);
     partial void OnSubjectChanged();
     partial void OnBodyChanging(string value);
@@ -1991,7 +1778,7 @@ namespace Eyedia.Core.Data
     partial void OnSourceChanged();
     #endregion
 		
-		public SymplusEmailTracker()
+		public EmailTracker()
 		{
 			OnCreated();
 		}
@@ -2012,6 +1799,26 @@ namespace Eyedia.Core.Data
 					this._Id = value;
 					this.SendPropertyChanged("Id");
 					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataSourceId", DbType="Int NOT NULL")]
+		public int DataSourceId
+		{
+			get
+			{
+				return this._DataSourceId;
+			}
+			set
+			{
+				if ((this._DataSourceId != value))
+				{
+					this.OnDataSourceIdChanging(value);
+					this.SendPropertyChanging();
+					this._DataSourceId = value;
+					this.SendPropertyChanged("DataSourceId");
+					this.OnDataSourceIdChanged();
 				}
 			}
 		}

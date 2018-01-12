@@ -875,7 +875,7 @@ namespace Eyedia.IDPE.Services
 
                 if (Registry.Instance.CodeSets != null)
                 {
-                    SymplusCodeSet thisCodeSet = (from cs in Registry.Instance.CodeSets
+                    CodeSet thisCodeSet = (from cs in Registry.Instance.CodeSets
                                                   where ((cs.Code.Equals(code, StringComparison.OrdinalIgnoreCase)) && (cs.Value.Equals(Value, StringComparison.OrdinalIgnoreCase)))
                                                   select cs).SingleOrDefault();
                     if (thisCodeSet != null)

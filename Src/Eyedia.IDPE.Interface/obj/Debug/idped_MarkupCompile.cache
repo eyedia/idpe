@@ -12,9 +12,9 @@ TRACE;DEBUG;WITHOUT_OBJECTLISTVIEW
 
 4-1626772165
 8-436772113
-227-345273936
+223-425417890
 40-635560011
 ConfigUIs\ConfigDatabaseWriter.xaml;RuleEditor\InputDialog.xaml;RuleEditor\MainWindow.xaml;RuleEditor\Views\ValidationErrorsUserControl.xaml;
 
-True
+False
 

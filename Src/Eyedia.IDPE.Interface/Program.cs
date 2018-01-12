@@ -86,7 +86,7 @@ namespace Eyedia.IDPE.Interface
 
         private static void GetDummyUser()
         {
-            Information.LoggedInUser = new Core.Data.SymplusUser();
+            Information.LoggedInUser = new Core.Data.User();
             Information.LoggedInUser.FullName = "Deb'jyoti Das";
             Information.LoggedInUser.UserName = "DD";
             Information.LoggedInUser.IsDebugUser = true;

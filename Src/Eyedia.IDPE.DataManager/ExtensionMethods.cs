@@ -221,7 +221,7 @@ namespace Eyedia.IDPE.DataManager
             }
         }
 
-        public static UserPreferences GetUserPreferences(this SymplusUser user)
+        public static UserPreferences GetUserPreferences(this User user)
         {
             user.Preferences = user.Preferences.Replace("Symplus.RuleEngine.Common", "Eyedia.IDPE.Common");
             return new UserPreferences(user.Preferences);

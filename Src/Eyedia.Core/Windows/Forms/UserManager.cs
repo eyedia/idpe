@@ -62,7 +62,7 @@ namespace Eyedia.Core.Windows.Forms
             lvwUsers.Columns[0].Width = 150;
             lvwUsers.Columns[1].Width = 100;
             lvwUsers.Columns[2].Width = 150;
-            cbGroups.DataSource = CoreDatabaseObjects.Instance.SymplusGroups;
+            cbGroups.DataSource = CoreDatabaseObjects.Instance.Groups;
             cbGroups.DisplayMember = "Name";
             RefreshUserList();
         }
@@ -70,7 +70,7 @@ namespace Eyedia.Core.Windows.Forms
         void RefreshUserList()
         {
             lvwUsers.Items.Clear();
-            foreach (SymplusUser user in CoreDatabaseObjects.Instance.SymplusUsers)
+            foreach (User user in CoreDatabaseObjects.Instance.Users)
             {
                 ListViewItem item = new ListViewItem(user.FullName);
                 item.SubItems.Add(user.UserName);
@@ -84,7 +84,7 @@ namespace Eyedia.Core.Windows.Forms
             }
             if (lvwUsers.Items.Count > 0)
             {
-                SelectedUser = (SymplusUser)lvwUsers.Items[0].Tag;
+                SelectedUser = (User)lvwUsers.Items[0].Tag;
                 BindData();
             }
         }
@@ -105,7 +105,7 @@ namespace Eyedia.Core.Windows.Forms
                     txtUserName.Text = SelectedUser.UserName;
                     lblPassword.Text = SelectedUser.Password;
                     txtEmailId.Text = SelectedUser.EmailId;
-                    cbGroups.SelectedItem = CoreDatabaseObjects.Instance.SymplusGroups.Where(g => g.Id == SelectedUser.GroupId).SingleOrDefault();
+                    cbGroups.SelectedItem = CoreDatabaseObjects.Instance.Groups.Where(g => g.Id == SelectedUser.GroupId).SingleOrDefault();
                 }
             }
             else
@@ -119,12 +119,12 @@ namespace Eyedia.Core.Windows.Forms
             }
         }
 
-        SymplusUser SelectedUser { get; set; }
+        User SelectedUser { get; set; }
 
         private void lvwUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvwUsers.SelectedItems.Count > 0)
-                SelectedUser = (SymplusUser)lvwUsers.SelectedItems[0].Tag;
+                SelectedUser = (User)lvwUsers.SelectedItems[0].Tag;
             else
                 SelectedUser = null;
 
@@ -143,12 +143,12 @@ namespace Eyedia.Core.Windows.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            SymplusUser newOrOldUser = new SymplusUser();
+            User newOrOldUser = new User();
 
             newOrOldUser.FullName = txtFullName.Text;
             newOrOldUser.UserName = txtUserName.Text;
             newOrOldUser.EmailId = txtEmailId.Text;
-            newOrOldUser.GroupId = ((SymplusGroup)cbGroups.SelectedItem).Id;
+            newOrOldUser.GroupId = ((Group)cbGroups.SelectedItem).Id;
 
             try
             {
@@ -192,7 +192,7 @@ namespace Eyedia.Core.Windows.Forms
             txtUserName.Text = "";
             txtEmailId.Text = "";
             lblPassword.Text = "";
-            cbGroups.SelectedItem = CoreDatabaseObjects.Instance.SymplusGroups.Where(g => g.Name.ToLower() == "Users").SingleOrDefault();
+            cbGroups.SelectedItem = CoreDatabaseObjects.Instance.Groups.Where(g => g.Name.ToLower() == "Users").SingleOrDefault();
             txtFullName.Focus();
         }
 

@@ -64,7 +64,7 @@ namespace Eyedia.Core.Data
             if (!string.IsNullOrEmpty(errorMessage))
                 return false;
 
-            SymplusEmailTracker emailTracker = new SymplusEmailTracker();
+            EmailTracker emailTracker = new EmailTracker();
             emailTracker.ReferenceId = referenceId;
             emailTracker.Subject = subject;
             emailTracker.Body = body;
@@ -76,7 +76,7 @@ namespace Eyedia.Core.Data
         /// Saves new email tracker object into the database
         /// </summary>
         /// <param name="emailTracker"></param>    
-        public bool Save(SymplusEmailTracker emailTracker)
+        public bool Save(EmailTracker emailTracker)
         {
             if (GetNumberOfTodaysEmail(emailTracker) >= EyediaCoreConfigurationSection.CurrentConfig.Email.MaxNumberOfEmails)
                 return false;
@@ -99,12 +99,12 @@ namespace Eyedia.Core.Data
                     userName = userName.Replace("'", "''");
                 if ((emailTracker.ReferenceId != null) && (emailTracker.ReferenceId != 0))
                 {
-                    command.CommandText = string.Format(CultureInfo.InvariantCulture, "INSERT INTO SymplusEmailTracker (Subject, Body, ReferenceId, CreatedTS, CreatedBy, Source) VALUES('{0}','{1}',{2},'{3}','{4}','{5}')"
+                    command.CommandText = string.Format(CultureInfo.InvariantCulture, "INSERT INTO EmailTracker (Subject, Body, ReferenceId, CreatedTS, CreatedBy, Source) VALUES('{0}','{1}',{2},'{3}','{4}','{5}')"
                             , emailTracker.Subject, emailTracker.Body, emailTracker.ReferenceId, DateTime.Now, userName, GetSource());
                 }
                 else
                 {
-                    command.CommandText = string.Format(CultureInfo.InvariantCulture, "INSERT INTO SymplusEmailTracker (Subject, Body, CreatedTS, CreatedBy, Source) VALUES('{0}','{1}','{2}','{3}','{4}')"
+                    command.CommandText = string.Format(CultureInfo.InvariantCulture, "INSERT INTO EmailTracker (Subject, Body, CreatedTS, CreatedBy, Source) VALUES('{0}','{1}','{2}','{3}','{4}')"
                             , emailTracker.Subject, emailTracker.Body, DateTime.Now, userName, GetSource());
                 }
 
@@ -130,7 +130,7 @@ namespace Eyedia.Core.Data
 
         }
 
-        public int GetNumberOfTodaysEmail(SymplusEmailTracker emailTracker)
+        public int GetNumberOfTodaysEmail(EmailTracker emailTracker)
         {
             return GetNumberOfTodaysEmail(emailTracker.Subject, emailTracker.Body, emailTracker.ReferenceId);
         }
@@ -141,7 +141,7 @@ namespace Eyedia.Core.Data
             body = HandleMaxLengthAndQoutes(body, 150);
             int emails = 0;
 
-            string commandText = string.Format("select Count(*) as [Count] from SymplusEmailTracker where Subject = '{0}' and Body = '{1}'",
+            string commandText = string.Format("select Count(*) as [Count] from EmailTracker where Subject = '{0}' and Body = '{1}'",
                 subject, body);
             if ((referenceId != null) && (referenceId != 0))
                 commandText += " and referenceId =" + referenceId;
@@ -165,7 +165,7 @@ namespace Eyedia.Core.Data
 
         public void ClearTrackedEmails()
         {
-            CoreDatabaseObjects.Instance.ExecuteStatement("delete from [SymplusEmailTracker]");
+            CoreDatabaseObjects.Instance.ExecuteStatement("delete from [EmailTracker]");
         }
 
         private string HandleMaxLengthAndQoutes(string data, int maxLength = 4000)

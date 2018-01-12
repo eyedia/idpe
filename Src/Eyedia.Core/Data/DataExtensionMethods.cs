@@ -455,7 +455,7 @@ namespace Eyedia.Core.Data
         /// <param name="codeSets">List of codesets</param>
         /// <param name="code">The code</param>
         /// <returns></returns>
-        public static List<SymplusCodeSet> Find(this List<SymplusCodeSet> codeSets, string code)
+        public static List<CodeSet> Find(this List<CodeSet> codeSets, string code)
         {
             return codeSets.Where(cs => cs.Code.Equals(code, StringComparison.OrdinalIgnoreCase)).ToList();
         }
@@ -466,7 +466,7 @@ namespace Eyedia.Core.Data
         /// <param name="codeSets">List of codesets</param>
         /// <param name="code">The code</param>
         /// <returns></returns>
-        public static List<SymplusCodeSet> Find(this ReadOnlyCollection<SymplusCodeSet> codeSets, string code)
+        public static List<CodeSet> Find(this ReadOnlyCollection<CodeSet> codeSets, string code)
         {
             return codeSets.Where(cs => cs.Code.Equals(code, StringComparison.OrdinalIgnoreCase)).ToList();
         }
@@ -478,7 +478,7 @@ namespace Eyedia.Core.Data
         /// <param name="codeSets">List of codesets</param>
         /// <param name="code">The code</param>
         /// <returns></returns>
-        public static List<string> GetCodeValues(this List<SymplusCodeSet> codeSets)
+        public static List<string> GetCodeValues(this List<CodeSet> codeSets)
         {
             return codeSets.Select(cs => cs.Value).ToList();
         }
@@ -489,7 +489,7 @@ namespace Eyedia.Core.Data
         /// <param name="codeSets">List of codesets</param>
         /// <param name="code">The code</param>
         /// <returns></returns>
-        public static List<string> GetCodeValues(this ReadOnlyCollection<SymplusCodeSet> codeSets)
+        public static List<string> GetCodeValues(this ReadOnlyCollection<CodeSet> codeSets)
         {
             return codeSets.Select(cs => cs.Value).ToList();
         }
@@ -499,7 +499,7 @@ namespace Eyedia.Core.Data
         /// </summary>
         /// <param name="user">The user</param>
         /// <returns></returns>
-        public static bool IsAdmin(this SymplusUser user)
+        public static bool IsAdmin(this User user)
         {
             if (user == null) return false;
 
@@ -509,7 +509,7 @@ namespace Eyedia.Core.Data
             }
             else
             {
-                SymplusGroup adminGroup = CoreDatabaseObjects.Instance.GetAdminGroup();
+                Group adminGroup = CoreDatabaseObjects.Instance.GetAdminGroup();
                 if (user.GroupId == adminGroup.Id)
                     return true;
             }

@@ -52,16 +52,16 @@ namespace Eyedia.Core.Data
         [DllImport(@"Symplus.Security.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern int IsEqual(StringBuilder plaintext, int plaintextlength, StringBuilder enctext, int enctextlength);
 
-        private List<SymplusUser> GetUsers()
+        private List<User> GetUsers()
         {
-            List<SymplusUser> users = new List<SymplusUser>();
-            DataTable table = ExecuteCommand("SELECT [Id],[FullName],[UserName],[Password],[EmailId],[Password],[Preferences],[GroupId], [IsDebugUser], [IsSystemUser] FROM [SymplusUser]");            
+            List<User> users = new List<User>();
+            DataTable table = ExecuteCommand("SELECT [Id],[FullName],[UserName],[Password],[EmailId],[Password],[Preferences],[GroupId], [IsDebugUser], [IsSystemUser] FROM [User]");            
             if (table == null)
                 return users;
 
             foreach (DataRow row in table.Rows)
             {
-                SymplusUser user = new SymplusUser();
+                User user = new User();
                 user.Id = (int)row["Id"].ToString().ParseInt();
                 user.FullName = row["FullName"].ToString();
                 user.UserName = row["UserName"].ToString();
@@ -82,7 +82,7 @@ namespace Eyedia.Core.Data
         public int GetUserId(IDal myDal, IDbConnection conn, IDbTransaction transaction, string userName)
         {
             int userId = 0;
-            IDbCommand command = myDal.CreateCommand("SELECT Id FROM [SymplusUser] WHERE UserName = @UserName", conn);
+            IDbCommand command = myDal.CreateCommand("SELECT Id FROM [User] WHERE UserName = @UserName", conn);
             command.AddParameterWithValue("UserName", userName);
             command.Transaction = transaction;
             IDataReader reader = command.ExecuteReader();
@@ -94,14 +94,14 @@ namespace Eyedia.Core.Data
             return userId;
         }
 
-        public SymplusUser GetUser(string userName)
+        public User GetUser(string userName)
         {
             userName = userName.Replace("'", "''");
-            DataTable table = ExecuteCommand("SELECT [Id],[FullName],[UserName],[Password],[EmailId],[Password],[Preferences],[GroupId], [IsDebugUser], [IsSystemUser] FROM [SymplusUser] WHERE UserName = '" + userName + "'");
+            DataTable table = ExecuteCommand("SELECT [Id],[FullName],[UserName],[Password],[EmailId],[Password],[Preferences],[GroupId], [IsDebugUser], [IsSystemUser] FROM [User] WHERE UserName = '" + userName + "'");
 
              if (table.Rows.Count == 1)
              {
-                 SymplusUser user = new SymplusUser();
+                 User user = new User();
                  user.Id = (int)table.Rows[0]["Id"].ToString().ParseInt();
                  user.FullName = table.Rows[0]["FullName"].ToString();
                  user.UserName = table.Rows[0]["UserName"].ToString();
@@ -124,7 +124,7 @@ namespace Eyedia.Core.Data
             return sbPassword.ToString();
         }
 
-        public int Save(SymplusUser user)
+        public int Save(User user)
         {
             if ((user.IsDebugUser != true) && (string.IsNullOrEmpty(user.Password)))
                 throw new Exception("Password cannot be blank!");
@@ -142,7 +142,7 @@ namespace Eyedia.Core.Data
                 userId = GetUserId(myDal, conn, transaction, user.UserName);
                 if (userId == 0)
                 {
-                    command.CommandText = "INSERT INTO [SymplusUser] (FullName, UserName, Password, EmailId, [Preferences], GroupId, IsDebugUser, IsSystemUser) ";
+                    command.CommandText = "INSERT INTO [User] (FullName, UserName, Password, EmailId, [Preferences], GroupId, IsDebugUser, IsSystemUser) ";
                     command.CommandText += " VALUES (@FullName, @UserName, @Password, @EmailId, @Preferences, @GroupId, @IsDebugUser, @IsSystemUser)";
                     command.AddParameterWithValue("FullName", user.FullName);
                     command.AddParameterWithValue("UserName", user.UserName);
@@ -180,13 +180,13 @@ namespace Eyedia.Core.Data
 
                     //Deb: I know dirty coding, need to be changed. OUTPUT INSERTED.Id not working @SQL CE
                     command.Parameters.Clear();
-                    command.CommandText = "SELECT max(Id) from [SymplusUser]";
+                    command.CommandText = "SELECT max(Id) from [User]";
                     userId = (Int32)command.ExecuteScalar();
 
                 }
                 else
                 {
-                    command.CommandText = "UPDATE [SymplusUser] SET [FullName] = @FullName,[UserName] = @UserName,[EmailId] = @EmailId,[Preferences] = @Preferences, [GroupId] = @GroupId, [IsDebugUser] = @IsDebugUser, [IsSystemUser] = @IsSystemUser ";
+                    command.CommandText = "UPDATE [User] SET [FullName] = @FullName,[UserName] = @UserName,[EmailId] = @EmailId,[Preferences] = @Preferences, [GroupId] = @GroupId, [IsDebugUser] = @IsDebugUser, [IsSystemUser] = @IsSystemUser ";
                     command.CommandText += "WHERE [Id] = @Id";
 
                     command.AddParameterWithValue("FullName", user.FullName);
@@ -240,7 +240,7 @@ namespace Eyedia.Core.Data
             return userId;
         }
 
-        public void ChangePassword(SymplusUser user, string newPassword)
+        public void ChangePassword(User user, string newPassword)
         {           
             IDal myDal = new DataAccessLayer(EyediaCoreConfigurationSection.CurrentConfig.Database.DatabaseType).Instance;
             IDbConnection conn = myDal.CreateConnection(_ConnectionString);
@@ -249,7 +249,7 @@ namespace Eyedia.Core.Data
             IDbCommand command = myDal.CreateCommand();
             command.Connection = conn;
             
-            command.CommandText = "UPDATE [SymplusUser] SET [Password] = @Password ";
+            command.CommandText = "UPDATE [User] SET [Password] = @Password ";
             command.CommandText += "WHERE [Id] = @Id";
 
             command.AddParameterWithValue("Password", EncryptPassword(newPassword));
@@ -261,7 +261,7 @@ namespace Eyedia.Core.Data
 
         }
 
-        public void UpdateUserPreferences(SymplusUser user)
+        public void UpdateUserPreferences(User user)
         {
             IDal myDal = new DataAccessLayer(EyediaCoreConfigurationSection.CurrentConfig.Database.DatabaseType).Instance;
             IDbConnection conn = myDal.CreateConnection(_ConnectionString);
@@ -277,7 +277,7 @@ namespace Eyedia.Core.Data
                 if (userId == 0)
                     userId = Save(user);    //debugger only
 
-                command.CommandText = "UPDATE [SymplusUser] SET [Preferences] = @Preferences ";
+                command.CommandText = "UPDATE [User] SET [Preferences] = @Preferences ";
                 command.CommandText += "WHERE [Id] = @Id";
 
                 command.AddParameterWithValue("Preferences", user.Preferences);
@@ -299,7 +299,7 @@ namespace Eyedia.Core.Data
 
         }
 
-        public SymplusUser Authenticate(string userName, string password, string connectionString = null)
+        public User Authenticate(string userName, string password, string connectionString = null)
         {
             if (connectionString == null)
                 connectionString = _ConnectionString;
@@ -311,7 +311,7 @@ namespace Eyedia.Core.Data
             bool foundInDb = false; //root user's password has been changed
             try
             {
-                command.CommandText = "SELECT [Password] FROM [SymplusUser] WHERE [UserName] = @UserName";
+                command.CommandText = "SELECT [Password] FROM [User] WHERE [UserName] = @UserName";
                 command.AddParameterWithValue("UserName", userName);
 
 
@@ -340,14 +340,14 @@ namespace Eyedia.Core.Data
                 //default hardcoded users
                 if (CoreDatabaseObjects.SymplusAuthenticate(userName, password) > 0)
                 {
-                    SymplusUser user = new SymplusUser();
+                    User user = new User();
                     user.UserName = userName;
                     user.Password = password;
                     user.FullName = "Copied Root User";
                     user.UserName = user.UserName;
                     user.IsDebugUser = false;
                     user.IsSystemUser = true;
-                    SymplusGroup adminGroup = CoreDatabaseObjects.Instance.GetAdminGroup();
+                    Group adminGroup = CoreDatabaseObjects.Instance.GetAdminGroup();
                     if (adminGroup != null)
                         user.GroupId = adminGroup.Id;
                     CoreDatabaseObjects.Instance.Save(user);

@@ -1,0 +1,2 @@
+WorkerManager.g.xaml
+XamlStaticHelperNamespace._XamlStaticHelper

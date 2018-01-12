@@ -42,17 +42,17 @@ namespace Eyedia.Core.Data
 {
     public partial class CoreDatabaseObjects
     {
-        public List<SymplusAVPair> GetAVPairs()
+        public List<AVPair> GetAVPairs()
         {
-            List<SymplusAVPair> avPairs = new List<SymplusAVPair>();
-            string commandText = "select [Id],[Key],[Value],[CreatedBy],[CreatedTS],[ModifiedBy],[ModifiedTS],[Source] from [SymplusAVPair]";
+            List<AVPair> avPairs = new List<AVPair>();
+            string commandText = "select [Id],[Key],[Value],[CreatedBy],[CreatedTS],[ModifiedBy],[ModifiedTS],[Source] from [AVPair]";
             DataTable table = ExecuteCommand(commandText);
             if (table == null)
                 return avPairs;
 
             foreach (DataRow row in table.Rows)
             {
-                SymplusAVPair avPair = new SymplusAVPair();
+                AVPair avPair = new AVPair();
                 avPair.Id = (int)row["Id"].ToString().ParseInt();
                 avPair.Key = row["Key"] != DBNull.Value ? row["Key"].ToString() : null;
                 avPair.Value = row["Value"] != DBNull.Value ? row["Value"].ToString() : null;
@@ -69,19 +69,19 @@ namespace Eyedia.Core.Data
         }
        
 
-        public SymplusAVPair GetAVPair(string key)
+        public AVPair GetAVPair(string key)
         {
-            return this.SymplusAVPairs.Where(av => av.Key.Equals(key, StringComparison.OrdinalIgnoreCase)).SingleOrDefault();
+            return this.AVPairs.Where(av => av.Key.Equals(key, StringComparison.OrdinalIgnoreCase)).SingleOrDefault();
         }
 
         public string GetAVPairValue(string key)
         {
-            SymplusAVPair avPair= this.SymplusAVPairs.Where(av => av.Key.Equals(key, StringComparison.OrdinalIgnoreCase)).SingleOrDefault();
+            AVPair avPair= this.AVPairs.Where(av => av.Key.Equals(key, StringComparison.OrdinalIgnoreCase)).SingleOrDefault();
             return avPair == null ? string.Empty : avPair.Value;
         }
 
 
-        public void Save(SymplusAVPair avPair)
+        public void Save(AVPair avPair)
         {
             IDal myDal = new DataAccessLayer(EyediaCoreConfigurationSection.CurrentConfig.Database.DatabaseType).Instance;
             IDbConnection conn = myDal.CreateConnection(_ConnectionString);
@@ -95,7 +95,7 @@ namespace Eyedia.Core.Data
             {
                 if (avPair.Id == 0)
                 {
-                    command.CommandText = "INSERT INTO [SymplusAVPair] ([Key], [Value], [CreatedBy], [CreatedTS], [Source]) ";
+                    command.CommandText = "INSERT INTO [AVPair] ([Key], [Value], [CreatedBy], [CreatedTS], [Source]) ";
                     command.CommandText += " VALUES (@Key, @Value, @CreatedBy, @CreatedTS, @Source)";
                     command.AddParameterWithValue("Key", avPair.Key);
                     command.AddParameterWithValue("Value", avPair.Value);
@@ -106,13 +106,13 @@ namespace Eyedia.Core.Data
 
                     //Deb: I know dirty coding, need to be changed. OUTPUT INSERTED.Id not working @SQL CE
                     command.Parameters.Clear();
-                    command.CommandText = "SELECT max(Id) from [SymplusAVPair]";
+                    command.CommandText = "SELECT max(Id) from [AVPair]";
                     int newCodeSetId = (Int32)command.ExecuteScalar();
 
                 }
                 else
                 {
-                    command.CommandText = "UPDATE [SymplusAVPair] SET [Key] = @Key, [Value] = @Value, ModifiedBy = @ModifiedBy, ModifiedTS = @ModifiedTS, Source = @Source";
+                    command.CommandText = "UPDATE [AVPair] SET [Key] = @Key, [Value] = @Value, ModifiedBy = @ModifiedBy, ModifiedTS = @ModifiedTS, Source = @Source";
                     command.CommandText += "WHERE [Id] = @Id";
 
                     command.AddParameterWithValue("Key", avPair.Key);

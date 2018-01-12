@@ -58,7 +58,7 @@ namespace Eyedia.IDPE.Services
         {
             this.Keys = new List<SreKey>();
             this.Rules = new List<SreRule>();
-            this.CodeSets = new List<SymplusCodeSet>();
+            this.CodeSets = new List<CodeSet>();
         }
 
         public DataSourcePatch(string fileName = null, string serializedObject = null, int version = 0)
@@ -67,7 +67,7 @@ namespace Eyedia.IDPE.Services
             {
                 this.Keys = new List<SreKey>();
                 this.Rules = new List<SreRule>();
-                this.CodeSets = new List<SymplusCodeSet>();
+                this.CodeSets = new List<CodeSet>();
             }
             else if (fileName != null)
             {
@@ -98,7 +98,7 @@ namespace Eyedia.IDPE.Services
         public List<SreRule> Rules { get; set; }
 
         [DataMember]
-        public List<SymplusCodeSet> CodeSets { get; set; }
+        public List<CodeSet> CodeSets { get; set; }
 
         void LoadFromFile(string fileName)
         {
@@ -194,7 +194,7 @@ namespace Eyedia.IDPE.Services
 
             #region CodeSets
 
-            foreach (SymplusCodeSet codeSet in this.CodeSets)
+            foreach (CodeSet codeSet in this.CodeSets)
             {
                 Trace.TraceInformation("Inserting:CodeSet.Name={0}", codeSet.Code);
                 CoreDatabaseObjects.Instance.Save(codeSet);

@@ -1,0 +1,4 @@
+obj\Debug\Worker.g.xaml
+obj\Debug\WorkerManager.g.xaml
+obj\Debug\Eyedia.IDPE.Services_Worker_BeforeInitializeComponentHelper.txt
+obj\Debug\Eyedia.IDPE.Services_WorkerManager_BeforeInitializeComponentHelper.txt

@@ -102,7 +102,7 @@ namespace Eyedia.IDPE.Interface
         }
 
         [Browsable(false)]
-        //[CategoryAttribute("0-Global"), Description("Code set formula as [Connection String].[TableName].(\"CodeSet\"), for example: [defaultcs].[SymplusCodeSet].(\"Currency\") ")]
+        //[CategoryAttribute("0-Global"), Description("Code set formula as [Connection String].[TableName].(\"CodeSet\"), for example: [defaultcs].[CodeSet].(\"Currency\") ")]
         [CategoryAttribute("0-Global"), Description("")]
         [DisplayName("Formula")]
         [Editor(typeof(MultiLineTextEditor), typeof(UITypeEditor))]       
@@ -258,7 +258,7 @@ namespace Eyedia.IDPE.Interface
         {
             this.Attribute.Name = Name;
             if(this.Attribute.Type.ToString() == AttributeTypes.Codeset.ToString())
-                this.Attribute.Formula = string.Format("[defaultcs].[SymplusCodeSet].(\"{0}\")", LovName);
+                this.Attribute.Formula = string.Format("[defaultcs].[CodeSet].(\"{0}\")", LovName);
             this.Attribute.IsAcceptable = true;
             this.Attribute.Type = Type.ToString();
             try

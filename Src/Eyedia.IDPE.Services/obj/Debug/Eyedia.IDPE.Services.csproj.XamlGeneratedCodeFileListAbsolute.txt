@@ -1,0 +1,5 @@
+obj\Debug\_Eyedia.IDPE.Services.g.cs
+obj\Debug\Worker.g.cs
+obj\Debug\WorkerManager.g.cs
+obj\Debug\Eyedia.IDPE.Services_Worker_BeforeInitializeComponentHelper.cs
+obj\Debug\Eyedia.IDPE.Services_WorkerManager_BeforeInitializeComponentHelper.cs

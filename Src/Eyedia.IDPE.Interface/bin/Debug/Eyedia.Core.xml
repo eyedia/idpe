@@ -1,0 +1,928 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Eyedia.Core</name>
+    </assembly>
+    <members>
+        <member name="M:Eyedia.Core.Data.CoreDatabaseObjects.Save(System.String,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Saves new email tracker object into the database
+            </summary>
+            <param name="subject"></param>
+            <param name="body"></param>       
+            <param name="referenceId"></param>
+        </member>
+        <member name="M:Eyedia.Core.Data.CoreDatabaseObjects.Save(Eyedia.Core.Data.EmailTracker)">
+            <summary>
+            Saves new email tracker object into the database
+            </summary>
+            <param name="emailTracker"></param>    
+        </member>
+        <member name="M:Eyedia.Core.Data.DataExtensionMethods.LinqObjectGetLengthLimit(System.Object,System.String)">
+            <summary>
+            Gets the length limit for a given field on a LINQ object ... or zero if not known
+            </summary>        
+            <param name="table">the linq table name</param>
+            <param name="columnName">the column name on that table</param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.Data.DataExtensionMethods.LinqObjectAutoTruncate(System.Object,System.String,System.String)">
+            <summary>
+            Truncates column value of a table to its max allowed value...
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Data.DataExtensionMethods.LinqObjectAutoTruncate(System.Object)">
+            <summary>
+            Truncates all column values to its max allowed value...
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Data.DataExtensionMethods.AddParameterWithValue(System.Data.IDbCommand,System.String,System.Object,System.Boolean)">
+            <summary>
+            Adds a parameter to the command.
+            </summary>
+            <param name="command">
+            The command.
+            </param>
+            <param name="parameterName">
+            Name of the parameter.
+            </param>
+            <param name="parameterValue">
+            The parameter value.
+            </param>
+            <param name="setDbType">pass 'true' if you would like to set parameter.DbType</param>
+            <remarks>
+            </remarks>
+        </member>
+        <member name="M:Eyedia.Core.Data.DataExtensionMethods.SetDbType(System.Data.IDbDataParameter,System.Object)">
+            <summary>
+            Set DbType to the passed parameter
+            </summary>
+            <param name="parameter">The Parameter</param>
+            <param name="parameterValue">The parameter value</param>
+        </member>
+        <member name="M:Eyedia.Core.Data.DataExtensionMethods.ToCsv(System.Data.DataTable,System.String,System.String)">
+            <summary>
+            Writes data table into comma separated Csv file
+            </summary>
+            <param name="dataTable">The data table</param>
+            <param name="fileName">The file name</param>
+            <param name="delimiter">The delimiter, default is comma</param>
+        </member>
+        <member name="M:Eyedia.Core.Data.DataExtensionMethods.ToCsvStringBuilder(System.Data.DataTable,System.String)">
+            <summary>
+            Writes data table into comma separated Csv file
+            </summary>
+            <param name="dataTable">The data table</param>       
+            <param name="delimiter">The delimiter, default is comma</param>
+        </member>
+        <member name="M:Eyedia.Core.Data.DataExtensionMethods.Split(System.Data.DataTable,System.Int32)">
+            <summary>
+            Splits data table into number of data tables
+            </summary>
+            <param name="table">The data table</param>
+            <param name="noOfRows">Number of rows per chunk(data table)</param>
+            <returns>List of data tables</returns>
+        </member>
+        <member name="M:Eyedia.Core.Data.DataExtensionMethods.CheckDuplicates(System.Data.DataTable,System.String[],System.Boolean)">
+            <summary>
+            Checks duplicate entries based on key columns. Optinally removes column
+            </summary>
+            <param name="table">input data table</param>
+            <param name="keyColumns">List of key columns to check duplicate</param>
+            <param name="doNotRemove">if true, then it will not remove duplicate entries</param>
+            <returns>List of string containing error messages</returns>
+        </member>
+        <member name="M:Eyedia.Core.Data.DataExtensionMethods.ToDataTable(System.Object)">
+            <summary>
+            Converts an object to data table
+            </summary>
+            <param name="dataObject">the object to be converted to data table</param>
+            <returns>Converted data table</returns>
+        </member>
+        <member name="M:Eyedia.Core.Data.DataExtensionMethods.ToDataTable(System.Text.StringBuilder,System.Boolean,System.String)">
+            <summary>
+            Converts string builder to data table
+            </summary>
+            <param name="delimitedData">the delimited string to be converted to data table</param>
+            <param name="header">pass true if the delimited string contains header</param>
+            <param name="delimiter">the delimiter</param>
+            <returns>Converted data table</returns>
+        </member>
+        <member name="M:Eyedia.Core.Data.DataExtensionMethods.ToDataTable(System.String,System.Boolean,System.String)">
+            <summary>
+            Read file to data table
+            </summary>
+            <param name="fileName">The file name</param>
+            <param name="header">pass true if the delimited string contains header</param>
+            <param name="delimiter">the delimiter</param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.Data.DataExtensionMethods.ToDataTable``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Converts a list of objecst to data table
+            </summary>
+            <param name="data">the list of objects to be converted to data table</param>
+            <returns>Converted data table</returns>
+        </member>
+        <member name="M:Eyedia.Core.Data.DataExtensionMethods.RemoveEmptyRows(System.Data.DataTable,System.Boolean)">
+            <summary>
+            Removes empty rows from data table
+            </summary>        
+            <param name="dataTable">The dirty data table</param>
+            <param name="onlyFromEnd">Pass false if you want empty rows to be deleted from anywhere</param>
+            <returns>Cleaned data table</returns>
+        </member>
+        <member name="M:Eyedia.Core.Data.DataExtensionMethods.Find(System.Collections.Generic.List{Eyedia.Core.Data.CodeSet},System.String)">
+            <summary>
+            Returns code set list based on code
+            </summary>
+            <param name="codeSets">List of codesets</param>
+            <param name="code">The code</param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.Data.DataExtensionMethods.Find(System.Collections.ObjectModel.ReadOnlyCollection{Eyedia.Core.Data.CodeSet},System.String)">
+            <summary>
+            Returns code set list based on code
+            </summary>
+            <param name="codeSets">List of codesets</param>
+            <param name="code">The code</param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.Data.DataExtensionMethods.GetCodeValues(System.Collections.Generic.List{Eyedia.Core.Data.CodeSet})">
+            <summary>
+            Returns code value list based on code
+            </summary>
+            <param name="codeSets">List of codesets</param>
+            <param name="code">The code</param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.Data.DataExtensionMethods.GetCodeValues(System.Collections.ObjectModel.ReadOnlyCollection{Eyedia.Core.Data.CodeSet})">
+            <summary>
+            Returns code value list based on code
+            </summary>
+            <param name="codeSets">List of codesets</param>
+            <param name="code">The code</param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.Data.DataExtensionMethods.IsAdmin(Eyedia.Core.Data.User)">
+            <summary>
+            Checks if user is an admin user - will return true if the user is system user or an admin user
+            </summary>
+            <param name="user">The user</param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.Data.SqlCeTableCreator.GetSqlDBTypeFromType(System.Type)">
+            <summary>
+            Gets the correct SqlDBType for a given .NET type. Useful for working with SQL CE.
+            </summary>
+            <param name="type">The .Net Type used to find the SqlDBType.</param>
+            <returns>The correct SqlDbType for the .Net type passed in.</returns>
+        </member>
+        <member name="M:Eyedia.Core.Data.SqlCeTableCreator.GetSqlServerCETypeName(System.String,System.Data.SqlDbType,System.Int32)">
+            <summary>
+            The method gets the SQL CE type name for use in SQL Statements such as CREATE TABLE
+            </summary>
+            <param name="dbType">The SqlDbType to get the type name for</param>
+            <param name="size">The size where applicable e.g. to create a nchar(n) type where n is the size passed in.</param>
+            <returns>The SQL CE compatible type for use in SQL Statements</returns>
+        </member>
+        <member name="M:Eyedia.Core.Data.SqlCeTableCreator.GetCreateTableStatement(System.Data.DataTable,System.String,System.String)">
+            <summary>
+            Genenerates a SQL CE compatible CREATE TABLE statement based on a schema obtained from
+            a SqlDataReader or a SqlCeDataReader.
+            </summary>
+            <param name="table">The existing table.</param>
+            <param name="tableName">The name of the table</param>
+            <param name="specificColumnTypes">Specific column types with</param>
+            <returns>The CREATE TABLE... Statement for the given schema.</returns>
+        </member>
+        <member name="P:Eyedia.Core.Data.CsvDataSource.KeyFieldName">
+            <summary>
+            Key field name, based on which IUD will be performed. 
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Data.StoredProcedure.Dispose">
+            <summary>
+            Enable to dispose itself
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Eyedia.Core.Data.StoredProcedure.GetResultSet" -->
+        <member name="M:Eyedia.Core.Data.StoredProcedure.coreSettings">
+            <summary>
+            Set core stored procedure settings.
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Data.StoredProcedure.controlIfDisposed">
+            <summary>
+            If object is disposed throw an exception. 
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Data.StoredProcedure.Dispose(System.Boolean)">
+            <summary>
+            Dispose StoredProcedures; resources.
+            </summary>
+            <param name="disposing">If false dispose unmanaged resources else dispose managed resources.</param>
+        </member>
+        <member name="M:Eyedia.Core.Data.StoredProcedure.getKey(Eyedia.Core.Data.StoredProcedure.operationType)">
+            <summary>
+            Create a unique identifier.
+            </summary>
+            <param name="oType">Operation Type (GetDataAdapter or GetScalar).</param>
+            <returns>Return a unique identifier.</returns>
+        </member>
+        <member name="M:Eyedia.Core.Data.StoredProcedure.addParameters(System.Collections.SortedList)">
+            <summary>
+            Add stored procedure's parameters to IDataParameterCollection
+            </summary>
+            <param name="parameters">IDbDataParameter's sorted list</param>
+        </member>
+        <member name="M:Eyedia.Core.Data.StoredProcedure.manageCaching(Eyedia.Core.Data.StoredProcedure.operationType)">
+            <summary>
+            Get a disconnected object from cache if caching has been required, from db otherwise. 
+            </summary>
+            <param name="oType">Operation Type (GetDataAdapter or GetScalar).</param>
+            <returns>Return a disconnected object.</returns>
+        </member>
+        <member name="M:Eyedia.Core.Data.StoredProcedure.getDisconnectObject(Eyedia.Core.Data.StoredProcedure.operationType)">
+            <summary>
+            Get a disconnected object.
+            </summary>
+            <param name="oType">Operation Type (GetDataAdapter or GetScalar).</param>
+            <returns>Return a disconnected object.</returns>
+        </member>
+        <member name="M:Eyedia.Core.Net.Impersonator.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Constructor. Starts the impersonation with the given credentials.
+            Please note that the account that instantiates the Impersonator class
+            needs to have the 'Act as part of operating system' privilege set.
+            </summary>
+            <param name="userName">The name of the user to act as.</param>
+            <param name="domainName">The domain name of the user to act as.</param>
+            <param name="password">The password of the user to act as.</param>
+        </member>
+        <member name="M:Eyedia.Core.Net.Impersonator.ImpersonateValidUser(System.String,System.String,System.String)">
+            <summary>
+            Does the actual impersonation.
+            </summary>
+            <param name="userName">The name of the user to act as.</param>
+            <param name="domainName">The domain name of the user to act as.</param>
+            <param name="password">The password of the user to act as.</param>
+        </member>
+        <member name="M:Eyedia.Core.Net.Impersonator.UndoImpersonation">
+            <summary>
+            Reverts the impersonation.
+            </summary>
+        </member>
+        <member name="T:Eyedia.Core.Net.EmailModificator">
+            <summary>
+            Abstract class for Modificators
+            </summary>
+        </member>
+        <member name="T:Eyedia.Core.Net.EmailTemplateParser">
+             <remarks>
+             Template Parser is simple parser has been written on C#.
+             It allows setup variables and conditions block in template.
+             Also you can use some of variable's modificators.
+            
+                 Author: Alexander Kleshevnikov
+                 E-mail: seigo@icconline.com
+            
+             <example>There is the simpl example of template for html page:
+             <code>
+             <html>
+             <head><title>##Title##</title></head>
+             <body><h1>##Title:upper##</h1>
+             ##If--IsRegisteredUser##
+             Hello, ##UserName##!
+             ##Else--IsRegisteredUser##
+             Please sign in.
+             ##EndIf--IsRegisteredUser##
+             </body>
+             </html>
+             </code>
+             To parse this template you can use the following code:
+             <code>
+             ...
+             Hashtable Variables = new Hashtable();
+             Variables.Add("Title", "Login In");
+             Variables.Add("IsRegisteredUser", true);
+             Variables.Add("UserName", "seigo");
+             TemplateParser tpl = new TemplateParser("template.htm", Variables);
+             tpl.ParseToFile("result.htm");
+             ...
+             </code>
+             </example>
+             </remarks>
+        </member>
+        <member name="P:Eyedia.Core.Net.EmailTemplateParser.TemplateBlock">
+            <value>Template block</value>
+        </member>
+        <member name="P:Eyedia.Core.Net.EmailTemplateParser.Variables">
+            <value>Template Variables</value>
+        </member>
+        <member name="P:Eyedia.Core.Net.EmailTemplateParser.ErrorMessage">
+            <value>Error Massage</value>
+        </member>
+        <member name="P:Eyedia.Core.Net.EmailTemplateParser.Blocks">
+            <value>Blocks inside template</value>
+        </member>
+        <member name="M:Eyedia.Core.Net.EmailTemplateParser.#ctor">
+            <summary>
+            Creates a new instance of TemplateParser
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Net.EmailTemplateParser.SetTemplateFromFile(System.String)">
+            <summary>
+            Setup template from specified file
+            </summary>
+            <param name="FilePath">Full phisical path to template file</param>
+        </member>
+        <member name="M:Eyedia.Core.Net.EmailTemplateParser.SetTemplate(System.String)">
+            <summary>
+            Setup template as string block
+            </summary>
+            <param name="TemplateBlock">String template block</param>
+        </member>
+        <member name="M:Eyedia.Core.Net.EmailTemplateParser.Parse">
+            <summary>
+            Parse template after setuping Template and Variables
+            </summary>
+            <returns>
+            Parsed Block for Whole Template
+            </returns>
+        </member>
+        <member name="M:Eyedia.Core.Net.EmailTemplateParser.ParseBlock(System.String,System.Collections.Hashtable)">
+            <summary>
+            Parse Template Block
+            </summary>
+            <returns>
+            Parsed Block for Specified BlockName
+            </returns>
+        </member>
+        <member name="M:Eyedia.Core.Net.EmailTemplateParser.ParseToFile(System.String,System.Boolean)">
+            <summary>
+            Parse template and save result into specified file
+            </summary>
+            <param name="FilePath">Full physical path to file</param>
+            <param name="ReplaceIfExists">If true file which already exists
+            will be replaced</param>
+            <returns>True if new content has been written</returns>
+        </member>
+        <member name="M:Eyedia.Core.Net.EmailTemplateParser.ReadTemplateFromFile(System.String)">
+            <summary>
+            Read template content from specified file
+            </summary>
+            <param name="FilePath">Full physical path to template file</param>
+        </member>
+        <member name="M:Eyedia.Core.Net.EmailTemplateParser.ParseBlocks">
+            <summary>
+            Parse all blocks in template
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Net.EmailTemplateParser.ParseConditions">
+            <summary>
+            Parse all conditions in template
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Net.EmailTemplateParser.ParseVariables">
+            <summary>
+            Parse all variables in template
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Net.EmailTemplateParser.ApplyModificator(System.String@,System.String)">
+            <summary>
+            Method for applying modificators to variable value
+            </summary>
+            <param name="Value">Variable value</param>
+            <param name="Modificator">Determination statment</param>
+        </member>
+        <member name="T:Eyedia.Core.LevenshteinDistance">
+            <summary>
+            Contains approximate string matching
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.LevenshteinDistance.Compute(System.String,System.String)">
+            <summary>
+            Compute the distance between two strings.
+            </summary>
+        </member>
+        <member name="T:Eyedia.Core.EyediaCoreConfigurationSectionEditable">
+            <summary>
+            Editable items of EyediaCoreConfiguration. This object helps you to bind configuration into Property grid and save changes back to config file
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.ExtensionMethods.Clone``1(``0)">
+            <summary>     /// Perform a deep Copy of the object.     
+            </summary>     
+            <typeparam name="T">The type of object being copied.</typeparam>     
+            <param name="source">The object instance to copy.</param>     
+            <returns>The copied object.</returns>     
+        </member>
+        <member name="M:Eyedia.Core.ExtensionMethods.Serialize``1(``0)">
+            <summary>
+            Extension method to serialize any object (except List)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.ExtensionMethods.Deserialize``1(System.String)">
+            <summary>
+            Extension method to deserialize any object (except list)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="serialized"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.ExtensionMethods.SerializeList``1(``0)">
+            <summary>
+            Extension method to serialize a list
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.ExtensionMethods.GetLongestString(System.String[])">
+            <summary>
+            Returns longest string from a list of strings.
+            </summary>
+            <param name="listOfStrings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.ExtensionMethods.ParseInt(System.String)">
+            <summary>
+            These methods are created to avoid using try parse whenever we need integer value for sure. If you intention is to have null value, avoid using these extension methods
+            </summary>
+            <param name="strInt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.ExtensionMethods.TryMatchUsingLevenshteinDistance(System.String,System.Collections.Generic.List{System.String},System.Int32)">
+            <summary>
+            Tries to find closest match against list of strings
+            </summary>
+            <param name="source">The source string</param>
+            <param name="targetList">List of target strings</param>
+            <param name="threshold">Threshold, higher the threshold lesser match. 0 = Exact match</param>
+            <returns></returns>
+        </member>
+        <member name="F:Eyedia.Core.FileUtility._operation">
+            <summary>
+            Only for logging purpose
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.FileUtility.FileCopy(System.String,System.String,System.Boolean)">
+            <summary>
+            Copies file, waits until copy completes
+            </summary>
+            <param name="fromFileName">Name of the source file</param>
+            <param name="toFileName">Name of the destination file</param>
+            <param name="move">true, if to be moved</param>
+        </member>
+        <member name="M:Eyedia.Core.FileUtility.Delete(System.String)">
+            <summary>
+            Deletes file, waits if file is in use
+            </summary>
+            <param name="fileName">Name of the file to be deleted</param>        
+        </member>
+        <member name="M:Eyedia.Core.FileUtility.Backup(System.String,System.Boolean)">
+            <summary>
+            Renames a file to unique name if exists
+            </summary>
+            <param name="fileName">Source fileName</param>
+            <returns>if backed up, then new file name else original file name</returns>
+        </member>
+        <member name="M:Eyedia.Core.FileUtility.WaitTillFileIsFree(System.String)">
+            <summary>
+            Waits until file is free or timed out
+            </summary>
+            <param name="filename">The file name</param>
+            <returns>true if file could be freed</returns>
+        </member>
+        <member name="M:Eyedia.Core.FileUtility.FileExists(System.String)">
+            <summary>
+            Checks if file exist or not, supports wild card (e.g c:\temp\filename_*.txt)
+            </summary>
+            <param name="FileNameOrDirectoryName">file path or directory path</param>
+            <returns></returns>
+        </member>
+        <member name="T:Eyedia.Core.ShortGuid">
+            <summary>
+            Represents a globally unique identifier (GUID) with a 
+            shorter string value. Sguid
+            </summary>
+        </member>
+        <member name="F:Eyedia.Core.ShortGuid.Empty">
+            <summary>
+            A read-only instance of the ShortGuid class whose value 
+            is guaranteed to be all zeroes. 
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.ShortGuid.#ctor(System.String)">
+            <summary>
+            Creates a ShortGuid from a base64 encoded string
+            </summary>
+            <param name="value">The encoded guid as a 
+            base64 string</param>
+        </member>
+        <member name="M:Eyedia.Core.ShortGuid.#ctor(System.Guid)">
+            <summary>
+            Creates a ShortGuid from a Guid
+            </summary>
+            <param name="guid">The Guid to encode</param>
+        </member>
+        <member name="P:Eyedia.Core.ShortGuid.Guid">
+            <summary>
+            Gets/sets the underlying Guid
+            </summary>
+        </member>
+        <member name="P:Eyedia.Core.ShortGuid.Value">
+            <summary>
+            Gets/sets the underlying base64 encoded string
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.ShortGuid.ToString">
+            <summary>
+            Returns the base64 encoded guid as a string
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.ShortGuid.Equals(System.Object)">
+            <summary>
+            Returns a value indicating whether this instance and a 
+            specified Object represent the same type and value.
+            </summary>
+            <param name="obj">The object to compare</param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.ShortGuid.GetHashCode">
+            <summary>
+            Returns the HashCode for underlying Guid.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.ShortGuid.NewGuid">
+            <summary>
+            Initialises a new instance of the ShortGuid class
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.ShortGuid.Encode(System.String)">
+            <summary>
+            Creates a new instance of a Guid using the string value, 
+            then returns the base64 encoded version of the Guid.
+            </summary>
+            <param name="value">An actual Guid string (i.e. not a ShortGuid)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.ShortGuid.Encode(System.Guid)">
+            <summary>
+            Encodes the given Guid as a base64 string that is 22 
+            characters long.
+            </summary>
+            <param name="guid">The Guid to encode</param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.ShortGuid.Decode(System.String)">
+            <summary>
+            Decodes the given base64 string
+            </summary>
+            <param name="value">The base64 encoded string of a Guid</param>
+            <returns>A new Guid</returns>
+        </member>
+        <member name="M:Eyedia.Core.ShortGuid.op_Equality(Eyedia.Core.ShortGuid,Eyedia.Core.ShortGuid)">
+            <summary>
+            Determines if both ShortGuids have the same underlying 
+            Guid value.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.ShortGuid.op_Inequality(Eyedia.Core.ShortGuid,Eyedia.Core.ShortGuid)">
+            <summary>
+            Determines if both ShortGuids do not have the 
+            same underlying Guid value.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.ShortGuid.op_Implicit(Eyedia.Core.ShortGuid)~System.String">
+            <summary>
+            Implicitly converts the ShortGuid to it's string equivilent
+            </summary>
+            <param name="shortGuid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.ShortGuid.op_Implicit(Eyedia.Core.ShortGuid)~System.Guid">
+            <summary>
+            Implicitly converts the ShortGuid to it's Guid equivilent
+            </summary>
+            <param name="shortGuid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.ShortGuid.op_Implicit(System.String)~Eyedia.Core.ShortGuid">
+            <summary>
+            Implicitly converts the string to a ShortGuid
+            </summary>
+            <param name="shortGuid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.ShortGuid.op_Implicit(System.Guid)~Eyedia.Core.ShortGuid">
+            <summary>
+            Implicitly converts the Guid to a ShortGuid 
+            </summary>
+            <param name="guid"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Eyedia.Core.TextWriterTraceListenerWithTime.EmailErrors">
+            <summary>
+            Returns whatever have been set in the application configuration file.
+            Set to 'true' if you want to send email notification in case of 'Error' or 'Critical'.
+            </summary>
+        </member>
+        <member name="P:Eyedia.Core.TextWriterTraceListenerWithTime.SMTPServer">
+            <summary>
+            Returns whatever have been set in the application configuration file.
+            Set to 'true' if you want to send email notification in case of 'Error' or 'Critical'.
+            </summary>
+        </member>
+        <member name="P:Eyedia.Core.TextWriterTraceListenerWithTime.ToEmailIds">
+            <summary>
+            Returns whatever have been set in the application configuration file.
+            Set to 'true' if you want to send email notification in case of 'Error' or 'Critical'.
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Control.IntillisenseEditor.readAssembly(System.String,System.String)">
+            <summary>
+            Takes an assembly filename, opens it and retrieves all types.
+            </summary>
+            <param name="assemblyFileName">Filename to open</param>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Control.IntillisenseEditor.addMembers(System.Windows.Forms.TreeNode,System.Type)">
+            <summary>
+            Adds all members to the node's children, grabbing the parameters
+            for methods.
+            </summary>
+            <param name="treeNode"></param>
+            <param name="type"></param>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Control.IntillisenseEditor.searchTree(System.Windows.Forms.TreeNodeCollection,System.String,System.Boolean)">
+            <summary>
+            Searches the tree view for a namespace, saving the node. The method
+            stops and returns as soon as the namespace search can't find any
+            more items in its path, unless continueUntilFind is true.
+            </summary>
+            <param name="treeNodes"></param>
+            <param name="path"></param>
+            <param name="continueUntilFind"></param>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Control.IntillisenseEditor.findNode(System.String,System.Windows.Forms.TreeNodeCollection)">
+            <summary>
+            Searches the tree until the given path is found, storing
+            the found node in a member var.
+            </summary>
+            <param name="path"></param>
+            <param name="treeNodes"></param>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Control.IntillisenseEditor.populateListBox">
+            <summary>
+            Called when a "." is pressed - the previous word is found,
+            and if matched in the treeview, the members listbox is
+            populated with items from the tree, which are first sorted.
+            </summary>
+            <returns>Whether an items are found for the word</returns>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Control.IntillisenseEditor.selectItem">
+            <summary>
+            Autofills the selected item in the member listbox, by
+            taking everything before and after the "." in the richtextbox,
+            and appending the word in the middle.
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Control.IntillisenseEditor.getLastWord">
+            <summary>
+            Searches backwards from the current caret position, until
+            a space or newline is found.
+            </summary>
+            <returns>The previous word from the carret position</returns>
+        </member>
+        <member name="F:Eyedia.Core.Windows.Control.IntillisenseEditor.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Control.IntillisenseEditor.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Control.IntillisenseEditor.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Eyedia.Core.Windows.Control.MemberItem">
+            <summary>
+            Used for storing member items which are then
+            alphabetically sorted.
+            </summary>
+        </member>
+        <member name="F:Eyedia.Core.Windows.Control.TransparentTextBox.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Control.TransparentTextBox.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Control.TransparentTextBox.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Eyedia.Core.Windows.Control.TreeViewToXml">
+            <summary>
+            Mithilfe dieser kleinen Klasse, kann der aufbau des Treeviews in eine Xml Datei exportiert
+            und natürlich auch wieder in einen TreeView Importiert werden.
+            </summary>
+            <example>
+            <code lang="C#">
+            TreeView tmpTreeview = new TreeView();
+            
+            XmlHandler xmlHandler = new XmlHandler();
+            //treeview TO Xml
+            xmlHandler.ExportTreeToXmlFile(tmpTreeview, "C:\\temp\\tmpTreeView.xml");
+            </code>
+            </example>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Control.TreeViewToXml.#ctor">
+            <summary>
+            Initialisiert eine neue Instanz der MultiClipboard Klasse.
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Control.TreeViewToXml.Extract(System.Windows.Forms.TreeView,System.String)">
+            <summary>
+            Den inhalt des TreeViews in eine xml Datei exportieren
+            </summary>
+            <param name="treeView">Der TreeView der exportiert werden soll</param>
+            <param name="path">Ein  Pfad unter dem die Xml Datei entstehen soll</param>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Control.TreeViewToXml.Load(System.String,System.Windows.Forms.TreeView)">
+            <summary>
+            Eine vorher Exportierte Xml Datei wieder in ein TreeView importieren
+            </summary>
+            <param name="path">Der Quellpfad der Xml Datei</param>
+            <param name="treeView">Ein TreeView in dem der Inhalt der Xml Datei wieder angezeigt werden soll</param>
+            <exception cref="!:FileNotFoundException">gibt an das die Datei nicht gefunden werden konnte</exception>
+        </member>
+        <member name="F:Eyedia.Core.Windows.Forms.ChangePassword.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Forms.ChangePassword.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Forms.ChangePassword.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:Eyedia.Core.Windows.Forms.UserManager.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Forms.UserManager.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Forms.UserManager.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:Eyedia.Core.Windows.Utilities.TypeSelectorDialog.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Utilities.TypeSelectorDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Utilities.TypeSelectorDialog.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Eyedia.Core.Windows.Utilities.RegistryUtility">
+            <summary>
+            An useful class to read/write/delete/count registry keys
+            </summary>
+        </member>
+        <member name="P:Eyedia.Core.Windows.Utilities.RegistryUtility.ShowError">
+            <summary>
+            A property to show or hide error messages 
+            (default = false)
+            </summary>
+        </member>
+        <member name="P:Eyedia.Core.Windows.Utilities.RegistryUtility.SubKey">
+            <summary>
+            A property to set the SubKey value
+            (default = "SOFTWARE\\" + Application.ProductName)
+            </summary>
+        </member>
+        <member name="P:Eyedia.Core.Windows.Utilities.RegistryUtility.BaseRegistryKey">
+            <summary>
+            A property to set the BaseRegistryKey value.
+            (default = Registry.LocalMachine)
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Utilities.RegistryUtility.Read(System.String)">
+            <summary>
+            To read a registry key.
+            input: KeyName (string)
+            output: value (string) 
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Utilities.RegistryUtility.Write(System.String,System.Object)">
+            <summary>
+            To write into a registry key.
+            input: KeyName (string) , Value (object)
+            output: true or false 
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Utilities.RegistryUtility.DeleteKey(System.String)">
+            <summary>
+            To delete a registry key.
+            input: KeyName (string)
+            output: true or false 
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Utilities.RegistryUtility.DeleteSubKeyTree">
+            <summary>
+            To delete a sub key and any child.
+            input: void
+            output: true or false 
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Utilities.RegistryUtility.SubKeyCount">
+            <summary>
+            Retrive the count of subkeys at the current key.
+            input: void
+            output: number of subkeys
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Windows.Utilities.RegistryUtility.ValueCount">
+            <summary>
+            Retrive the count of values in the key.
+            input: void
+            output: number of keys
+            </summary>
+        </member>
+        <member name="T:Eyedia.Core.Windows.win32">
+            <summary>
+            Win32 support code.
+            (C) 2003 Bob Bradley / ZBobb@hotmail.com
+            </summary>
+        </member>
+        <member name="T:Eyedia.Core.Windows.ZipFileHandler">
+            <summary>
+            An utility to zip/unzip zip/rar/tar files
+            </summary>
+        </member>
+        <member name="M:Eyedia.Core.Windows.ZipFileHandler.Zip(System.String,System.String,System.String,System.IO.SearchOption)">
+            <summary>
+            Unzip zip/tar/rar file
+            </summary>
+            <param name="sourceDirectory">zip/tar/rar file name</param>
+            <param name="outFolder">output folder</param>
+            <returns></returns>
+        </member>
+        <member name="M:Eyedia.Core.Windows.ZipFileHandler.UnZip(System.String,System.String)">
+            <summary>
+            Unzip zip/tar/rar file
+            </summary>
+            <param name="fileName">zip/tar/rar file name</param>
+            <param name="outFolder">output folder</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
