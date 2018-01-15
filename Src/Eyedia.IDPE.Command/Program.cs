@@ -73,7 +73,7 @@ namespace Eyedia.IDPE.Command
 
                     case "uc":
                         UpdateConfigs updateConfigs = new Command.UpdateConfigs(@"C:\Deb\Workspace\GitHub\idpe\Executables");
-                        updateConfigs.Update();
+                        updateConfigs.Update(true);
                         break;
 
                     default:

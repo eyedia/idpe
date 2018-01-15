@@ -37,12 +37,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Eyedia.Core;
+using Eyedia.IDPE.Common;
 
 namespace Eyedia.IDPE.Command
 {
     public class UpdateConfigs
     {
         public string RootDirectory { get; private set; }
+        public string DirectoryLogs { get { return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs"); } }
+        public string DirectoryTemp { get { return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Temp"); } }
+        public string DirectoryWatchFolder { get { return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WatchFolder"); } }
+
         public UpdateConfigs(string rootDirectory = null)
         {
             if (rootDirectory == null)
@@ -50,14 +55,20 @@ namespace Eyedia.IDPE.Command
 
             RootDirectory = rootDirectory;
         }
-        public void Update()
-        {            
-            UpdateOne("idpe.exe");
-            UpdateOne("idped.exe");
-            UpdateOne("idpec.exe");
+        public void Update(bool setFolder = false)
+        {
+            if(setFolder)
+            {
+                Directory.CreateDirectory(DirectoryLogs);
+                Directory.CreateDirectory(DirectoryTemp);
+                Directory.CreateDirectory(DirectoryWatchFolder);
+            }
+            UpdateOne("idpe.exe", setFolder);
+            UpdateOne("idped.exe", setFolder);
+            UpdateOne("idpec.exe", setFolder);
         }
 
-        private void UpdateOne(string configName)
+        private void UpdateOne(string configName, bool setFolder = false)
         {
             string configPath = Path.Combine(RootDirectory, configName);
             if (!File.Exists(configPath))
@@ -73,7 +84,25 @@ namespace Eyedia.IDPE.Command
                 return;
             }
             eccs.Database.DatabaseType = Core.Data.DatabaseTypes.SqlCe;
-            
+            if (setFolder)
+            {
+                if (eccs != null)
+                {
+                    eccs.TempDirectory = DirectoryTemp;
+                    eccs.Trace.Filter = System.Diagnostics.SourceLevels.Information;
+                    if(configName == "idpe.exe")
+                        eccs.Trace.File = Path.Combine(DirectoryLogs, "idpe.txt");
+                    else if (configName == "idped.exe")
+                        eccs.Trace.File = Path.Combine(DirectoryLogs, "idped.txt");
+                    else if (configName == "idpec.exe")
+                        eccs.Trace.File = Path.Combine(DirectoryLogs, "idpec.txt");
+                }
+                SreConfigurationSection idpecs = (SreConfigurationSection)config.GetSection("sreConfigurationSection");
+                if (idpecs != null)
+                {
+                    idpecs.LocalFileWatcher.BaseDirectory = DirectoryWatchFolder;
+                }            
+            }
             var cscs = (ConnectionStringsSection)config.GetSection("connectionStrings");
             cscs.ConnectionStrings.Clear();            
             cscs.ConnectionStrings.Add(new ConnectionStringSettings("cs", "Data Source='samples.sdf';password=acc3s$"));
