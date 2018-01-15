@@ -70,11 +70,11 @@ namespace Eyedia.IDPE.Services
                 foreach(DataRow dr in table.Rows)
                 {
                     string dynSql = "select [" + dr["column_name"] + "] as Value";
-                    if (dr["table_name"].ToString() == "SreAttribute")
+                    if (dr["table_name"].ToString() == "IdpeAttribute")
                         dynSql += ", [AttributeId] as ReferenceId, '' as Param1, [Name] as Name";
-                    else if (dr["table_name"].ToString() == "SreKey")
+                    else if (dr["table_name"].ToString() == "IdpeKey")
                         dynSql += ", [KeyId] as ReferenceId, [Type] as Param1, [Name] as Name";
-                    else if (dr["table_name"].ToString() == "SreRule")
+                    else if (dr["table_name"].ToString() == "IdpeRule")
                         dynSql += ", [Id] as ReferenceId, [Name] as Param1, [Name] as Name";
                     else
                         dynSql += ", '0' as ReferenceId, '' as Param1, '' as Name";
@@ -109,7 +109,7 @@ namespace Eyedia.IDPE.Services
                 GSearchResultCube formattedResult = result;
                 switch (result.TableName)
                 {
-                    case "SreAttribute":
+                    case "IdpeAttribute":
                         result.DataSource = "0-General";
                         result.Type = "Attribute";
                         result.Where = "Master";
@@ -117,12 +117,12 @@ namespace Eyedia.IDPE.Services
                         //formattedResult = FormatResultAttribute(formattedResults, result);
                         break;
 
-                    case "SreKey":
+                    case "IdpeKey":
                         result.Type = "Key";
                         formattedResult = FormatResultKey(result);
                         break;
 
-                    case "SreRule":
+                    case "IdpeRule":
                         result.Type = "Rule";
                         formattedResult = FormatResultRule(result);
                         break;
@@ -155,7 +155,7 @@ namespace Eyedia.IDPE.Services
         {
             bool isErrored = false;
             string info = new SqlClientManager(ConnectionString, SreKeyTypes.ConnectionStringSqlCe)
-                .ExecuteQuery("select name, rulesettype from sredatasource ds inner join sreruledatasource rds on rds.datasourceid = ds.id where ruleid = " + result.ReferenceId
+                .ExecuteQuery("select name, rulesettype from idpedatasource ds inner join idperuledatasource rds on rds.datasourceid = ds.id where ruleid = " + result.ReferenceId
                 , ref isErrored);
 
             if ((info == "NULL") || (string.IsNullOrEmpty(info)))
@@ -191,14 +191,14 @@ namespace Eyedia.IDPE.Services
         {           
             bool isErrored = false;
             result.DataSource = new SqlClientManager(ConnectionString, SreKeyTypes.ConnectionStringSqlCe)
-                .ExecuteQuery("select name from sredatasource ds inner join srekeydatasource kds on kds.datasourceid = ds.id where keyid = " + result.ReferenceId
+                .ExecuteQuery("select name from idpedatasource ds inner join idpekeydatasource kds on kds.datasourceid = ds.id where keyid = " + result.ReferenceId
                 , ref isErrored);
 
             int keyType = 0;
             if (int.TryParse(result.Param1, out keyType))
             {
-                SreKeyTypes sreKeyType = (SreKeyTypes)keyType;
-                result.Param1 = sreKeyType.ToString();
+                SreKeyTypes idpeKeyType = (SreKeyTypes)keyType;
+                result.Param1 = idpeKeyType.ToString();
 
                 if (result.Param1.Contains("OutputWriter"))
                     result.Where = "Output Writer";
@@ -216,7 +216,7 @@ namespace Eyedia.IDPE.Services
             result.Type = "";
             bool isErrored = false;
             DataTable table = new SqlClientManager(ConnectionString, SreKeyTypes.ConnectionStringSqlCe)
-                .ExecuteQueryAndGetDataTable("select name, issystem from sredatasource ds inner join sreattributedatasource ads on ads.datasourceid = ds.id where attributeId = " + result.ReferenceId
+                .ExecuteQueryAndGetDataTable("select name, issystem from idpedatasource ds inner join idpeattributedatasource ads on ads.datasourceid = ds.id where attributeId = " + result.ReferenceId
                 , ref isErrored);
 
             foreach(DataRow row in table.Rows)

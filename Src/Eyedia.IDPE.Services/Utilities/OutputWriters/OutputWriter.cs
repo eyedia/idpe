@@ -168,7 +168,7 @@ namespace Eyedia.IDPE.Services
 
         //protected bool IsPrintable(string attributeName)
         //{
-        //    SreAttribute attribute = _Job.DataSource.AttributesSystem.Where(aa => aa.Name == attributeName).SingleOrDefault();
+        //    IdpeAttribute attribute = _Job.DataSource.AttributesSystem.Where(aa => aa.Name == attributeName).SingleOrDefault();
         //    if (attribute == null)
         //        throw new Exception(string.Format("No attribute defined with the name '{0}'", attributeName));
 

@@ -51,10 +51,10 @@ namespace Eyedia.IDPE.Interface.RuleEditor
            return new Manager().GetRules(101);
         }
    
-        public bool SaveSreRule(IdpeRule sreRule)
+        public bool SaveSreRule(IdpeRule idpeRule)
         {
-            new Manager().Save(sreRule);
-            SreServiceCommunicator.ClearRule(sreRule.Id, sreRule.Name);
+            new Manager().Save(idpeRule);
+            SreServiceCommunicator.ClearRule(idpeRule.Id, idpeRule.Name);
             return true;
         }
     }

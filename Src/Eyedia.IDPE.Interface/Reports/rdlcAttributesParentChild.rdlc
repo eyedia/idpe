@@ -68,8 +68,8 @@
       </Query>
       <rd:DataSetInfo>
         <rd:DataSetName>Eyedia.IDPE.DataManager</rd:DataSetName>
-        <rd:TableName>SreAttribute</rd:TableName>
-        <rd:ObjectDataSourceType>Eyedia.IDPE.DataManager.SreAttribute, Eyedia.IDPE.DataManager, Version=1.1.7.1637, Culture=neutral, PublicKeyToken=228205fd2c7a1149</rd:ObjectDataSourceType>
+        <rd:TableName>IdpeAttribute</rd:TableName>
+        <rd:ObjectDataSourceType>Eyedia.IDPE.DataManager.IdpeAttribute, Eyedia.IDPE.DataManager, Version=1.1.7.1637, Culture=neutral, PublicKeyToken=228205fd2c7a1149</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
     <DataSet Name="dsAttributesChild">
@@ -129,8 +129,8 @@
       </Query>
       <rd:DataSetInfo>
         <rd:DataSetName>Eyedia.IDPE.DataManager</rd:DataSetName>
-        <rd:TableName>SreAttribute</rd:TableName>
-        <rd:ObjectDataSourceType>Eyedia.IDPE.DataManager.SreAttribute, Eyedia.IDPE.DataManager, Version=1.1.7.1637, Culture=neutral, PublicKeyToken=228205fd2c7a1149</rd:ObjectDataSourceType>
+        <rd:TableName>IdpeAttribute</rd:TableName>
+        <rd:ObjectDataSourceType>Eyedia.IDPE.DataManager.IdpeAttribute, Eyedia.IDPE.DataManager, Version=1.1.7.1637, Culture=neutral, PublicKeyToken=228205fd2c7a1149</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

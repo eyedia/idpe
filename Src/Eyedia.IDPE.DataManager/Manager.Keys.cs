@@ -50,67 +50,67 @@ namespace Eyedia.IDPE.DataManager
         
         public List<IdpeKey> GetKeys()
         {
-            List<IdpeKey> sreKeys = new List<IdpeKey>();
-            string commandText = "select [KeyId],[Name],[Value],[ValueBinary], [Type],[IsDeployable],[NextKeyId],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [SreKey]";
+            List<IdpeKey> idpeKeys = new List<IdpeKey>();
+            string commandText = "select [KeyId],[Name],[Value],[ValueBinary], [Type],[IsDeployable],[NextKeyId],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [IdpeKey]";
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null)
-                return sreKeys;
+                return idpeKeys;
 
             foreach (DataRow row in table.Rows)
             {                
-                sreKeys.Add(RowToSreKey(row));
+                idpeKeys.Add(RowToSreKey(row));
             }
 
-            return sreKeys;
+            return idpeKeys;
         }
 
         public List<IdpeKey> GetKeys(int dataSourceId = 0)
         {
             string commandText = "select k.[KeyId],[Name],[Value],[ValueBinary],[Type],kds.[IsDeployable],[NextKeyId],k.[CreatedTS],k.[CreatedBy],k.[ModifiedTS],k.[ModifiedBy],k.[Source] ";
-            commandText += "from SreKey k ";
-            commandText += "inner join SreKeyDataSource kds ON k.KeyId = kds.KeyId";
+            commandText += "from IdpeKey k ";
+            commandText += "inner join IdpeKeyDataSource kds ON k.KeyId = kds.KeyId";
             if(dataSourceId > 0)
                 commandText += " where kds.DataSourceId = " + dataSourceId;
 
-            List<IdpeKey> sreKeys = new List<IdpeKey>();
+            List<IdpeKey> idpeKeys = new List<IdpeKey>();
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null)
-                return sreKeys;
+                return idpeKeys;
 
             foreach (DataRow row in table.Rows)
             {
-                sreKeys.Add(RowToSreKey(row, dataSourceId));
+                idpeKeys.Add(RowToSreKey(row, dataSourceId));
             }
 
-            return sreKeys;
+            return idpeKeys;
         }
 
         public List<IdpeKey> GetDeployableKeys(int dataSourceId = 0)
         {
             string commandText = "select k.[KeyId],[Name],[Value],[ValueBinary],[Type],kds.[DataSourceId],kds.[IsDeployable],[NextKeyId],k.[CreatedTS],k.[CreatedBy],k.[ModifiedTS],k.[ModifiedBy],k.[Source] ";
-            commandText += "from SreKey k ";
-            commandText += "inner join SreKeyDataSource kds ON k.KeyId = kds.KeyId";
+            commandText += "from IdpeKey k ";
+            commandText += "inner join IdpeKeyDataSource kds ON k.KeyId = kds.KeyId";
             commandText += " where kds.IsDeployable = 1";
             if (dataSourceId > 0)
                 commandText += " and kds.DataSourceId = " + dataSourceId;
 
-            List<IdpeKey> sreKeys = new List<IdpeKey>();
+            List<IdpeKey> idpeKeys = new List<IdpeKey>();
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null)
-                return sreKeys;
+                return idpeKeys;
 
             foreach (DataRow row in table.Rows)
             {                
-                sreKeys.Add(RowToSreKey(row, (int)row["DataSourceId"].ToString().ParseInt()));
+                idpeKeys.Add(RowToSreKey(row, (int)row["DataSourceId"].ToString().ParseInt()));
             }
 
-            return sreKeys;
+            return idpeKeys;
         }
 
         public IdpeKey GetKey(SreKeyTypes keyType)
         {
-            string commandText = "select [KeyId],[Name],[Value],[ValueBinary], [Type],[IsDeployable],[NextKeyId],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [SreKey] where [Type] = " + (int)keyType;
+            string commandText = "select [KeyId],[Name],[Value],[ValueBinary], [Type],[IsDeployable],[NextKeyId],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [IdpeKey] where [Type] = " + (int)keyType;
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null)
@@ -125,8 +125,8 @@ namespace Eyedia.IDPE.DataManager
         public IdpeKey GetKey(int dataSourceId, string keyName)
         {
             string commandText = "select k.[KeyId],[Name],[Value],[ValueBinary],[Type],kds.[IsDeployable],[NextKeyId],k.[CreatedTS],k.[CreatedBy],k.[ModifiedTS],k.[ModifiedBy],k.[Source] ";
-            commandText += "from SreKey k ";
-            commandText += "inner join SreKeyDataSource kds ON k.KeyId = kds.KeyId ";
+            commandText += "from IdpeKey k ";
+            commandText += "inner join IdpeKeyDataSource kds ON k.KeyId = kds.KeyId ";
             commandText += "where kds.DataSourceId = " + dataSourceId + " and k.Name = '" + keyName + "'";
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
@@ -143,7 +143,7 @@ namespace Eyedia.IDPE.DataManager
 
         public IdpeKey GetKey(int keyId)
         {
-            string commandText = "select [KeyId],[Name],[Value],[ValueBinary],[Type],[IsDeployable],[NextKeyId],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [SreKey] where [keyid] = " + keyId;
+            string commandText = "select [KeyId],[Name],[Value],[ValueBinary],[Type],[IsDeployable],[NextKeyId],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [IdpeKey] where [keyid] = " + keyId;
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
 
             if ((table == null)
@@ -175,29 +175,29 @@ namespace Eyedia.IDPE.DataManager
 
         private List<IdpeKeyDataSource> GetSreKeyDataSources()
         {
-            List<IdpeKeyDataSource>  sreKeyDataSources = new List<IdpeKeyDataSource>();
-            string commandText = "select [KeyDataSourceId],[KeyId],[DataSourceId],[IsDeployable] from [SreKeyDataSource]";
+            List<IdpeKeyDataSource>  idpeKeyDataSources = new List<IdpeKeyDataSource>();
+            string commandText = "select [KeyDataSourceId],[KeyId],[DataSourceId],[IsDeployable] from [IdpeKeyDataSource]";
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null)
-                return sreKeyDataSources;
+                return idpeKeyDataSources;
 
             foreach (DataRow row in table.Rows)
             {
-                IdpeKeyDataSource sreKeyDataSource = new IdpeKeyDataSource();
-                sreKeyDataSource.KeyDataSourceId = (int)row["KeyDataSourceId"].ToString().ParseInt();
-                sreKeyDataSource.KeyId = (int)row["KeyId"].ToString().ParseInt();
-                sreKeyDataSource.DataSourceId = (int)row["DataSourceId"].ToString().ParseInt();
-                sreKeyDataSource.IsDeployable = row["IsDeployable"].ToString().ParseBool();
-                sreKeyDataSources.Add(sreKeyDataSource);
+                IdpeKeyDataSource idpeKeyDataSource = new IdpeKeyDataSource();
+                idpeKeyDataSource.KeyDataSourceId = (int)row["KeyDataSourceId"].ToString().ParseInt();
+                idpeKeyDataSource.KeyId = (int)row["KeyId"].ToString().ParseInt();
+                idpeKeyDataSource.DataSourceId = (int)row["DataSourceId"].ToString().ParseInt();
+                idpeKeyDataSource.IsDeployable = row["IsDeployable"].ToString().ParseBool();
+                idpeKeyDataSources.Add(idpeKeyDataSource);
             }
-            return sreKeyDataSources;
+            return idpeKeyDataSources;
         }
 
         public int GetSreKeyId(IDal myDal, IDbConnection conn, IDbTransaction transaction, string keyName)
         {
             int keyId = 0;
-            IDbCommand command = myDal.CreateCommand("SELECT KeyId FROM SreKey WHERE Name = @Name", conn);
+            IDbCommand command = myDal.CreateCommand("SELECT KeyId FROM IdpeKey WHERE Name = @Name", conn);
             command.Transaction = transaction;
             command.AddParameterWithValue("Name", keyName);
             IDataReader reader = command.ExecuteReader();
@@ -214,9 +214,9 @@ namespace Eyedia.IDPE.DataManager
         public int GetSreKeyId(IDal myDal, IDbConnection conn, IDbTransaction transaction, int dataSourceId, string keyName)
         {
             int keyId = 0;
-            string commandText = "select k.keyId, [Name], [Value] from srekey k ";
-            commandText += "inner join SreKeyDataSource ka on k.keyId = ka.keyId ";
-            commandText += "where dataSourceId = @DataSourceId and Name = @Name";
+            string commandText = "select k.keyId, [Name], [Value] from idpekey k ";
+            commandText += "inner join IdpeKeyDataSource ka on k.keyId = ka.keyId ";
+            commandText += "where ka.dataSourceId = @DataSourceId and Name = @Name";
 
             IDbCommand command = myDal.CreateCommand(commandText, conn);
             command.Transaction = transaction;
@@ -257,8 +257,8 @@ namespace Eyedia.IDPE.DataManager
         {            
             List<IdpeKey> keys = new List<IdpeKey>();
             string commandText = "select k.[KeyId], k.[Name], k.[Value], k.[ValueBinary], k.[Type], k.[NextKeyId], k.[CreatedTS], k.[CreatedBy], k.[ModifiedTS], k.[ModifiedBy], k.[Source], kds.[IsDeployable] ";
-            commandText += "from  SreKey k ";
-            commandText += "inner join SreKeyDataSource kds on k.KeyId = kds.KeyId ";
+            commandText += "from  IdpeKey k ";
+            commandText += "inner join IdpeKeyDataSource kds on k.KeyId = kds.KeyId ";
             commandText += "where kds.DataSourceId = " + dataSourceId;
 
             if (onlyCustomKeys)
@@ -279,8 +279,8 @@ namespace Eyedia.IDPE.DataManager
         {
             List<IdpeKey> keys = new List<IdpeKey>();
             string commandText = "select k.[KeyId], k.[Name], k.[Value], k.[ValueBinary], k.[Type], k.[NextKeyId], k.[CreatedTS], k.[CreatedBy], k.[ModifiedTS], k.[ModifiedBy], k.[Source], kds.[IsDeployable] ";
-            commandText += "from  SreKey k ";
-            commandText += "inner join SreKeyDataSource kds on k.KeyId = kds.KeyId ";
+            commandText += "from  IdpeKey k ";
+            commandText += "inner join IdpeKeyDataSource kds on k.KeyId = kds.KeyId ";
             commandText += "where kds.DataSourceId = " + dataSourceId;            
             commandText += " and k.[Type] in (2,3,4,5)";
 
@@ -335,8 +335,8 @@ namespace Eyedia.IDPE.DataManager
 
             try
             {
-                command.CommandText = "select KeyDataSourceId, ska.KeyId from SreKeyDataSource ska ";
-                command.CommandText += "inner join srekey sk on ska.keyId = sk.KeyId ";
+                command.CommandText = "select KeyDataSourceId, ska.KeyId from IdpeKeyDataSource ska ";
+                command.CommandText += "inner join idpekey sk on ska.keyId = sk.KeyId ";
                 command.CommandText += "where ska.DataSourceId = @DataSourceId and sk.Name = @KeyName";
                 command.AddParameterWithValue("DataSourceId", dataSourceId);
                 command.AddParameterWithValue("KeyName", key);
@@ -360,13 +360,13 @@ namespace Eyedia.IDPE.DataManager
                 }
 
                 command.Parameters.Clear();
-                command.CommandText = "delete from SreKeyDataSource where KeyDataSourceId = @KeyDataSourceId";
+                command.CommandText = "delete from IdpeKeyDataSource where KeyDataSourceId = @KeyDataSourceId";
                 command.AddParameterWithValue("KeyDataSourceId", keyDataSourceId);
                 command.ExecuteNonQuery();
                 if (deleteKey)
                 {
                     command.Parameters.Clear();
-                    command.CommandText = "delete from srekey where KeyId = @KeyId";
+                    command.CommandText = "delete from idpekey where KeyId = @KeyId";
                     command.AddParameterWithValue("KeyId", keyId);
                     command.ExecuteNonQuery();
                 }
@@ -411,7 +411,7 @@ namespace Eyedia.IDPE.DataManager
                 keyId = GetSreKeyId(dal, connection, transaction, key.Name);
                 if (keyId == 0)
                 {
-                    command.CommandText = "INSERT INTO SreKey(Name, Value, ValueBinary, Type, NextKeyId, CreatedTS, CreatedBy, Source) ";
+                    command.CommandText = "INSERT INTO IdpeKey(Name, Value, ValueBinary, Type, NextKeyId, CreatedTS, CreatedBy, Source) ";
                     command.CommandText += " VALUES (@Name, @Value,  @ValueBinary, @Type, @NextKeyId, @CreatedTS, @CreatedBy, @Source)";
                     command.AddParameterWithValue("Name", key.Name);
                     if (key.ValueBinary != null)
@@ -443,13 +443,13 @@ namespace Eyedia.IDPE.DataManager
 
                     //Deb: I know dirty coding, need to be changed. OUTPUT INSERTED.Id not working @SQL CE
                     command.Parameters.Clear();
-                    command.CommandText = "SELECT max(KeyId) from SreKey";
+                    command.CommandText = "SELECT max(KeyId) from IdpeKey";
                     keyId = (Int32)command.ExecuteScalar();
 
                 }
                 else
                 {
-                    command.CommandText = "UPDATE [SreKey] SET [Name] = @Name,[Value] = @Value, [ValueBinary] = @ValueBinary, [Type] = @Type, [ModifiedTS] = @ModifiedTS, [ModifiedBy] = @ModifiedBy,[Source] = @Source, [IsDeployable] = @IsDeployable,[NextKeyId] = @NextKeyId ";
+                    command.CommandText = "UPDATE [IdpeKey] SET [Name] = @Name,[Value] = @Value, [ValueBinary] = @ValueBinary, [Type] = @Type, [ModifiedTS] = @ModifiedTS, [ModifiedBy] = @ModifiedBy,[Source] = @Source, [IsDeployable] = @IsDeployable,[NextKeyId] = @NextKeyId ";
                     command.CommandText += "WHERE [KeyId] = @KeyId";
 
                     command.AddParameterWithValue("Name", key.Name);
@@ -531,14 +531,14 @@ namespace Eyedia.IDPE.DataManager
                 int keyId = GetSreKeyId(dal, connection, transaction, dataSourceId, key.Name);
                 if (keyId == 0)
                 {
-                    command.CommandText = "INSERT INTO SreKey(Name, Value, ValueBinary, Type, NextKeyId, CreatedTS, CreatedBy, Source) ";
+                    command.CommandText = "INSERT INTO IdpeKey(Name, Value, ValueBinary, Type, NextKeyId, CreatedTS, CreatedBy, Source) ";
                     command.CommandText += " VALUES (@Name, @Value, @ValueBinary, @Type, @NextKeyId, @CreatedTS, @CreatedBy, @Source)";
                     command.AddParameterWithValue("Name", key.Name);
                     command.AddParameterWithValue("Value", key.Value);
                     if (key.ValueBinary != null)
                         command.AddParameterWithValue("ValueBinary", key.ValueBinary.ToArray());
                     else
-                        command.AddParameterWithValue("ValueBinary", DBNull.Value);
+                        command.AddParameterWithValue("ValueBinary", DBNull.Value, DbType.Byte);
 
                     command.AddParameterWithValue("Type", key.Type);
                     if ((key.NextKeyId != null) && (key.NextKeyId != 0))
@@ -553,11 +553,11 @@ namespace Eyedia.IDPE.DataManager
 
                     //Deb: I know dirty coding, need to be changed. OUTPUT INSERTED.Id not working @SQL CE
                     command.Parameters.Clear();
-                    command.CommandText = "SELECT max(KeyId) from SreKey";
+                    command.CommandText = "SELECT max(KeyId) from IdpeKey";
                     int newKeyId = (Int32)command.ExecuteScalar();
 
                     command.Parameters.Clear();
-                    command.CommandText = "INSERT INTO SreKeyDataSource(KeyId, DataSourceId, IsDeployable, CreatedTS, CreatedBy, Source) ";
+                    command.CommandText = "INSERT INTO IdpeKeyDataSource(KeyId, DataSourceId, IsDeployable, CreatedTS, CreatedBy, Source) ";
                     command.CommandText += " VALUES (@KeyId, @DataSourceId, @IsDeployable, @CreatedTS, @CreatedBy, @Source)";
                     command.AddParameterWithValue("KeyId", newKeyId);
                     command.AddParameterWithValue("DataSourceId", dataSourceId);
@@ -571,7 +571,7 @@ namespace Eyedia.IDPE.DataManager
                 }
                 else
                 {
-                    command.CommandText = "UPDATE [SreKey] SET [Name] = @Name, [Value] = @Value, [ValueBinary] = @ValueBinary, [Type] = @Type, [ModifiedTS] = @ModifiedTS, [ModifiedBy] = @ModifiedBy, [Source] = @Source, [IsDeployable] = @IsDeployable,[NextKeyId] = @NextKeyId ";
+                    command.CommandText = "UPDATE [IdpeKey] SET [Name] = @Name, [Value] = @Value, [ValueBinary] = @ValueBinary, [Type] = @Type, [ModifiedTS] = @ModifiedTS, [ModifiedBy] = @ModifiedBy, [Source] = @Source, [IsDeployable] = @IsDeployable,[NextKeyId] = @NextKeyId ";
                     command.CommandText += "WHERE [KeyId] = @KeyId";
 
                     command.AddParameterWithValue("Name", key.Name);
@@ -579,7 +579,7 @@ namespace Eyedia.IDPE.DataManager
                     if (key.ValueBinary != null)
                         command.AddParameterWithValue("ValueBinary", key.ValueBinary.ToArray());
                     else
-                        command.AddParameterWithValue("ValueBinary", DBNull.Value);
+                        command.AddParameterWithValue("ValueBinary", DBNull.Value, DbType.Byte);
                     command.AddParameterWithValue("Type", key.Type);
                     command.AddParameterWithValue("IsDeployable", key.IsDeployable == true ? true : false);
                     if ((key.NextKeyId != null) && (key.NextKeyId != 0))
@@ -628,7 +628,7 @@ namespace Eyedia.IDPE.DataManager
 
             try
             {
-                command.CommandText = "DELETE FROM [SreKey] WHERE [KeyId] = @KeyId";
+                command.CommandText = "DELETE FROM [IdpeKey] WHERE [KeyId] = @KeyId";
                 command.AddParameterWithValue("KeyId", keyId);
                 command.ExecuteNonQuery();
                 transaction.Commit();
@@ -660,7 +660,7 @@ namespace Eyedia.IDPE.DataManager
 
             try
             {
-                command.CommandText = "DELETE FROM [SreKey] WHERE [Name] = @Name";
+                command.CommandText = "DELETE FROM [IdpeKey] WHERE [Name] = @Name";
                 command.AddParameterWithValue("Name", key);
                 command.ExecuteNonQuery();
                 transaction.Commit();
@@ -697,7 +697,7 @@ namespace Eyedia.IDPE.DataManager
                 foreach (IdpeKey key in keys)
                 {
                     command.Parameters.Clear();
-                    command.CommandText = "UPDATE SreKeyDataSource SET IsDeployable = @IsDeployable, ModifiedTS = @ModifiedTS, ModifiedBy = @ModifiedBy, Source = @Source WHERE KeyId = @KeyId AND DataSourceId = @DataSourceId";
+                    command.CommandText = "UPDATE IdpeKeyDataSource SET IsDeployable = @IsDeployable, ModifiedTS = @ModifiedTS, ModifiedBy = @ModifiedBy, Source = @Source WHERE KeyId = @KeyId AND DataSourceId = @DataSourceId";
                     command.AddParameterWithValue("KeyId", key.KeyId);
                     command.AddParameterWithValue("DataSourceId", dataSourceId);
                     command.AddParameterWithValue("IsDeployable", key.IsDeployable == true ? true : false);

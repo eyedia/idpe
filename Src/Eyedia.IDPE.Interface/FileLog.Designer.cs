@@ -387,7 +387,7 @@
             // saveFileDialog1
             // 
             this.saveFileDialog1.DefaultExt = "csv";
-            this.saveFileDialog1.FileName = "SreLog.csv";
+            this.saveFileDialog1.FileName = "IdpeLog.csv";
             this.saveFileDialog1.Filter = "Csv Files|*.csv|All Files|*.*";
             this.saveFileDialog1.Title = "Export SRE File Log";
             // 

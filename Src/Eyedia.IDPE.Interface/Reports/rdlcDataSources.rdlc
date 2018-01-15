@@ -74,7 +74,7 @@
         </Field>
         <Field Name="SreDataSource1">
           <DataField>SreDataSource1</DataField>
-          <rd:TypeName>Eyedia.IDPE.DataManager.SreDataSource</rd:TypeName>
+          <rd:TypeName>Eyedia.IDPE.DataManager.IdpeDataSource</rd:TypeName>
         </Field>
         <Field Name="SystemDataSourceId">
           <DataField>SystemDataSourceId</DataField>
@@ -87,8 +87,8 @@
       </Query>
       <rd:DataSetInfo>
         <rd:DataSetName>Eyedia.IDPE.DataManager</rd:DataSetName>
-        <rd:TableName>SreDataSource</rd:TableName>
-        <rd:ObjectDataSourceType>Eyedia.IDPE.DataManager.SreDataSource, Eyedia.IDPE.DataManager, Version=1.1.7.1637, Culture=neutral, PublicKeyToken=228205fd2c7a1149</rd:ObjectDataSourceType>
+        <rd:TableName>IdpeDataSource</rd:TableName>
+        <rd:ObjectDataSourceType>Eyedia.IDPE.DataManager.IdpeDataSource, Eyedia.IDPE.DataManager, Version=1.1.7.1637, Culture=neutral, PublicKeyToken=228205fd2c7a1149</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

@@ -54,7 +54,7 @@ namespace Eyedia.IDPE.DataManager
             IDbConnection conn = myDal.CreateConnection(_ConnectionString);
             conn.Open();
             IDbCommand command = myDal.CreateCommand();
-            command.CommandText = "SELECT * FROM SreDataSource WHERE [Id] = @Id";
+            command.CommandText = "SELECT * FROM IdpeDataSource WHERE [Id] = @Id";
             command.AddParameterWithValue("Id", dataSourceId);
             command.Connection = conn;
 
@@ -92,7 +92,7 @@ namespace Eyedia.IDPE.DataManager
 
         public int GetDataSourceParentId(int dataSourceId)
         {
-            string commandText = "select SystemDataSourceId from [SreDataSource] where [Id] = " + dataSourceId;
+            string commandText = "select SystemDataSourceId from [IdpeDataSource] where [Id] = " + dataSourceId;
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null || table.Rows.Count == 0)
@@ -106,7 +106,7 @@ namespace Eyedia.IDPE.DataManager
             IdpeDataSource dataSource = new IdpeDataSource();
             string commandText = "select top 1 [Id],[Name],[Description],[IsSystem],[DataFeederType],[DataFormatType],[Delimiter],[SystemDataSourceId],[DataContainerValidatorType], ";
             commandText += " [OutputType], [OutputWriterTypeFullName],[PlugInsType],[ProcessingBy],[PusherType],[PusherTypeFullName],[IsActive],[CreatedTS],[CreatedBy]";
-            commandText += " from [SreDataSource] where Name = '" + applicationName + "'";
+            commandText += " from [IdpeDataSource] where Name = '" + applicationName + "'";
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null || table.Rows.Count == 0)
@@ -144,31 +144,31 @@ namespace Eyedia.IDPE.DataManager
         public List<IdpeDataSource> GetDataSources(int type = 0)
         {
 
-            List<IdpeDataSource> sreDataSources = new List<IdpeDataSource>();
+            List<IdpeDataSource> idpeDataSources = new List<IdpeDataSource>();
 
             string commandText = string.Empty;
             if (type == 1)
             {
                 commandText = "select [Id],[Name],[Description],[IsSystem],[DataFeederType],[DataFormatType],[Delimiter],[SystemDataSourceId],[DataContainerValidatorType], ";
                 commandText += "[OutputType],[OutputWriterTypeFullName],[PlugInsType],[ProcessingBy],[PusherType],[PusherTypeFullName],[IsActive],[CreatedTS],[CreatedBy] ";
-                commandText += "from [SreDataSource] where [IsSystem] = 0";
+                commandText += "from [IdpeDataSource] where [IsSystem] = 0";
             }
             else if (type == 2)
             {
                 commandText = "select [Id],[Name],[Description],[IsSystem],[DataFeederType],[DataFormatType],[Delimiter],[SystemDataSourceId],[DataContainerValidatorType], ";
                 commandText += "[OutputType],[OutputWriterTypeFullName],[PlugInsType],[ProcessingBy],[PusherType],[PusherTypeFullName],[IsActive],[CreatedTS],[CreatedBy] ";
-                commandText += "from [SreDataSource] where [IsSystem] = 1";
+                commandText += "from [IdpeDataSource] where [IsSystem] = 1";
             }
             else
             {
                 commandText = "select [Id],[Name],[Description],[IsSystem],[DataFeederType],[DataFormatType],[Delimiter],[SystemDataSourceId],[DataContainerValidatorType], ";
                 commandText += "[OutputType],[OutputWriterTypeFullName],[PlugInsType],[ProcessingBy],[PusherType],[PusherTypeFullName],[IsActive],[CreatedTS],[CreatedBy] ";
-                commandText += "from [SreDataSource]";
+                commandText += "from [IdpeDataSource]";
             }
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null)
-                return sreDataSources;
+                return idpeDataSources;
 
             foreach (DataRow row in table.Rows)
             {
@@ -191,15 +191,15 @@ namespace Eyedia.IDPE.DataManager
                 dataSource.IsActive = row["IsActive"].ToString() == string.Empty ? false : bool.Parse(row["IsActive"].ToString());
                 dataSource.CreatedTS = (DateTime)(row["CreatedTS"] != DBNull.Value ? row["CreatedTS"].ToString().ParseDateTime() : DateTime.MinValue);
                 dataSource.CreatedBy = row["CreatedBy"] != DBNull.Value ? row["CreatedBy"].ToString() : null;
-                sreDataSources.Add(dataSource);
+                idpeDataSources.Add(dataSource);
             }
-            return sreDataSources;
+            return idpeDataSources;
         }
 
         public List<int> GetAllDataSourceIds(bool onlySystem)
         {
             List<int> ids = new List<int>();
-            DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand("select [Id] from [SreDataSource] where [IsSystem] = " + (onlySystem ? 1 : 0).ToString());
+            DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand("select [Id] from [IdpeDataSource] where [IsSystem] = " + (onlySystem ? 1 : 0).ToString());
             if (table == null)
                 return ids;
             foreach (DataRow row in table.Rows)
@@ -212,7 +212,7 @@ namespace Eyedia.IDPE.DataManager
         public string GetApplicationName(int dataSourceId)
         {
 
-            string commandText = "select top 1 [Name] from [SreDataSource] where Id = " + dataSourceId;
+            string commandText = "select top 1 [Name] from [IdpeDataSource] where Id = " + dataSourceId;
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null || table.Rows.Count == 0)
@@ -224,7 +224,7 @@ namespace Eyedia.IDPE.DataManager
 
         public int GetApplicationId(string dataSourceName)
         {
-            DataTable table = Core.Data.CoreDatabaseObjects.Instance.ExecuteCommand("select * from sredatasource where name = '" + dataSourceName + "'");
+            DataTable table = Core.Data.CoreDatabaseObjects.Instance.ExecuteCommand("select * from idpedatasource where name = '" + dataSourceName + "'");
             if (table.Rows.Count > 0)
                 return (int)table.Rows[0]["Id"].ToString().ParseInt();
 
@@ -234,11 +234,11 @@ namespace Eyedia.IDPE.DataManager
         public DateTime? GetDataSourceLastUpdatedTime(int dataSourceId)
         {
             DateTime? DtTm = null;
-            DataTable table = Core.Data.CoreDatabaseObjects.Instance.ExecuteCommand("select CreatedTS from SreDataSource where Id = " + dataSourceId);
+            DataTable table = Core.Data.CoreDatabaseObjects.Instance.ExecuteCommand("select CreatedTS from IdpeDataSource where Id = " + dataSourceId);
             if (table.Rows.Count > 0)
                 DtTm = table.Rows[0][0].ToString().ParseDateTime();
 
-            table = Core.Data.CoreDatabaseObjects.Instance.ExecuteCommand("select Max(CreatedTS) from SreAttributeDataSource where DataSourceId = " + dataSourceId);
+            table = Core.Data.CoreDatabaseObjects.Instance.ExecuteCommand("select Max(CreatedTS) from IdpeAttributeDataSource where DataSourceId = " + dataSourceId);
             if (table.Rows.Count > 0)
             {
                 DateTime? aDtTm = table.Rows[0][0].ToString().ParseDateTime();
@@ -246,7 +246,7 @@ namespace Eyedia.IDPE.DataManager
                     DtTm = aDtTm;
             }
 
-            table = Core.Data.CoreDatabaseObjects.Instance.ExecuteCommand("select max(k.ModifiedTS) as dt from srekey k inner join SreKeyDataSource kds on k.Keyid = kds.KeyId where kds.DataSourceID = " 
+            table = Core.Data.CoreDatabaseObjects.Instance.ExecuteCommand("select max(k.ModifiedTS) as dt from idpekey k inner join IdpeKeyDataSource kds on k.Keyid = kds.KeyId where kds.DataSourceID = " 
                 + dataSourceId);
             if (table.Rows.Count > 0)
             {
@@ -282,7 +282,7 @@ namespace Eyedia.IDPE.DataManager
             if (isSystem == false)
                 strIssystem = "0";
 
-            DataTable table = Core.Data.CoreDatabaseObjects.Instance.ExecuteCommand("select MAX(Id) as Id from sredatasource where IsSystem = '" + strIssystem + "'");
+            DataTable table = Core.Data.CoreDatabaseObjects.Instance.ExecuteCommand("select MAX(Id) as Id from idpedatasource where IsSystem = '" + strIssystem + "'");
             int maxId = 0;
             if (table.Rows.Count > 0)
                 maxId = (int)table.Rows[0]["Id"].ToString().ParseInt();
@@ -290,6 +290,9 @@ namespace Eyedia.IDPE.DataManager
             if ((isSystem == false)
                 && (maxId == 0))
                 maxId = 100;
+            else if ((isSystem == true)
+                && (maxId < 0))
+                maxId = 0;
 
             return maxId;
         }
@@ -302,7 +305,7 @@ namespace Eyedia.IDPE.DataManager
             IDbConnection conn = myDal.CreateConnection(_ConnectionString);
             conn.Open();
             IDbCommand command = myDal.CreateCommand();
-            command.CommandText = "SELECT * FROM SreDataSource WHERE [SystemDataSourceId] = @SystemDataSourceId";
+            command.CommandText = "SELECT * FROM IdpeDataSource WHERE [SystemDataSourceId] = @SystemDataSourceId";
             command.AddParameterWithValue("SystemDataSourceId", parentDataSourceId);
             command.Connection = conn;
 
@@ -351,7 +354,7 @@ namespace Eyedia.IDPE.DataManager
 
             foreach (IdpeAttributeDataSource attribute in appAttributes)
             {
-                cmdText = "SELECT [AttributeDataSourceId] FROM SreAttributeDataSource WHERE [DataSourceId] = @DataSourceId and [AttributeId] = @AttributeId";
+                cmdText = "SELECT [AttributeDataSourceId] FROM IdpeAttributeDataSource WHERE [DataSourceId] = @DataSourceId and [AttributeId] = @AttributeId";
                 command.Parameters.Clear();
                 command.AddParameterWithValue("DataSourceId", dataSourceId);
                 command.AddParameterWithValue("AttributeId", attribute.AttributeId);
@@ -360,7 +363,7 @@ namespace Eyedia.IDPE.DataManager
 
                 if (reader.Read())
                 {
-                    cmdText = "UPDATE [SreAttributeDataSource] SET [Position] = @Position, [IsAcceptable] = @IsAcceptable, AttributePrintValueType = @AttributePrintValueType, AttributePrintValueCustom = @AttributePrintValueCustom WHERE [AttributeDataSourceId] = @AttributeDataSourceId";
+                    cmdText = "UPDATE [IdpeAttributeDataSource] SET [Position] = @Position, [IsAcceptable] = @IsAcceptable, AttributePrintValueType = @AttributePrintValueType, AttributePrintValueCustom = @AttributePrintValueCustom WHERE [AttributeDataSourceId] = @AttributeDataSourceId";
                     command.Parameters.Clear();
                     command.AddParameterWithValue("Position", position);
                     command.AddParameterWithValue("IsAcceptable", attribute.IsAcceptable);
@@ -377,7 +380,7 @@ namespace Eyedia.IDPE.DataManager
                 }
                 else
                 {
-                    cmdText = "INSERT INTO [SreAttributeDataSource] ([DataSourceId],[AttributeId],[Position],[IsAcceptable],[AttributePrintValueType],[AttributePrintValueCustom],[CreatedTS],[CreatedBy],[Source]) VALUES ";
+                    cmdText = "INSERT INTO [IdpeAttributeDataSource] ([DataSourceId],[AttributeId],[Position],[IsAcceptable],[AttributePrintValueType],[AttributePrintValueCustom],[CreatedTS],[CreatedBy],[Source]) VALUES ";
                     cmdText += "(@DataSourceId,@AttributeId,@Position,@IsAcceptable,@AttributePrintValueType,@AttributePrintValueCustom,@CreatedTS,@CreatedBy,@Source)";
                     command.Parameters.Clear();
                     command.AddParameterWithValue("DataSourceId", dataSourceId);
@@ -444,7 +447,7 @@ namespace Eyedia.IDPE.DataManager
                     IDbCommand command = dal.CreateCommand();
                     command.Connection = connection;
                     command.Transaction = transaction;
-                    command.CommandText = "INSERT INTO SreAttributeDataSource(DataSourceId, AttributeId, Position, CreatedTS, CreatedBy, Source) ";
+                    command.CommandText = "INSERT INTO IdpeAttributeDataSource(DataSourceId, AttributeId, Position, CreatedTS, CreatedBy, Source) ";
                     command.CommandText += " VALUES (@DataSourceId, @AttributeId, @Position, @CreatedTS, @CreatedBy, @Source)";
 
                     command.AddParameterWithValue("DataSourceId", dataSourceId);
@@ -502,7 +505,7 @@ namespace Eyedia.IDPE.DataManager
                 {
                     if (dataSource.IsSystem == false)
                     {
-                        cmdText = "INSERT INTO [SreDataSource] ([Id],[Name],[Description],[IsSystem],[DataFeederType],[DataFormatType],[Delimiter],[SystemDataSourceId],[DataContainerValidatorType],[OutputType],[OutputWriterTypeFullName],[PlugInsType],[ProcessingBy],[PusherType],[PusherTypeFullName], [IsActive],[CreatedTS],[CreatedBy]) ";
+                        cmdText = "INSERT INTO [IdpeDataSource] ([Id],[Name],[Description],[IsSystem],[DataFeederType],[DataFormatType],[Delimiter],[SystemDataSourceId],[DataContainerValidatorType],[OutputType],[OutputWriterTypeFullName],[PlugInsType],[ProcessingBy],[PusherType],[PusherTypeFullName], [IsActive],[CreatedTS],[CreatedBy]) ";
                         cmdText += "VALUES (@Id,@Name,@Description,@IsSystem,@DataFeederType,@DataFormatType,@Delimiter,@SystemDataSourceId,@DataContainerValidatorType,@OutputType, @OutputWriterTypeFullName,@PlugInsType,@ProcessingBy,@PusherType,@PusherTypeFullName, @IsActive,@CreatedTS,@CreatedBy)";
 
                         command.AddParameterWithValue("Id", GetMaxApplicationId(dataSource.IsSystem) + 1);
@@ -564,7 +567,7 @@ namespace Eyedia.IDPE.DataManager
                     }
                     else
                     {
-                        cmdText = "INSERT INTO [SreDataSource] ([Id],[Name],[Description],[IsSystem],[CreatedTS],[CreatedBy]) VALUES ";
+                        cmdText = "INSERT INTO [IdpeDataSource] ([Id],[Name],[Description],[IsSystem],[CreatedTS],[CreatedBy]) VALUES ";
                         cmdText += "(@Id,@Name,@Description,@IsSystem,@CreatedTS,@CreatedBy)";
 
                         command.AddParameterWithValue("Id", GetMaxApplicationId(dataSource.IsSystem) + 1);
@@ -580,7 +583,7 @@ namespace Eyedia.IDPE.DataManager
                 }
                 else
                 {
-                    cmdText = "UPDATE [SreDataSource] SET [Name] = @Name,[Description] = @Description, ";
+                    cmdText = "UPDATE [IdpeDataSource] SET [Name] = @Name,[Description] = @Description, ";
                     cmdText += "[DataFeederType] = @DataFeederType, [DataFormatType] = @DataFormatType, [Delimiter] = @Delimiter, [SystemDataSourceId] = @SystemDataSourceId, ";
                     cmdText += "[DataContainerValidatorType] = @DataContainerValidatorType,[OutputType] = @OutputType,[OutputWriterTypeFullName] = @OutputWriterTypeFullName,[PlugInsType] = @PlugInsType, ";
                     cmdText += "[ProcessingBy] = @ProcessingBy, [PusherType] = @PusherType, [PusherTypeFullName] = @PusherTypeFullName, [IsActive] = @IsActive ";
@@ -653,7 +656,7 @@ namespace Eyedia.IDPE.DataManager
                 if (isInserted)
                 {
                     //Deb: I know dirty coding, need to be changed. OUTPUT INSERTED.Id not working @SQL CE
-                    command.CommandText = "SELECT max(Id) from SreDataSource where IsSystem = @IsSystem";
+                    command.CommandText = "SELECT max(Id) from IdpeDataSource where IsSystem = @IsSystem";
                     command.Parameters.Clear();
                     command.AddParameterWithValue("IsSystem", dataSource.IsSystem);
                     dataSourceId = (Int32)command.ExecuteScalar();
@@ -665,7 +668,7 @@ namespace Eyedia.IDPE.DataManager
                 if (localTransaction)
                     transaction.Rollback();
 
-                Trace.TraceError("Error while saving SreRuleDataSource " + Environment.NewLine + ex.Message + Environment.NewLine + ex.StackTrace);
+                Trace.TraceError("Error while saving IdpeRuleDataSource " + Environment.NewLine + ex.Message + Environment.NewLine + ex.StackTrace);
                 throw new Exception(ex.Message, ex);
             }
             finally
@@ -909,7 +912,7 @@ namespace Eyedia.IDPE.DataManager
                 try
                 {
 
-                    command.CommandText = "UPDATE [SreDataSource] SET [PusherTypeFullName] = @PusherTypeFullName ";
+                    command.CommandText = "UPDATE [IdpeDataSource] SET [PusherTypeFullName] = @PusherTypeFullName ";
                     command.CommandText += "WHERE [Id] = @Id";
                     command.AddParameterWithValue("PusherTypeFullName", pusherTypeFullName);
                     command.AddParameterWithValue("Id", dataSourceId);
@@ -1107,7 +1110,7 @@ namespace Eyedia.IDPE.DataManager
             strDynamicCode += "\t\t\t--correct varchar(n) to varchar(n±) if required " + Environment.NewLine;
             strDynamicCode += "\t\t\tinputData.value('(Position)[1]', 'int') as 'Position'," + Environment.NewLine;
 
-            //List<SreAttribute> attrbs = GetAttributes(dataSourceId);
+            //List<IdpeAttribute> attrbs = GetAttributes(dataSourceId);
             IdpeKey keyUniquenessCriteria = GetKey(dataSourceId, "UniquenessCriteria");
             if (keyUniquenessCriteria == null)
                 throw new BusinessException(string.Format("'UniquenessCriteria' is not defined for {1}", dataSourceId));
@@ -1187,7 +1190,7 @@ namespace Eyedia.IDPE.DataManager
         {
             string commandText = "select [Id],[Name],[Description],[IsSystem],[DataFeederType],[DataFormatType],[Delimiter],[SystemDataSourceId],[DataContainerValidatorType], ";
             commandText += "[OutputType],[OutputWriterTypeFullName],[PlugInsType],[ProcessingBy],[PusherType],[PusherTypeFullName],[IsActive],[CreatedTS],[CreatedBy] ";
-            commandText += "from [SreDataSource] where [IsSystem] = 0";
+            commandText += "from [IdpeDataSource] where [IsSystem] = 0";
 
             return CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
 
@@ -1220,7 +1223,7 @@ namespace Eyedia.IDPE.DataManager
 
             try
             {
-                command.CommandText = "UPDATE [SreDataSource] SET [Delimiter] = @Delimiter ";
+                command.CommandText = "UPDATE [IdpeDataSource] SET [Delimiter] = @Delimiter ";
                 command.CommandText += "WHERE [Id] = @Id";
                 command.AddParameterWithValue("Delimiter", delimiter);
                 command.AddParameterWithValue("Id", dataSourceId);
@@ -1249,7 +1252,7 @@ namespace Eyedia.IDPE.DataManager
 
             try
             {
-                command.CommandText = "UPDATE [SreDataSource] SET [DataFormatType] = @DataFormatType ";
+                command.CommandText = "UPDATE [IdpeDataSource] SET [DataFormatType] = @DataFormatType ";
                 command.CommandText += "WHERE [Id] = @Id";
                 command.AddParameterWithValue("DataFormatType", (int)dataFormatType);
                 command.AddParameterWithValue("Id", dataSourceId);
@@ -1271,7 +1274,7 @@ namespace Eyedia.IDPE.DataManager
         public int GetDataSourceCountUnderSystemDataSource(int systemDataSourceId)
         {
             
-            DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand("select count(*) from SreDataSource where SystemDataSourceId = " + systemDataSourceId);
+            DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand("select count(*) from IdpeDataSource where SystemDataSourceId = " + systemDataSourceId);
             if (table == null || table.Rows.Count == 0)
                 return 0;
 
@@ -1303,7 +1306,7 @@ namespace Eyedia.IDPE.DataManager
                 command.Connection = connection;
                 command.Transaction = transaction;
 
-                command.CommandText = "DELETE from SreDataSource where Id = " + dataSourceId;
+                command.CommandText = "DELETE from IdpeDataSource where Id = " + dataSourceId;
                 command.ExecuteNonQuery();
                 if (localTransaction)
                     transaction.Commit();
@@ -1351,22 +1354,22 @@ namespace Eyedia.IDPE.DataManager
                 command.Connection = connection;
                 command.Transaction = transaction;
 
-                command.CommandText = "DELETE from SrePersistentVariable where DataSourceId = " + dataSourceId;
+                command.CommandText = "DELETE from IdpePersistentVariable where DataSourceId = " + dataSourceId;
                 command.ExecuteNonQuery();
 
-                command.CommandText = "DELETE from SreAttributeDataSource where DataSourceId = " + dataSourceId;
+                command.CommandText = "DELETE from IdpeAttributeDataSource where DataSourceId = " + dataSourceId;
                 command.ExecuteNonQuery();
 
-                command.CommandText = "DELETE from SreKeyDataSource where DataSourceId = " + dataSourceId;
+                command.CommandText = "DELETE from IdpeKeyDataSource where DataSourceId = " + dataSourceId;
                 command.ExecuteNonQuery();
 
-                command.CommandText = "DELETE from SreRuleDataSource where DataSourceId = " + dataSourceId;
+                command.CommandText = "DELETE from IdpeRuleDataSource where DataSourceId = " + dataSourceId;
                 command.ExecuteNonQuery();
 
-                command.CommandText = "DELETE from SreLog where DataSourceId = " + dataSourceId;
+                command.CommandText = "DELETE from IdpeLog where DataSourceId = " + dataSourceId;
                 command.ExecuteNonQuery();
 
-                command.CommandText = "DELETE from SreDataSource where Id = " + dataSourceId;
+                command.CommandText = "DELETE from IdpeDataSource where Id = " + dataSourceId;
                 command.ExecuteNonQuery();
 
                 if (localTransaction)

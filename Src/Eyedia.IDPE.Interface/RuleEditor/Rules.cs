@@ -94,9 +94,9 @@ namespace Eyedia.IDPE.Interface
             {
                 
                 this.Cursor = Cursors.WaitCursor;           
-                IdpeRule sreRule = new Manager().GetRule((listView.SelectedItems[0].Tag as IdpeRule).Id);
-                RuleEditor.MainWindow ruleEditor = new RuleEditor.MainWindow(sreRule, Common.RuleSetTypes.RowPreparing);
-                string sname = sreRule.Name.Replace("-", "").Replace(" ", "");
+                IdpeRule idpeRule = new Manager().GetRule((listView.SelectedItems[0].Tag as IdpeRule).Id);
+                RuleEditor.MainWindow ruleEditor = new RuleEditor.MainWindow(idpeRule, Common.RuleSetTypes.RowPreparing);
+                string sname = idpeRule.Name.Replace("-", "").Replace(" ", "");
                 ruleEditor.Name = sname;                
                 if (!CheckOpenWindow.Helpers.IsWindowOpen(sname))
                 {
@@ -107,7 +107,7 @@ namespace Eyedia.IDPE.Interface
                 }
                 else
                 {
-                    MessageBox.Show("Workflow Window already open for rule \"" + sreRule.Name + "\"","SRE warning",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    MessageBox.Show("Workflow Window already open for rule \"" + idpeRule.Name + "\"","SRE warning",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
                 this.Cursor = Cursors.Default;
                 
@@ -117,17 +117,17 @@ namespace Eyedia.IDPE.Interface
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            IdpeRule sreRule = new IdpeRule();
+            IdpeRule idpeRule = new IdpeRule();
             this.Cursor = Cursors.WaitCursor;
-            FormAlreadyOpened(sreRule);
-            RuleEditor.MainWindow ruleEditor = new RuleEditor.MainWindow(sreRule, Common.RuleSetTypes.RowPrepared);
+            FormAlreadyOpened(idpeRule);
+            RuleEditor.MainWindow ruleEditor = new RuleEditor.MainWindow(idpeRule, Common.RuleSetTypes.RowPrepared);
             ElementHost.EnableModelessKeyboardInterop(ruleEditor);
             ruleEditor.RuleForm = this;
             this.Cursor = Cursors.Default;
             ruleEditor.Show();
             
         }
-        private bool FormAlreadyOpened(IdpeRule srerule)
+        private bool FormAlreadyOpened(IdpeRule idperule)
         {
             bool IsAlreadyOpened = false;
             

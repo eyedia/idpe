@@ -289,13 +289,13 @@ namespace Eyedia.IDPE.Interface
                     rule.Id = 0;
                     int newRuleId = DataManager.Save(rule);
 
-                    IdpeRuleDataSource sreRuleDataSource = new IdpeRuleDataSource();
-                    sreRuleDataSource.Priority = (int)rule.Priority;
-                    sreRuleDataSource.RuleSetType = (int)rule.RuleSetType;
-                    sreRuleDataSource.IsActive = true;
-                    sreRuleDataSource.RuleId = newRuleId;
-                    sreRuleDataSource.DataSourceId = newDataSource.Id;
-                    DataManager.SaveRuleAssociationDuringCopy(sreRuleDataSource);
+                    IdpeRuleDataSource idpeRuleDataSource = new IdpeRuleDataSource();
+                    idpeRuleDataSource.Priority = (int)rule.Priority;
+                    idpeRuleDataSource.RuleSetType = (int)rule.RuleSetType;
+                    idpeRuleDataSource.IsActive = true;
+                    idpeRuleDataSource.RuleId = newRuleId;
+                    idpeRuleDataSource.DataSourceId = newDataSource.Id;
+                    DataManager.SaveRuleAssociationDuringCopy(idpeRuleDataSource);
 
                     toolStripStatusLabel1.Text = "Copying rule..." + rule.Name;
                     Application.DoEvents();

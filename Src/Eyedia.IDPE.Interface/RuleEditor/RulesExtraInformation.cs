@@ -46,14 +46,14 @@ namespace Eyedia.IDPE.Interface
 {
     public partial class RulesExtraInformation : Form
     {
-        public RulesExtraInformation(IdpeRule sreRule)
+        public RulesExtraInformation(IdpeRule idpeRule)
         {
             InitializeComponent();
             this.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
 
-            txtName.Text = sreRule.Name;            
-            txtDescription.Text = sreRule.Description;
-            //txtDescription.SelectedText = sreRule.Description;
+            txtName.Text = idpeRule.Name;            
+            txtDescription.Text = idpeRule.Description;
+            //txtDescription.SelectedText = idpeRule.Description;
             
         }
 

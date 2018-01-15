@@ -44,10 +44,10 @@ namespace Eyedia.IDPE.Services
 {
     public class DataSourceCSharpCodeReferenceExtractor
     {
-        public DataSourceCSharpCodeReferenceExtractor(int dataSourceId, SreKeyTypes sreKeyType)
+        public DataSourceCSharpCodeReferenceExtractor(int dataSourceId, SreKeyTypes idpeKeyType)
         {
             this.DataSourceId = dataSourceId;
-            Key = new Manager().GetKey(DataSourceId, sreKeyType.ToString());
+            Key = new Manager().GetKey(DataSourceId, idpeKeyType.ToString());
 
             AttributeNames = new List<string>();
             SystemAttributeNames = new List<string>();

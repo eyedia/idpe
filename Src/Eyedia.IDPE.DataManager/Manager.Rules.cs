@@ -49,12 +49,12 @@ namespace Eyedia.IDPE.DataManager
     {
         public List<IdpeRule> GetRules()
         {
-            List<IdpeRule> sreRules = new List<IdpeRule>();
-            string commandText = "select [Id],[Name],[Description],[Xaml],[Priority],[RuleSetType],[CreatedTS],[CreatedBy] from [SreRule] order by [Name]";
+            List<IdpeRule> idpeRules = new List<IdpeRule>();
+            string commandText = "select [Id],[Name],[Description],[Xaml],[Priority],[RuleSetType],[CreatedTS],[CreatedBy] from [IdpeRule] order by [Name]";
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null)
-                return sreRules;
+                return idpeRules;
 
             foreach (DataRow row in table.Rows)
             {
@@ -68,15 +68,15 @@ namespace Eyedia.IDPE.DataManager
                 rule.CreatedTS = (DateTime)(row["CreatedTS"] != DBNull.Value ? row["CreatedTS"].ToString().ParseDateTime() : DateTime.MinValue);
                 rule.CreatedBy = row["CreatedBy"] != DBNull.Value ? row["CreatedBy"].ToString() : null;
                 
-                sreRules.Add(rule);
+                idpeRules.Add(rule);
             }
-            return sreRules;
+            return idpeRules;
         }
 
         public IdpeRule GetRule(int ruleId)
         {
             
-            string commandText = "select TOP 1 [Id],[Name],[Description],[Xaml],[Priority],[RuleSetType],[CreatedTS],[CreatedBy] from [SreRule] where [Id] = " + ruleId;
+            string commandText = "select TOP 1 [Id],[Name],[Description],[Xaml],[Priority],[RuleSetType],[CreatedTS],[CreatedBy] from [IdpeRule] where [Id] = " + ruleId;
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null || table.Rows.Count == 0)
@@ -102,7 +102,7 @@ namespace Eyedia.IDPE.DataManager
         public IdpeRule GetRule(string ruleName)
         {
 
-            string commandText = "select TOP 1 [Id],[Name],[Description],[Xaml],[Priority],[RuleSetType],[CreatedTS],[CreatedBy] from [SreRule] where [Name] = '" + ruleName + "'";
+            string commandText = "select TOP 1 [Id],[Name],[Description],[Xaml],[Priority],[RuleSetType],[CreatedTS],[CreatedBy] from [IdpeRule] where [Name] = '" + ruleName + "'";
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null || table.Rows.Count == 0)
                 return null;
@@ -125,49 +125,49 @@ namespace Eyedia.IDPE.DataManager
 
         private List<IdpeRuleDataSource> GetSreRuleDataSources()
         {
-            List<IdpeRuleDataSource> sreRuleDataSources = new List<IdpeRuleDataSource>();
-            string commandText = "select [RuleDataSourceId],[RuleId],[DataSourceId],[Priority],[RuleSetType],[IsActive] from [SreRuleDataSource]";
+            List<IdpeRuleDataSource> idpeRuleDataSources = new List<IdpeRuleDataSource>();
+            string commandText = "select [RuleDataSourceId],[RuleId],[DataSourceId],[Priority],[RuleSetType],[IsActive] from [IdpeRuleDataSource]";
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null)
-                return sreRuleDataSources;
+                return idpeRuleDataSources;
 
             foreach (DataRow row in table.Rows)
             {
-                IdpeRuleDataSource sreRuleDataSource = new IdpeRuleDataSource();
-                sreRuleDataSource.RuleDataSourceId = (int)row["RuleDataSourceId"].ToString().ParseInt();
-                sreRuleDataSource.RuleId = (int)row["RuleId"].ToString().ParseInt();
-                sreRuleDataSource.DataSourceId = (int)row["DataSourceId"].ToString().ParseInt();
-                sreRuleDataSource.Priority = (int)row["Priority"].ToString().ParseInt();
-                sreRuleDataSource.RuleSetType = (int)row["RuleSetType"].ToString().ParseInt();
-                sreRuleDataSource.IsActive = row["IsActive"].ToString().ParseBool();
-                sreRuleDataSources.Add(sreRuleDataSource);
+                IdpeRuleDataSource idpeRuleDataSource = new IdpeRuleDataSource();
+                idpeRuleDataSource.RuleDataSourceId = (int)row["RuleDataSourceId"].ToString().ParseInt();
+                idpeRuleDataSource.RuleId = (int)row["RuleId"].ToString().ParseInt();
+                idpeRuleDataSource.DataSourceId = (int)row["DataSourceId"].ToString().ParseInt();
+                idpeRuleDataSource.Priority = (int)row["Priority"].ToString().ParseInt();
+                idpeRuleDataSource.RuleSetType = (int)row["RuleSetType"].ToString().ParseInt();
+                idpeRuleDataSource.IsActive = row["IsActive"].ToString().ParseBool();
+                idpeRuleDataSources.Add(idpeRuleDataSource);
             }
-            return sreRuleDataSources;
+            return idpeRuleDataSources;
         }
 
         private IdpeRuleDataSource GetSreRuleDataSource(int dataSourceId, int ruleId, int ruleSetType)
         {
-            IdpeRuleDataSource sreRuleDataSource = null;
-            string commandText = string.Format("select [RuleDataSourceId],[RuleId],[DataSourceId],[Priority],[RuleSetType],[IsActive] from [SreRuleDataSource] where [DataSourceId] = {0} and [RuleId] = {1} and [RuleSetType] = {2}"
+            IdpeRuleDataSource idpeRuleDataSource = null;
+            string commandText = string.Format("select [RuleDataSourceId],[RuleId],[DataSourceId],[Priority],[RuleSetType],[IsActive] from [IdpeRuleDataSource] where [DataSourceId] = {0} and [RuleId] = {1} and [RuleSetType] = {2}"
                 ,dataSourceId, ruleId, ruleSetType);
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null)
-                return sreRuleDataSource;
+                return idpeRuleDataSource;
 
             foreach (DataRow row in table.Rows)
             {
-                sreRuleDataSource = new IdpeRuleDataSource();
-                sreRuleDataSource.RuleDataSourceId = (int)row["RuleDataSourceId"].ToString().ParseInt();
-                sreRuleDataSource.RuleId = (int)row["RuleId"].ToString().ParseInt();
-                sreRuleDataSource.DataSourceId = (int)row["DataSourceId"].ToString().ParseInt();
-                sreRuleDataSource.Priority = (int)row["Priority"].ToString().ParseInt();
-                sreRuleDataSource.RuleSetType = (int)row["RuleSetType"].ToString().ParseInt();
-                sreRuleDataSource.IsActive = row["IsActive"].ToString().ParseBool();
+                idpeRuleDataSource = new IdpeRuleDataSource();
+                idpeRuleDataSource.RuleDataSourceId = (int)row["RuleDataSourceId"].ToString().ParseInt();
+                idpeRuleDataSource.RuleId = (int)row["RuleId"].ToString().ParseInt();
+                idpeRuleDataSource.DataSourceId = (int)row["DataSourceId"].ToString().ParseInt();
+                idpeRuleDataSource.Priority = (int)row["Priority"].ToString().ParseInt();
+                idpeRuleDataSource.RuleSetType = (int)row["RuleSetType"].ToString().ParseInt();
+                idpeRuleDataSource.IsActive = row["IsActive"].ToString().ParseBool();
                 
             }
-            return sreRuleDataSource;
+            return idpeRuleDataSource;
         }
              
 
@@ -176,8 +176,8 @@ namespace Eyedia.IDPE.DataManager
         {
             List<IdpeRule> rules = new List<IdpeRule>();
 
-            string qry = "select r.Id,name,description,xaml,rds.[priority],rds.rulesettype from srerule r ";
-            qry += "inner join SreRuleDataSource rds on rds.ruleId = r.id ";
+            string qry = "select r.Id,name,description,xaml,rds.[priority],rds.rulesettype from IdpeRule r ";
+            qry += "inner join IdpeRuleDataSource rds on rds.ruleId = r.id ";
             qry += "where datasourceId = " + dataSourceId;
             DataTable table = Core.Data.CoreDatabaseObjects.Instance.ExecuteCommand(qry);
 
@@ -209,10 +209,10 @@ namespace Eyedia.IDPE.DataManager
             else
             {
                 rules = GetRules();
-                List<IdpeRuleDataSource> sreRuleDataSources = GetSreRuleDataSources();
+                List<IdpeRuleDataSource> idpeRuleDataSources = GetSreRuleDataSources();
 
                 return (from r in rules
-                        join rd in sreRuleDataSources on r.Id equals rd.RuleId
+                        join rd in idpeRuleDataSources on r.Id equals rd.RuleId
                         where rd.DataSourceId == dataSourceId
                         select r.Name).ToList();
             }
@@ -225,36 +225,36 @@ namespace Eyedia.IDPE.DataManager
 
         public List<IdpeRuleDataSource> GetRuleSetApplication(int dataSourceId)
         {
-            List<IdpeRuleDataSource> sreRuleDataSources = new List<IdpeRuleDataSource>();
-            string commandText = "select [RuleDataSourceId],[RuleId],[DataSourceId],[Priority],[RuleSetType],[IsActive] from [SreRuleDataSource] where DataSourceId = " + dataSourceId;
+            List<IdpeRuleDataSource> idpeRuleDataSources = new List<IdpeRuleDataSource>();
+            string commandText = "select [RuleDataSourceId],[RuleId],[DataSourceId],[Priority],[RuleSetType],[IsActive] from [IdpeRuleDataSource] where DataSourceId = " + dataSourceId;
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null || table.Rows.Count == 0)
-                return sreRuleDataSources;
+                return idpeRuleDataSources;
 
             foreach (DataRow row in table.Rows)
             {
-                IdpeRuleDataSource sreRuleDataSource = new IdpeRuleDataSource();
-                sreRuleDataSource.RuleDataSourceId = (int)row["RuleDataSourceId"].ToString().ParseInt();
-                sreRuleDataSource.RuleId = (int)row["RuleId"].ToString().ParseInt();
-                sreRuleDataSource.DataSourceId = (int)row["DataSourceId"].ToString().ParseInt();
-                sreRuleDataSource.Priority = (int)row["Priority"].ToString().ParseInt();
-                sreRuleDataSource.RuleSetType = (int)row["RuleSetType"].ToString().ParseInt();
-                sreRuleDataSource.IsActive = row["IsActive"].ToString().ParseBool();
-                sreRuleDataSources.Add(sreRuleDataSource);
+                IdpeRuleDataSource idpeRuleDataSource = new IdpeRuleDataSource();
+                idpeRuleDataSource.RuleDataSourceId = (int)row["RuleDataSourceId"].ToString().ParseInt();
+                idpeRuleDataSource.RuleId = (int)row["RuleId"].ToString().ParseInt();
+                idpeRuleDataSource.DataSourceId = (int)row["DataSourceId"].ToString().ParseInt();
+                idpeRuleDataSource.Priority = (int)row["Priority"].ToString().ParseInt();
+                idpeRuleDataSource.RuleSetType = (int)row["RuleSetType"].ToString().ParseInt();
+                idpeRuleDataSource.IsActive = row["IsActive"].ToString().ParseBool();
+                idpeRuleDataSources.Add(idpeRuleDataSource);
             }
-            return sreRuleDataSources;
+            return idpeRuleDataSources;
         }
 
         public List<IdpeRule> GetApplicationRuleSets(int dataSourceId)
         {
-            List<IdpeRule> sreRules = new List<IdpeRule>();
-            string commandText = "select rs.[Id],rs.[Name],rs.[Description],rs.[Xaml],rsa.[Priority],rsa.[RuleSetType],rs.[CreatedTS],rs.[CreatedBy] from [SreRule] rs " +
-                        " inner join SreRuleDataSource rsa on rs.Id = rsa.RuleId  and DataSourceId = " + dataSourceId;
+            List<IdpeRule> idpeRules = new List<IdpeRule>();
+            string commandText = "select rs.[Id],rs.[Name],rs.[Description],rs.[Xaml],rsa.[Priority],rsa.[RuleSetType],rs.[CreatedTS],rs.[CreatedBy] from [IdpeRule] rs " +
+                        " inner join IdpeRuleDataSource rsa on rs.Id = rsa.RuleId  and DataSourceId = " + dataSourceId;
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null || table.Rows.Count == 0)
-                return sreRules;
+                return idpeRules;
 
             foreach (DataRow row in table.Rows)
             {
@@ -267,9 +267,9 @@ namespace Eyedia.IDPE.DataManager
                 rule.RuleSetType = row["RuleSetType"] != DBNull.Value ? row["RuleSetType"].ToString().ParseInt() : null;
                 rule.CreatedTS = (DateTime)(row["CreatedTS"] != DBNull.Value ? row["CreatedTS"].ToString().ParseDateTime() : DateTime.MinValue);
                 rule.CreatedBy = row["CreatedBy"] != DBNull.Value ? row["CreatedBy"].ToString() : null;                
-                sreRules.Add(rule);
+                idpeRules.Add(rule);
             }
-            return sreRules;
+            return idpeRules;
         }
 
       
@@ -320,13 +320,13 @@ namespace Eyedia.IDPE.DataManager
 
                 if (existingRule == null)
                 {
-                    commandText = string.Format(CultureInfo.InvariantCulture, "INSERT SreRule (Name, Description, Xaml, CreatedTS, CreatedBy) VALUES('{0}','{1}','{2}','{3}','{4}')"
+                    commandText = string.Format(CultureInfo.InvariantCulture, "INSERT IdpeRule (Name, Description, Xaml, CreatedTS, CreatedBy) VALUES('{0}','{1}','{2}','{3}','{4}')"
                         , rule.Name, rule.Description, rule.Xaml, DateTime.Now, userName);
                     isInserted = true;
                 }
                 else
                 {
-                    commandText = string.Format(CultureInfo.InvariantCulture, "UPDATE SreRule  SET Name = '{0}', Description = '{1}', Xaml = '{2}' where id = {3}"
+                    commandText = string.Format(CultureInfo.InvariantCulture, "UPDATE IdpeRule  SET Name = '{0}', Description = '{1}', Xaml = '{2}' where id = {3}"
                        , rule.Name, rule.Description, rule.Xaml, existingRule.Id);
                 }              
                 command.CommandText = commandText;                
@@ -338,7 +338,7 @@ namespace Eyedia.IDPE.DataManager
                 if (isInserted)
                 {
                     //Deb: I know dirty coding, need to be changed. OUTPUT INSERTED.Id not working @SQL CE
-                    command.CommandText = "SELECT max(Id) from SreRule";
+                    command.CommandText = "SELECT max(Id) from IdpeRule";
                     ruleSetId = (Int32)command.ExecuteScalar();
                 }
                 else
@@ -375,7 +375,7 @@ namespace Eyedia.IDPE.DataManager
             IDbConnection con = dal.CreateConnection(_ConnectionString);
             con.Open();
 
-            string query = string.Format("INSERT INTO [SreRuleDataSource] ([RuleId],[DataSourceId],[Priority],[RulesetType],[IsActive]) VALUES ({0},{1},{2},{3},{4})",
+            string query = string.Format("INSERT INTO [IdpeRuleDataSource] ([RuleId],[DataSourceId],[Priority],[RulesetType],[IsActive]) VALUES ({0},{1},{2},{3},{4})",
                        ruleDataSource.RuleId,
                        ruleDataSource.DataSourceId, ruleDataSource.Priority, ruleDataSource.RuleSetType, ruleDataSource.IsActive == true ? 1 : 0);
 
@@ -408,7 +408,7 @@ namespace Eyedia.IDPE.DataManager
 
                 if (existingObject == null)
                 {
-                    query = string.Format("INSERT INTO [SreRuleDataSource] ([RuleId],[DataSourceId],[Priority],[RulesetType],[IsActive]) VALUES ({0},{1},{2},{3},{4})",
+                    query = string.Format("INSERT INTO [IdpeRuleDataSource] ([RuleId],[DataSourceId],[Priority],[RulesetType],[IsActive]) VALUES ({0},{1},{2},{3},{4})",
                         ruleDataSource.RuleId,
                         ruleDataSource.DataSourceId, ruleDataSource.Priority, ruleDataSource.RuleSetType, ruleDataSource.IsActive == true ? 1 : 0);
                     inserted = true;
@@ -416,7 +416,7 @@ namespace Eyedia.IDPE.DataManager
                 else
                 {
                     ruleDataSourceId = existingObject.RuleDataSourceId;
-                    query = string.Format("update [SreRuleDataSource] set [Priority] = {0},[RulesetType] = {1},[IsActive] ={2} where RuleDataSourceId = {3}",
+                    query = string.Format("update [IdpeRuleDataSource] set [Priority] = {0},[RulesetType] = {1},[IsActive] ={2} where RuleDataSourceId = {3}",
                         ruleDataSource.Priority, ruleDataSource.RuleSetType, ruleDataSource.IsActive == true ? 1 : 0, ruleDataSourceId);
 
                 }
@@ -431,7 +431,7 @@ namespace Eyedia.IDPE.DataManager
 
                 if (inserted)
                 {
-                    query = string.Format("select RuleDataSourceId from SreRuleDataSource where [RuleId] = {0} and [DataSourceId] = {1} and [Priority] = {2} and [RulesetType] = {3}",
+                    query = string.Format("select RuleDataSourceId from IdpeRuleDataSource where [RuleId] = {0} and [DataSourceId] = {1} and [Priority] = {2} and [RulesetType] = {3}",
                         ruleDataSource.RuleId, ruleDataSource.DataSourceId, ruleDataSource.Priority, (int)ruleDataSource.RuleSetType);
                     
                     using (IDbCommand command = localTransaction ? dal.CreateCommand(query, connection) : dal.CreateCommand(query, connection, transaction))
@@ -452,7 +452,7 @@ namespace Eyedia.IDPE.DataManager
                 if (localTransaction)
                     transaction.Rollback();
 
-                Trace.TraceError("Error while saving SreRuleDataSource " + Environment.NewLine + ex.Message + Environment.NewLine + ex.StackTrace);
+                Trace.TraceError("Error while saving IdpeRuleDataSource " + Environment.NewLine + ex.Message + Environment.NewLine + ex.StackTrace);
                 throw new Exception(ex.Message, ex);
 
             }
@@ -484,7 +484,7 @@ namespace Eyedia.IDPE.DataManager
 
             try
             {
-                command.CommandText = "DELETE FROM [SreRule] WHERE [Name] = @Name";
+                command.CommandText = "DELETE FROM [IdpeRule] WHERE [Name] = @Name";
                 command.AddParameterWithValue("Name", ruleName);
                 command.ExecuteNonQuery();
                 transaction.Commit();
@@ -520,7 +520,7 @@ namespace Eyedia.IDPE.DataManager
 
             try
             {
-                command.CommandText = "update [SreRule] set [Name] = @Name WHERE [Id] = @Id";
+                command.CommandText = "update [IdpeRule] set [Name] = @Name WHERE [Id] = @Id";
                 command.AddParameterWithValue("Name", ruleName);
                 command.AddParameterWithValue("Id", id);
                 command.ExecuteNonQuery();
@@ -543,13 +543,13 @@ namespace Eyedia.IDPE.DataManager
 
         public void DeleteRuleFromDataSource(int dataSourceId, int ruleId, RuleSetTypes ruleSetType, bool deleteRule = false)
         {
-            string sqlStatement = "delete from [SreRuleDataSource] ";
+            string sqlStatement = "delete from [IdpeRuleDataSource] ";
             sqlStatement += string.Format("where (DataSourceId = {0}) and (RuleId = {1}) and (RuleSetType = {2})", dataSourceId, ruleId, (int)ruleSetType);
             CoreDatabaseObjects.Instance.ExecuteStatement(sqlStatement);
 
             if (deleteRule)
             {
-                sqlStatement = "delete from [SreRule] ";
+                sqlStatement = "delete from [IdpeRule] ";
                 sqlStatement += string.Format("where Id = {0}", ruleId);
                 CoreDatabaseObjects.Instance.ExecuteStatement(sqlStatement);
             }
@@ -565,8 +565,8 @@ namespace Eyedia.IDPE.DataManager
 
         public DataTable GetRuleDependencies(int ruleId)
         {
-            string commandText = "select ds.Id, ds.Name, rds.RuleSetType from SreDataSource ds ";
-            commandText += "inner join SreRuleDataSource rds on ds.Id = rds.DataSourceId ";
+            string commandText = "select ds.Id, ds.Name, rds.RuleSetType from IdpeDataSource ds ";
+            commandText += "inner join IdpeRuleDataSource rds on ds.Id = rds.DataSourceId ";
             commandText += "where rds.RuleId = " + ruleId;
 
             return CoreDatabaseObjects.Instance.ExecuteCommand(commandText);

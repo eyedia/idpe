@@ -1,15 +1,15 @@
-﻿delete from SrePersistentVariable
-delete from SreVersion
-delete from SreLog
-delete from SreRuleDataSource
-delete from SreRule
+﻿delete from IdpePersistentVariable
+delete from IdpeVersion
+delete from IdpeLog
+delete from IdpeRuleDataSource
+delete from IdpeRule
 delete from SreKeyDatasource
-delete from SreKey
-delete from SreAttributeDataSource
-delete from SreAttribute where Name != 'IsValid'
+delete from IdpeKey
+delete from IdpeAttributeDataSource
+delete from IdpeAttribute where Name != 'IsValid'
 delete from AVPair
 delete from CodeSet
 delete from User where username != 'root'
-delete from SreDataSource where issystem = 0 and id not in (-99,100)
-delete from SreDataSource where issystem = 1 and id not in (-99,100)
+delete from IdpeDataSource where issystem = 0 and id not in (-99,100)
+delete from IdpeDataSource where issystem = 1 and id not in (-99,100)
 delete from EmailTracker

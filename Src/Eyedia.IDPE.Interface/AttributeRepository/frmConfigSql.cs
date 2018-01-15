@@ -59,7 +59,7 @@ namespace Eyedia.IDPE.Interface
             this.DataSourceId = dataSourceId;
             this.pullSqlConfiguration1.PusherMode = pusherMode;
             this.pullSqlConfiguration1.DataSourceId = dataSourceId;
-            sreRulesEditorControl1.DataSource = new Manager().GetDataSourceDetails(dataSourceId);
+            idpeRulesEditorControl1.DataSource = new Manager().GetDataSourceDetails(dataSourceId);
 
             if (title != null)
                 this.Text = title;

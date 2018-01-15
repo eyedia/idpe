@@ -95,7 +95,7 @@ namespace Eyedia.IDPE.Services
 
         void ExecuteQuery(DataSource dataSource, IdpeKey connectionStringKey, string updateQuery)
         {
-            //SreKey connectionStringKey = dataSource.Keys.GetKey(connectionStringKeyName);
+            //IdpeKey connectionStringKey = dataSource.Keys.GetKey(connectionStringKeyName);
             //if (connectionStringKey == null)
             //    throw new KeyNotFoundException(string.Format("The connection string '{0}' was not defined!", connectionStringKeyName));
 

@@ -441,7 +441,7 @@ namespace Eyedia.IDPE.Interface
             {
                 if (sreListView.ListView.SelectedItems.Count > 0)
                 {
-                    //if (((SreDataSource)sreListView.ListView.SelectedItems[0].Tag).Id == 100)
+                    //if (((IdpeDataSource)sreListView.ListView.SelectedItems[0].Tag).Id == 100)
                     //{
                     //    m_dm_GlobalAttributes.btnAssociateBoth.Enabled = false;
                     //    m_dm_GlobalAttributes.btnAssociateAttributeDataSource.Enabled = false;

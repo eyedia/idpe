@@ -47,9 +47,9 @@ namespace Eyedia.IDPE.Interface
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.sreRulesEditorControl1 = new Eyedia.IDPE.Interface.SreRulesEditorControl();
+            this.idpeRulesEditorControl1 = new Eyedia.IDPE.Interface.SreRulesEditorControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.sreKeys1 = new Eyedia.IDPE.Interface.Controls.SreKeys();
+            this.idpeKeys1 = new Eyedia.IDPE.Interface.Controls.SreKeys();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.sreEmails1 = new Eyedia.IDPE.Interface.Controls.SreEmails();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -249,7 +249,7 @@ namespace Eyedia.IDPE.Interface
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.sreRulesEditorControl1);
+            this.tabPage2.Controls.Add(this.idpeRulesEditorControl1);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -258,19 +258,19 @@ namespace Eyedia.IDPE.Interface
             this.tabPage2.Text = "Rules";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // sreRulesEditorControl1
+            // idpeRulesEditorControl1
             // 
-            this.sreRulesEditorControl1.DataSource = null;
-            this.sreRulesEditorControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sreRulesEditorControl1.Location = new System.Drawing.Point(3, 3);
-            this.sreRulesEditorControl1.Name = "sreRulesEditorControl1";
-            this.sreRulesEditorControl1.ShowSqlInitRules = false;
-            this.sreRulesEditorControl1.Size = new System.Drawing.Size(844, 347);
-            this.sreRulesEditorControl1.TabIndex = 0;
+            this.idpeRulesEditorControl1.DataSource = null;
+            this.idpeRulesEditorControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.idpeRulesEditorControl1.Location = new System.Drawing.Point(3, 3);
+            this.idpeRulesEditorControl1.Name = "idpeRulesEditorControl1";
+            this.idpeRulesEditorControl1.ShowSqlInitRules = false;
+            this.idpeRulesEditorControl1.Size = new System.Drawing.Size(844, 347);
+            this.idpeRulesEditorControl1.TabIndex = 0;
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.sreKeys1);
+            this.tabPage3.Controls.Add(this.idpeKeys1);
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(850, 353);
@@ -278,19 +278,19 @@ namespace Eyedia.IDPE.Interface
             this.tabPage3.Text = "Keys";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // sreKeys1
+            // idpeKeys1
             // 
-            this.sreKeys1.DataSourceId = 0;
-            this.sreKeys1.DataSourceName = null;
-            this.sreKeys1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sreKeys1.Location = new System.Drawing.Point(0, 0);
-            this.sreKeys1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.sreKeys1.Name = "sreKeys1";
-            this.sreKeys1.SaveButton = null;
-            this.sreKeys1.ShowCaption = false;
-            this.sreKeys1.Size = new System.Drawing.Size(850, 353);
-            this.sreKeys1.TabIndex = 0;
-            this.sreKeys1.ToolStripStatusLabel = null;
+            this.idpeKeys1.DataSourceId = 0;
+            this.idpeKeys1.DataSourceName = null;
+            this.idpeKeys1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.idpeKeys1.Location = new System.Drawing.Point(0, 0);
+            this.idpeKeys1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.idpeKeys1.Name = "idpeKeys1";
+            this.idpeKeys1.SaveButton = null;
+            this.idpeKeys1.ShowCaption = false;
+            this.idpeKeys1.Size = new System.Drawing.Size(850, 353);
+            this.idpeKeys1.TabIndex = 0;
+            this.idpeKeys1.ToolStripStatusLabel = null;
             // 
             // tabPage4
             // 
@@ -412,8 +412,8 @@ namespace Eyedia.IDPE.Interface
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
-        private SreRulesEditorControl sreRulesEditorControl1;
-        private Controls.SreKeys sreKeys1;
+        private SreRulesEditorControl idpeRulesEditorControl1;
+        private Controls.SreKeys idpeKeys1;
         private Controls.SreEmails sreEmails1;
         private System.Windows.Forms.TabPage tabPage5;
         private Controls.SreDatabases sreDatabases1;

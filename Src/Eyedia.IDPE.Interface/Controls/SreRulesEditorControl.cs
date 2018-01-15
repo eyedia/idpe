@@ -176,9 +176,9 @@ namespace Eyedia.IDPE.Interface
             {
 
                 this.Cursor = Cursors.WaitCursor;
-                IdpeRule sreRule = new Manager().GetRule((listView.SelectedItems[0].Tag as IdpeRule).Id);                
-                RuleEditor.MainWindow ruleEditor = new RuleEditor.MainWindow(sreRule, Common.RuleSetTypes.RowPreparing);
-                string sname = sreRule.Name.Replace("-", "").Replace(" ", "");
+                IdpeRule idpeRule = new Manager().GetRule((listView.SelectedItems[0].Tag as IdpeRule).Id);                
+                RuleEditor.MainWindow ruleEditor = new RuleEditor.MainWindow(idpeRule, Common.RuleSetTypes.RowPreparing);
+                string sname = idpeRule.Name.Replace("-", "").Replace(" ", "");
                 ruleEditor.Name = sname;
                 if (!CheckOpenWindow.Helpers.IsWindowOpen(sname))
                 {
@@ -188,7 +188,7 @@ namespace Eyedia.IDPE.Interface
                 }
                 else
                 {
-                    MessageBox.Show("Workflow Window already open for rule \"" + sreRule.Name + "\"", "SRE warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Workflow Window already open for rule \"" + idpeRule.Name + "\"", "SRE warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 this.Cursor = Cursors.Default;
 
@@ -200,16 +200,16 @@ namespace Eyedia.IDPE.Interface
             Manager manager = new Manager();
             for (int i = 0; i < selectedRuleListView.ListView.Items.Count; i++)
             {
-                IdpeRuleDataSource sreRuleDataSource = new IdpeRuleDataSource();
+                IdpeRuleDataSource idpeRuleDataSource = new IdpeRuleDataSource();
                 IdpeRule rule = selectedRuleListView.ListView.Items[i].Tag as IdpeRule;
                 if (rule == null)
                     rule = manager.GetRule(selectedRuleListView.ListView.Items[i].Text);
 
-                sreRuleDataSource.DataSourceId = this.DataSource.Id;
-                sreRuleDataSource.RuleId = rule.Id;
-                sreRuleDataSource.RuleSetType = (int)selectedRuleSetType;
-                sreRuleDataSource.Priority = i + 1;
-                manager.Save(sreRuleDataSource);
+                idpeRuleDataSource.DataSourceId = this.DataSource.Id;
+                idpeRuleDataSource.RuleId = rule.Id;
+                idpeRuleDataSource.RuleSetType = (int)selectedRuleSetType;
+                idpeRuleDataSource.Priority = i + 1;
+                manager.Save(idpeRuleDataSource);
 
                 selectedRuleListView.ListView.Items[i].SubItems[1].Text = (i + 1).ToString();
             }
@@ -265,12 +265,12 @@ namespace Eyedia.IDPE.Interface
 
             SreDataSourceProperty.KeepVersion(this.DataSource.Id);
 
-            IdpeRuleDataSource sreRuleDataSource = new IdpeRuleDataSource();
-            sreRuleDataSource.DataSourceId = DataSource.Id;
-            sreRuleDataSource.RuleId = frmSelectRuleSet.SelectedRule.Id;
-            sreRuleDataSource.Priority = priority;
-            sreRuleDataSource.RuleSetType = (int)selectedRuleSetType;
-            new DataManager.Manager().Save(sreRuleDataSource);
+            IdpeRuleDataSource idpeRuleDataSource = new IdpeRuleDataSource();
+            idpeRuleDataSource.DataSourceId = DataSource.Id;
+            idpeRuleDataSource.RuleId = frmSelectRuleSet.SelectedRule.Id;
+            idpeRuleDataSource.Priority = priority;
+            idpeRuleDataSource.RuleSetType = (int)selectedRuleSetType;
+            new DataManager.Manager().Save(idpeRuleDataSource);
 
         }
 

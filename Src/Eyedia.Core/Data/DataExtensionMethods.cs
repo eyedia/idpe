@@ -148,6 +148,30 @@ namespace Eyedia.Core.Data
         }
 
         /// <summary>
+        /// Adds a parameter to the command.
+        /// </summary>
+        /// <param name="command">
+        /// The command.
+        /// </param>
+        /// <param name="parameterName">
+        /// Name of the parameter.
+        /// </param>
+        /// <param name="parameterValue">
+        /// The parameter value.
+        /// </param>
+        /// <param name="setDbType">pass 'true' if you would like to set parameter.DbType</param>
+        /// <remarks>
+        /// </remarks>
+        public static void AddParameterWithValue(this IDbCommand command, string parameterName, object parameterValue, DbType dbType)
+        {
+            var parameter = command.CreateParameter();
+            parameter.ParameterName = parameterName;
+            parameter.DbType = dbType;
+            parameter.Value = parameterValue;
+            command.Parameters.Add(parameter);
+        }
+
+        /// <summary>
         /// Set DbType to the passed parameter
         /// </summary>
         /// <param name="parameter">The Parameter</param>
@@ -510,7 +534,7 @@ namespace Eyedia.Core.Data
             else
             {
                 Group adminGroup = CoreDatabaseObjects.Instance.GetAdminGroup();
-                if (user.GroupId == adminGroup.Id)
+                if ((adminGroup != null) && (user.GroupId == adminGroup.Id))
                     return true;
             }
             return false;

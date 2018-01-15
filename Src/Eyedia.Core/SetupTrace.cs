@@ -49,6 +49,9 @@ namespace Eyedia.Core
             TextWriterTraceListenerWithTime traceListner = null;
             try
             {
+                if (!Directory.Exists(Path.GetDirectoryName(EyediaCoreConfigurationSection.CurrentConfig.Trace.File)))
+                    throw new DirectoryNotFoundException(Path.GetDirectoryName(EyediaCoreConfigurationSection.CurrentConfig.Trace.File) + " not found! ");
+
                 FileStreamWithBackup fileStreamWithBackup = new FileStreamWithBackup(EyediaCoreConfigurationSection.CurrentConfig.Trace.File, 5 * 1024 * 1024, EyediaCoreConfigurationSection.CurrentConfig.Trace.MaxFileCount, FileMode.Append);
                 traceListner = new TextWriterTraceListenerWithTime(EyediaCoreConfigurationSection.CurrentConfig.Trace.File, EyediaCoreConfigurationSection.CurrentConfig.Trace.MaxFileCount, fileStreamWithBackup);
                 traceListner.Filter = new EventTypeFilter(EyediaCoreConfigurationSection.CurrentConfig.Trace.Filter);
@@ -66,10 +69,17 @@ namespace Eyedia.Core
                 string errMsg = "Could not instantiate TextWriterTraceListenerWithTime type listner. Check configuration, file path & permission."
                     + ex.ToString() + (ex.InnerException == null ? string.Empty : ex.InnerException.Message);
 
-                if (!EventLog.SourceExists(eventLogSource))
-                    EventLog.CreateEventSource(eventLogSource, eventLogName);
-
-                EventLog.WriteEntry(eventLogSource, errMsg, EventLogEntryType.Error);
+                try
+                {
+                    if (!EventLog.SourceExists(eventLogSource))
+                        EventLog.CreateEventSource(eventLogSource, eventLogName);
+                    EventLog.WriteEntry(eventLogSource, errMsg, EventLogEntryType.Error);
+                }
+                catch
+                {
+                    throw new Exception("You are running the application for very first time on this machine. The event log source could not be created because access was denied. Please run the application as administrator!");
+                }
+                
             }
         }
 

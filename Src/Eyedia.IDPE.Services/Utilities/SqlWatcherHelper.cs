@@ -102,8 +102,8 @@ namespace Eyedia.IDPE.Services
 
         public void ExecuteRecoveryScript()
         {
-            //SreKey connectionStringNameKey = Job.DataSource.Keys.GetKey(SreKeyTypes.PullSqlConnectionString.ToString());           
-            //SreKey connectionStringKey = Job.DataSource.Keys.GetKey(connectionStringNameKey.Value);
+            //IdpeKey connectionStringNameKey = Job.DataSource.Keys.GetKey(SreKeyTypes.PullSqlConnectionString.ToString());           
+            //IdpeKey connectionStringKey = Job.DataSource.Keys.GetKey(connectionStringNameKey.Value);
             //DatabaseTypes databaseType = connectionStringKey.GetDatabaseType();
            // string actualConnectionString = connectionStringKey.Value;
 

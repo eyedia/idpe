@@ -217,7 +217,7 @@ namespace Eyedia.IDPE.Services
             if (_Manager == null)
                 _Manager = new Manager();
 
-            List<SreKey> keys = Cache.Instance.Bag[dataSourceId + ".keys"] as List<SreKey>;
+            List<IdpeKey> keys = Cache.Instance.Bag[dataSourceId + ".keys"] as List<IdpeKey>;
             if (keys == null)
             {
                 //keys = _Manager.GetApplicationKeys(dataSourceId, true);
@@ -503,19 +503,19 @@ namespace Eyedia.IDPE.Services
         }
 
         
-        string FindSREKeyUsingType(List<IdpeKey> keys, SreKeyTypes sreKeyType)
+        string FindSREKeyUsingType(List<IdpeKey> keys, SreKeyTypes idpeKeyType)
         {
             IdpeKey key =(from e in keys
-                    where e.Type == (int)sreKeyType
+                    where e.Type == (int)idpeKeyType
                     select e).SingleOrDefault();
 
             return key != null ? key.Value : string.Empty;
         }
 
-        string FindSREKeyUsingName(List<IdpeKey> keys, SreKeyTypes sreKeyType)
+        string FindSREKeyUsingName(List<IdpeKey> keys, SreKeyTypes idpeKeyType)
         {
             IdpeKey key = (from e in keys
-                           where e.Name == sreKeyType.ToString()
+                           where e.Name == idpeKeyType.ToString()
                            select e).SingleOrDefault();
 
             return key != null ? key.Value : string.Empty;

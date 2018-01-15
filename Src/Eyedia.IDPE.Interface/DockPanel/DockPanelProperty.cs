@@ -116,9 +116,9 @@ namespace Eyedia.IDPE.Interface
                 _SreDataSource = value;
                 //btnSave.Visible = _SreDataSource.Id == 0? true: false;             
 
-                sreRulesEditorControl1.DataSource = _SreDataSource;
-                sreKeys1.DataSourceId = _SreDataSource.Id;
-                sreKeys1.DataSourceName = _SreDataSource.Name;
+                idpeRulesEditorControl1.DataSource = _SreDataSource;
+                idpeKeys1.DataSourceId = _SreDataSource.Id;
+                idpeKeys1.DataSourceName = _SreDataSource.Name;
                 sreEmails1.DataSourceId = _SreDataSource.Id;
                 sreDatabases1.DataSourceId = _SreDataSource.Id;
                 errorProvider1.Clear();
@@ -271,7 +271,7 @@ namespace Eyedia.IDPE.Interface
                     break;
                 case 1:
                     tabControl1.SelectedTab = tabPage2;
-                    sreRulesEditorControl1.SelectTabs(ruleType);
+                    idpeRulesEditorControl1.SelectTabs(ruleType);
                     break;
                 case 2:
                     tabControl1.SelectedTab = tabPage3;
@@ -308,7 +308,7 @@ namespace Eyedia.IDPE.Interface
             this.Cursor = Cursors.WaitCursor;
             switch (tabControl1.SelectedIndex)
             {
-                case 2: SreDataSourceProperty.KeepVersion(this.DataSource.Id); this.sreKeys1.Save(); break;
+                case 2: SreDataSourceProperty.KeepVersion(this.DataSource.Id); this.idpeKeys1.Save(); break;
                 case 3: SreDataSourceProperty.KeepVersion(this.DataSource.Id); this.sreEmails1.Save(); break;
                 case 4: SreDataSourceProperty.KeepVersion(this.DataSource.Id); this.sreDatabases1.Save(); break;
             }

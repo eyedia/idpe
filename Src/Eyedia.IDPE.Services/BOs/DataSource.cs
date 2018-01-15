@@ -369,30 +369,30 @@ namespace Eyedia.IDPE.Services
         /// <summary>
         /// returns specific key
         /// </summary>
-        /// <param name="sreKeyType">specific key</param>
+        /// <param name="idpeKeyType">specific key</param>
         /// <returns></returns>
-        public IdpeKey Key(SreKeyTypes sreKeyType)
+        public IdpeKey Key(SreKeyTypes idpeKeyType)
         {
-            if ((sreKeyType == SreKeyTypes.Custom)
-                || (sreKeyType.IsConnectionStringType()))
+            if ((idpeKeyType == SreKeyTypes.Custom)
+                || (idpeKeyType.IsConnectionStringType()))
                 return null;
 
             List<IdpeKey> keys = (from e in this.Keys
-                                 where e.Type == (int)sreKeyType
+                                 where e.Type == (int)idpeKeyType
                                  select e).ToList();
             if (keys.Count > 0)
             {
                 if (keys.Count > 1)
                 {
                     ExtensionMethods.TraceInformation("Warning:: More than one key of type '{0}' defined in data source '{1}'. Taking first key.",
-                        sreKeyType.ToString(), this.Id);
+                        idpeKeyType.ToString(), this.Id);
                 }
                 return keys[0];
             }
             else
             {
                 //throw new Exception(string.Format("No key of type '{0}' is defined in data source '{1}'",
-                //    sreKeyType.ToString(), this.Id));                
+                //    idpeKeyType.ToString(), this.Id));                
                 return null;
             }
         }

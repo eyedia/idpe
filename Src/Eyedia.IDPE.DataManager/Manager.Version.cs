@@ -67,7 +67,7 @@ namespace Eyedia.IDPE.DataManager
 
             try
             {
-                command.CommandText = "INSERT INTO [SreVersion]([Version], [Type], [ReferenceId], [Data], [CreatedBy], [CreatedTS], [Source]) ";
+                command.CommandText = "INSERT INTO [IdpeVersion]([Version], [Type], [ReferenceId], [Data], [CreatedBy], [CreatedTS], [Source]) ";
                 command.CommandText += " VALUES (@Version, @Type, @ReferenceId, @Data, @CreatedBy, @CreatedTS, @Source)";
                 command.AddParameterWithValue("Version", version.Version);
                 command.AddParameterWithValue("Type", version.Type);
@@ -81,7 +81,7 @@ namespace Eyedia.IDPE.DataManager
 
                 //Deb: I know dirty coding, need to be changed. OUTPUT INSERTED.Id not working @SQL CE
                 command.Parameters.Clear();
-                command.CommandText = "SELECT max(Id) from [SreVersion]";
+                command.CommandText = "SELECT max(Id) from [IdpeVersion]";
                 versionId = (Int32)command.ExecuteScalar();
 
                 if (localTransaction)
@@ -110,7 +110,7 @@ namespace Eyedia.IDPE.DataManager
 
         public IdpeVersion GetVersion(VersionObjectTypes versionType, int referenceId, int versionNumer)
         {         
-            string commandText = string.Format("select [Id],[Version],[Type],[ReferenceId],[Data], [CreatedBy], [CreatedTS] from [SreVersion] where [Type] = {0} and [ReferenceId] = {1} and [Version] = {2} order by createdts desc",
+            string commandText = string.Format("select [Id],[Version],[Type],[ReferenceId],[Data], [CreatedBy], [CreatedTS] from [IdpeVersion] where [Type] = {0} and [ReferenceId] = {1} and [Version] = {2} order by createdts desc",
                 (int)versionType, referenceId, versionNumer);
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
@@ -123,7 +123,7 @@ namespace Eyedia.IDPE.DataManager
         public List<IdpeVersion> GetVersions(VersionObjectTypes versionObjectType, int referenceId)
         {
             List<IdpeVersion> versions = new List<IdpeVersion>();
-            string commandText = string.Format("select [Id],[Version],[Type],[ReferenceId],[Data], [CreatedBy], [CreatedTS], [Source] from [SreVersion] where [Type] = {0} and [ReferenceId] = {1} order by createdts desc",
+            string commandText = string.Format("select [Id],[Version],[Type],[ReferenceId],[Data], [CreatedBy], [CreatedTS], [Source] from [IdpeVersion] where [Type] = {0} and [ReferenceId] = {1} order by createdts desc",
                 (int)versionObjectType, referenceId);
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
@@ -137,7 +137,7 @@ namespace Eyedia.IDPE.DataManager
 
         public int GetLatestVersionNumber(VersionObjectTypes versionObjectType, int referenceId)
         {
-            string commandText = string.Format("select Max([Version]) from [SreVersion] where [Type] = {0} and [ReferenceId] = {1}",
+            string commandText = string.Format("select Max([Version]) from [IdpeVersion] where [Type] = {0} and [ReferenceId] = {1}",
                 (int)versionObjectType, referenceId);
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
@@ -164,19 +164,19 @@ namespace Eyedia.IDPE.DataManager
                     case VersionObjectTypes.Attribute:
                         IdpeAttribute attribute = GetAttribute(version.ReferenceId);
                         if (attribute.AttributeId == 0)
-                            allErrors += "The INSERT statement conflicted with the FOREIGN KEY constraint. The conflict occurred in database, table SreAttribute, column 'Id'." + Environment.NewLine;
+                            allErrors += "The INSERT statement conflicted with the FOREIGN KEY constraint. The conflict occurred in database, table IdpeAttribute, column 'Id'." + Environment.NewLine;
                         break;
 
                     case VersionObjectTypes.DataSource:
                         string dataSourceName = GetApplicationName(version.ReferenceId);
                         if (string.IsNullOrEmpty(dataSourceName))
-                            allErrors += "The INSERT statement conflicted with the FOREIGN KEY constraint. The conflict occurred in database, table SreDataSource, column 'Id'." + Environment.NewLine;
+                            allErrors += "The INSERT statement conflicted with the FOREIGN KEY constraint. The conflict occurred in database, table IdpeDataSource, column 'Id'." + Environment.NewLine;
                         break;
 
                     case VersionObjectTypes.Rule:
                         IdpeRule rule = GetRule(version.ReferenceId);
                         if (rule.Id == 0)
-                            allErrors += "The INSERT statement conflicted with the FOREIGN KEY constraint. The conflict occurred in database, table SreRule, column 'Id'." + Environment.NewLine;
+                            allErrors += "The INSERT statement conflicted with the FOREIGN KEY constraint. The conflict occurred in database, table IdpeRule, column 'Id'." + Environment.NewLine;
                         break;
 
                 }

@@ -50,8 +50,8 @@ namespace Eyedia.IDPE.DataManager
         {
             List<IdpeLog> sreLogs = new List<IdpeLog>();
             string commandText = "select  l.Id, [FileName],[SubFileName], DataSourceId,ds.Name as [DataSourceName], TotalRecords,TotalValidRecords, Started, l.Finished, [Environment] ";
-            commandText += "from SreDataSource ds ";
-            commandText += "inner join SreLog l on ds.Id = l.DataSourceId";
+            commandText += "from IdpeDataSource ds ";
+            commandText += "inner join IdpeLog l on ds.Id = l.DataSourceId";
 
             if ((fromDate != null)
              || (toDate != null)
@@ -143,8 +143,8 @@ namespace Eyedia.IDPE.DataManager
         {            
             List<IdpeLog> sreLogs = new List<IdpeLog>();
             string commandText = "select  l.Id, [FileName],[SubFileName], DataSourceId,ds.Name as [DataSourceName], TotalRecords,TotalValidRecords, Started, l.Finished, [Environment] ";
-            commandText += "from SreDataSource ds ";
-            commandText += "inner join SreLog l on ds.Id = l.DataSourceId";
+            commandText += "from IdpeDataSource ds ";
+            commandText += "inner join IdpeLog l on ds.Id = l.DataSourceId";
          
             if ((fromDate != null)
              || (toDate != null)
@@ -217,8 +217,8 @@ namespace Eyedia.IDPE.DataManager
         public DataTable GetLogsSummary(DateTime? fromDate = null, DateTime? toDate = null, string fileName = null, string dataSourceName = null)
         {
             string commandText = "Select DATEADD(dd, 0, DATEDIFF(dd, 0, started)) as [Date], count(*) as [TotalFiles] , sum(TotalRecords) as [TotalRecords] ";
-            commandText += "from SreLog l ";
-            commandText += "inner join SreDataSource ds on l.DataSourceId = ds.Id ";
+            commandText += "from IdpeLog l ";
+            commandText += "inner join IdpeDataSource ds on l.DataSourceId = ds.Id ";
 
             if ((fromDate != null)
             || (toDate != null)
@@ -302,7 +302,7 @@ namespace Eyedia.IDPE.DataManager
             try
             {
 
-                command.CommandText = "insert into [SreLog] ([FileName],[SubFileName],[DataSourceId],[TotalRecords],[TotalValidRecords],[Started],[Finished],[Environment]) ";
+                command.CommandText = "insert into [IdpeLog] ([FileName],[SubFileName],[DataSourceId],[TotalRecords],[TotalValidRecords],[Started],[Finished],[Environment]) ";
                 command.CommandText += " values(@FileName, @SubFileName, @DataSourceId,@TotalRecords,@TotalValidRecords,@Started, @Finished, @Environment)";
                 command.AddParameterWithValue("FileName", fileName);
                 if (string.IsNullOrEmpty(subFileName))
@@ -320,7 +320,7 @@ namespace Eyedia.IDPE.DataManager
 
                 //Deb: I know dirty coding, need to be changed. OUTPUT INSERTED.Id not working @SQL CE
                 command.Parameters.Clear();
-                command.CommandText = "SELECT max(Id) from SreLog";
+                command.CommandText = "SELECT max(Id) from IdpeLog";
                 id = (Int32)command.ExecuteScalar();
             }
             catch (Exception ex)

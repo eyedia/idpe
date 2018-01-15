@@ -51,8 +51,8 @@ namespace Eyedia.IDPE.DataManager
     {
         public void InsertSystemObjects()
         {
-            string sdsSqlStatement = "INSERT INTO [SreDataSource]([Id],[Name],[Description],[IsSystem],[IsActive],[CreatedTS],[CreatedBy]) VALUES(-99,'Global Datasource','Global datasource to keep global keys, connectionstrings','TRUE',1,'TRUE', getdate(),'System')";
-            string dsSqlStatement = "INSERT INTO [SreDataSource] ([Id],[Name],[Description],[IsSystem],[DataFeederType],[DataFormatType],[Delimiter],[SystemDataSourceId],[OutputType],[IsActive],[CreatedTS],[CreatedBy]) VALUES(100,'System Data Source','System data source to handle deployment restart etc','FALSE',2,99,',',-99,1,'TRUE',getdate(),'System')";
+            string sdsSqlStatement = "INSERT INTO [IdpeDataSource]([Id],[Name],[Description],[IsSystem],[IsActive],[CreatedTS],[CreatedBy]) VALUES(-99,'Global Datasource','Global datasource to keep global keys, connectionstrings',1,1, getdate(),'System')";
+            string dsSqlStatement = "INSERT INTO [IdpeDataSource] ([Id],[Name],[Description],[IsSystem],[DataFeederType],[DataFormatType],[Delimiter],[SystemDataSourceId],[OutputType],[IsActive],[CreatedTS],[CreatedBy]) VALUES(100,'System Data Source','System data source to handle deployment restart etc',0,2,99,',',-99,1,1,getdate(),'System')";
 
             IDal dal = new DataAccessLayer(EyediaCoreConfigurationSection.CurrentConfig.Database.DatabaseType).Instance;
             IDbConnection connection = dal.CreateConnection(ConfigurationManager.ConnectionStrings[Constants.ConnectionStringName].ToString());
@@ -104,7 +104,7 @@ namespace Eyedia.IDPE.DataManager
                 strType = "BIT";
             }
 
-            IdpeAttribute attrb = GetAttribute(name);
+            IdpeAttribute attrb = GetAttribute(name, dal, connection, transaction);
             if (attrb == null)
             {
                 attrb = new IdpeAttribute();
@@ -146,12 +146,12 @@ namespace Eyedia.IDPE.DataManager
 
             rule.Id = Save(rule);
 
-            IdpeRuleDataSource sreRuleDataSource = new IdpeRuleDataSource();
-            sreRuleDataSource.DataSourceId = 100;
-            sreRuleDataSource.RuleId = rule.Id;
-            sreRuleDataSource.Priority = 1;
-            sreRuleDataSource.RuleSetType = 3;
-            Save(sreRuleDataSource, dal, connection,transaction);
+            IdpeRuleDataSource idpeRuleDataSource = new IdpeRuleDataSource();
+            idpeRuleDataSource.DataSourceId = 100;
+            idpeRuleDataSource.RuleId = rule.Id;
+            idpeRuleDataSource.Priority = 1;
+            idpeRuleDataSource.RuleSetType = 3;
+            Save(idpeRuleDataSource, dal, connection,transaction);
         }
 
         private void dsInsertKeys(IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)

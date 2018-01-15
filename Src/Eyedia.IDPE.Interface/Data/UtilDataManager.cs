@@ -105,8 +105,8 @@ namespace Eyedia.IDPE.Interface.Data
         {
             List<Attribute> returnList = new List<Attribute>();
             string commandText = "select a.[AttributeId],a.[Name],a.[Type],a.[Minimum],a.[Maximum],a.[Formula],aes.[IsAcceptable],aes.[AttributePrintValueType],aes.[AttributePrintValueCustom],a.[CreatedTS],a.[CreatedBy],a.[ModifiedTS],a.[ModifiedBy],a.[Source],AttributeDataSourceId,Position,es.Name as [DataSourceName] " +
-                " from  sreAttribute a Inner join sreAttributeDataSource aes  on a.AttributeId = aes.AttributeId " +
-                         " inner join sreDataSource es on aes.DataSourceId = es.Id where es.Id =  " + dataSourceId + " order by aes.Position";
+                " from  idpeAttribute a Inner join idpeAttributeDataSource aes  on a.AttributeId = aes.AttributeId " +
+                         " inner join idpeDataSource es on aes.DataSourceId = es.Id where es.Id =  " + dataSourceId + " order by aes.Position";
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null)
@@ -144,9 +144,9 @@ namespace Eyedia.IDPE.Interface.Data
        
             string commandText = string.Empty;
             if (onlySystemType == null) //get all
-                commandText = "select [Id],[Name],[IsSystem] from SreDataSource order by [Id], [IsSystem] desc";
+                commandText = "select [Id],[Name],[IsSystem] from IdpeDataSource order by [Id], [IsSystem] desc";
             else
-                commandText = "select [Id],[Name],[IsSystem] from SreDataSource where [IsSystem] = " + (onlySystemType == true ? "1" : "0") + " order by [Id], [IsSystem] desc";
+                commandText = "select [Id],[Name],[IsSystem] from IdpeDataSource where [IsSystem] = " + (onlySystemType == true ? "1" : "0") + " order by [Id], [IsSystem] desc";
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null)
@@ -174,9 +174,9 @@ namespace Eyedia.IDPE.Interface.Data
 
             string commandText = string.Empty;
             if (onlySystemType == null) //get all
-                commandText = "select [Id],[Name],[IsSystem] from SreDataSource where [Name] like '%" + dataSourceName + "%' order by [Id], [IsSystem] desc";
+                commandText = "select [Id],[Name],[IsSystem] from IdpeDataSource where [Name] like '%" + dataSourceName + "%' order by [Id], [IsSystem] desc";
             else
-                commandText = "select [Id],[Name],[IsSystem] from SreDataSource where [IsSystem] = " + (onlySystemType == true ? "1" : "0") + "and [Name] like '%" + dataSourceName + "%' order by [Id], [IsSystem] desc";
+                commandText = "select [Id],[Name],[IsSystem] from IdpeDataSource where [IsSystem] = " + (onlySystemType == true ? "1" : "0") + "and [Name] like '%" + dataSourceName + "%' order by [Id], [IsSystem] desc";
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null)
@@ -196,7 +196,7 @@ namespace Eyedia.IDPE.Interface.Data
 
         public bool IsHavingVersion(VersionObjectTypes versionObjectType, int referenceId)
         {
-            DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand( string.Format("select count(*) from SreVersion where [Type] = {0} and [ReferenceId] = {1}",
+            DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand( string.Format("select count(*) from IdpeVersion where [Type] = {0} and [ReferenceId] = {1}",
                 (int)versionObjectType, referenceId));
 
             return table.Rows[0][0].ToString().ParseInt() > 0 ? true : false;
@@ -214,7 +214,7 @@ namespace Eyedia.IDPE.Interface.Data
 
             foreach (Attribute attribute in externalSystemAttributes)
             {
-                cmdText = "SELECT [AttributeDataSourceId] FROM SreAttributeDataSource WHERE [AttributeDataSourceId] = @AttributeDataSourceId";
+                cmdText = "SELECT [AttributeDataSourceId] FROM IdpeAttributeDataSource WHERE [AttributeDataSourceId] = @AttributeDataSourceId";
                 command.Parameters.Clear();
                 command.AddParameterWithValue("AttributeDataSourceId", attribute.AttributeDataSourceId);
                 command.CommandText = cmdText;
@@ -222,7 +222,7 @@ namespace Eyedia.IDPE.Interface.Data
 
                 if (reader.Read())
                 {
-                    cmdText = "UPDATE [SreAttributeDataSource] SET [Position] = @Position, [IsAcceptable] = @IsAcceptable WHERE [AttributeDataSourceId] = @AttributeDataSourceId";
+                    cmdText = "UPDATE [IdpeAttributeDataSource] SET [Position] = @Position, [IsAcceptable] = @IsAcceptable WHERE [AttributeDataSourceId] = @AttributeDataSourceId";
                     command.Parameters.Clear();
                     if(attribute.IsAcceptable)
                         command.AddParameterWithValue("Position", position);
@@ -234,7 +234,7 @@ namespace Eyedia.IDPE.Interface.Data
                 }
                 else
                 {
-                    cmdText = "INSERT INTO [SreAttributeDataSource] ([DataSourceId],[AttributeId],[Position],[IsAcceptable],[AttributePrintValueType],[AttributePrintValueCustom],[CreatedTS],[CreatedBy],[Source]) VALUES ";
+                    cmdText = "INSERT INTO [IdpeAttributeDataSource] ([DataSourceId],[AttributeId],[Position],[IsAcceptable],[AttributePrintValueType],[AttributePrintValueCustom],[CreatedTS],[CreatedBy],[Source]) VALUES ";
                     cmdText += "(@DataSourceId,@AttributeId,@Position,@IsAcceptable,@AttributePrintValueType,@AttributePrintValueCustom,@CreatedTS,@CreatedBy,@Source)";
                     command.Parameters.Clear();
                     command.AddParameterWithValue("DataSourceId", applicationId);
@@ -272,8 +272,8 @@ namespace Eyedia.IDPE.Interface.Data
 
         public int AttributeExists(Attribute attribute)
         {
-            List<IdpeAttribute> sreAttributes = new Manager().GetAttributes();
-            var record = sreAttributes.FirstOrDefault(a => a.AttributeId == attribute.Id);
+            List<IdpeAttribute> idpeAttributes = new Manager().GetAttributes();
+            var record = idpeAttributes.FirstOrDefault(a => a.AttributeId == attribute.Id);
             return (record != null) ? record.AttributeId : 0;
         }
         
@@ -286,7 +286,7 @@ namespace Eyedia.IDPE.Interface.Data
 
             if (AttributeExists(attribute) == 0)
             {
-                cmdText = "INSERT INTO [SreAttribute] ([Name],[Type],[Minimum],[Maximum],[Formula],[IsAcceptable],[CreatedTS],[CreatedBy],[Source]) VALUES ";
+                cmdText = "INSERT INTO [IdpeAttribute] ([Name],[Type],[Minimum],[Maximum],[Formula],[IsAcceptable],[CreatedTS],[CreatedBy],[Source]) VALUES ";
                 cmdText += "(@Name,@Type,@Minimum,@Maximum,@Formula,@IsAcceptable,@CreatedTS,@CreatedBy,@Source)";
 
 
@@ -315,7 +315,7 @@ namespace Eyedia.IDPE.Interface.Data
             }
             else
             {
-                cmdText = "UPDATE [SreAttribute] SET [Name] = @Name,[Type] = @Type,[Minimum] = @Minimum,[Maximum] = @Maximum,[Formula] = @Formula,[IsAcceptable] = @IsAcceptable,[ModifiedTS] = @ModifiedTS,[ModifiedBy] = @ModifiedBy ";
+                cmdText = "UPDATE [IdpeAttribute] SET [Name] = @Name,[Type] = @Type,[Minimum] = @Minimum,[Maximum] = @Maximum,[Formula] = @Formula,[IsAcceptable] = @IsAcceptable,[ModifiedTS] = @ModifiedTS,[ModifiedBy] = @ModifiedBy ";
                 cmdText += "WHERE [AttributeId] = @AttributeId";
 
 

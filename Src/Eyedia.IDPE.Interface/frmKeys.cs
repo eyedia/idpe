@@ -49,8 +49,8 @@ namespace Eyedia.IDPE.Interface
         {
             InitializeComponent();
             ;
-            sreKeys1.DataSourceName = dataSourceName;
-            sreKeys1.DataSourceId = dataSourceId;
+            idpeKeys1.DataSourceName = dataSourceName;
+            idpeKeys1.DataSourceId = dataSourceId;
         }       
         
     }

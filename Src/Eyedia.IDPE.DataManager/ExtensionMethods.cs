@@ -68,8 +68,8 @@ namespace Eyedia.IDPE.DataManager
 
         public static DatabaseTypes GetDatabaseType(this IdpeKey key)
         {
-            SreKeyTypes sreKeyType = (SreKeyTypes)key.Type;
-            switch (sreKeyType)
+            SreKeyTypes idpeKeyType = (SreKeyTypes)key.Type;
+            switch (idpeKeyType)
             {
                 case SreKeyTypes.ConnectionStringSqlServer:
                     return DatabaseTypes.SqlServer;
@@ -84,7 +84,7 @@ namespace Eyedia.IDPE.DataManager
                     return DatabaseTypes.SqlCe;
 
                 default:
-                   throw new Exception(sreKeyType.ToString() + " is not database type key!");
+                   throw new Exception(idpeKeyType.ToString() + " is not database type key!");
             }
 
         }
@@ -120,12 +120,12 @@ namespace Eyedia.IDPE.DataManager
                                          where k.Name == key
                                          select k).ToList();
 
-            IdpeKey srekey = GetFirstItem(filteredKeys);
+            IdpeKey idpekey = GetFirstItem(filteredKeys);
 
-            if (srekey == null)
+            if (idpekey == null)
                 return string.Empty;
 
-            return string.IsNullOrEmpty(srekey.Value) ? string.Empty : srekey.Value;
+            return string.IsNullOrEmpty(idpekey.Value) ? string.Empty : idpekey.Value;
         }
 
         public static string GetKeyValue(this List<IdpeKey> keys, SreKeyTypes keyType)
@@ -222,8 +222,7 @@ namespace Eyedia.IDPE.DataManager
         }
 
         public static UserPreferences GetUserPreferences(this User user)
-        {
-            user.Preferences = user.Preferences.Replace("Symplus.RuleEngine.Common", "Eyedia.IDPE.Common");
+        {            
             return new UserPreferences(user.Preferences);
         }
         

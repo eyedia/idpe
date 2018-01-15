@@ -33,7 +33,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pullSqlConfiguration1 = new Eyedia.IDPE.Interface.Controls.SqlConfiguration();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.sreRulesEditorControl1 = new Eyedia.IDPE.Interface.SreRulesEditorControl();
+            this.idpeRulesEditorControl1 = new Eyedia.IDPE.Interface.SreRulesEditorControl();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -76,7 +76,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.sreRulesEditorControl1);
+            this.tabPage2.Controls.Add(this.idpeRulesEditorControl1);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -85,15 +85,15 @@
             this.tabPage2.Text = "Advanced";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // sreRulesEditorControl1
+            // idpeRulesEditorControl1
             // 
-            this.sreRulesEditorControl1.DataSource = null;
-            this.sreRulesEditorControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sreRulesEditorControl1.Location = new System.Drawing.Point(3, 3);
-            this.sreRulesEditorControl1.Name = "sreRulesEditorControl1";
-            this.sreRulesEditorControl1.ShowSqlInitRules = true;
-            this.sreRulesEditorControl1.Size = new System.Drawing.Size(1097, 743);
-            this.sreRulesEditorControl1.TabIndex = 0;
+            this.idpeRulesEditorControl1.DataSource = null;
+            this.idpeRulesEditorControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.idpeRulesEditorControl1.Location = new System.Drawing.Point(3, 3);
+            this.idpeRulesEditorControl1.Name = "idpeRulesEditorControl1";
+            this.idpeRulesEditorControl1.ShowSqlInitRules = true;
+            this.idpeRulesEditorControl1.Size = new System.Drawing.Size(1097, 743);
+            this.idpeRulesEditorControl1.TabIndex = 0;
             // 
             // frmConfigSql
             // 
@@ -121,6 +121,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private SreRulesEditorControl sreRulesEditorControl1;
+        private SreRulesEditorControl idpeRulesEditorControl1;
     }
 }

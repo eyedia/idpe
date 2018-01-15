@@ -84,13 +84,13 @@ namespace Eyedia.IDPE.Interface.RuleEditor
         DebugValidationErrorService _DebugValidationErrorService;
         RuleSetTypes _ruleSetTemplate;
         ActivityBuilder _activitybuilder;
-        IdpeRule _sreRule;
+        IdpeRule _idpeRule;
         string TransactionMode = "INSERT";        
-        public MainWindow(IdpeRule sreRule, RuleSetTypes ruleSetType)
+        public MainWindow(IdpeRule idpeRule, RuleSetTypes ruleSetType)
         {
-            if (!String.IsNullOrEmpty(sreRule.Name))
+            if (!String.IsNullOrEmpty(idpeRule.Name))
             {
-                string sname = sreRule.Name.Replace("-", "").Replace(" ", "");
+                string sname = idpeRule.Name.Replace("-", "").Replace(" ", "");
                 this.WindowName = sname;
             }
         
@@ -147,9 +147,9 @@ namespace Eyedia.IDPE.Interface.RuleEditor
                 File.Delete(_TemplateWithData + ".New");
             } 
 
-            _sreRule = sreRule;
+            _idpeRule = idpeRule;
             _ruleSetTemplate = ruleSetType;         
-            TransactionMode = sreRule.Id == 0 ? "INSERT" : "UPDATE";
+            TransactionMode = idpeRule.Id == 0 ? "INSERT" : "UPDATE";
             InitializeComponent();
             LoadDocument();           
         }
@@ -238,16 +238,16 @@ namespace Eyedia.IDPE.Interface.RuleEditor
             {
                 strXAML = _ruleSetTemplate == RuleSetTypes.PreValidate ? ReadXAMLFile(_TemplateWithJob) : ReadXAMLFile(_TemplateWithData);
                 _activitybuilder = XamlServices.Load(ActivityXamlServices.CreateBuilderReader(new XamlXmlReader(new StringReader(strXAML)))) as ActivityBuilder;
-                _activitybuilder.Name = _sreRule.Name;
+                _activitybuilder.Name = _idpeRule.Name;
                 this._WorkflowDesigner.Load(_activitybuilder);
                 para.Inlines.Add(strXAML);
             }
             else
             {
-                _activitybuilder = XamlServices.Load(ActivityXamlServices.CreateBuilderReader(new XamlXmlReader(new StringReader(_sreRule.Xaml)))) as ActivityBuilder;
-                _activitybuilder.Name = _sreRule.Name;
+                _activitybuilder = XamlServices.Load(ActivityXamlServices.CreateBuilderReader(new XamlXmlReader(new StringReader(_idpeRule.Xaml)))) as ActivityBuilder;
+                _activitybuilder.Name = _idpeRule.Name;
                 this._WorkflowDesigner.Load(_activitybuilder);
-                para.Inlines.Add(_sreRule.Xaml);
+                para.Inlines.Add(_idpeRule.Xaml);
             }
 
             FD.Blocks.Add(para);
@@ -287,7 +287,7 @@ namespace Eyedia.IDPE.Interface.RuleEditor
                     SaveXaml();
                     FlowDocument FD = new FlowDocument();
                     Paragraph para = new Paragraph();
-                    para.Inlines.Add(_sreRule.Xaml);
+                    para.Inlines.Add(_idpeRule.Xaml);
                     FD.Blocks.Add(para);
                     xamlTextBox.Document = FD;                   
                 }
@@ -340,7 +340,7 @@ namespace Eyedia.IDPE.Interface.RuleEditor
             bool IsSuccess = false;
             SaveXaml();
 
-            if (string.IsNullOrEmpty(_sreRule.Xaml))
+            if (string.IsNullOrEmpty(_idpeRule.Xaml))
             {
                 MessageBox.Show("Can not save blank rule ", "Validation check", MessageBoxButton.OK, MessageBoxImage.Hand);
                 return IsSuccess;
@@ -351,13 +351,13 @@ namespace Eyedia.IDPE.Interface.RuleEditor
                 TabItem ti = TabCtrl.SelectedItem as TabItem;
                 if (ti.Header == "Designer")
                 {
-                    if (string.IsNullOrEmpty(_sreRule.Name) || _sreRule.Name == "New Rule Designer")
-                        _sreRule.Name = "new rule1";
+                    if (string.IsNullOrEmpty(_idpeRule.Name) || _idpeRule.Name == "New Rule Designer")
+                        _idpeRule.Name = "new rule1";
 
-                    _sreRule.Xaml = this._WorkflowDesigner.Text;
-                    RulesExtraInformation rulesExtraInformation = new RulesExtraInformation(_sreRule);
-                    _sreRule.Name = rulesExtraInformation.RuleName;
-                    _sreRule.Description = rulesExtraInformation.RuleDescription;
+                    _idpeRule.Xaml = this._WorkflowDesigner.Text;
+                    RulesExtraInformation rulesExtraInformation = new RulesExtraInformation(_idpeRule);
+                    _idpeRule.Name = rulesExtraInformation.RuleName;
+                    _idpeRule.Description = rulesExtraInformation.RuleDescription;
 
                     if (Keyboard.Modifiers == ModifierKeys.Control)
                     {
@@ -367,8 +367,8 @@ namespace Eyedia.IDPE.Interface.RuleEditor
                     {
                         if (rulesExtraInformation.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                         {
-                            _sreRule.Name = rulesExtraInformation.RuleName;
-                            _sreRule.Description = rulesExtraInformation.RuleDescription;
+                            _idpeRule.Name = rulesExtraInformation.RuleName;
+                            _idpeRule.Description = rulesExtraInformation.RuleDescription;
                             Save();
                             rulesExtraInformation.Close();
                         }
@@ -385,7 +385,7 @@ namespace Eyedia.IDPE.Interface.RuleEditor
                 else
                 {
                     Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-                    dlg.FileName = _sreRule.Name + ".xml";
+                    dlg.FileName = _idpeRule.Name + ".xml";
                     dlg.DefaultExt = ".xml";
                     dlg.Filter = "XML documents (.xml)|*.xml";
 
@@ -410,17 +410,17 @@ namespace Eyedia.IDPE.Interface.RuleEditor
 
         private void SaveXaml()
         {
-            _activitybuilder.Name = _sreRule.Name;
-            this._WorkflowDesigner.Save(System.IO.Path.Combine(Information.TempDirectorySre, _sreRule.Name + ".xml"));           
-            _sreRule.Xaml = this._WorkflowDesigner.Text;
+            _activitybuilder.Name = _idpeRule.Name;
+            this._WorkflowDesigner.Save(System.IO.Path.Combine(Information.TempDirectorySre, _idpeRule.Name + ".xml"));           
+            _idpeRule.Xaml = this._WorkflowDesigner.Text;
         }
 
         private void Save()
         {            
             SaveXaml();
-            new SreVersionManager().KeepVersion(VersionObjectTypes.Rule, _sreRule.Id);
-            new Manager().Save(_sreRule);
-            SreServiceCommunicator.ClearRule(_sreRule.Id, _sreRule.Name);            
+            new SreVersionManager().KeepVersion(VersionObjectTypes.Rule, _idpeRule.Id);
+            new Manager().Save(_idpeRule);
+            SreServiceCommunicator.ClearRule(_idpeRule.Id, _idpeRule.Name);            
         }
 
         public string RuleName { get; set; }
@@ -560,7 +560,7 @@ namespace Eyedia.IDPE.Interface.RuleEditor
         {
             if (_IsWorkflowChanged)
             {
-                MessageBoxResult closingResult = MessageBox.Show(string.Format("Do you want to save?", this._sreRule.Name), "Unsaved Data", MessageBoxButton.YesNoCancel);
+                MessageBoxResult closingResult = MessageBox.Show(string.Format("Do you want to save?", this._idpeRule.Name), "Unsaved Data", MessageBoxButton.YesNoCancel);
                 switch (closingResult)
                 {
                     case MessageBoxResult.No:

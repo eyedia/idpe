@@ -54,7 +54,7 @@ namespace Eyedia.IDPE.DataManager
         public List<IdpeAttribute> GetAttributes()
         {
             List<IdpeAttribute> attrbs = new List<IdpeAttribute>();
-            string commandText = "select [AttributeId],[Name],[Type],[Minimum],[Maximum],[Formula],[IsAcceptable],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [SreAttribute]";
+            string commandText = "select [AttributeId],[Name],[Type],[Minimum],[Maximum],[Formula],[IsAcceptable],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [IdpeAttribute]";
 
             DataTable table = Core.Data.CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null)
@@ -86,13 +86,13 @@ namespace Eyedia.IDPE.DataManager
             string sqlQuery = string.Empty;
             if (dataSourceId == 0)
             {
-                sqlQuery = "select [AttributeId],[Name],[Type],[Minimum],[Maximum],[Formula],[IsAcceptable],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [SreAttribute] order by [Name]";
+                sqlQuery = "select [AttributeId],[Name],[Type],[Minimum],[Maximum],[Formula],[IsAcceptable],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [IdpeAttribute] order by [Name]";
             }
             else
             {
                 sqlQuery = "select a.[AttributeId],a.[Name],a.[Type],a.[Minimum],a.[Maximum],a.[Formula],aes.[IsAcceptable], aes.[Position], aes.[AttributePrintValueType], aes.[AttributePrintValueCustom],a.[CreatedTS],a.[CreatedBy],a.[ModifiedTS],a.[ModifiedBy],a.[Source] " +
-                " from  sreAttribute a Inner join sreAttributeDataSource aes  on a.AttributeId = aes.AttributeId " +
-                         " inner join sreDataSource es on aes.DataSourceId = es.Id where es.Id =  " + dataSourceId;
+                " from  idpeAttribute a Inner join idpeAttributeDataSource aes  on a.AttributeId = aes.AttributeId " +
+                         " inner join idpeDataSource es on aes.DataSourceId = es.Id where es.Id =  " + dataSourceId;
                 if (onlyAcceptable)
                     sqlQuery += " and aes.[IsAcceptable] = 1";
 
@@ -116,7 +116,7 @@ namespace Eyedia.IDPE.DataManager
         public IdpeAttribute GetAttribute(int id)
         {
             IdpeAttribute attrb = new IdpeAttribute();
-            string commandText = "select [AttributeId],[Name],[Type],[Minimum],[Maximum],[Formula],[IsAcceptable],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [SreAttribute] ";
+            string commandText = "select [AttributeId],[Name],[Type],[Minimum],[Maximum],[Formula],[IsAcceptable],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [IdpeAttribute] ";
             commandText += "where [AttributeId] = " + id;
 
             DataTable table = Core.Data.CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
@@ -143,13 +143,18 @@ namespace Eyedia.IDPE.DataManager
             return attrb;
         }
 
-        public IdpeAttribute GetAttribute(string name)
+        public IdpeAttribute GetAttribute(string name, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
         {
             IdpeAttribute attrb = new IdpeAttribute();
-            string commandText = "select [AttributeId],[Name],[Type],[Minimum],[Maximum],[Formula],[IsAcceptable],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [SreAttribute] ";
+            string commandText = "select [AttributeId],[Name],[Type],[Minimum],[Maximum],[Formula],[IsAcceptable],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [IdpeAttribute] ";
             commandText += "where [Name] = '" + name + "'";
 
-            DataTable table = Core.Data.CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
+            DataTable table = null;
+            if(dal == null)
+                table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
+            else
+                table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText, dal, connection, transaction);
+
             if ((table == null)
                 || (table.Rows.Count == 0))
                 return null;
@@ -184,8 +189,8 @@ namespace Eyedia.IDPE.DataManager
             try
             {
                 command.CommandText = "select [name] as [Name],position as [Position],aa.IsAcceptable as [IsAcceptable],aa.[AttributePrintValueType], aa.[AttributePrintValueCustom] ";
-                command.CommandText += "from SreAttribute a ";
-                command.CommandText += "inner join SreAttributeDataSource aa on a.attributeId = aa.attributeId ";
+                command.CommandText += "from IdpeAttribute a ";
+                command.CommandText += "inner join IdpeAttributeDataSource aa on a.attributeId = aa.attributeId ";
                 command.CommandText += "where aa.dataSourceId = @datasourceId";
                 command.AddParameterWithValue("datasourceId", dataSourceId);
 
@@ -212,8 +217,8 @@ namespace Eyedia.IDPE.DataManager
 
         public List<IdpeAttributeDataSource> GetSreAttributeDataSources(int attributeDataSourceId = 0)
         {
-            List <IdpeAttributeDataSource> sreAttributeDataSources = new List<IdpeAttributeDataSource>();
-            string commandText = "select [AttributeDataSourceId],[DataSourceId],[AttributeId],[Position],[IsAcceptable],[AttributePrintValueType],[AttributePrintValueCustom],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [SreAttributeDataSource]";
+            List <IdpeAttributeDataSource> idpeAttributeDataSources = new List<IdpeAttributeDataSource>();
+            string commandText = "select [AttributeDataSourceId],[DataSourceId],[AttributeId],[Position],[IsAcceptable],[AttributePrintValueType],[AttributePrintValueCustom],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [IdpeAttributeDataSource]";
             if (attributeDataSourceId > 0)
                 commandText += " where [AttributeDataSourceId] = " + attributeDataSourceId;
             
@@ -221,36 +226,36 @@ namespace Eyedia.IDPE.DataManager
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null)
-                return sreAttributeDataSources;
+                return idpeAttributeDataSources;
 
             foreach (DataRow row in table.Rows)
             {
-                IdpeAttributeDataSource sreAttributeDataSource = new IdpeAttributeDataSource();
-                sreAttributeDataSource.AttributeDataSourceId = (int)row["AttributeDataSourceId"].ToString().ParseInt();
-                sreAttributeDataSource.DataSourceId = (int)row["DataSourceId"].ToString().ParseInt();
-                sreAttributeDataSource.AttributeId = (int)row["AttributeId"].ToString().ParseInt();
-                sreAttributeDataSource.Position = row["Position"] != DBNull.Value ? row["Position"].ToString().ParseInt() : null;
-                sreAttributeDataSource.IsAcceptable = row["IsAcceptable"] != DBNull.Value ? row["IsAcceptable"].ToString().ParseBool() : false;
-                sreAttributeDataSource.AttributePrintValueType = row["AttributePrintValueType"] != DBNull.Value ? row["AttributePrintValueType"].ToString().ParseInt() : 0;
-                sreAttributeDataSource.AttributePrintValueCustom = row["AttributePrintValueCustom"] != DBNull.Value ? row["AttributePrintValueCustom"].ToString() : string.Empty;
-                sreAttributeDataSource.CreatedTS = (DateTime)(row["CreatedTS"] != DBNull.Value ? row["CreatedTS"].ToString().ParseDateTime() : DateTime.MinValue);
-                sreAttributeDataSource.CreatedBy = row["CreatedBy"] != DBNull.Value ? row["CreatedBy"].ToString() : null;
-                sreAttributeDataSource.ModifiedTS = row["ModifiedTS"] != DBNull.Value ? row["ModifiedTS"].ToString().ParseDateTime() : null;
-                sreAttributeDataSource.ModifiedBy = row["ModifiedBy"] != DBNull.Value ? row["ModifiedBy"].ToString() : null;
-                sreAttributeDataSource.Source = row["Source"] != DBNull.Value ? row["Source"].ToString() : null;
-                sreAttributeDataSources.Add(sreAttributeDataSource);
+                IdpeAttributeDataSource idpeAttributeDataSource = new IdpeAttributeDataSource();
+                idpeAttributeDataSource.AttributeDataSourceId = (int)row["AttributeDataSourceId"].ToString().ParseInt();
+                idpeAttributeDataSource.DataSourceId = (int)row["DataSourceId"].ToString().ParseInt();
+                idpeAttributeDataSource.AttributeId = (int)row["AttributeId"].ToString().ParseInt();
+                idpeAttributeDataSource.Position = row["Position"] != DBNull.Value ? row["Position"].ToString().ParseInt() : null;
+                idpeAttributeDataSource.IsAcceptable = row["IsAcceptable"] != DBNull.Value ? row["IsAcceptable"].ToString().ParseBool() : false;
+                idpeAttributeDataSource.AttributePrintValueType = row["AttributePrintValueType"] != DBNull.Value ? row["AttributePrintValueType"].ToString().ParseInt() : 0;
+                idpeAttributeDataSource.AttributePrintValueCustom = row["AttributePrintValueCustom"] != DBNull.Value ? row["AttributePrintValueCustom"].ToString() : string.Empty;
+                idpeAttributeDataSource.CreatedTS = (DateTime)(row["CreatedTS"] != DBNull.Value ? row["CreatedTS"].ToString().ParseDateTime() : DateTime.MinValue);
+                idpeAttributeDataSource.CreatedBy = row["CreatedBy"] != DBNull.Value ? row["CreatedBy"].ToString() : null;
+                idpeAttributeDataSource.ModifiedTS = row["ModifiedTS"] != DBNull.Value ? row["ModifiedTS"].ToString().ParseDateTime() : null;
+                idpeAttributeDataSource.ModifiedBy = row["ModifiedBy"] != DBNull.Value ? row["ModifiedBy"].ToString() : null;
+                idpeAttributeDataSource.Source = row["Source"] != DBNull.Value ? row["Source"].ToString() : null;
+                idpeAttributeDataSources.Add(idpeAttributeDataSource);
             }
 
             table.Dispose();
-            return sreAttributeDataSources;
+            return idpeAttributeDataSources;
         }
 
         public List<IdpeAttribute> GetAttributes(int dataSourceId)
         {         
             List<IdpeAttribute> attrbs = new List<IdpeAttribute>();
             string commandText = "select a.[AttributeId],a.[Name],a.[Type],a.[Minimum],a.[Maximum],a.[Formula],aes.[IsAcceptable], aes.[Position], aes.[AttributePrintValueType], aes.[AttributePrintValueCustom],a.[CreatedTS],a.[CreatedBy],a.[ModifiedTS],a.[ModifiedBy],a.[Source] " +
-                " from  sreAttribute a Inner join sreAttributeDataSource aes  on a.AttributeId = aes.AttributeId " +
-                         " inner join sreDataSource es on aes.DataSourceId = es.Id where es.Id =  " + dataSourceId + " order by aes.Position";
+                " from  idpeAttribute a Inner join idpeAttributeDataSource aes  on a.AttributeId = aes.AttributeId " +
+                         " inner join idpeDataSource es on aes.DataSourceId = es.Id where es.Id =  " + dataSourceId + " order by aes.Position";
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null)
@@ -285,8 +290,8 @@ namespace Eyedia.IDPE.DataManager
 
             List<IdpeAttribute> attrbs = new List<IdpeAttribute>();
             string commandText = "select a.[AttributeId],a.[Name],a.[Type],a.[Minimum],a.[Maximum],a.[Formula],a.[IsAcceptable],aes.[AttributePrintValueType], aes.[AttributePrintValueCustom], a.[CreatedTS],a.[CreatedBy],a.[ModifiedTS],a.[ModifiedBy],a.[Source] " + 
-                " from  sreAttribute a Inner join sreAttributeDataSource aes  on a.AttributeId = aes.AttributeId " +
-                         " inner join sreDataSource es on aes.DataSourceId = es.Id where es.Name =  '" + dataSourceName + "' order by aes.Position";
+                " from  idpeAttribute a Inner join idpeAttributeDataSource aes  on a.AttributeId = aes.AttributeId " +
+                         " inner join idpeDataSource es on aes.DataSourceId = es.Id where es.Name =  '" + dataSourceName + "' order by aes.Position";
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table == null)
@@ -319,14 +324,20 @@ namespace Eyedia.IDPE.DataManager
        
         public bool IsAttributeInUse(int attributeId)
         {
-            List<IdpeAttributeDataSource> sreAttributeDataSources = GetSreAttributeDataSources();
-            var record = sreAttributeDataSources.FirstOrDefault(a => a.AttributeId == attributeId);
+            List<IdpeAttributeDataSource> idpeAttributeDataSources = GetSreAttributeDataSources();
+            var record = idpeAttributeDataSources.FirstOrDefault(a => a.AttributeId == attributeId);
             return record == null ? false : true;
         }
 
-        public int AttributeExists(string name)
-        {         
-            DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(string.Format("select AttributeId from SreAttribute where [Name] = '{0}'", name));
+        public int AttributeExists(string name, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
+        {
+            DataTable table = null;
+            string commandText = string.Format("select AttributeId from IdpeAttribute where [Name] = '{0}'", name);
+            if (dal == null)
+                table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
+            else
+                table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText, dal, connection, transaction);
+
             if ((table == null)
                 ||(table.Rows.Count == 0))
                 return 0;
@@ -336,7 +347,7 @@ namespace Eyedia.IDPE.DataManager
       
         public int GetIsValidAttributeId(IDal myDal, IDbConnection conn, IDbTransaction transaction)
         {
-            IDbCommand command = myDal.CreateCommand("SELECT AttributeId from SreAttribute WHERE [Name] = 'IsValid'", conn);
+            IDbCommand command = myDal.CreateCommand("SELECT AttributeId from IdpeAttribute WHERE [Name] = 'IsValid'", conn);
             command.Transaction = transaction;
             int attributeId = 0;
 
@@ -354,11 +365,7 @@ namespace Eyedia.IDPE.DataManager
         }
 
         public int Save(IdpeAttribute attribute, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
-        {
-            if ((attribute.AttributeId == 1)
-                || (attribute.Name.ToLower() == "isvalid"))
-                return 1;
-
+        {           
             string cmdText = string.Empty;
             IDbCommand command = null;
             bool localTransaction = false;
@@ -378,12 +385,12 @@ namespace Eyedia.IDPE.DataManager
             try
             {
                 if (attribute.AttributeId == 0)
-                    attribute.AttributeId = AttributeExists(attribute.Name);
+                    attribute.AttributeId = AttributeExists(attribute.Name, dal, connection, transaction);
                 bool inserted = false;
                 if (attribute.AttributeId == 0)
                 {
                     inserted = true;
-                    cmdText = "INSERT INTO [SreAttribute] ([Name],[Type],[Minimum],[Maximum],[Formula],[IsAcceptable],[CreatedTS],[CreatedBy],[Source]) VALUES ";
+                    cmdText = "INSERT INTO [IdpeAttribute] ([Name],[Type],[Minimum],[Maximum],[Formula],[IsAcceptable],[CreatedTS],[CreatedBy],[Source]) VALUES ";
                     cmdText += "(@Name,@Type,@Minimum,@Maximum,@Formula,@IsAcceptable,@CreatedTS,@CreatedBy,@Source)";
 
 
@@ -412,7 +419,7 @@ namespace Eyedia.IDPE.DataManager
                 }
                 else
                 {
-                    cmdText = "UPDATE [SreAttribute] SET [Name] = @Name,[Type] = @Type,[Minimum] = @Minimum,[Maximum] = @Maximum,[Formula] = @Formula ";
+                    cmdText = "UPDATE [IdpeAttribute] SET [Name] = @Name,[Type] = @Type,[Minimum] = @Minimum,[Maximum] = @Maximum,[Formula] = @Formula ";
                     cmdText += "WHERE [AttributeId] = @AttributeId";
 
 
@@ -442,7 +449,7 @@ namespace Eyedia.IDPE.DataManager
 
                 if (inserted)
                 {
-                    command.CommandText = "SELECT AttributeId from SreAttribute where Name = @Name";
+                    command.CommandText = "SELECT AttributeId from IdpeAttribute where Name = @Name";
                     command.Parameters.Clear();
                     command.AddParameterWithValue("Name", attribute.Name);
                     attribute.AttributeId = (Int32)command.ExecuteScalar();
@@ -472,7 +479,7 @@ namespace Eyedia.IDPE.DataManager
         }
 
 
-        public void Save(IdpeAttributeDataSource sreAttributeDataSource, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
+        public void Save(IdpeAttributeDataSource idpeAttributeDataSource, IDal dal = null, IDbConnection connection = null, IDbTransaction transaction = null)
         {
             string cmdText = string.Empty;
             bool localTransaction = false;
@@ -490,49 +497,49 @@ namespace Eyedia.IDPE.DataManager
 
             try
             {
-                cmdText = "SELECT [AttributeDataSourceId] FROM SreAttributeDataSource WHERE [DataSourceId] = @DataSourceId and [AttributeId] = @AttributeId";
+                cmdText = "SELECT [AttributeDataSourceId] FROM IdpeAttributeDataSource WHERE [DataSourceId] = @DataSourceId and [AttributeId] = @AttributeId";
                 command.Parameters.Clear();
-                command.AddParameterWithValue("DataSourceId", sreAttributeDataSource.DataSourceId);
-                command.AddParameterWithValue("AttributeId", sreAttributeDataSource.AttributeId);
+                command.AddParameterWithValue("DataSourceId", idpeAttributeDataSource.DataSourceId);
+                command.AddParameterWithValue("AttributeId", idpeAttributeDataSource.AttributeId);
                 command.CommandText = cmdText;
                 IDataReader reader = command.ExecuteReader();
 
                 if (reader.Read())
                 {
-                    cmdText = "UPDATE [SreAttributeDataSource] SET [Position] = @Position, [IsAcceptable] = @IsAcceptable, AttributePrintValueType = @AttributePrintValueType, AttributePrintValueCustom = @AttributePrintValueCustom WHERE [AttributeDataSourceId] = @AttributeDataSourceId";
+                    cmdText = "UPDATE [IdpeAttributeDataSource] SET [Position] = @Position, [IsAcceptable] = @IsAcceptable, AttributePrintValueType = @AttributePrintValueType, AttributePrintValueCustom = @AttributePrintValueCustom WHERE [AttributeDataSourceId] = @AttributeDataSourceId";
                     command.Parameters.Clear();
-                    command.AddParameterWithValue("Position", sreAttributeDataSource.Position);
-                    command.AddParameterWithValue("IsAcceptable", sreAttributeDataSource.IsAcceptable);
+                    command.AddParameterWithValue("Position", idpeAttributeDataSource.Position);
+                    command.AddParameterWithValue("IsAcceptable", idpeAttributeDataSource.IsAcceptable);
                     command.AddParameterWithValue("AttributeDataSourceId", int.Parse(reader[0].ToString()));
-                    if ((sreAttributeDataSource.AttributePrintValueType == 0)
-                        || (sreAttributeDataSource.AttributePrintValueType == null))
+                    if ((idpeAttributeDataSource.AttributePrintValueType == 0)
+                        || (idpeAttributeDataSource.AttributePrintValueType == null))
                         command.AddParameterWithValue("AttributePrintValueType", DBNull.Value);
                     else
-                        command.AddParameterWithValue("AttributePrintValueType", sreAttributeDataSource.AttributePrintValueType);
+                        command.AddParameterWithValue("AttributePrintValueType", idpeAttributeDataSource.AttributePrintValueType);
 
-                    if (string.IsNullOrEmpty(sreAttributeDataSource.AttributePrintValueCustom))
+                    if (string.IsNullOrEmpty(idpeAttributeDataSource.AttributePrintValueCustom))
                         command.AddParameterWithValue("AttributePrintValueCustom", DBNull.Value);
                     else
-                        command.AddParameterWithValue("AttributePrintValueCustom", sreAttributeDataSource.AttributePrintValueCustom);
+                        command.AddParameterWithValue("AttributePrintValueCustom", idpeAttributeDataSource.AttributePrintValueCustom);
 
                 }
                 else
                 {
-                    cmdText = "INSERT INTO [SreAttributeDataSource] ([DataSourceId],[AttributeId],[Position],[IsAcceptable],[AttributePrintValueType],[AttributePrintValueCustom],[CreatedTS],[CreatedBy],[Source]) VALUES ";
+                    cmdText = "INSERT INTO [IdpeAttributeDataSource] ([DataSourceId],[AttributeId],[Position],[IsAcceptable],[AttributePrintValueType],[AttributePrintValueCustom],[CreatedTS],[CreatedBy],[Source]) VALUES ";
                     cmdText += "(@DataSourceId,@AttributeId,@Position,@IsAcceptable,@AttributePrintValueType,@AttributePrintValueCustom,@CreatedTS,@CreatedBy,@Source)";
                     command.Parameters.Clear();
-                    command.AddParameterWithValue("DataSourceId", sreAttributeDataSource.DataSourceId);
-                    command.AddParameterWithValue("AttributeId", sreAttributeDataSource.AttributeId);
-                    command.AddParameterWithValue("Position", sreAttributeDataSource.Position);
-                    command.AddParameterWithValue("IsAcceptable", sreAttributeDataSource.IsAcceptable);
-                    if ((sreAttributeDataSource.AttributePrintValueType == 0)
-                        || (sreAttributeDataSource.AttributePrintValueType == null))
+                    command.AddParameterWithValue("DataSourceId", idpeAttributeDataSource.DataSourceId);
+                    command.AddParameterWithValue("AttributeId", idpeAttributeDataSource.AttributeId);
+                    command.AddParameterWithValue("Position", idpeAttributeDataSource.Position);
+                    command.AddParameterWithValue("IsAcceptable", idpeAttributeDataSource.IsAcceptable);
+                    if ((idpeAttributeDataSource.AttributePrintValueType == 0)
+                        || (idpeAttributeDataSource.AttributePrintValueType == null))
                         command.AddParameterWithValue("AttributePrintValueType", DBNull.Value);
                     else
-                        command.AddParameterWithValue("AttributePrintValueType", sreAttributeDataSource.AttributePrintValueType);
+                        command.AddParameterWithValue("AttributePrintValueType", idpeAttributeDataSource.AttributePrintValueType);
 
-                    if (!string.IsNullOrEmpty(sreAttributeDataSource.AttributePrintValueCustom))
-                        command.AddParameterWithValue("AttributePrintValueCustom", sreAttributeDataSource.AttributePrintValueCustom);
+                    if (!string.IsNullOrEmpty(idpeAttributeDataSource.AttributePrintValueCustom))
+                        command.AddParameterWithValue("AttributePrintValueCustom", idpeAttributeDataSource.AttributePrintValueCustom);
                     else
                         command.AddParameterWithValue("AttributePrintValueCustom", DBNull.Value);
                     command.AddParameterWithValue("CreatedTS", DateTime.Now);
@@ -578,7 +585,7 @@ namespace Eyedia.IDPE.DataManager
 
             try
             {
-                cmdText = "DELETE FROM [SreAttributeDataSource] WHERE [AttributeDataSourceId] = @AttributeDataSourceId";
+                cmdText = "DELETE FROM [IdpeAttributeDataSource] WHERE [AttributeDataSourceId] = @AttributeDataSourceId";
                 command.CommandText = cmdText;                
                 command.AddParameterWithValue("AttributeDataSourceId", attributeDataSourceId);
                 command.ExecuteNonQuery();
@@ -603,7 +610,7 @@ namespace Eyedia.IDPE.DataManager
 
             try
             {
-                cmdText = "DELETE FROM [SreAttributeDataSource] WHERE [DataSourceId] = @DataSourceId AND [AttributeId] = @AttributeId";
+                cmdText = "DELETE FROM [IdpeAttributeDataSource] WHERE [DataSourceId] = @DataSourceId AND [AttributeId] = @AttributeId";
                 command.CommandText = cmdText;
                 command.AddParameterWithValue("DataSourceId", dataSourceId);
                 command.AddParameterWithValue("AttributeId", attributeId);
@@ -630,9 +637,9 @@ namespace Eyedia.IDPE.DataManager
             try
             {
                 if (isAcceptable)
-                    cmdText = "UPDATE [SreAttributeDataSource] SET [IsAcceptable] = @IsAcceptable WHERE [DataSourceId] = @DataSourceId and [AttributeId] = @AttributeId";
+                    cmdText = "UPDATE [IdpeAttributeDataSource] SET [IsAcceptable] = @IsAcceptable WHERE [DataSourceId] = @DataSourceId and [AttributeId] = @AttributeId";
                 else
-                    cmdText = "UPDATE [SreAttributeDataSource] SET [IsAcceptable] = @IsAcceptable, [Position] = NULL WHERE [DataSourceId] = @DataSourceId and [AttributeId] = @AttributeId";
+                    cmdText = "UPDATE [IdpeAttributeDataSource] SET [IsAcceptable] = @IsAcceptable, [Position] = NULL WHERE [DataSourceId] = @DataSourceId and [AttributeId] = @AttributeId";
                 
 
                 command.CommandText = cmdText;
@@ -668,9 +675,9 @@ namespace Eyedia.IDPE.DataManager
             try
             {
                 if(isAcceptable)
-                    cmdText = "UPDATE [SreAttributeDataSource] SET [IsAcceptable] = @IsAcceptable WHERE [AttributeDataSourceId] = @AttributeDataSourceId";
+                    cmdText = "UPDATE [IdpeAttributeDataSource] SET [IsAcceptable] = @IsAcceptable WHERE [AttributeDataSourceId] = @AttributeDataSourceId";
                 else
-                    cmdText = "UPDATE [SreAttributeDataSource] SET [IsAcceptable] = @IsAcceptable, [Position] = NULL WHERE [AttributeDataSourceId] = @AttributeDataSourceId";
+                    cmdText = "UPDATE [IdpeAttributeDataSource] SET [IsAcceptable] = @IsAcceptable, [Position] = NULL WHERE [AttributeDataSourceId] = @AttributeDataSourceId";
 
                 command.CommandText = cmdText;
                 command.AddParameterWithValue("IsAcceptable", isAcceptable);
@@ -708,8 +715,8 @@ namespace Eyedia.IDPE.DataManager
                 transaction = myDal.CreateTransaction(conn);
                 command = myDal.CreateCommand();
                 command.CommandText = "select AttributeDataSourceId, a.[AttributeId],a.[Name],aes.[IsAcceptable],AttributeDataSourceId,Position,es.Name as [DataSourceName] ";
-                command.CommandText += "from  sreAttribute a Inner join sreAttributeDataSource aes  on a.AttributeId = aes.AttributeId ";
-                command.CommandText += "inner join sreDataSource es on aes.DataSourceId = es.Id where es.Id =  " + dataSourceId + " and aes.IsAcceptable = 1 order by aes.Position";
+                command.CommandText += "from  idpeAttribute a Inner join idpeAttributeDataSource aes  on a.AttributeId = aes.AttributeId ";
+                command.CommandText += "inner join idpeDataSource es on aes.DataSourceId = es.Id where es.Id =  " + dataSourceId + " and aes.IsAcceptable = 1 order by aes.Position";
                 command.Connection = conn;
                 command.Transaction = transaction;
                 reader = command.ExecuteReader();
@@ -726,7 +733,7 @@ namespace Eyedia.IDPE.DataManager
                     IDbCommand updateCommand = myDal.CreateCommand();
                     updateCommand.Connection = conn;
                     updateCommand.Transaction = transaction;
-                    updateCommand.CommandText = "UPDATE [SreAttributeDataSource] SET [Position] = @Position WHERE [AttributeDataSourceId] = @AttributeDataSourceId";
+                    updateCommand.CommandText = "UPDATE [IdpeAttributeDataSource] SET [Position] = @Position WHERE [AttributeDataSourceId] = @AttributeDataSourceId";
                     updateCommand.AddParameterWithValue("Position", position);
                     updateCommand.AddParameterWithValue("AttributeDataSourceId", attributeDataSourceId);
                     updateCommand.ExecuteNonQuery();
@@ -760,7 +767,7 @@ namespace Eyedia.IDPE.DataManager
 
             try
             {
-                cmdText = "DELETE from [SreAttribute] WHERE [AttributeId] = @AttributeId";
+                cmdText = "DELETE from [IdpeAttribute] WHERE [AttributeId] = @AttributeId";
                 command.CommandText = cmdText;
                 command.AddParameterWithValue("AttributeId", attributeId);                
                 command.ExecuteNonQuery();

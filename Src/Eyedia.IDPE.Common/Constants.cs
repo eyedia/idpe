@@ -53,6 +53,8 @@ namespace Eyedia.IDPE.Common
         public const string success = "success";
         public const string failed = "failed";
         public const string asmver = "1.1.8.18005";
+        public const int GlobalDataSourceId = -99;
+        public const int SystemDataSourceId = 100;
     }
 }
 

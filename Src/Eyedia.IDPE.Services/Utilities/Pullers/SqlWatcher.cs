@@ -141,11 +141,11 @@ namespace Eyedia.IDPE.Services
                 Trace.Flush();
             }
         }
-        //private List<SreKey> Keys
+        //private List<IdpeKey> Keys
         //{
         //    get
         //    {
-        //        List<SreKey> keys = Cache.Instance.Bag[DataSourceId + ".keys"] as List<SreKey>;
+        //        List<IdpeKey> keys = Cache.Instance.Bag[DataSourceId + ".keys"] as List<IdpeKey>;
         //        if (keys == null)
         //        {
         //            keys = new Manager().GetApplicationKeys(DataSourceId, true);

@@ -49,7 +49,7 @@ namespace Eyedia.IDPE.DataManager
         public List<IdpePersistentVariable> GetPersistentVariables()
         {
             List<IdpePersistentVariable> variables = new List<IdpePersistentVariable>();
-            DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand("SELECT * FROM SrePersistentVariable");
+            DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand("SELECT * FROM IdpePersistentVariable");
             if (table == null)
                 return variables;
 
@@ -80,7 +80,7 @@ namespace Eyedia.IDPE.DataManager
 
             IdpePersistentVariable variable = null;
 
-            IDbCommand command = dal.CreateCommand("SELECT [Value] FROM SrePersistentVariable WHERE DataSourceId = @DataSourceId AND Name = @Name", connection);
+            IDbCommand command = dal.CreateCommand("SELECT [Value] FROM IdpePersistentVariable WHERE DataSourceId = @DataSourceId AND Name = @Name", connection);
             command.AddParameterWithValue("DataSourceId", dataSourceId);
             command.AddParameterWithValue("Name", name);
             IDataReader reader = command.ExecuteReader();
@@ -123,7 +123,7 @@ namespace Eyedia.IDPE.DataManager
              IdpePersistentVariable variable = GetPersistentVariable(dataSourceId, variableName, dal, connection);
              if (variable == null)
              {
-                 command.CommandText = "INSERT INTO SrePersistentVariable(DataSourceId, Name, Value, CreatedTS) ";
+                 command.CommandText = "INSERT INTO IdpePersistentVariable(DataSourceId, Name, Value, CreatedTS) ";
                  command.CommandText += " VALUES (@DataSourceId, @Name, @Value, @CreatedTS)";
                  command.AddParameterWithValue("DataSourceId", dataSourceId);
                  command.AddParameterWithValue("Name", variableName);
@@ -133,7 +133,7 @@ namespace Eyedia.IDPE.DataManager
              }
              else
              {
-                 command.CommandText = "UPDATE [SrePersistentVariable] SET [Value] = @Value, [CreatedTS] = @CreatedTS ";
+                 command.CommandText = "UPDATE [IdpePersistentVariable] SET [Value] = @Value, [CreatedTS] = @CreatedTS ";
                  command.CommandText += "WHERE [DataSourceId] = @DataSourceId AND [Name] = @Name";
                  command.AddParameterWithValue("DataSourceId", dataSourceId);
                  command.AddParameterWithValue("Name", variableName);
@@ -171,13 +171,13 @@ namespace Eyedia.IDPE.DataManager
 
              if (!string.IsNullOrEmpty(variableName))
              {
-                 command.CommandText = "DELETE from [SrePersistentVariable] WHERE [DataSourceId] = @DataSourceId AND [Name] = @Name";
+                 command.CommandText = "DELETE from [IdpePersistentVariable] WHERE [DataSourceId] = @DataSourceId AND [Name] = @Name";
                  command.AddParameterWithValue("DataSourceId", dataSourceId);
                  command.AddParameterWithValue("Name", variableName);
              }
              else
              {
-                 command.CommandText = "DELETE from [SrePersistentVariable] WHERE [DataSourceId] = @DataSourceId";
+                 command.CommandText = "DELETE from [IdpePersistentVariable] WHERE [DataSourceId] = @DataSourceId";
                  command.AddParameterWithValue("DataSourceId", dataSourceId);                 
              }
 

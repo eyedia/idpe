@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.sreKeys1 = new Eyedia.IDPE.Interface.Controls.SreKeys();
+            this.idpeKeys1 = new Eyedia.IDPE.Interface.Controls.SreKeys();
             this.SuspendLayout();
             // 
-            // sreKeys1
+            // idpeKeys1
             // 
-            this.sreKeys1.DataSourceId = 0;
-            this.sreKeys1.DataSourceName = null;
-            this.sreKeys1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sreKeys1.Location = new System.Drawing.Point(0, 0);
-            this.sreKeys1.Name = "sreKeys1";
-            this.sreKeys1.ShowCaption = false;
-            this.sreKeys1.Size = new System.Drawing.Size(1057, 323);
-            this.sreKeys1.TabIndex = 0;
+            this.idpeKeys1.DataSourceId = 0;
+            this.idpeKeys1.DataSourceName = null;
+            this.idpeKeys1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.idpeKeys1.Location = new System.Drawing.Point(0, 0);
+            this.idpeKeys1.Name = "idpeKeys1";
+            this.idpeKeys1.ShowCaption = false;
+            this.idpeKeys1.Size = new System.Drawing.Size(1057, 323);
+            this.idpeKeys1.TabIndex = 0;
             // 
             // frmKeys
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1057, 323);
-            this.Controls.Add(this.sreKeys1);
+            this.Controls.Add(this.idpeKeys1);
             this.Name = "frmKeys";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -58,7 +58,7 @@
 
         #endregion
 
-        private Controls.SreKeys sreKeys1;
+        private Controls.SreKeys idpeKeys1;
 
     }
 }

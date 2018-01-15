@@ -151,8 +151,8 @@ namespace Eyedia.IDPE.Services
         void ExportRules(int dataSourceId)
         {
             string sqlStatement = "select r.Name, r.Description, r.Xaml, rds.Priority, rds.RuleSetType ";
-            sqlStatement += "from SreRule r ";
-            sqlStatement += "inner join SreRuleDataSource rds on r.Id = rds.RuleId ";
+            sqlStatement += "from IdpeRule r ";
+            sqlStatement += "inner join IdpeRuleDataSource rds on r.Id = rds.RuleId ";
             sqlStatement += "where rds.DataSourceId = " + dataSourceId;
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(sqlStatement);
 
@@ -171,8 +171,8 @@ namespace Eyedia.IDPE.Services
         void ExportRuleNames(int dataSourceId)
         {
             string sqlStatement = "select r.Name, rds.Priority, rds.RuleSetType ";
-            sqlStatement += "from SreRule r ";
-            sqlStatement += "inner join SreRuleDataSource rds on r.Id = rds.RuleId ";
+            sqlStatement += "from IdpeRule r ";
+            sqlStatement += "inner join IdpeRuleDataSource rds on r.Id = rds.RuleId ";
             sqlStatement += "where rds.DataSourceId = " + dataSourceId;
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(sqlStatement);
 
@@ -205,8 +205,8 @@ namespace Eyedia.IDPE.Services
         void ExportKeys(int dataSourceId)
         {
             string sqlStatement = "select k.Name, k.Value, k.Type, kds.IsDeployable, k.NextKeyId ";
-            sqlStatement += "from  SreKey k ";
-            sqlStatement += "inner join SreKeyDataSource kds on k.KeyId = kds.KeyId ";
+            sqlStatement += "from  IdpeKey k ";
+            sqlStatement += "inner join IdpeKeyDataSource kds on k.KeyId = kds.KeyId ";
             sqlStatement += "where kds.DataSourceId = " + dataSourceId;
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(sqlStatement);
 
@@ -226,10 +226,10 @@ namespace Eyedia.IDPE.Services
         void ExportAttributes(int dataSourceId)
         {
             string sqlStatement = "select a.Name, a.Type, a.Minimum, a.Maximum, a.Formula, ads.IsAcceptable,ads.[AttributePrintValueType],ads.[AttributePrintValueCustom] ";
-            sqlStatement += "from SreAttribute a ";
-            sqlStatement += "inner join SreAttributeDataSource ads on a.AttributeId = ads.AttributeId ";
+            sqlStatement += "from IdpeAttribute a ";
+            sqlStatement += "inner join IdpeAttributeDataSource ads on a.AttributeId = ads.AttributeId ";
             sqlStatement += "where ads.DataSourceId = " + dataSourceId;
-            sqlStatement += "order by position ";
+            sqlStatement += "order by ads.position ";
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(sqlStatement);
 
             foreach (DataRow row in table.Rows)
@@ -331,7 +331,7 @@ namespace Eyedia.IDPE.Services
         void ImportAttributes(IDal dal, IDbConnection connection, IDbTransaction transaction, Manager manager)
         {
             //delete all existing association
-            string sqlStatement = "delete from [SreAttributeDataSource] where [DataSourceId] = " + this.DataSource.Id;
+            string sqlStatement = "delete from [IdpeAttributeDataSource] where [DataSourceId] = " + this.DataSource.Id;
             CoreDatabaseObjects.Instance.ExecuteStatement(sqlStatement, dal, connection, transaction);
             
             int position = 1;
@@ -341,7 +341,7 @@ namespace Eyedia.IDPE.Services
                 if (attributeId == 0)
                     attributeId = manager.Save(attribute, dal, connection, transaction);
          
-                sqlStatement = "insert into [SreAttributeDataSource]([DataSourceId],[AttributeId],[Position],[IsAcceptable],[AttributePrintValueType],[AttributePrintValueCustom],[CreatedTS],[CreatedBy],[Source]) ";
+                sqlStatement = "insert into [IdpeAttributeDataSource]([DataSourceId],[AttributeId],[Position],[IsAcceptable],[AttributePrintValueType],[AttributePrintValueCustom],[CreatedTS],[CreatedBy],[Source]) ";
                 sqlStatement += "values ({0},{1},{2},{3},{4},'{5}','{6}','{7}' ,'Imported')";
 
                 sqlStatement = string.Format(sqlStatement,
