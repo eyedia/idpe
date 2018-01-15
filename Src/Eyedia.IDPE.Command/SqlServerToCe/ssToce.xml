@@ -1,0 +1,12 @@
+<SqlServerToSqlCeConfiguration xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Eyedia.IDPE.Command">
+  <SqlCeFileName>C:\Deb\Workspace\GitHub\idpe\Executables\sample.sdf</SqlCeFileName>
+  <SqlCeIsEncrypted>false</SqlCeIsEncrypted>
+  <SqlCeOverwrite>true</SqlCeOverwrite>
+  <SqlCePassword>acc3s$</SqlCePassword>
+  <SqlServerDatabaseName>idpe</SqlServerDatabaseName>
+  <SqlServerIntegratedSecurity>true</SqlServerIntegratedSecurity>
+  <SqlServerName>ROSETTA\SQLEXPRESS</SqlServerName>
+  <SqlServerPassword i:nil="true" />
+  <SqlServerSchemaName>dbo</SqlServerSchemaName>
+  <SqlServerUserName i:nil="true" />
+</SqlServerToSqlCeConfiguration>

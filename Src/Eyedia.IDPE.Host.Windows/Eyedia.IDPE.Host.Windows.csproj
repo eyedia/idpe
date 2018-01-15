@@ -180,7 +180,10 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == Release (
+xcopy $(TargetDir)*.dll $(SolutionDir)..\Executables\ /y
+xcopy $(TargetDir)*.exe $(SolutionDir)..\Executables\ /y
+xcopy $(TargetDir)*.exe.config $(SolutionDir)..\Executables\ /y
+)</PostBuildEvent>
   </PropertyGroup>
 </Project>

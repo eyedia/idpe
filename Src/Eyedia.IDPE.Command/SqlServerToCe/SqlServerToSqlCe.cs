@@ -30,31 +30,44 @@ Description  -
 
 #endregion Copyright Notice
 
+using System;
+using System.IO;
 
+namespace Eyedia.IDPE.Command
+{
+    public class SqlServerToSqlCe
+    {
+        public static void Convert(string[] args)
+        {
+            string configFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ssToce.xml");
+            if (!File.Exists(configFileName))
+            {                
+                if (args.Length != 2)
+                {
+                    Console.WriteLine("Usage : ssToce <config xml>");
+                    return;                    
+                }
+                configFileName = args[1];
+            }
+            try
+            {
+                if (!File.Exists(configFileName))
+                {
+                    Console.WriteLine("file '" + configFileName + "' does not exist! You can pass config xml as idpec.exe sstoce.xml");
+                    return;
+                }
 
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
+                SqlServerToSqlCeConverter converter = new SqlServerToSqlCeConverter(configFileName);
+                converter.Convert();                
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.ToString());
+            }
+        }
 
-[assembly: AssemblyTitle("Eyedia's Integrated Data Processing Environment User Interface")]
-#if DEBUG
-[assembly: AssemblyDescription("Eyedia's Integrated Data Processing Environment User Interface (Debug Version)")]
-#else
-[assembly: AssemblyDescription("Eyedia's Integrated Data Processing Environment User Interface")]
-#endif
+        
+    }
 
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Eyedia")]
-[assembly: AssemblyProduct("Eyedia's Integrated Data Processing Environment")]
-[assembly: AssemblyCopyright("© Deb'jyoti Das")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-[assembly: ComVisible(false)]
-[assembly: Guid("9ff9c5d4-18f7-47cd-a9e6-060627a11369")]
-[assembly: AssemblyVersion(Eyedia.IDPE.Common.Constants.asmver)]
-[assembly: AssemblyFileVersion(Eyedia.IDPE.Common.Constants.asmver)]
-
-
-
-
-
+  
+}

@@ -51,14 +51,18 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Excel">
-      <HintPath>..\..\ExternalLibs\Excel.dll</HintPath>
+      <HintPath>..\..\Executables\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Eyedia.IDPE.Services.WorkflowActivities">
+      <HintPath>..\..\Executables\Eyedia.IDPE.Services.WorkflowActivities.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="RestSharp">
-      <HintPath>..\..\ExternalLibs\RestSharp.dll</HintPath>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Executables\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="Salient.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=03b0b5a60fec3719, processorArchitecture=MSIL">
       <HintPath>..\packages\ErikEJ.SqlCeBulkCopy.2.1.6.15\lib\net40\Salient.Data.dll</HintPath>
@@ -222,16 +226,10 @@
     <Compile Include="Utilities\PlugIns\PlugInsGeneric.cs" />
     <Compile Include="Utilities\Pullers\SqlWatcher.cs" />
     <Compile Include="Utilities\Pullers\ZipFileWatcher.cs" />
-    <Compile Include="Utilities\WebPublishers\BasePage.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
+    <Compile Include="Utilities\WebPublishers\BasePage.cs" />
     <Compile Include="Utilities\WebPublishers\HttpModuleRegistry.cs" />
-    <Compile Include="Utilities\WebPublishers\InformationPage.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Utilities\WebPublishers\MonitorPage.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
+    <Compile Include="Utilities\WebPublishers\InformationPage.cs" />
+    <Compile Include="Utilities\WebPublishers\MonitorPage.cs" />
     <Compile Include="Utilities\WebPublishers\PageFactory.cs" />
     <Compile Include="Utilities\Pullers\FtpFileSystemWatcher.cs" />
     <Compile Include="Utilities\Pullers\Watchers.cs" />
@@ -290,10 +288,6 @@
     <ProjectReference Include="..\Eyedia.IDPE.DataManager\Eyedia.IDPE.DataManager.csproj">
       <Project>{3E7D2F46-7A4E-4393-BF96-393F0BF2C7AE}</Project>
       <Name>Eyedia.IDPE.DataManager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Eyedia.IDPE.Services.WorkflowActivities\Eyedia.IDPE.Services.WorkflowActivities.csproj">
-      <Project>{ad44e5e6-b5ce-4fa3-9599-0b0f82771862}</Project>
-      <Name>Eyedia.IDPE.Services.WorkflowActivities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

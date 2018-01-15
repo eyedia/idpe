@@ -30,9 +30,6 @@ Description  -
 
 #endregion Copyright Notice
 
-
-
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,11 +38,7 @@ using System.Diagnostics;
 using Eyedia.Core;
 using Eyedia.IDPE.Common;
 using System.IO;
-using Eyedia.IDPE.Services;
-using System.Windows.Forms.Integration;
 using System.Configuration;
-using Eyedia.IDPE.DataManager;
-using Eyedia.Core.Windows.Forms;
 
 namespace Eyedia.IDPE.Interface
 {
@@ -59,6 +52,9 @@ namespace Eyedia.IDPE.Interface
         {
             if (Environment.OSVersion.Version.Major >= 6) SetProcessDPIAware();
 
+            if (!CheckSqlCe())
+                return;
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             
@@ -71,9 +67,6 @@ namespace Eyedia.IDPE.Interface
                 Application.Run(new MainWindow(args));
                 //GetDummyUser();
                 //Application.Run(new SreEnvironmentWindow());
-
-                //.Run(new WindowsServiceLogOnAsDialog(4));
-
 
             }
             catch (Exception ex)
@@ -108,6 +101,27 @@ namespace Eyedia.IDPE.Interface
                 }
                 catch { }
             }
+        }
+
+        static bool CheckSqlCe()
+        {
+            if (!Core.Data.DataExtensionMethods.IsSqlCeInstalled())
+            {
+                string msg = "SQL Server Compact 4.0 is not installed! " + Environment.NewLine;
+                if (File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SSCERuntime_x64-ENU.exe")))
+                {
+                    msg += "SSCERuntime_x64-ENU.exe was provided with IDPE bundle. " + Environment.NewLine;
+                    msg += "Please right click on that and 'Run as Administrator' to install SQL Server Compact 4.0";
+                }
+                else
+                {
+                    msg += "Download SQL Server Compact 4.0 from https://www.microsoft.com/en-us/download/details.aspx?id=17876 and install!";
+                }
+
+                MessageBox.Show(msg, "SQL Server Compact 4.0 Not Installed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]

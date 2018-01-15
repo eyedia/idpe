@@ -1,4 +1,4 @@
-#region Copyright Notice
+﻿#region Copyright Notice
 /* Copyright (c) 2017, Deb'jyoti Das - debjyoti@debjyoti.com
  All rights reserved.
  Redistribution and use in source and binary forms, with or without
@@ -30,31 +30,25 @@ Description  -
 
 #endregion Copyright Notice
 
+namespace Eyedia.IDPE.Command
+{
+    public class SqlServerToSqlCeConfiguration
+    {
+        public SqlServerToSqlCeConfiguration()
+        {
+        }
 
+        public string SqlServerName { get; set; }
+        public string SqlServerDatabaseName { get; set; }
+        public string SqlServerSchemaName { get; set; }
+        public bool SqlServerIntegratedSecurity { get; set; }
+        public string SqlServerUserName { get; set; }
+        public string SqlServerPassword { get; set; }
 
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
+        public string SqlCeFileName { get; set; }
+        public string SqlCePassword { get; set; }
+        public bool SqlCeIsEncrypted { get; set; }
+        public bool SqlCeOverwrite { get; set; }
 
-[assembly: AssemblyTitle("Eyedia's Integrated Data Processing Environment User Interface")]
-#if DEBUG
-[assembly: AssemblyDescription("Eyedia's Integrated Data Processing Environment User Interface (Debug Version)")]
-#else
-[assembly: AssemblyDescription("Eyedia's Integrated Data Processing Environment User Interface")]
-#endif
-
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Eyedia")]
-[assembly: AssemblyProduct("Eyedia's Integrated Data Processing Environment")]
-[assembly: AssemblyCopyright("© Deb'jyoti Das")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-[assembly: ComVisible(false)]
-[assembly: Guid("9ff9c5d4-18f7-47cd-a9e6-060627a11369")]
-[assembly: AssemblyVersion(Eyedia.IDPE.Common.Constants.asmver)]
-[assembly: AssemblyFileVersion(Eyedia.IDPE.Common.Constants.asmver)]
-
-
-
-
-
+    }
+}

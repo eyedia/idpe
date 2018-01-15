@@ -37,6 +37,7 @@ using System.Diagnostics;
 using Eyedia.Core.Encryption;
 using Eyedia.IDPE.DataManager;
 using Eyedia.IDPE.Services;
+using Eyedia.Core;
 
 namespace Eyedia.IDPE.Command
 {
@@ -46,7 +47,7 @@ namespace Eyedia.IDPE.Command
         {
             if (args.Length < 1)
             {
-                Console.WriteLine("usage: srecmd e/d/t [datasource id]");
+                Console.WriteLine("usage: srecmd e/d/u/s2c/uc");
                 Environment.Exit(101);
             }
 
@@ -66,8 +67,17 @@ namespace Eyedia.IDPE.Command
                         UpgradeToIdpe();
                         break;
 
+                    case "s2c":
+                        SqlServerToSqlCe.Convert(args);
+                        break;
+
+                    case "uc":
+                        UpdateConfigs updateConfigs = new Command.UpdateConfigs(@"C:\Deb\Workspace\GitHub\idpe\Executables");
+                        updateConfigs.Update();
+                        break;
+
                     default:
-                        Console.WriteLine("usage: srecmd e/d/t");
+                        Console.WriteLine("usage: idce e/d/u/s2c");
                         break;
                 }
             }
@@ -76,7 +86,7 @@ namespace Eyedia.IDPE.Command
                 Console.WriteLine(ex.Message);
                 Environment.Exit(103);
             }
-        }       
+        }
 
 
         static void AllowDecryption()
