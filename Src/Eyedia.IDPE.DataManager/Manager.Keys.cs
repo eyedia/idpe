@@ -536,10 +536,16 @@ namespace Eyedia.IDPE.DataManager
                     command.AddParameterWithValue("Name", key.Name);
                     command.AddParameterWithValue("Value", key.Value);
                     if (key.ValueBinary != null)
+                    {
                         command.AddParameterWithValue("ValueBinary", key.ValueBinary.ToArray());
+                    }
                     else
-                        command.AddParameterWithValue("ValueBinary", DBNull.Value, DbType.Byte);
-
+                    {
+                        if(EyediaCoreConfigurationSection.CurrentConfig.Database.DatabaseType == DatabaseTypes.SqlServer)
+                            command.AddParameterWithValue("ValueBinary", DBNull.Value, DbType.Byte);
+                        else
+                            command.AddParameterWithValue("ValueBinary", DBNull.Value);
+                    }
                     command.AddParameterWithValue("Type", key.Type);
                     if ((key.NextKeyId != null) && (key.NextKeyId != 0))
                         command.AddParameterWithValue("NextKeyId", key.NextKeyId);
@@ -577,9 +583,16 @@ namespace Eyedia.IDPE.DataManager
                     command.AddParameterWithValue("Name", key.Name);
                     command.AddParameterWithValue("Value", key.Value);
                     if (key.ValueBinary != null)
+                    {
                         command.AddParameterWithValue("ValueBinary", key.ValueBinary.ToArray());
+                    }
                     else
-                        command.AddParameterWithValue("ValueBinary", DBNull.Value, DbType.Byte);
+                    {
+                        if (EyediaCoreConfigurationSection.CurrentConfig.Database.DatabaseType == DatabaseTypes.SqlServer)
+                            command.AddParameterWithValue("ValueBinary", DBNull.Value, DbType.Byte);
+                        else
+                            command.AddParameterWithValue("ValueBinary", DBNull.Value);
+                    }
                     command.AddParameterWithValue("Type", key.Type);
                     command.AddParameterWithValue("IsDeployable", key.IsDeployable == true ? true : false);
                     if ((key.NextKeyId != null) && (key.NextKeyId != 0))

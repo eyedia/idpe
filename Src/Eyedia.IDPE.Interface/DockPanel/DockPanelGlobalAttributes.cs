@@ -279,6 +279,7 @@ namespace Eyedia.IDPE.Interface
                 IdpeAttribute attrib = new IdpeAttribute();
                 attrib.Name = row[0].ToString();
                 attrib.Type = row[1].ToString();
+                attrib.Formula = row[2].ToString();
                 attrib.Position = counter + 1;
                 attrib.IsAcceptable = true;
 

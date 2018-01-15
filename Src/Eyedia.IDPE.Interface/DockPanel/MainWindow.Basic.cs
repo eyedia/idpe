@@ -263,12 +263,12 @@ namespace Eyedia.IDPE.Interface
             if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 StreamWriter sw = new StreamWriter(saveFileDialog1.FileName);
-                sw.WriteLine("\"Name\",\"Type\",\"Position\"");
+                sw.WriteLine("\"Name\",\"Type\",\"Formula\"");
 
                 foreach (ListViewItem item in sreListView.ListView.Items)
                 {
                     IdpeAttribute attrib = item.Tag as IdpeAttribute;
-                    sw.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\"", attrib.Name, attrib.Type, attrib.Position));
+                    sw.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\"", attrib.Name, attrib.Type, attrib.Formula));
                 }
                 sw.Close();
             }
