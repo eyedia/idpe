@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="idpe" EntityNamespace="Eyedia.IDPE.DataManager" Class="RepositoryDataContext" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=LPT-03084856325\SQLEXPRESS;Initial Catalog=idpe;Integrated Security=True" SettingsObjectName="Eyedia.IDPE.DataManager.Properties.Settings" SettingsPropertyName="idpeConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LPT-03084856325\SQLEXPRESS;Initial Catalog=idpe;Integrated Security=True" SettingsObjectName="Eyedia.IDPE.DataManager.Properties.Settings" SettingsPropertyName="surface" Provider="System.Data.SqlClient" />
   <Table Name="dbo.IdpeAttribute" Member="IdpeAttributes">
     <Type Name="IdpeAttribute">
       <Column Name="AttributeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

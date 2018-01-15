@@ -61,7 +61,7 @@ namespace Eyedia.IDPE.DataManager
     #endregion
 		
 		public RepositoryDataContext() : 
-				base(global::Eyedia.IDPE.DataManager.Properties.Settings.Default.idpeConnectionString, mappingSource)
+				base(global::Eyedia.IDPE.DataManager.Properties.Settings.Default.surface, mappingSource)
 		{
 			OnCreated();
 		}

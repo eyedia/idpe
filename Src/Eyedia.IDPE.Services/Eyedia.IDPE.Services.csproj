@@ -296,6 +296,7 @@
     <None Include="Clients\SreesClient.config" />
     <EmbeddedResource Include="EnvironmentService\sreupdate.cmd" />
     <None Include="packages.config" />
+    <None Include="Release\Finish.bat" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Utilities\PostMan\EmailTemplate.htm" />
@@ -303,6 +304,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Utilities\PostMan\EmailTemplateGeneric.htm" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>

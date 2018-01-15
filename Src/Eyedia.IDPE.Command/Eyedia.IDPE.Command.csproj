@@ -157,7 +157,10 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == Release (
+xcopy $(TargetDir)*.exe $(SolutionDir)..\Executables\ /y
+xcopy $(TargetDir)*.exe.config $(SolutionDir)..\Executables\ /y
+del $(SolutionDir)..\Executables\idpec.vshost.*
+)</PostBuildEvent>
   </PropertyGroup>
 </Project>

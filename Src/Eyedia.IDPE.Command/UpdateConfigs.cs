@@ -56,7 +56,7 @@ namespace Eyedia.IDPE.Command
             RootDirectory = rootDirectory;
         }
         public void Update(bool setFolder = false)
-        {
+        {            
             if(setFolder)
             {
                 Directory.CreateDirectory(DirectoryLogs);

@@ -62,14 +62,14 @@
         <elementListCompartment Id="7881cd12-e20e-4ac4-9dc3-cca88a6ba6c7" absoluteBounds="6.765, 1.21, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.75 : 5.65945556640625); (6.5 : 5.65945556640625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.75 : 5.65945556640625); (6.5 : 5.65945556640625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/RepositoryDataContext/IdpeAttribute/IdpeAttribute_IdpeAttributeDataSource" />
       <nodes>
         <classShapeMoniker Id="39145682-95c5-48af-9441-d9da065bccd6" />
         <classShapeMoniker Id="457a553c-0b35-4c72-bc21-af6b0a7d09be" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.75 : 8.125); (1.75 : 6.72195556640625); (6.5 : 6.72195556640625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.75 : 8.125); (1.75 : 6.72195556640625); (6.5 : 6.72195556640625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/RepositoryDataContext/IdpeDataSource/IdpeDataSource_IdpeAttributeDataSource" />
       <nodes>
         <classShapeMoniker Id="b6e322dc-8fa6-4984-b5f0-5401e3cb38fc" />
@@ -90,42 +90,42 @@
         <classShapeMoniker Id="7c5bfa2b-74de-4be2-9e0b-53052a9cf616" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 11.5200512695312); (3.5 : 11.5200512695312)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 11.5200512695312); (3.5 : 11.5200512695312)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/RepositoryDataContext/IdpeDataSource/IdpeDataSource_IdpeKeyDataSource" />
       <nodes>
         <classShapeMoniker Id="b6e322dc-8fa6-4984-b5f0-5401e3cb38fc" />
         <classShapeMoniker Id="90be5ef1-df99-45ba-b75d-6dabc4f0e082" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 17.0857568359375); (3.04166666666667 : 17.0857568359375 : JumpStart); (3.20833333333333 : 17.0857568359375 : JumpEnd); (3.59375 : 17.0857568359375); (3.59375 : 12.7901025390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 17.0857568359375); (3.04166666666667 : 17.0857568359375 : JumpStart); (3.20833333333333 : 17.0857568359375 : JumpEnd); (3.59375 : 17.0857568359375); (3.59375 : 12.7901025390625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/RepositoryDataContext/IdpeKey/IdpeKey_IdpeKeyDataSource" />
       <nodes>
         <classShapeMoniker Id="7c5bfa2b-74de-4be2-9e0b-53052a9cf616" />
         <classShapeMoniker Id="90be5ef1-df99-45ba-b75d-6dabc4f0e082" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 12.9727197265625); (3.125 : 13.3477197265625); (3.125 : 22.8469555664063); (3.5 : 22.8469555664063)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 12.9727197265625); (3.125 : 13.3477197265625); (3.125 : 22.8469555664063); (3.5 : 22.8469555664063)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/RepositoryDataContext/IdpeDataSource/IdpeDataSource_IdpeLog" />
       <nodes>
         <classShapeMoniker Id="b6e322dc-8fa6-4984-b5f0-5401e3cb38fc" />
         <classShapeMoniker Id="84334470-bbf0-4a14-afce-f742c538a8ae" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 8.79890055338542); (3.5 : 8.79890055338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 8.79890055338542); (3.5 : 8.79890055338542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/RepositoryDataContext/IdpeDataSource/IdpeDataSource_IdpePersistentVariable" />
       <nodes>
         <classShapeMoniker Id="b6e322dc-8fa6-4984-b5f0-5401e3cb38fc" />
         <classShapeMoniker Id="bb6d3eb5-6ffc-423f-8958-aa8bc4d0458f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 9.86140055338542); (6.5 : 9.86140055338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 9.86140055338542); (6.5 : 9.86140055338542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/RepositoryDataContext/IdpeDataSource/IdpeDataSource_IdpeRuleDataSource" />
       <nodes>
         <classShapeMoniker Id="b6e322dc-8fa6-4984-b5f0-5401e3cb38fc" />
         <classShapeMoniker Id="b8d1e789-e147-49b7-89d7-861dd53aca9d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.65625 : 14); (5.65625 : 10.0557027766927); (6.5 : 10.0557027766927)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.65625 : 14); (5.65625 : 10.0557027766927); (6.5 : 10.0557027766927)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/RepositoryDataContext/IdpeRule/IdpeRule_IdpeRuleDataSource" />
       <nodes>
         <classShapeMoniker Id="d9d0e62a-e9bc-421e-8d97-8fcd09568638" />
