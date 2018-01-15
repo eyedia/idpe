@@ -66,7 +66,7 @@ namespace Eyedia.IDPE.Interface
                 ListBox lb = new ListBox();
                 lb.SelectionMode = SelectionMode.One;
                 lb.SelectedValueChanged += OnListBoxSelectedValueChanged;
-                DataTable table = Core.Data.CoreDatabaseObjects.Instance.ExecuteCommand("select distinct code from symplusCodeSet") ;
+                DataTable table = Core.Data.CoreDatabaseObjects.Instance.ExecuteCommand("select distinct code from CodeSet") ;
                 foreach (DataRow row in table.Rows)
                 {                    
                     int index = lb.Items.Add(row["code"].ToString());
