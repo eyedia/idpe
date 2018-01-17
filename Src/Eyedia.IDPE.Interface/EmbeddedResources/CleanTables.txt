@@ -3,13 +3,13 @@ delete from IdpeVersion
 delete from IdpeLog
 delete from IdpeRuleDataSource
 delete from IdpeRule
-delete from SreKeyDatasource
+delete from IdpeKeyDatasource
 delete from IdpeKey
 delete from IdpeAttributeDataSource
 delete from IdpeAttribute where Name != 'IsValid'
 delete from AVPair
 delete from CodeSet
-delete from User where username != 'root'
+delete from [User] where username != 'root'
 delete from IdpeDataSource where issystem = 0 and id not in (-99,100)
 delete from IdpeDataSource where issystem = 1 and id not in (-99,100)
 delete from EmailTracker

@@ -68,7 +68,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.pgSymplus = new System.Windows.Forms.PropertyGrid();
+            this.propGrid = new System.Windows.Forms.PropertyGrid();
             this.pnlConfigPropTop = new System.Windows.Forms.Panel();
             this.cbEnvConfigs = new System.Windows.Forms.ComboBox();
             this.btnRefreshConfig = new System.Windows.Forms.Button();
@@ -556,7 +556,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(76, 26);
             this.label3.TabIndex = 19;
-            this.label3.Text = "sre.env.xml";
+            this.label3.Text = "idpe.env.xml";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnOpenSreEnv
@@ -616,7 +616,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.pgSymplus);
+            this.splitContainer1.Panel1.Controls.Add(this.propGrid);
             this.splitContainer1.Panel1.Controls.Add(this.pnlConfigPropTop);
             this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel3);
             this.splitContainer1.Panel1.Controls.Add(this.pnlConfigPropBottom);
@@ -630,13 +630,13 @@
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 5;
             // 
-            // pgSymplus
+            // propGrid
             // 
-            this.pgSymplus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pgSymplus.Location = new System.Drawing.Point(0, 120);
-            this.pgSymplus.Name = "pgSymplus";
-            this.pgSymplus.Size = new System.Drawing.Size(302, 143);
-            this.pgSymplus.TabIndex = 6;
+            this.propGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propGrid.Location = new System.Drawing.Point(0, 120);
+            this.propGrid.Name = "propGrid";
+            this.propGrid.Size = new System.Drawing.Size(302, 143);
+            this.propGrid.TabIndex = 6;
             // 
             // pnlConfigPropTop
             // 
@@ -866,7 +866,7 @@
         private System.Windows.Forms.Panel pnlConfigPropBottom;
         private System.Windows.Forms.Button btnSaveConfig;
         private System.Windows.Forms.Panel pnlConfigPropTop;
-        private System.Windows.Forms.PropertyGrid pgSymplus;
+        private System.Windows.Forms.PropertyGrid propGrid;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ComboBox cbEnvConfigs;
         private System.Windows.Forms.Label lblConfigFileName;

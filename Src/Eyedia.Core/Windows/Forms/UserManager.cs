@@ -192,7 +192,7 @@ namespace Eyedia.Core.Windows.Forms
             txtUserName.Text = "";
             txtEmailId.Text = "";
             lblPassword.Text = "";
-            cbGroups.SelectedItem = CoreDatabaseObjects.Instance.Groups.Where(g => g.Name.ToLower() == "Users").SingleOrDefault();
+            cbGroups.SelectedItem = CoreDatabaseObjects.Instance.Groups.Where(g => g.Name.ToLower() == "users").SingleOrDefault();
             txtFullName.Focus();
         }
 

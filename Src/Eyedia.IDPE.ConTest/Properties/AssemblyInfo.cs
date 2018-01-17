@@ -30,9 +30,7 @@ Description  -
 
 #endregion Copyright Notice
 
-
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Eyedia's Integrated Data Processing Environment Test Console")]
@@ -44,7 +42,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-
 [assembly: Guid("40298521-3b5a-471f-ab64-4bf336bf31d0")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

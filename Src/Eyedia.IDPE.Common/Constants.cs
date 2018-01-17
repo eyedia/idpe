@@ -49,7 +49,7 @@ namespace Eyedia.IDPE.Common
         public const string ColumnNamePosition = "xxxxxPositionxxxxx";
         public const string ColumnNameContainerError = "xxxxxContainerErrorxxxxx";
         public const int MaxTempFolderPath = 40;
-        public const string EnvironmentVariablesFileName = "sre.env.xml";
+        public const string EnvironmentVariablesFileName = "idpe.env.xml";
         public const string success = "success";
         public const string failed = "failed";
         public const string asmver = "1.1.8.18005";

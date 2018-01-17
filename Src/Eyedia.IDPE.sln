@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eyedia.IDPE.Command", "Eyedia.IDPE.Command\Eyedia.IDPE.Command.csproj", "{C05E0ACD-6FE2-4290-BD8A-F81D93186EF0}"
 EndProject
@@ -50,6 +50,7 @@ Global
 		{5191E37B-22A3-4CC9-BA99-1B3A66B56BDF}.Debug|x86.ActiveCfg = Debug|x86
 		{5191E37B-22A3-4CC9-BA99-1B3A66B56BDF}.Debug|x86.Build.0 = Debug|x86
 		{5191E37B-22A3-4CC9-BA99-1B3A66B56BDF}.Release|Any CPU.ActiveCfg = Release|x86
+		{5191E37B-22A3-4CC9-BA99-1B3A66B56BDF}.Release|Any CPU.Build.0 = Release|x86
 		{5191E37B-22A3-4CC9-BA99-1B3A66B56BDF}.Release|x86.ActiveCfg = Release|x86
 		{5191E37B-22A3-4CC9-BA99-1B3A66B56BDF}.Release|x86.Build.0 = Release|x86
 		{3E7D2F46-7A4E-4393-BF96-393F0BF2C7AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -102,5 +103,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {10F3C9EC-CA0B-400A-A2F6-5490560CC395}
 	EndGlobalSection
 EndGlobal

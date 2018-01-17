@@ -49,8 +49,40 @@ namespace Eyedia.IDPE.DataManager
 {
     public partial class Manager
     {
+        public bool ValidateSystemObjects()
+        {
+            bool allGood = true;
+            DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand("select Id from IdpeDataSource where Id = -99");
+            if (table.Rows.Count != 1)
+                allGood = false;
+
+            table = CoreDatabaseObjects.Instance.ExecuteCommand("select Id from IdpeDataSource where Id = 100");
+            if (table.Rows.Count != 1)
+                allGood = false;
+
+            table = CoreDatabaseObjects.Instance.ExecuteCommand("select AttributeId from IdpeAttribute where [Name] = 'DeploymentResult'");
+            if (table.Rows.Count != 1)
+                allGood = false;
+
+            table = CoreDatabaseObjects.Instance.ExecuteCommand("select AttributeId from IdpeAttribute where [Name] = 'DeploymentTrace'");
+            if (table.Rows.Count != 1)
+                allGood = false;
+
+            table = CoreDatabaseObjects.Instance.ExecuteCommand("select AttributeId from IdpeAttribute where [Name] = 'IsValid'");
+            if (table.Rows.Count != 1)
+                allGood = false;
+
+            table = CoreDatabaseObjects.Instance.ExecuteCommand("select Id from IdpeRule where [Name] = 'System Data Source - Map'");
+            if (table.Rows.Count != 1)
+                allGood = false;
+
+            return allGood;
+        }
+
         public void InsertSystemObjects()
         {
+           
+
             string sdsSqlStatement = "INSERT INTO [IdpeDataSource]([Id],[Name],[Description],[IsSystem],[IsActive],[CreatedTS],[CreatedBy]) VALUES(-99,'Global Datasource','Global datasource to keep global keys, connectionstrings',1,1, getdate(),'System')";
             string dsSqlStatement = "INSERT INTO [IdpeDataSource] ([Id],[Name],[Description],[IsSystem],[DataFeederType],[DataFormatType],[Delimiter],[SystemDataSourceId],[OutputType],[IsActive],[CreatedTS],[CreatedBy]) VALUES(100,'System Data Source','System data source to handle deployment restart etc',0,2,99,',',-99,1,1,getdate(),'System')";
 
@@ -58,6 +90,16 @@ namespace Eyedia.IDPE.DataManager
             IDbConnection connection = dal.CreateConnection(ConfigurationManager.ConnectionStrings[Constants.ConnectionStringName].ToString());
             connection.Open();
             IDbTransaction transaction = dal.CreateTransaction(connection);
+
+            //inserting default groups
+            var gAdmin = CoreDatabaseObjects.Instance.Groups.Where(g => g.Name.Equals("Admins", StringComparison.OrdinalIgnoreCase)).SingleOrDefault();
+            if (gAdmin == null)
+                CoreDatabaseObjects.Instance.ExecuteStatement("insert into [Group](Name, Description, CreatedTs, CreatedBy, Source) values ('Admins', 'Default administrator groups', getdate(), 'System', 'Installer')", dal, connection, transaction);
+
+            var gUsers = CoreDatabaseObjects.Instance.Groups.Where(g => g.Name.Equals("Users", StringComparison.OrdinalIgnoreCase)).SingleOrDefault();
+            if (gUsers == null)
+                CoreDatabaseObjects.Instance.ExecuteStatement("insert into [Group](Name, Description, CreatedTs, CreatedBy, Source) values ('Users', 'Default user groups', getdate(), 'System', 'Installer')", dal, connection, transaction);
+
             string sqlStatement = string.Empty;
             try
             {

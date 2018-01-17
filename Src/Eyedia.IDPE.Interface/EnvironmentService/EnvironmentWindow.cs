@@ -390,13 +390,13 @@ namespace Eyedia.IDPE.Interface
         {
             
             this.Cursor = Cursors.WaitCursor;
-            if(pgSymplus.SelectedObject is SreConfigurationSectionEditable)            
-                ((SreConfigurationSectionEditable)pgSymplus.SelectedObject).
+            if(propGrid.SelectedObject is SreConfigurationSectionEditable)            
+                ((SreConfigurationSectionEditable)propGrid.SelectedObject).
                    Save(ConfigurationManager.OpenExeConfiguration(GetExeNameFromConfigName(currentConfigFileName)));
             else
-                ((EyediaCoreConfigurationSectionEditable)pgSymplus.SelectedObject).
-                   Save(ConfigurationManager.OpenExeConfiguration(GetExeNameFromConfigName(currentConfigFileName)));            
-
+                ((EyediaCoreConfigurationSectionEditable)propGrid.SelectedObject).
+                   Save(ConfigurationManager.OpenExeConfiguration(GetExeNameFromConfigName(currentConfigFileName)));
+            Log(Path.GetFileName(SelectedEnvironmentConfig.ConfigFileName) + ".config - Saved!", true, Color.DarkGreen);
             if (currentConfigFileIsRemote)
             {
                 Log("Sending updated config file to " + SelectedEnvironment.Name + "...", false);
@@ -408,7 +408,7 @@ namespace Eyedia.IDPE.Interface
                 EnvironmentServiceDispatcherFactory.GetInstance(radTcpIp.Checked).SetConfigFile(SelectedEnvironmentConfig, packet);
                 Log("Sent.");
 
-                if (!currentConfigFileName.Contains("Configurator.exe"))
+                if (!currentConfigFileName.Contains("idped.exe"))
                 {
                     Log("Sending restart signal to " + SelectedEnvironment.Name + "...", false);
                     try
@@ -485,12 +485,19 @@ namespace Eyedia.IDPE.Interface
                         currentConfigFileIsRemote = true;
                     }
                 }
-                if(!selConfig.IsService)
-                    pgSymplus.SelectedObject = new EyediaCoreConfigurationSectionEditable(ConfigurationManager.OpenExeConfiguration(GetExeNameFromConfigName(currentConfigFileName)));
+
+                if ((!File.Exists(selConfig.ConfigFileName))
+                    || (!File.Exists(selConfig.ConfigFileName)))
+                {
+                    Log(Path.GetFileName(selConfig.ConfigFileName) + ".config does not exists!", true, Color.DarkRed);
+                }
                 else
-                    pgSymplus.SelectedObject = new SreConfigurationSectionEditable(ConfigurationManager.OpenExeConfiguration(GetExeNameFromConfigName(currentConfigFileName)));
-
-
+                {
+                    if (!selConfig.IsService)
+                        propGrid.SelectedObject = new EyediaCoreConfigurationSectionEditable(ConfigurationManager.OpenExeConfiguration(GetExeNameFromConfigName(currentConfigFileName)));
+                    else
+                        propGrid.SelectedObject = new SreConfigurationSectionEditable(ConfigurationManager.OpenExeConfiguration(GetExeNameFromConfigName(currentConfigFileName)));
+                }
                 this.Cursor = Cursors.Default;
             }
         }

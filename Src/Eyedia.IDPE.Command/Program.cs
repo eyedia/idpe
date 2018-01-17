@@ -71,6 +71,12 @@ namespace Eyedia.IDPE.Command
                         SqlServerToSqlCe.Convert(args);
                         break;
 
+                    case "id":
+                        InitDatabase initDatabase = new InitDatabase();
+                        initDatabase.Initialize(args[1]);
+                        Console.WriteLine("Database initialized!");
+                        break;
+
                     case "uc":
                         UpdateConfigs updateConfigs = new UpdateConfigs();
                         bool setFolder = false;
@@ -115,6 +121,8 @@ namespace Eyedia.IDPE.Command
             ConfigEncryptor.EncryptAppConfigSections(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpe.exe"), "appSettings,connectionStrings,eyediaCoreConfigurationSection,sreConfigurationSection");
             Console.Write(".");
             ConfigEncryptor.EncryptAppConfigSections(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idped.exe"), "appSettings,connectionStrings,eyediaCoreConfigurationSection");
+            Console.Write(".");
+            ConfigEncryptor.EncryptAppConfigSections(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpec.exe"), "appSettings,connectionStrings,eyediaCoreConfigurationSection");
             Console.Write(".");
             AllowDecryption();
             Console.Write(".");

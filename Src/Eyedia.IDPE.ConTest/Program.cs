@@ -50,17 +50,28 @@ using Eyedia.Core.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Xml.Linq;
+using System.Runtime.InteropServices;
 
 namespace ConTest
 {
     class Program
     {
+      
+
+        [DllImport(@"Eyedia.Security.dll", CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.BStr)]
+        private static extern string Encrypt(string plaintext);
+
         public static void Main()
         {
             GetDummyUser();
 
+            //StringBuilder password = new StringBuilder("password");            
+            string str = Encrypt("password");
 
-            new DisclaimerWriter(@"C:\Data\IDPE\Src").Write();
+            Console.WriteLine(str);
+            Console.Read();
+
         }
 
         private static void GetDummyUser()

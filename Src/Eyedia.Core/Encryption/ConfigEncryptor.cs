@@ -30,9 +30,6 @@ Description  -
 
 #endregion Copyright Notice
 
-
-
-
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -42,7 +39,7 @@ namespace Eyedia.Core.Encryption
 
     public class ConfigEncryptor
     {
-        const string configProtectionProvider = "SymplusRsaProtectedConfigurationProvider";
+        const string configProtectionProvider = "RsaProtectedConfigurationProvider";
         public static void EncryptAppConfigSections(string exePath, string commaSeparatedSections)
         {            
             List<string> sectionNames = new List<string>(commaSeparatedSections.Split(",".ToCharArray()));

@@ -173,7 +173,7 @@ namespace Eyedia.IDPE.DataManager
             return key;
         }
 
-        private List<IdpeKeyDataSource> GetSreKeyDataSources()
+        private List<IdpeKeyDataSource> GetIdpeKeyDataSources()
         {
             List<IdpeKeyDataSource>  idpeKeyDataSources = new List<IdpeKeyDataSource>();
             string commandText = "select [KeyDataSourceId],[KeyId],[DataSourceId],[IsDeployable] from [IdpeKeyDataSource]";

@@ -30,17 +30,8 @@ Description  -
 
 #endregion Copyright Notice
 
-
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Configuration;
-using Eyedia.Core;
 using Eyedia.IDPE.Common;
-using Eyedia.Core.Data;
-using System.Data;
 using Eyedia.Core.Net;
 
 namespace Eyedia.IDPE.DataManager

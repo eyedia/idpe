@@ -32,11 +32,13 @@ Description  -
 
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using Eyedia.Core;
 using Eyedia.IDPE.Common;
 using Eyedia.IDPE.DataManager;
 using Eyedia.IDPE.Services;
@@ -52,8 +54,25 @@ namespace Eyedia.IDPE.Services
         {
             SreEnvironment localEnv = new SreEnvironment(true);
             localEnv.Name = "<local>";
-            localEnv.RootFolder = "C:\\SRE";
-            localEnv.PullFolder = "C:\\SRE\\WatchFolder";
+            localEnv.RootFolder = AppDomain.CurrentDomain.BaseDirectory;
+            localEnv.PullFolder = Path.Combine(localEnv.RootFolder, "WatchFolder");
+
+            string configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpe.exe");
+            if (File.Exists(configPath))
+            {
+                Configuration config = ConfigurationManager.OpenExeConfiguration(configPath);
+                EyediaCoreConfigurationSection eccs = (EyediaCoreConfigurationSection)config.GetSection("eyediaCoreConfigurationSection");
+                if (eccs == null)
+                {
+                    SreConfigurationSection idpecs = (SreConfigurationSection)config.GetSection("sreConfigurationSection");
+                    if (idpecs != null)
+                    {
+                        localEnv.RootFolder = AppDomain.CurrentDomain.BaseDirectory;
+                        localEnv.PullFolder = idpecs.LocalFileWatcher.BaseDirectory;
+                    }
+                }
+            }
+
             localEnv.LoadDefaultConfigs();
             this.Add(localEnv);
         }
@@ -100,7 +119,7 @@ namespace Eyedia.IDPE.Services
         {
             get
             {
-                return Path.Combine(RootFolder, "sre.env.xml");
+                return Path.Combine(RootFolder, "idpe.env.xml");
             }
         }
 
@@ -197,8 +216,8 @@ namespace Eyedia.IDPE.Services
         public void LoadDefaultConfigs()
         {
             EnvironmentConfigs.Clear();
-            EnvironmentConfigs.Add(new SreEnvironmentConfig(this, "C:\\IDPE\\idped.exe", 0, false));
-            EnvironmentConfigs.Add(new SreEnvironmentConfig(this, "C:\\IDPE\\idpe.exe"));
+            EnvironmentConfigs.Add(new SreEnvironmentConfig(this, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idped.exe"), 0, false));
+            EnvironmentConfigs.Add(new SreEnvironmentConfig(this, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpe.exe")));
             EnvironmentConfigsInstancesOnly[0].RemoteUrl = "net.tcp://localhost:7200/srees";
         }
         public void CheckAdditionalInstances(string remoteUrl)
@@ -207,7 +226,7 @@ namespace Eyedia.IDPE.Services
             
             for (int i = 1; i < instances; i++)
             {
-                EnvironmentConfigs.Add(new SreEnvironmentConfig(this, Path.Combine(RootFolder, "sre" + i + ".exe"), i));
+                EnvironmentConfigs.Add(new SreEnvironmentConfig(this, Path.Combine(RootFolder, "idpe" + i + ".exe"), i));
             }
         }
 
@@ -253,7 +272,7 @@ namespace Eyedia.IDPE.Services
             ConfigFileName = configFileName;
             this.InstanceNumber = instanceNumber;
             this.IsService = isService;
-            DisplayName = IsService ? "Service " + instanceNumber : "Configurator";
+            DisplayName = IsService ? "Service " + instanceNumber : "IDE";
             RemoteUrl = "net.tcp://<remoteserver>:<port>/srees";
 
         }

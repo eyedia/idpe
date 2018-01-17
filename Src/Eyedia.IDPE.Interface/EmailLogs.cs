@@ -58,7 +58,7 @@ namespace Eyedia.IDPE.Interface
         public string EmailDirectory { get; set; }
         private void Init()
         {
-            string exeName = "sre.exe";
+            string exeName = "idpe.exe";
             if (ConfigurationManager.AppSettings["exeName"] != null)
                 exeName = ConfigurationManager.AppSettings["exeName"];
 

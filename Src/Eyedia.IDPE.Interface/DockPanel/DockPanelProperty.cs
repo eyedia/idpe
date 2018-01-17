@@ -205,7 +205,8 @@ namespace Eyedia.IDPE.Interface
                 toolStrip1.Items[5].Visible = true;
             }
             tabControl1.ResumeLayout(true);
-            globalSearchWidget1.DataSourceId = DataSource.Id;
+            if(DataSource != null)
+                globalSearchWidget1.DataSourceId = DataSource.Id;
         }
 
         private void propertyGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)

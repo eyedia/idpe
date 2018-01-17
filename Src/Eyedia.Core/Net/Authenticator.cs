@@ -83,7 +83,7 @@ namespace Eyedia.Core.Net
         public User Authenticate()
         {            
             IsAuthenticated = true;
-            return GetSymplusUser();
+            return GetUser();
         }
 
         public User Authenticate(string groupNames)
@@ -119,7 +119,7 @@ namespace Eyedia.Core.Net
                                 IsAuthenticated = true;
                                 SetData(System.Security.Principal.WindowsIdentity.GetCurrent().Name, string.Empty, groupName); //final level
                                 SetAuthenticationResult(AuthenticationResultTypes.ActiveDirectoryGroup, true);                                
-                                return GetSymplusUser();
+                                return GetUser();
                             }
                         }
                     }
@@ -168,7 +168,7 @@ namespace Eyedia.Core.Net
                     }
                     break;
             }
-            return IsAuthenticated ? GetSymplusUser(userName) : null;
+            return IsAuthenticated ? GetUser(userName) : null;
         }
 
         public bool AuthenticateSymplus(string userName, string password)
@@ -261,7 +261,7 @@ namespace Eyedia.Core.Net
                 Result.Add(authenticationType, isAuthenticated);
         }
 
-        private User GetSymplusUser(string userName = null)
+        private User GetUser(string userName = null)
         {
             if (userName == null)
                 userName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;

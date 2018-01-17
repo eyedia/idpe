@@ -53,7 +53,7 @@ namespace Eyedia.IDPE.Host.Windows
         private void InitializeComponent()
         {
             // 
-            // SymplusRuleEngineService
+            // IdpeService
             // 
             this.ServiceName = "Integrated Data Processing Environment";
 

@@ -204,7 +204,7 @@ namespace Eyedia.IDPE.Services
                 Callback(info, isError);
         }
 
-        private const string __requireddlls = "Symplus.Security.dll,Eyedia.Core.dll,Eyedia.IDPE.Services.dll,Eyedia.IDPE.Common.dll,Eyedia.IDPE.DataManager.dll,Eyedia.IDPE.Services.WorkflowActivities.dll,idpe.exe,idped.exe,idpec.exe";
+        private const string __requireddlls = "Eyedia.Security.dll,Eyedia.Core.dll,Eyedia.IDPE.Services.dll,Eyedia.IDPE.Common.dll,Eyedia.IDPE.DataManager.dll,Eyedia.IDPE.Services.WorkflowActivities.dll,idpe.exe,idped.exe,idpec.exe";
         #endregion Helpers
 
     }

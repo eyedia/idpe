@@ -210,6 +210,12 @@ namespace Eyedia.IDPE.Interface
                         timerLoad.Enabled = false;
                         ShowMessage(anyError, true);
                     }
+                    if(!ValidateSystemObject())
+                    {
+                        lblMessage.Text = "Initializing...Database. Failed!";
+                        timerLoad.Enabled = false;
+                        ShowMessage("System objects could not be created! Please contact system administrator.", true);
+                    }
                     break;
                 case 2:
                     lblMessage.Text = "Initializing...Menu.";
@@ -237,6 +243,17 @@ namespace Eyedia.IDPE.Interface
                     break;
             }
             counter++;
+        }
+
+        private bool ValidateSystemObject()
+        {
+            DataManager.Manager manager = new DataManager.Manager();
+            if (!manager.ValidateSystemObjects())
+            {
+                manager.InsertSystemObjects();
+                return manager.ValidateSystemObjects();
+            }
+            return true;
         }
 
         private void ExtractImages()

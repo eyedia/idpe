@@ -43,14 +43,15 @@ namespace Eyedia.Core.Data
 {
     public partial class CoreDatabaseObjects
     {
-        [DllImport(@"Symplus.Security.dll", CallingConvention = CallingConvention.Cdecl)]
-        private static extern int SymplusAuthenticate(string user, string password);
+        [DllImport(@"Eyedia.Security.dll", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int Authenticate(string user, string password);
 
-        [DllImport(@"Symplus.Security.dll", CallingConvention = CallingConvention.Cdecl)]
-        private static extern int Encrypt(StringBuilder plaintext, int length);
+        [DllImport(@"Eyedia.Security.dll", CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.BStr)]
+        private static extern string Encrypt(string plaintext);
 
-        [DllImport(@"Symplus.Security.dll", CallingConvention = CallingConvention.Cdecl)]
-        private static extern int IsEqual(StringBuilder plaintext, int plaintextlength, StringBuilder enctext, int enctextlength);
+        [DllImport(@"Eyedia.Security.dll", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int IsEqual(string plaintext, string enctext);
 
         private List<User> GetUsers()
         {
@@ -116,14 +117,7 @@ namespace Eyedia.Core.Data
              }
             return null;
         }
-
-        private string EncryptPassword(string password)
-        {            
-            StringBuilder sbPassword = new StringBuilder(password);
-            Encrypt(sbPassword, sbPassword.Length);
-            return sbPassword.ToString();
-        }
-
+      
         public int Save(User user)
         {
             if ((user.IsDebugUser != true) && (string.IsNullOrEmpty(user.Password)))
@@ -147,7 +141,7 @@ namespace Eyedia.Core.Data
                     command.AddParameterWithValue("FullName", user.FullName);
                     command.AddParameterWithValue("UserName", user.UserName);
                     if(user.IsDebugUser != true)
-                        command.AddParameterWithValue("Password", EncryptPassword(user.Password));
+                        command.AddParameterWithValue("Password", Encrypt(user.Password));
                     else
                         command.AddParameterWithValue("Password", "");      //only in case of debug
 
@@ -252,7 +246,7 @@ namespace Eyedia.Core.Data
             command.CommandText = "UPDATE [User] SET [Password] = @Password ";
             command.CommandText += "WHERE [Id] = @Id";
 
-            command.AddParameterWithValue("Password", EncryptPassword(newPassword));
+            command.AddParameterWithValue("Password", Encrypt(newPassword));
             command.AddParameterWithValue("Id", user.Id);
             command.ExecuteNonQuery();
 
@@ -327,18 +321,14 @@ namespace Eyedia.Core.Data
                 conn.Dispose();
             }
 
-
-            StringBuilder sbPassword = new StringBuilder(password);
-            StringBuilder sbEncryptedPassword = new StringBuilder(dbPassword);
-
-            if (IsEqual(sbPassword, sbPassword.Length, sbEncryptedPassword, sbEncryptedPassword.Length) == 1)
+            if (IsEqual(password, dbPassword) == 1)
             {
                 return GetUser(userName);
             }
             else if(foundInDb == false)
             {
                 //default hardcoded users
-                if (CoreDatabaseObjects.SymplusAuthenticate(userName, password) > 0)
+                if (CoreDatabaseObjects.Authenticate(userName, password) > 0)
                 {
                     User user = new User();
                     user.UserName = userName;
