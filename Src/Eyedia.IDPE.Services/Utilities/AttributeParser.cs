@@ -95,7 +95,7 @@ namespace Eyedia.IDPE.Services
                     if (column[attributes[a].Name].IsNull == true)
                     {
                         value = "NULL";
-                        column[a].Error = new SreMessage(SreMessageCodes.SRE_SUCCESS);
+                        column[a].Error = new IdpeMessage(IdpeMessageCodes.IDPE_SUCCESS);
                     }
                     else
                     {
@@ -115,7 +115,7 @@ namespace Eyedia.IDPE.Services
 
                     if (column[attributes[a].Name].IgnoreParsing)
                     {
-                        column[a].Error = new SreMessage(SreMessageCodes.SRE_SUCCESS);
+                        column[a].Error = new IdpeMessage(IdpeMessageCodes.IDPE_SUCCESS);
                         continue;
                     }
 
@@ -128,7 +128,7 @@ namespace Eyedia.IDPE.Services
                         //and if IsValid.err msg already populated, we will lose that...
                         if (attributes[a].Name == "IsValid")
                         {
-                            SreMessage errMsg = SREType.Parse(false);
+                            IdpeMessage errMsg = SREType.Parse(false);
                             if (column[a].Error == null)
                                 column[a].Error = errMsg;
                             else
@@ -136,14 +136,14 @@ namespace Eyedia.IDPE.Services
                         }
                         else
                         {
-                            SreMessage thisResult = SREType.Parse(false);
+                            IdpeMessage thisResult = SREType.Parse(false);
                             if (column[a].Error == null)
                             {
                                 column[a].Error = thisResult;
                             }
                             else
                             {
-                                if (thisResult.Code != SreMessageCodes.SRE_SUCCESS)
+                                if (thisResult.Code != IdpeMessageCodes.IDPE_SUCCESS)
                                 {
                                     string oldErrorMsg = column[a].Error.Message;
                                     column[a].Error = thisResult;
@@ -194,14 +194,14 @@ namespace Eyedia.IDPE.Services
                         if (string.IsNullOrEmpty(currentAttribute.Value))
                             currentAttribute.Value = GetFormulaResult(item.Formula);
 
-                        SreMessage thisResult = item.Parse(false);
+                        IdpeMessage thisResult = item.Parse(false);
                         if (currentAttribute.Error == null)
                         {
                             currentAttribute.Error = thisResult;
                         }
                         else
                         {
-                            if (thisResult.Code != SreMessageCodes.SRE_SUCCESS)
+                            if (thisResult.Code != IdpeMessageCodes.IDPE_SUCCESS)
                             {
                                 string oldErrorMsg = currentAttribute.Error.Message;
                                 currentAttribute.Error = thisResult;
@@ -213,7 +213,7 @@ namespace Eyedia.IDPE.Services
                     else if ((item.Type == AttributeTypes.NotReferenced) && (string.IsNullOrEmpty(currentAttribute.Value)))
                     {
                         //NotReferenced can not be empty at least.
-                        currentAttribute.Error = new SreMessage(SreMessageCodes.SRE_REFERENCED_TYPE_DATA_CAN_NOT_BE_NULL);
+                        currentAttribute.Error = new IdpeMessage(IdpeMessageCodes.IDPE_REFERENCED_TYPE_DATA_CAN_NOT_BE_NULL);
                         currentAttribute.Error.Message = string.Format(currentAttribute.Error.Message, PrintRowColPosition(item.RecordPosition, item.ColumnName, isSystemRow), currentAttribute.Value, item.ColumnName);
                         continue;
                     }
@@ -234,7 +234,7 @@ namespace Eyedia.IDPE.Services
                                 //string k_n_type = _ApplicationKeys.GetKeyValue(connectionStringKeyName);
                                 IdpeKey key = _DataSourceKeys.GetKey(connectionStringKeyName);
                                 item.ConnectionString = key.Value;
-                                item.DatabaseType = (SreKeyTypes)key.Type;
+                                item.DatabaseType = (IdpeKeyTypes)key.Type;
 
                             }
 
@@ -252,7 +252,7 @@ namespace Eyedia.IDPE.Services
                         if (errorMessage != string.Empty)
                         {
                             //Prepare return error message (and not the technical exception)
-                            SreMessage returnMessage = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_GENERIC);
+                            IdpeMessage returnMessage = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_GENERIC);
 
 
                             //Write the error into trace with mapId.
@@ -273,7 +273,7 @@ namespace Eyedia.IDPE.Services
                             }
                             else
                             {
-                                if (currentAttribute.Error.Code != SreMessageCodes.SRE_SUCCESS)
+                                if (currentAttribute.Error.Code != IdpeMessageCodes.IDPE_SUCCESS)
                                 {
                                     string oldErrorMsg = currentAttribute.Error.Message;
                                     currentAttribute.Error = returnMessage;

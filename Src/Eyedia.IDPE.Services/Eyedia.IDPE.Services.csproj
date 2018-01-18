@@ -58,6 +58,9 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -114,9 +117,9 @@
     <Compile Include="BOs\Parameters.cs" />
     <Compile Include="BOs\SreTraceLogWriter.cs" />
     <Compile Include="BOs\SreType.cs" />
-    <Compile Include="Clients\SreClient.cs" />
-    <Compile Include="Clients\SreClientConfigExtracter.cs" />
-    <Compile Include="Clients\SreesClient.cs" />
+    <Compile Include="Clients\Client.cs" />
+    <Compile Include="Clients\ClientConfigExtracter.cs" />
+    <Compile Include="Clients\IdpeesClient.cs" />
     <Compile Include="EnvironmentService\DeploymentService.cs" />
     <Compile Include="EnvironmentService\Contracts\DataSourceBundle.cs" />
     <Compile Include="EnvironmentService\Contracts\DataSourcePatch.cs" />
@@ -127,14 +130,14 @@
     <Compile Include="EnvironmentService\IIdpeEnvironmentService.cs" />
     <Compile Include="EnvironmentService\EnvironmentServiceDispatcher.cs" />
     <Compile Include="EnvironmentService\EnvironmentServiceDispatcherUsingWcf.cs" />
-    <Compile Include="SreVersionManager.cs" />
+    <Compile Include="VersionManager.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="GlobalEvents\GlobalEvents.cs" />
     <Compile Include="GlobalEvents\GlobalEventsOnComplete.cs" />
     <Compile Include="GlobalEvents\GlobalEventsOnCompletes.cs" />
     <Compile Include="GlobalSearch\GlobalSearch.cs" />
     <Compile Include="GlobalSearch\GSearchResultCube.cs" />
-    <Compile Include="SreCommandParser.cs" />
+    <Compile Include="CommandParser.cs" />
     <Compile Include="Utilities\CSharpCodeInformation.cs" />
     <Compile Include="Utilities\DataParsers\CSharpCodeToDataTable.cs" />
     <Compile Include="Utilities\DataParsers\EdiX12Parser.cs" />
@@ -214,7 +217,7 @@
     <Compile Include="Utilities\DataContainerValidators\DataContainerValidatorGeneric.cs" />
     <Compile Include="Utilities\DataParsers\CsvToDataTable.cs" />
     <Compile Include="Utilities\AttributeParser.cs" />
-    <Compile Include="Sre.cs" />
+    <Compile Include="Idpe.cs" />
     <Compile Include="Utilities\DataParsers\DataParser.cs" />
     <Compile Include="Utilities\DataParsers\FixedLengthToDataTable.cs" />
     <Compile Include="Utilities\DataParsers\SreXmlToDataTable.cs" />
@@ -226,10 +229,16 @@
     <Compile Include="Utilities\PlugIns\PlugInsGeneric.cs" />
     <Compile Include="Utilities\Pullers\SqlWatcher.cs" />
     <Compile Include="Utilities\Pullers\ZipFileWatcher.cs" />
-    <Compile Include="Utilities\WebPublishers\BasePage.cs" />
+    <Compile Include="Utilities\WebPublishers\BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Utilities\WebPublishers\HttpModuleRegistry.cs" />
-    <Compile Include="Utilities\WebPublishers\InformationPage.cs" />
-    <Compile Include="Utilities\WebPublishers\MonitorPage.cs" />
+    <Compile Include="Utilities\WebPublishers\InformationPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Utilities\WebPublishers\MonitorPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Utilities\WebPublishers\PageFactory.cs" />
     <Compile Include="Utilities\Pullers\FtpFileSystemWatcher.cs" />
     <Compile Include="Utilities\Pullers\Watchers.cs" />
@@ -292,8 +301,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Clients\generate.bat" />
-    <EmbeddedResource Include="Clients\SreClient.config" />
-    <None Include="Clients\SreesClient.config" />
+    <EmbeddedResource Include="Clients\Client.config" />
+    <None Include="Clients\idpeesClient.config" />
     <EmbeddedResource Include="EnvironmentService\sreupdate.cmd" />
     <None Include="packages.config" />
     <None Include="Release\Finish.bat" />

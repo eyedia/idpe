@@ -63,7 +63,7 @@ namespace Eyedia.IDPE.Services
     {
         public MonitorPage()
         {
-            PageTitle = "SRE Monitor";
+            PageTitle = "IDPE Monitor";
         }
        
         protected override void RenderContents(HtmlTextWriter writer)
@@ -77,7 +77,7 @@ namespace Eyedia.IDPE.Services
 
             writer.WriteLine(@"
                 <script type='text/javascript' language='JavaScript'>
-                                       var SRE = {
+                                       var IDPE = {
                         info : {
                             version     : '" + GetVersion() + @"',
                             fileVersion : '" + GetFileVersion() + @"',
@@ -155,7 +155,7 @@ namespace Eyedia.IDPE.Services
             writer.AddAttribute(HtmlTextWriterAttribute.Class, "hilite");
 
             writer.Write("<tr>");
-            writer.Write("<th colspan='4'>SRE Base Variables</th>");
+            writer.Write("<th colspan='4'>IDPE Base Variables</th>");
             writer.Write("</tr>");
 
             writer.Write("<tr><td>InstanceName</td><td><strong>{0}</strong></td><td></td><td></td></tr>", EyediaCoreConfigurationSection.CurrentConfig.InstanceName);
@@ -166,13 +166,13 @@ namespace Eyedia.IDPE.Services
             if (str.Equals("true", StringComparison.OrdinalIgnoreCase))
             {
                 writer.Write("<tr><td>LocalWatcher</td><td>{0}</td><td align='center'><img src='{1}/running.png' height='16' width='16' border='0' /></td>", 
-                    SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, this.Context.Request.Path);
+                    IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, this.Context.Request.Path);
                 writer.Write("<td align='center'><input name='btn_LocalFileWatcherFolderNamePull' type='submit' id='btn_LocalFileWatcherFolderNamePull' value='Stop' onclick=\"reloadme('pullers=1')\" /></td></tr>");
             }
             else
             {
                 writer.Write("<tr><td>LocalWatcher</td><td>{0}</td><td align='center'><img src='{1}/stopped.png' height='16' width='16' border='0' /></td>",
-                    SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, this.Context.Request.Path);
+                    IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, this.Context.Request.Path);
                 writer.Write("<td align='center'><input name='btn_LocalFileWatcherFolderNamePull' type='submit' id='btn_LocalFileWatcherFolderNamePull' value='Start' onclick=\"reloadme('pullers=0')\" /></td></tr>");
 
             }            
@@ -350,7 +350,7 @@ namespace Eyedia.IDPE.Services
         {
             writer.RenderBeginTag(HtmlTextWriterTag.P);
             writer.AddAttribute(HtmlTextWriterAttribute.Onclick, "return onCheckForUpdate(this)");
-            writer.AddAttribute(HtmlTextWriterAttribute.Title, "Checks if your SRE version is up to date (requires Internet connection)");
+            writer.AddAttribute(HtmlTextWriterAttribute.Title, "Checks if your IDPE version is up to date (requires Internet connection)");
             writer.RenderBeginTag(HtmlTextWriterTag.Button);
             writer.Write("Check for Update");
             writer.RenderEndTag(); // </button>

@@ -463,7 +463,7 @@
             this.chkFirstRowIsHeader2.TabIndex = 29;
             this.chkFirstRowIsHeader2.Text = "First row will be header";
             this.toolTip.SetToolTip(this.chkFirstRowIsHeader2, "Even though the interface will take care complete data feed, but you need to let " +
-        "SRE know if the first row contains the header(column names)");
+        "IDPE know if the first row contains the header(column names)");
             this.chkFirstRowIsHeader2.UseVisualStyleBackColor = false;
             // 
             // grpCustom

@@ -78,7 +78,7 @@ namespace Eyedia.IDPE.Interface
             {
                 _DataSource = new Manager().GetDataSourceDetails((int)dataSourceId);
                 lblFrom.Text = _DataSource.Name;
-                txtExportFile.Text = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), _DataSource.Name + ".srex");
+                txtExportFile.Text = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), _DataSource.Name + ".idpex");
             }
             if (_Exporting)
             {
@@ -233,7 +233,7 @@ namespace Eyedia.IDPE.Interface
                     dir = Path.GetDirectoryName(txtExportFile.Text);
 
                 saveFileDialog1.InitialDirectory = dir;
-                saveFileDialog1.Filter = "SRE Exported files (*.srex)|*.srex|All files (*.*)|*.*";
+                saveFileDialog1.Filter = "IDPE Exported files (*.idpex)|*.idpex|All files (*.*)|*.*";
                 saveFileDialog1.FileName = "";
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     txtExportFile.Text = saveFileDialog1.FileName;
@@ -241,7 +241,7 @@ namespace Eyedia.IDPE.Interface
             else
             {
                 openFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                openFileDialog1.Filter = "SRE Exported files (*.srex)|*.srex|All files (*.*)|*.*";
+                openFileDialog1.Filter = "IDPE Exported files (*.idpex)|*.idpex|All files (*.*)|*.*";
                 openFileDialog1.FileName = "";
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                     txtExportFile.Text = openFileDialog1.FileName;

@@ -57,7 +57,7 @@ namespace Eyedia.IDPE.Services
         public ZipFileWatcher() { }
 
         /// <summary>
-        /// This constructor get called internally by SRE
+        /// This constructor get called internally by IDPE
         /// </summary>
         public ZipFileWatcher(string zipFileName, int dataSourceId, string zipInterfaceName, string processingBy, string outputFolder, string renamedToIdentifier)
         {
@@ -141,7 +141,7 @@ namespace Eyedia.IDPE.Services
         {
             ExtensionMethods.TraceInformation("Handling a zip file '{0}', processing by '{1}' of data source '{2}'.", ZipFileName, ProcessingBy, DataSourceId);            
             
-            string unzipLocation = Path.Combine(EyediaCoreConfigurationSection.CurrentConfig.TempDirectory, Constants.SREBaseFolderName);
+            string unzipLocation = Path.Combine(EyediaCoreConfigurationSection.CurrentConfig.TempDirectory, Constants.IdpeBaseFolderName);
             unzipLocation = Path.Combine(unzipLocation, "TempZip");
             unzipLocation = Path.Combine(unzipLocation, ZipUniqueId);
             UnZippedFileNames = ZipFileHandler.UnZip(ZipFileName, unzipLocation).ToArray();
@@ -203,7 +203,7 @@ namespace Eyedia.IDPE.Services
         private bool IsInIgnoreList(string fileExtension)
         {
             List<string> filters = new List<string>();
-            string appWatchFilter = this.DataSourceKeys.GetKeyValue(SreKeyTypes.ZipIgnoreFileList);
+            string appWatchFilter = this.DataSourceKeys.GetKeyValue(IdpeKeyTypes.ZipIgnoreFileList);
             if (appWatchFilter.Contains("|"))
                 filters.AddRange(appWatchFilter.ToLower().Split("|".ToCharArray()));
             else
@@ -220,7 +220,7 @@ namespace Eyedia.IDPE.Services
         private bool IsInIgnoreListButCopy(string fileExtension)
         {
             List<string> filters = new List<string>();
-            string appWatchFilter = this.DataSourceKeys.GetKeyValue(SreKeyTypes.ZipIgnoreFileListButCopyToOutputFolder);
+            string appWatchFilter = this.DataSourceKeys.GetKeyValue(IdpeKeyTypes.ZipIgnoreFileListButCopyToOutputFolder);
             if (appWatchFilter.Contains("|"))
                 filters.AddRange(appWatchFilter.ToLower().Split("|".ToCharArray()));
             else

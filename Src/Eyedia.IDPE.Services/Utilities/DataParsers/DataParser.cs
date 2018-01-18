@@ -50,7 +50,7 @@ namespace Eyedia.IDPE.Services
         public DataParser() { }
 
         /// <summary>
-        /// Creates new data parser object within SRE context
+        /// Creates new data parser object within IDPE context
         /// </summary>
         /// <param name="job"></param>
         public DataParser(Job job)
@@ -61,7 +61,7 @@ namespace Eyedia.IDPE.Services
         }
 
         /// <summary>
-        /// Creates new data parser object within SRE context
+        /// Creates new data parser object within IDPE context
         /// </summary>
         /// <param name="dataSource"></param>
         public DataParser(DataSource dataSource)

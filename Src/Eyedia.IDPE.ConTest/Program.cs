@@ -51,25 +51,22 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Xml.Linq;
 using System.Runtime.InteropServices;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ConTest
 {
     class Program
     {
-      
-
-        [DllImport(@"Eyedia.Security.dll", CallingConvention = CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.BStr)]
-        private static extern string Encrypt(string plaintext);
-
         public static void Main()
         {
             GetDummyUser();
 
-            //StringBuilder password = new StringBuilder("password");            
-            string str = Encrypt("password");
 
-            Console.WriteLine(str);
+            Cache.Instance.Bag.Add("d1", Information.LoggedInUser);
+            Cache.Instance.Bag.Add("d2", Information.LoggedInUser);
+
+            List<string> keys = Cache.Instance.Bag.GetKeyNames();
             Console.Read();
 
         }

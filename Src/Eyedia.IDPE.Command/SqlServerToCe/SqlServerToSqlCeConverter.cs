@@ -142,7 +142,7 @@ namespace Eyedia.IDPE.Command
             }
 
             bool copiedFailed = false;
-            sqlCeConnectionString = sqlCeConnectionString.Replace("LCID=sre;", "");
+            sqlCeConnectionString = sqlCeConnectionString.Replace("LCID=idpe;", "");
             System.Data.SqlServerCe.SqlCeEngine eng = new System.Data.SqlServerCe.SqlCeEngine(sqlCeConnectionString);
             object engine = eng;
             Type type = engine.GetType();
@@ -184,7 +184,7 @@ namespace Eyedia.IDPE.Command
                 if (tbl.IsSystemObject)
                     continue;
 
-                //if (tbl.Name == "SreVersion")
+                //if (tbl.Name == "IdpeVersion")
                 //    Debugger.Break();
 
                 Console.WriteLine("Scripting table: " + tbl.Name);
@@ -424,7 +424,7 @@ namespace Eyedia.IDPE.Command
                                 idx1++;
                             }
                         }
-                        //if (tbl.Name.Contains("SreVersion"))
+                        //if (tbl.Name.Contains("IdpeVersion"))
                         //    Debugger.Break();
 
                         insertSql = String.Format(insertSql, tbl.Name, sbColums.ToString(), sbValues.ToString());

@@ -178,7 +178,7 @@ namespace Eyedia.IDPE.Services
 
         private string ParseCommand(PullersEventArgs e, string command)
         {
-            return new SreCommandParser(e.Job.DataSource).Parse(command, e.Job.FileName, e.OutputFileName);
+            return new CommandParser(e.Job.DataSource).Parse(command, e.Job.FileName, e.OutputFileName);
         }
 
         //private string ParseCommand(PullersEventArgs e, string command)
@@ -247,7 +247,7 @@ namespace Eyedia.IDPE.Services
 
         //private void ThrowInvalidCommandException(string command)
         //{
-        //    throw new Exception(string.Format("'{0}' is not recognized as a valid SRE command!", command));
+        //    throw new Exception(string.Format("'{0}' is not recognized as a valid IDPE command!", command));
         //}
 
             /*

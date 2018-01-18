@@ -62,7 +62,7 @@ namespace Eyedia.IDPE.Services
         string _logRelativePath;
         public LogArchivePage(string logFileRelativePath)
         {
-            PageTitle = "SRE Monitor - Archived Logs";
+            PageTitle = "IDPE Monitor - Archived Logs";
             _logRelativePath = logFileRelativePath;
         }
        

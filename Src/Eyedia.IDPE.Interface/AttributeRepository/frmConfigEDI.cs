@@ -91,10 +91,10 @@ namespace Eyedia.IDPE.Interface
                 cmbDelmiter.Text = ds.Delimiter;
 
             List<IdpeKey> keys = manager.GetKeys(DataSourceId);
-            rtbXslt.Text = keys.GetKeyValue(SreKeyTypes.EDIX12Xslt);
+            rtbXslt.Text = keys.GetKeyValue(IdpeKeyTypes.EDIX12Xslt);
             SyntaxHighLighter.HighLight(rtbXslt, _blueKeyWords, _redKeyWords);
 
-            string strHeader = keys.GetKeyValue(SreKeyTypes.IsFirstRowHeader);
+            string strHeader = keys.GetKeyValue(IdpeKeyTypes.IsFirstRowHeader);
             if (!string.IsNullOrEmpty(strHeader))
             {
                 bool boolVal = false;
@@ -103,7 +103,7 @@ namespace Eyedia.IDPE.Interface
             }
             chkRenameHeaders.Enabled = chkFileHasHeader.Checked;
 
-            string strRenCol = keys.GetKeyValue(SreKeyTypes.RenameColumnHeader);
+            string strRenCol = keys.GetKeyValue(IdpeKeyTypes.RenameColumnHeader);
             if (!string.IsNullOrEmpty(strRenCol))
             {
                 bool boolVal = false;
@@ -282,28 +282,28 @@ namespace Eyedia.IDPE.Interface
             manager.UpdateDelimiter(DataSourceId, delimiter);
 
             IdpeKey key = new IdpeKey();
-            key.Name = SreKeyTypes.IsFirstRowHeader.ToString();
+            key.Name = IdpeKeyTypes.IsFirstRowHeader.ToString();
             key.Value = chkFileHasHeader.Checked.ToString();
-            key.Type = (int)SreKeyTypes.IsFirstRowHeader;
+            key.Type = (int)IdpeKeyTypes.IsFirstRowHeader;
             manager.Save(key, DataSourceId);
 
             if (chkRenameHeaders.Checked)
             {
                 key = new IdpeKey();
-                key.Name = SreKeyTypes.RenameColumnHeader.ToString();
+                key.Name = IdpeKeyTypes.RenameColumnHeader.ToString();
                 key.Value = "True";
-                key.Type = (int)SreKeyTypes.RenameColumnHeader;
+                key.Type = (int)IdpeKeyTypes.RenameColumnHeader;
                 manager.Save(key, DataSourceId);
             }
             else
             {
-                manager.DeleteKeyFromApplication(DataSourceId, SreKeyTypes.RenameColumnHeader.ToString(), true);
+                manager.DeleteKeyFromApplication(DataSourceId, IdpeKeyTypes.RenameColumnHeader.ToString(), true);
             }
 
             key = new IdpeKey();
-            key.Name = SreKeyTypes.EDIX12Xslt.ToString();
+            key.Name = IdpeKeyTypes.EDIX12Xslt.ToString();
             key.Value = rtbXslt.Text;
-            key.Type = (int)SreKeyTypes.EDIX12Xslt;
+            key.Type = (int)IdpeKeyTypes.EDIX12Xslt;
             manager.Save(key, DataSourceId);
 
         }

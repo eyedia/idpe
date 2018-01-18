@@ -209,7 +209,7 @@
             this.lblDataFeederValue.Size = new System.Drawing.Size(282, 20);
             this.lblDataFeederValue.TabIndex = 28;
             this.lblDataFeederValue.TabStop = true;
-            this.lblDataFeederValue.Text = "C:\\SRE\\WatchFolder\\InBound\\Pull\\102";
+            this.lblDataFeederValue.Text = "C:\\IDPE\\WatchFolder\\InBound\\Pull\\102";
             this.lblDataFeederValue.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblDataFeederValue_LinkClicked);
             // 
             // llPreValidate

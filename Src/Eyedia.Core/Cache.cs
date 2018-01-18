@@ -39,6 +39,7 @@ using System.Diagnostics;
 using System.Configuration;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Eyedia.Core
 {
@@ -116,7 +117,13 @@ namespace Eyedia.Core
                 return value;
             }
         }
-      
+
+        public List<string> GetKeyNames()
+        {
+            return _Bag.Keys.Cast<string>().ToList();
+            
+        }
+
 
     }
 }

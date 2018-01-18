@@ -398,7 +398,7 @@ namespace Eyedia.IDPE.DataManager
                         command.AddParameterWithValue("AttributePrintValueCustom", DBNull.Value);
                     command.AddParameterWithValue("CreatedTS", DateTime.Now);
                     command.AddParameterWithValue("CreatedBy", Information.LoggedInUser == null? "Debugger": Information.LoggedInUser.UserName);
-                    command.AddParameterWithValue("Source", "SRE Util");
+                    command.AddParameterWithValue("Source", "IDPE Util");
 
                 }
                 reader.Close();
@@ -414,15 +414,15 @@ namespace Eyedia.IDPE.DataManager
             IdpeKey key = new IdpeKey();
             if (!string.IsNullOrEmpty(interfaceName))
             {
-                key.Name = SreKeyTypes.FileInterfaceName.ToString();
+                key.Name = IdpeKeyTypes.FileInterfaceName.ToString();
                 key.Value = interfaceName;
-                key.Type = (int)SreKeyTypes.FileInterfaceName;
+                key.Type = (int)IdpeKeyTypes.FileInterfaceName;
                 Save(key, dataSourceId);
             }
 
-            key.Name = SreKeyTypes.IsFirstRowHeader.ToString();
+            key.Name = IdpeKeyTypes.IsFirstRowHeader.ToString();
             key.Value = isFirstRowIsHeader.ToString();
-            key.Type = (int)SreKeyTypes.IsFirstRowHeader;
+            key.Type = (int)IdpeKeyTypes.IsFirstRowHeader;
             Save(key, dataSourceId);
 
         }
@@ -455,7 +455,7 @@ namespace Eyedia.IDPE.DataManager
                     command.AddParameterWithValue("Position", 1);
                     command.AddParameterWithValue("CreatedTS", DateTime.Now);
                     command.AddParameterWithValue("CreatedBy", Information.LoggedInUser == null? "Debugger": Information.LoggedInUser.UserName);
-                    command.AddParameterWithValue("Source", "SRE Util");
+                    command.AddParameterWithValue("Source", "IDPE Util");
 
                     if (connection.State != ConnectionState.Open) connection.Open();
                     command.ExecuteNonQuery();
@@ -693,41 +693,41 @@ namespace Eyedia.IDPE.DataManager
                     string ftpUserName, string ftpPassword, int interval, string filter)
         {
             IdpeKey key = new IdpeKey();
-            key.Name = SreKeyTypes.FtpRemoteLocation.ToString();
+            key.Name = IdpeKeyTypes.FtpRemoteLocation.ToString();
             key.Value = ftpRemoteLocation;
-            key.Type = (int)SreKeyTypes.FtpRemoteLocation;
+            key.Type = (int)IdpeKeyTypes.FtpRemoteLocation;
             Save( key, dataSourceId);
 
-            key.Name = SreKeyTypes.LocalLocation.ToString();
+            key.Name = IdpeKeyTypes.LocalLocation.ToString();
             key.Value = ftpLocalLocation;
-            key.Type = (int)SreKeyTypes.LocalLocation;
+            key.Type = (int)IdpeKeyTypes.LocalLocation;
             Save( key, dataSourceId);
 
-            key.Name = SreKeyTypes.FtpUserName.ToString();
+            key.Name = IdpeKeyTypes.FtpUserName.ToString();
             key.Value = ftpUserName;
-            key.Type = (int)SreKeyTypes.FtpUserName;
+            key.Type = (int)IdpeKeyTypes.FtpUserName;
             Save( key, dataSourceId);
 
-            key.Name = SreKeyTypes.FtpPassword.ToString();
+            key.Name = IdpeKeyTypes.FtpPassword.ToString();
             key.Value = ftpPassword;
-            key.Type = (int)SreKeyTypes.FtpPassword;
+            key.Type = (int)IdpeKeyTypes.FtpPassword;
             Save( key, dataSourceId);
 
-            key.Name = SreKeyTypes.FtpWatchInterval.ToString();
+            key.Name = IdpeKeyTypes.FtpWatchInterval.ToString();
             key.Value = interval.ToString();
-            key.Type = (int)SreKeyTypes.FtpWatchInterval;
+            key.Type = (int)IdpeKeyTypes.FtpWatchInterval;
             Save( key, dataSourceId);
 
             if (!string.IsNullOrEmpty(filter))
             {
-                key.Name = SreKeyTypes.WatchFilter.ToString();
+                key.Name = IdpeKeyTypes.WatchFilter.ToString();
                 key.Value = filter;
-                key.Type = (int)SreKeyTypes.WatchFilter;
+                key.Type = (int)IdpeKeyTypes.WatchFilter;
                 Save( key, dataSourceId);
             }
             else
             {
-                DeleteKeyFromApplication(dataSourceId, SreKeyTypes.WatchFilter.ToString(), true);
+                DeleteKeyFromApplication(dataSourceId, IdpeKeyTypes.WatchFilter.ToString(), true);
             }
 
         }
@@ -739,56 +739,56 @@ namespace Eyedia.IDPE.DataManager
 
             if (!string.IsNullOrEmpty(filter))
             {
-                key.Name = SreKeyTypes.WatchFilter.ToString();
+                key.Name = IdpeKeyTypes.WatchFilter.ToString();
                 key.Value = filter;
-                key.Type = (int)SreKeyTypes.WatchFilter;
+                key.Type = (int)IdpeKeyTypes.WatchFilter;
                 Save( key, dataSourceId);
             }
             else
             {
-                DeleteKeyFromApplication(dataSourceId, SreKeyTypes.WatchFilter.ToString(), true);
+                DeleteKeyFromApplication(dataSourceId, IdpeKeyTypes.WatchFilter.ToString(), true);
             }
 
             if (localFileSystemFoldersOverriden)
             {
-                key.Name = SreKeyTypes.LocalFileSystemFoldersOverriden.ToString();
+                key.Name = IdpeKeyTypes.LocalFileSystemFoldersOverriden.ToString();
                 key.Value = "true";
-                key.Type = (int)SreKeyTypes.LocalFileSystemFoldersOverriden;
+                key.Type = (int)IdpeKeyTypes.LocalFileSystemFoldersOverriden;
 
-                key.Name = SreKeyTypes.LocalFileSystemFolderPull.ToString();
+                key.Name = IdpeKeyTypes.LocalFileSystemFolderPull.ToString();
                 key.Value = localFileSystemFolderPullFolder;
-                key.Type = (int)SreKeyTypes.LocalFileSystemFolderPull;
+                key.Type = (int)IdpeKeyTypes.LocalFileSystemFolderPull;
                 Save( key, dataSourceId);
 
                 if (!localFileSystemFolderArchiveAuto)
                 {
-                    key.Name = SreKeyTypes.LocalFileSystemFolderArchiveAuto.ToString();
+                    key.Name = IdpeKeyTypes.LocalFileSystemFolderArchiveAuto.ToString();
                     key.Value = "true";
-                    key.Type = (int)SreKeyTypes.LocalFileSystemFolderArchiveAuto;
+                    key.Type = (int)IdpeKeyTypes.LocalFileSystemFolderArchiveAuto;
                     Save( key, dataSourceId);
 
-                    key.Name = SreKeyTypes.LocalFileSystemFolderArchive.ToString();
+                    key.Name = IdpeKeyTypes.LocalFileSystemFolderArchive.ToString();
                     key.Value = localFileSystemFolderArchiveFolder;
-                    key.Type = (int)SreKeyTypes.LocalFileSystemFolderArchive;
+                    key.Type = (int)IdpeKeyTypes.LocalFileSystemFolderArchive;
                     Save( key, dataSourceId);
                 }
                 else
                 {
-                    DeleteKeyFromApplication(dataSourceId, SreKeyTypes.LocalFileSystemFolderArchive.ToString(), true);
+                    DeleteKeyFromApplication(dataSourceId, IdpeKeyTypes.LocalFileSystemFolderArchive.ToString(), true);
                 }
 
-                key.Name = SreKeyTypes.LocalFileSystemFolderOutput.ToString();
+                key.Name = IdpeKeyTypes.LocalFileSystemFolderOutput.ToString();
                 key.Value = localFileSystemFolderOutputFolder;
-                key.Type = (int)SreKeyTypes.LocalFileSystemFolderOutput;
+                key.Type = (int)IdpeKeyTypes.LocalFileSystemFolderOutput;
                 Save( key, dataSourceId);
 
             }
             else
             {
-                DeleteKeyFromApplication(dataSourceId, SreKeyTypes.LocalFileSystemFoldersOverriden.ToString(), true);
-                DeleteKeyFromApplication(dataSourceId, SreKeyTypes.LocalFileSystemFolderArchiveAuto.ToString(), true);
-                DeleteKeyFromApplication(dataSourceId, SreKeyTypes.LocalFileSystemFolderArchive.ToString(), true);
-                DeleteKeyFromApplication(dataSourceId, SreKeyTypes.LocalFileSystemFolderOutput.ToString(), true);
+                DeleteKeyFromApplication(dataSourceId, IdpeKeyTypes.LocalFileSystemFoldersOverriden.ToString(), true);
+                DeleteKeyFromApplication(dataSourceId, IdpeKeyTypes.LocalFileSystemFolderArchiveAuto.ToString(), true);
+                DeleteKeyFromApplication(dataSourceId, IdpeKeyTypes.LocalFileSystemFolderArchive.ToString(), true);
+                DeleteKeyFromApplication(dataSourceId, IdpeKeyTypes.LocalFileSystemFolderOutput.ToString(), true);
             }
 
 
@@ -799,15 +799,15 @@ namespace Eyedia.IDPE.DataManager
             IdpeKey key = new IdpeKey();
             if (!string.IsNullOrEmpty(interaceName))
             {
-                key.Name = SreKeyTypes.FileInterfaceName.ToString();
+                key.Name = IdpeKeyTypes.FileInterfaceName.ToString();
                 key.Value = interaceName;
-                key.Type = (int)SreKeyTypes.FileInterfaceName;
+                key.Type = (int)IdpeKeyTypes.FileInterfaceName;
                 Save( key, dataSourceId);
             }
 
-            key.Name = SreKeyTypes.WatchFilter.ToString();
+            key.Name = IdpeKeyTypes.WatchFilter.ToString();
             key.Value = ".xml";
-            key.Type = (int)SreKeyTypes.WatchFilter;
+            key.Type = (int)IdpeKeyTypes.WatchFilter;
             Save( key, dataSourceId);
 
         }
@@ -817,19 +817,19 @@ namespace Eyedia.IDPE.DataManager
             if (wcfCallsGenerateStandardOutput)
             {
                 IdpeKey key = new IdpeKey();
-                key.Name = SreKeyTypes.WcfCallsGenerateStandardOutput.ToString();
+                key.Name = IdpeKeyTypes.WcfCallsGenerateStandardOutput.ToString();
                 key.Value = "1";
-                key.Type = (int)SreKeyTypes.WcfCallsGenerateStandardOutput;
+                key.Type = (int)IdpeKeyTypes.WcfCallsGenerateStandardOutput;
                 Save( key, dataSourceId);
             }
             else
             {
-                DeleteKeyFromApplication(dataSourceId, SreKeyTypes.WcfCallsGenerateStandardOutput.ToString(), true);
+                DeleteKeyFromApplication(dataSourceId, IdpeKeyTypes.WcfCallsGenerateStandardOutput.ToString(), true);
             }
 
         }
 
-        public void SaveZipConfig(int dataSourceId, bool zipDoNotCreateAcknoledgementInOutputFolder, int zipConfigType, SreKeyTypes sortType, string zipSortTypeValue, string zipIgnoreList,
+        public void SaveZipConfig(int dataSourceId, bool zipDoNotCreateAcknoledgementInOutputFolder, int zipConfigType, IdpeKeyTypes sortType, string zipSortTypeValue, string zipIgnoreList,
             string zipIgnoreListButCopy, bool isFirstRowIsHeaderInZipFile,
             string zipInteraceName, string interaceName, string overriddenOutputFolder, string pusherTypeFullName)
         {
@@ -837,67 +837,67 @@ namespace Eyedia.IDPE.DataManager
 
             if (zipDoNotCreateAcknoledgementInOutputFolder)
             {
-                key.Name = SreKeyTypes.ZipDoNotCreateAcknoledgementInOutputFolder.ToString();
+                key.Name = IdpeKeyTypes.ZipDoNotCreateAcknoledgementInOutputFolder.ToString();
                 key.Value = "1";
-                key.Type = (int)SreKeyTypes.ZipDoNotCreateAcknoledgementInOutputFolder;
+                key.Type = (int)IdpeKeyTypes.ZipDoNotCreateAcknoledgementInOutputFolder;
                 Save( key, dataSourceId);
             }
             else
             {
-                DeleteKeyFromApplication(dataSourceId, SreKeyTypes.ZipDoNotCreateAcknoledgementInOutputFolder.ToString(), true);
+                DeleteKeyFromApplication(dataSourceId, IdpeKeyTypes.ZipDoNotCreateAcknoledgementInOutputFolder.ToString(), true);
             }
 
 
 
             if (!string.IsNullOrEmpty(zipIgnoreList))
             {
-                key.Name = SreKeyTypes.ZipIgnoreFileList.ToString();
+                key.Name = IdpeKeyTypes.ZipIgnoreFileList.ToString();
                 key.Value = zipIgnoreList.ToLower();
-                key.Type = (int)SreKeyTypes.ZipIgnoreFileList;
+                key.Type = (int)IdpeKeyTypes.ZipIgnoreFileList;
                 Save( key, dataSourceId);
             }
             else
             {
-                DeleteKeyFromApplication(dataSourceId, SreKeyTypes.ZipIgnoreFileList.ToString(), true);
+                DeleteKeyFromApplication(dataSourceId, IdpeKeyTypes.ZipIgnoreFileList.ToString(), true);
             }
 
             if (!string.IsNullOrEmpty(zipIgnoreListButCopy))
             {
-                key.Name = SreKeyTypes.ZipIgnoreFileListButCopyToOutputFolder.ToString();
+                key.Name = IdpeKeyTypes.ZipIgnoreFileListButCopyToOutputFolder.ToString();
                 key.Value = zipIgnoreListButCopy.ToLower();
-                key.Type = (int)SreKeyTypes.ZipIgnoreFileListButCopyToOutputFolder;
+                key.Type = (int)IdpeKeyTypes.ZipIgnoreFileListButCopyToOutputFolder;
                 Save( key, dataSourceId);
             }
             else
             {
-                DeleteKeyFromApplication(dataSourceId, SreKeyTypes.ZipIgnoreFileListButCopyToOutputFolder.ToString(), true);
+                DeleteKeyFromApplication(dataSourceId, IdpeKeyTypes.ZipIgnoreFileListButCopyToOutputFolder.ToString(), true);
             }
 
             if (isFirstRowIsHeaderInZipFile)
             {
-                key.Name = SreKeyTypes.IsFirstRowHeader.ToString();
+                key.Name = IdpeKeyTypes.IsFirstRowHeader.ToString();
                 key.Value = isFirstRowIsHeaderInZipFile.ToString();
-                key.Type = (int)SreKeyTypes.IsFirstRowHeader;
+                key.Type = (int)IdpeKeyTypes.IsFirstRowHeader;
                 Save( key, dataSourceId);
             }
             else
             {
-                DeleteKeyFromApplication(dataSourceId, SreKeyTypes.IsFirstRowHeader.ToString(), true);
+                DeleteKeyFromApplication(dataSourceId, IdpeKeyTypes.IsFirstRowHeader.ToString(), true);
             }
 
             if (!string.IsNullOrEmpty(zipInteraceName))
             {
-                key.Name = SreKeyTypes.ZipInterfaceName.ToString();
+                key.Name = IdpeKeyTypes.ZipInterfaceName.ToString();
                 key.Value = zipInteraceName;
-                key.Type = (int)SreKeyTypes.ZipInterfaceName;
+                key.Type = (int)IdpeKeyTypes.ZipInterfaceName;
                 Save(key, dataSourceId);
             }
 
             if (!string.IsNullOrEmpty(interaceName))
             {
-                key.Name = SreKeyTypes.FileInterfaceName.ToString();
+                key.Name = IdpeKeyTypes.FileInterfaceName.ToString();
                 key.Value = interaceName;
-                key.Type = (int)SreKeyTypes.FileInterfaceName;
+                key.Type = (int)IdpeKeyTypes.FileInterfaceName;
                 Save(key, dataSourceId);
             }
 
@@ -948,53 +948,53 @@ namespace Eyedia.IDPE.DataManager
                 throw new Exception("DataSource id or connection string or query or interface name can not be empty string!");
 
 
-            key.Name = SreKeyTypes.PullSqlConnectionString.ToString();
+            key.Name = IdpeKeyTypes.PullSqlConnectionString.ToString();
             key.Value = connectionString;
-            key.Type = (int)SreKeyTypes.PullSqlConnectionString;
+            key.Type = (int)IdpeKeyTypes.PullSqlConnectionString;
             Save(key, dataSourceId);
          
 
-            key.Name = SreKeyTypes.PullSqlReturnType.ToString();
+            key.Name = IdpeKeyTypes.PullSqlReturnType.ToString();
             key.Value = isDirectFeed ? "D" : "I";
-            key.Type = (int)SreKeyTypes.PullSqlReturnType;
+            key.Type = (int)IdpeKeyTypes.PullSqlReturnType;
             Save(key, dataSourceId);
 
-            key.Name = SreKeyTypes.SqlQuery.ToString();
+            key.Name = IdpeKeyTypes.SqlQuery.ToString();
             key.Value = selectQuery;
-            key.Type = (int)SreKeyTypes.SqlQuery;
+            key.Type = (int)IdpeKeyTypes.SqlQuery;
             Save(key, dataSourceId);
 
-            key.Name = SreKeyTypes.SqlUpdateQueryProcessing.ToString();
+            key.Name = IdpeKeyTypes.SqlUpdateQueryProcessing.ToString();
             key.Value = updateQuery;
-            key.Type = (int)SreKeyTypes.SqlUpdateQueryProcessing;
+            key.Type = (int)IdpeKeyTypes.SqlUpdateQueryProcessing;
             Save(key, dataSourceId);
 
-            key.Name = SreKeyTypes.SqlUpdateQueryRecovery.ToString();
+            key.Name = IdpeKeyTypes.SqlUpdateQueryRecovery.ToString();
             key.Value = recoveryQuery;
-            key.Type = (int)SreKeyTypes.SqlUpdateQueryRecovery;
+            key.Type = (int)IdpeKeyTypes.SqlUpdateQueryRecovery;
             Save(key, dataSourceId);
 
-            key.Name = SreKeyTypes.IsFirstRowHeader.ToString();
+            key.Name = IdpeKeyTypes.IsFirstRowHeader.ToString();
             key.Value = isFirstRowIsHeader.ToString();
-            key.Type = (int)SreKeyTypes.IsFirstRowHeader;
+            key.Type = (int)IdpeKeyTypes.IsFirstRowHeader;
             Save(key, dataSourceId);
 
-            key.Name = SreKeyTypes.PullSqlConnectionStringRunTime.ToString();
+            key.Name = IdpeKeyTypes.PullSqlConnectionStringRunTime.ToString();
             key.Value = pullSqlConnectionStringRunTime.ToString();
-            key.Type = (int)SreKeyTypes.PullSqlConnectionStringRunTime;
+            key.Type = (int)IdpeKeyTypes.PullSqlConnectionStringRunTime;
             Save(key, dataSourceId);
 
             if (!isDirectFeed)
             {
-                key.Name = SreKeyTypes.PullSqlInterfaceName.ToString();
+                key.Name = IdpeKeyTypes.PullSqlInterfaceName.ToString();
                 key.Value = interfaceName;
-                key.Type = (int)SreKeyTypes.PullSqlInterfaceName;
+                key.Type = (int)IdpeKeyTypes.PullSqlInterfaceName;
                 Save(key, dataSourceId);
             }
 
-            key.Name = SreKeyTypes.SqlWatchInterval.ToString();
+            key.Name = IdpeKeyTypes.SqlWatchInterval.ToString();
             key.Value = interval.ToString();
-            key.Type = (int)SreKeyTypes.SqlWatchInterval;
+            key.Type = (int)IdpeKeyTypes.SqlWatchInterval;
             Save(key, dataSourceId);
 
         }
@@ -1023,7 +1023,7 @@ namespace Eyedia.IDPE.DataManager
             foreach (string header in headers)
             {
                 string keyName = "HeaderLine" + counter + "Attribute";
-                SreKeyTypes keyType = (SreKeyTypes)Enum.Parse(typeof(SreKeyTypes), keyName);
+                IdpeKeyTypes keyType = (IdpeKeyTypes)Enum.Parse(typeof(IdpeKeyTypes), keyName);
                 key = new IdpeKey();
                 key.Name = keyType.ToString();
                 key.Value = header;
@@ -1036,7 +1036,7 @@ namespace Eyedia.IDPE.DataManager
             foreach (string footer in footers)
             {
                 string keyName = "FooterLine" + counter + "Attribute";
-                SreKeyTypes keyType = (SreKeyTypes)Enum.Parse(typeof(SreKeyTypes), keyName);
+                IdpeKeyTypes keyType = (IdpeKeyTypes)Enum.Parse(typeof(IdpeKeyTypes), keyName);
                 key = new IdpeKey();
                 key.Name = keyType.ToString();
                 key.Value = footer;
@@ -1047,17 +1047,17 @@ namespace Eyedia.IDPE.DataManager
 
             if (!string.IsNullOrEmpty(fixedLengthSchema))
             {
-                key.Name = SreKeyTypes.FixedLengthSchema.ToString();
+                key.Name = IdpeKeyTypes.FixedLengthSchema.ToString();
                 key.Value = fixedLengthSchema;
-                key.Type = (int)SreKeyTypes.FixedLengthSchema;
+                key.Type = (int)IdpeKeyTypes.FixedLengthSchema;
                 Save(key, dataSourceId);
             }
 
             if (!string.IsNullOrEmpty(sqlQuery))
             {
-                key.Name = SreKeyTypes.SqlQuery.ToString();
+                key.Name = IdpeKeyTypes.SqlQuery.ToString();
                 key.Value = sqlQuery;
-                key.Type = (int)SreKeyTypes.SqlQuery;
+                key.Type = (int)IdpeKeyTypes.SqlQuery;
                 Save(key, dataSourceId);
             }
 
@@ -1069,34 +1069,34 @@ namespace Eyedia.IDPE.DataManager
             IdpeKey key = new IdpeKey();
             if (!string.IsNullOrEmpty(fixedLengthSchema))
             {
-                key.Name = SreKeyTypes.FixedLengthSchema.ToString();
+                key.Name = IdpeKeyTypes.FixedLengthSchema.ToString();
                 key.Value = fixedLengthSchema;
-                key.Type = (int)SreKeyTypes.FixedLengthSchema;
+                key.Type = (int)IdpeKeyTypes.FixedLengthSchema;
                 Save(key, dataSourceId);
             }
 
             if (!string.IsNullOrEmpty(fixedLegnthHeaderAttribute))
             {
-                key.Name = SreKeyTypes.FixedLengthHeaderAttribute.ToString();
+                key.Name = IdpeKeyTypes.FixedLengthHeaderAttribute.ToString();
                 key.Value = fixedLegnthHeaderAttribute;
-                key.Type = (int)SreKeyTypes.FixedLengthHeaderAttribute;
+                key.Type = (int)IdpeKeyTypes.FixedLengthHeaderAttribute;
                 Save(key, dataSourceId);
             }
             else
             {
-                DeleteKeyFromApplication(dataSourceId, SreKeyTypes.FixedLengthHeaderAttribute.ToString(), true);
+                DeleteKeyFromApplication(dataSourceId, IdpeKeyTypes.FixedLengthHeaderAttribute.ToString(), true);
             }
 
             if (!string.IsNullOrEmpty(fixedLegnthFooterAttribute))
             {
-                key.Name = SreKeyTypes.FixedLengthFooterAttribute.ToString();
+                key.Name = IdpeKeyTypes.FixedLengthFooterAttribute.ToString();
                 key.Value = fixedLegnthFooterAttribute;
-                key.Type = (int)SreKeyTypes.FixedLengthFooterAttribute;
+                key.Type = (int)IdpeKeyTypes.FixedLengthFooterAttribute;
                 Save( key, dataSourceId);
             }
             else
             {
-                DeleteKeyFromApplication(dataSourceId, SreKeyTypes.FixedLengthFooterAttribute.ToString(), true);
+                DeleteKeyFromApplication(dataSourceId, IdpeKeyTypes.FixedLengthFooterAttribute.ToString(), true);
             }
 
 
@@ -1201,14 +1201,14 @@ namespace Eyedia.IDPE.DataManager
             IdpeKey key = new IdpeKey();
             if (!string.IsNullOrEmpty(cSharpOutputWriterCode))
             {
-                key.Name = SreKeyTypes.CSharpCodeOutputWriter.ToString();
+                key.Name = IdpeKeyTypes.CSharpCodeOutputWriter.ToString();
                 key.Value = cSharpOutputWriterCode;
-                key.Type = (int)SreKeyTypes.CSharpCodeOutputWriter;
+                key.Type = (int)IdpeKeyTypes.CSharpCodeOutputWriter;
                 Save( key, dataSourceId);
             }
             else
             {
-                DeleteKeyFromApplication(dataSourceId, SreKeyTypes.CSharpCodeOutputWriter.ToString(), true);
+                DeleteKeyFromApplication(dataSourceId, IdpeKeyTypes.CSharpCodeOutputWriter.ToString(), true);
             }
 
         }

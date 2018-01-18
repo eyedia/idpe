@@ -374,7 +374,7 @@ namespace Eyedia.IDPE.Interface
                     string[] attributeNames = Attributes.Where(aa => aa.IsAcceptable == true).Select(a => a.Name).ToArray();
                     fixedLengthSchemaGenerator1.Attributes = attributeNames;
 
-                    IdpeKey key =  Keys.GetKey(SreKeyTypes.FixedLengthSchema.ToString());
+                    IdpeKey key =  Keys.GetKey(IdpeKeyTypes.FixedLengthSchema.ToString());
                     fixedLengthSchemaGenerator1.Schema = key != null ? key.Value : string.Empty;                    
                     break;
 
@@ -396,42 +396,42 @@ namespace Eyedia.IDPE.Interface
 
         private void BindHeaders()
         {
-            IdpeKey key = Keys.GetKey(SreKeyTypes.HeaderLine1Attribute.ToString());            
+            IdpeKey key = Keys.GetKey(IdpeKeyTypes.HeaderLine1Attribute.ToString());            
             if (key != null)
             {
                 txtHeader1.Text = key.Value;
                 chkHasHeader1.Checked = true;
             }
 
-            key = Keys.GetKey(SreKeyTypes.HeaderLine2Attribute.ToString());
+            key = Keys.GetKey(IdpeKeyTypes.HeaderLine2Attribute.ToString());
             if (key != null)
             {
                 txtHeader2.Text = key.Value;
                 chkHasHeader2.Checked = true;
             }
 
-            key = Keys.GetKey(SreKeyTypes.HeaderLine3Attribute.ToString());
+            key = Keys.GetKey(IdpeKeyTypes.HeaderLine3Attribute.ToString());
             if (key != null)
             {
                 txtHeader3.Text = key.Value;
                 chkHasHeader3.Checked = true;
             }
 
-            key = Keys.GetKey(SreKeyTypes.HeaderLine4Attribute.ToString());
+            key = Keys.GetKey(IdpeKeyTypes.HeaderLine4Attribute.ToString());
             if (key != null)
             {
                 txtHeader4.Text = key.Value;
                 chkHasHeader4.Checked = true;
             }
 
-            key = Keys.GetKey(SreKeyTypes.HeaderLine5Attribute.ToString());
+            key = Keys.GetKey(IdpeKeyTypes.HeaderLine5Attribute.ToString());
             if (key != null)
             {
                 txtHeader5.Text = key.Value;
                 chkHasHeader5.Checked = true;
             }
 
-            key = Keys.GetKey(SreKeyTypes.HeaderLine6Attribute.ToString());
+            key = Keys.GetKey(IdpeKeyTypes.HeaderLine6Attribute.ToString());
             if (key != null)
             {
                 txtHeader6.Text = key.Value;
@@ -443,42 +443,42 @@ namespace Eyedia.IDPE.Interface
 
         private void BindFooters()
         {
-            IdpeKey key = Keys.GetKey(SreKeyTypes.FooterLine1Attribute.ToString());
+            IdpeKey key = Keys.GetKey(IdpeKeyTypes.FooterLine1Attribute.ToString());
             if (key != null)
             {
                 txtFooter1.Text = key.Value;
                 chkHasFooter1.Checked = true;
             }
 
-            key = Keys.GetKey(SreKeyTypes.FooterLine2Attribute.ToString());
+            key = Keys.GetKey(IdpeKeyTypes.FooterLine2Attribute.ToString());
             if (key != null)
             {
                 txtFooter2.Text = key.Value;
                 chkHasFooter2.Checked = true;
             }
 
-            key = Keys.GetKey(SreKeyTypes.FooterLine3Attribute.ToString());
+            key = Keys.GetKey(IdpeKeyTypes.FooterLine3Attribute.ToString());
             if (key != null)
             {
                 txtFooter3.Text = key.Value;
                 chkHasFooter3.Checked = true;
             }
 
-            key = Keys.GetKey(SreKeyTypes.FooterLine4Attribute.ToString());
+            key = Keys.GetKey(IdpeKeyTypes.FooterLine4Attribute.ToString());
             if (key != null)
             {
                 txtFooter4.Text = key.Value;
                 chkHasFooter4.Checked = true;
             }
 
-            key = Keys.GetKey(SreKeyTypes.FooterLine5Attribute.ToString());
+            key = Keys.GetKey(IdpeKeyTypes.FooterLine5Attribute.ToString());
             if (key != null)
             {
                 txtFooter5.Text = key.Value;
                 chkHasFooter5.Checked = true;
             }
 
-            key = Keys.GetKey(SreKeyTypes.FooterLine6Attribute.ToString());
+            key = Keys.GetKey(IdpeKeyTypes.FooterLine6Attribute.ToString());
             if (key != null)
             {
                 txtFooter6.Text = key.Value;

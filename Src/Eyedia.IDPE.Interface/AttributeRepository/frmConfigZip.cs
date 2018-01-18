@@ -104,7 +104,7 @@ namespace Eyedia.IDPE.Interface
 
         private void BindData()
         {
-             IdpeKey key = DataSource.Keys.GetKey(SreKeyTypes.ZipFilesSortType.ToString());
+             IdpeKey key = DataSource.Keys.GetKey(IdpeKeyTypes.ZipFilesSortType.ToString());
              if (key != null)
              {
                  if (key.Value == "-1")
@@ -129,11 +129,11 @@ namespace Eyedia.IDPE.Interface
                  }
              }
 
-            key = DataSource.Keys.GetKey(SreKeyTypes.ZipDoNotCreateAcknoledgementInOutputFolder.ToString());
+            key = DataSource.Keys.GetKey(IdpeKeyTypes.ZipDoNotCreateAcknoledgementInOutputFolder.ToString());
             if (key != null)
                 chkZipDoNotCreateAcknoledgementInOutputFolder.Checked = key.Value.ParseBool();
 
-            key = DataSource.Keys.GetKey(SreKeyTypes.ZipInterfaceName.ToString());
+            key = DataSource.Keys.GetKey(IdpeKeyTypes.ZipInterfaceName.ToString());
             if (key != null)
             {
                 txtInterfaceNameZip.Text = key.Value;
@@ -144,7 +144,7 @@ namespace Eyedia.IDPE.Interface
                 radZipHandlerDefault.Checked = true;
             }
 
-            key = DataSource.Keys.GetKey(SreKeyTypes.ZipIgnoreFileList.ToString());
+            key = DataSource.Keys.GetKey(IdpeKeyTypes.ZipIgnoreFileList.ToString());
             if (key != null)
             {
                 txtZipIgnoreFileList.Text = key.Value;
@@ -153,7 +153,7 @@ namespace Eyedia.IDPE.Interface
             }
 
 
-            key = DataSource.Keys.GetKey(SreKeyTypes.ZipIgnoreFileListButCopyToOutputFolder.ToString());
+            key = DataSource.Keys.GetKey(IdpeKeyTypes.ZipIgnoreFileListButCopyToOutputFolder.ToString());
             if (key != null)
             {
                 txtZipIgnoreFileListButCopy.Text = key.Value;
@@ -161,7 +161,7 @@ namespace Eyedia.IDPE.Interface
                     chkZipIgnoreFilesButCopy.Checked = true;
             }
 
-            key = DataSource.Keys.GetKey(SreKeyTypes.ZipDataFileDataFormatType.ToString());
+            key = DataSource.Keys.GetKey(IdpeKeyTypes.ZipDataFileDataFormatType.ToString());
             DataFormatTypes formatType = DataFormatTypes.Delimited;
             if (key != null)
             {
@@ -172,15 +172,15 @@ namespace Eyedia.IDPE.Interface
 
             cmbDelmiter.Text = DataSource.Delimiter == "\t" ? "Tab" : DataSource.Delimiter;
 
-            key = DataSource.Keys.GetKey(SreKeyTypes.IsFirstRowHeader.ToString());
+            key = DataSource.Keys.GetKey(IdpeKeyTypes.IsFirstRowHeader.ToString());
             if (key != null)
                 chkFileHasHeader.Checked = key.Value.ParseBool();
 
-            key = DataSource.Keys.GetKey(SreKeyTypes.RenameColumnHeader.ToString());
+            key = DataSource.Keys.GetKey(IdpeKeyTypes.RenameColumnHeader.ToString());
             if (key != null)
                 chkRenameHeaders.Checked = key.Value.ParseBool();
 
-            key = DataSource.Keys.GetKey(SreKeyTypes.FileInterfaceName.ToString());
+            key = DataSource.Keys.GetKey(IdpeKeyTypes.FileInterfaceName.ToString());
             if (key != null)
                 txtFileInterfaceName.Text = key.Value;
           
@@ -221,8 +221,8 @@ namespace Eyedia.IDPE.Interface
             IdpeKey key = new IdpeKey();
 
             ////////////////////////////
-            key.Name = SreKeyTypes.ZipFilesSortType.ToString();
-            key.Type = (int)SreKeyTypes.ZipFilesSortType;
+            key.Name = IdpeKeyTypes.ZipFilesSortType.ToString();
+            key.Type = (int)IdpeKeyTypes.ZipFilesSortType;
             if (chkZipSort.Checked)
             {
                 if (radZipSortStd.Checked)
@@ -238,14 +238,14 @@ namespace Eyedia.IDPE.Interface
             }
             else
             {
-                manager.DeleteKeyFromApplication(DataSource.Id, SreKeyTypes.ZipFilesSortType.ToString(), true);
+                manager.DeleteKeyFromApplication(DataSource.Id, IdpeKeyTypes.ZipFilesSortType.ToString(), true);
             }
 
 
             ////////////////////////////
             key = new IdpeKey();
-            key.Name = SreKeyTypes.ZipDoNotCreateAcknoledgementInOutputFolder.ToString();
-            key.Type = (int)SreKeyTypes.ZipDoNotCreateAcknoledgementInOutputFolder;
+            key.Name = IdpeKeyTypes.ZipDoNotCreateAcknoledgementInOutputFolder.ToString();
+            key.Type = (int)IdpeKeyTypes.ZipDoNotCreateAcknoledgementInOutputFolder;
             if (chkZipDoNotCreateAcknoledgementInOutputFolder.Checked)
             {
                 key.Value = "1";
@@ -253,58 +253,58 @@ namespace Eyedia.IDPE.Interface
             }
             else
             {
-                manager.DeleteKeyFromApplication(DataSource.Id, SreKeyTypes.ZipDoNotCreateAcknoledgementInOutputFolder.ToString(), true);
+                manager.DeleteKeyFromApplication(DataSource.Id, IdpeKeyTypes.ZipDoNotCreateAcknoledgementInOutputFolder.ToString(), true);
             }
 
             ////////////////////////////
 
             if (radZipHandlerDefault.Checked)
             {
-                manager.DeleteKeyFromApplication(DataSource.Id, SreKeyTypes.ZipInterfaceName.ToString(), true);
+                manager.DeleteKeyFromApplication(DataSource.Id, IdpeKeyTypes.ZipInterfaceName.ToString(), true);
 
                 if (chkZipIgnoreFilesButCopy.Checked)
                 {
                     key = new IdpeKey();
-                    key.Name = SreKeyTypes.ZipIgnoreFileListButCopyToOutputFolder.ToString();
-                    key.Type = (int)SreKeyTypes.ZipIgnoreFileListButCopyToOutputFolder;
+                    key.Name = IdpeKeyTypes.ZipIgnoreFileListButCopyToOutputFolder.ToString();
+                    key.Type = (int)IdpeKeyTypes.ZipIgnoreFileListButCopyToOutputFolder;
                     key.Value = txtZipIgnoreFileListButCopy.Text;
                     manager.Save(key, DataSource.Id);
                 }
                 else
                 {
-                    manager.DeleteKeyFromApplication(DataSource.Id, SreKeyTypes.ZipIgnoreFileListButCopyToOutputFolder.ToString(), true);
+                    manager.DeleteKeyFromApplication(DataSource.Id, IdpeKeyTypes.ZipIgnoreFileListButCopyToOutputFolder.ToString(), true);
                 }
 
                 if (chkZipIgnoreFiles.Checked)
                 {
                     key = new IdpeKey();
-                    key.Name = SreKeyTypes.ZipIgnoreFileList.ToString();
-                    key.Type = (int)SreKeyTypes.ZipIgnoreFileList;
+                    key.Name = IdpeKeyTypes.ZipIgnoreFileList.ToString();
+                    key.Type = (int)IdpeKeyTypes.ZipIgnoreFileList;
                     key.Value = txtZipIgnoreFileList.Text;
                     manager.Save(key, DataSource.Id);
                 }
                 else
                 {
-                    manager.DeleteKeyFromApplication(DataSource.Id, SreKeyTypes.ZipIgnoreFileList.ToString(), true);
+                    manager.DeleteKeyFromApplication(DataSource.Id, IdpeKeyTypes.ZipIgnoreFileList.ToString(), true);
                 }
 
             }
             else
             {
-                manager.DeleteKeyFromApplication(DataSource.Id, SreKeyTypes.ZipIgnoreFileListButCopyToOutputFolder.ToString(), true);
-                manager.DeleteKeyFromApplication(DataSource.Id, SreKeyTypes.ZipIgnoreFileList.ToString(), true);
+                manager.DeleteKeyFromApplication(DataSource.Id, IdpeKeyTypes.ZipIgnoreFileListButCopyToOutputFolder.ToString(), true);
+                manager.DeleteKeyFromApplication(DataSource.Id, IdpeKeyTypes.ZipIgnoreFileList.ToString(), true);
 
                 key = new IdpeKey();
-                key.Name = SreKeyTypes.ZipInterfaceName.ToString();
-                key.Type = (int)SreKeyTypes.ZipInterfaceName;
+                key.Name = IdpeKeyTypes.ZipInterfaceName.ToString();
+                key.Type = (int)IdpeKeyTypes.ZipInterfaceName;
                 key.Value = txtInterfaceNameZip.Text;
                 manager.Save(key, DataSource.Id);
             }
 
             ////////////////////////////
             key = new IdpeKey();
-            key.Name = SreKeyTypes.ZipDataFileDataFormatType.ToString();
-            key.Type = (int)SreKeyTypes.ZipDataFileDataFormatType;
+            key.Name = IdpeKeyTypes.ZipDataFileDataFormatType.ToString();
+            key.Type = (int)IdpeKeyTypes.ZipDataFileDataFormatType;
             key.Value = ((int)(DataFormatTypes)Enum.Parse(typeof(DataFormatTypes), cmbDataFormatTypes.Text)).ToString();
             manager.Save(key, DataSource.Id);
 
@@ -313,28 +313,28 @@ namespace Eyedia.IDPE.Interface
             if (chkFileHasHeader.Checked)
             {
                 key = new IdpeKey();
-                key.Name = SreKeyTypes.IsFirstRowHeader.ToString();
-                key.Type = (int)SreKeyTypes.IsFirstRowHeader;
+                key.Name = IdpeKeyTypes.IsFirstRowHeader.ToString();
+                key.Type = (int)IdpeKeyTypes.IsFirstRowHeader;
                 key.Value = "1";
                 manager.Save(key, DataSource.Id);
             }
             else
             {
-                manager.DeleteKeyFromApplication(DataSource.Id, SreKeyTypes.IsFirstRowHeader.ToString(), true);
+                manager.DeleteKeyFromApplication(DataSource.Id, IdpeKeyTypes.IsFirstRowHeader.ToString(), true);
             }
 
             ////////////////////////////
             if (chkRenameHeaders.Checked)
             {
                 key = new IdpeKey();
-                key.Name = SreKeyTypes.RenameColumnHeader.ToString();
+                key.Name = IdpeKeyTypes.RenameColumnHeader.ToString();
                 key.Value = "True";
-                key.Type = (int)SreKeyTypes.RenameColumnHeader;
+                key.Type = (int)IdpeKeyTypes.RenameColumnHeader;
                 manager.Save(key, this.DataSource.Id);
             }
             else
             {
-                manager.DeleteKeyFromApplication(this.DataSource.Id, SreKeyTypes.RenameColumnHeader.ToString(), true);
+                manager.DeleteKeyFromApplication(this.DataSource.Id, IdpeKeyTypes.RenameColumnHeader.ToString(), true);
             }
             ////////////////////////////
             if (SelectedDataFormatType == DataFormatTypes.Delimited)
@@ -344,14 +344,14 @@ namespace Eyedia.IDPE.Interface
             else if (SelectedDataFormatType == DataFormatTypes.Custom)
             {
                 key = new IdpeKey();
-                key.Name = SreKeyTypes.FileInterfaceName.ToString();
+                key.Name = IdpeKeyTypes.FileInterfaceName.ToString();
                 key.Value = txtFileInterfaceName.Text;
-                key.Type = (int)SreKeyTypes.FileInterfaceName;
+                key.Type = (int)IdpeKeyTypes.FileInterfaceName;
                 manager.Save(key, DataSource.Id);
             }
             else
             {
-                manager.DeleteKeyFromApplication(this.DataSource.Id, SreKeyTypes.FileInterfaceName.ToString(), true);
+                manager.DeleteKeyFromApplication(this.DataSource.Id, IdpeKeyTypes.FileInterfaceName.ToString(), true);
             }
 
             this.Close();
@@ -452,7 +452,7 @@ namespace Eyedia.IDPE.Interface
                     chkFileHasHeader.Visible = true;
                     chkRenameHeaders.Visible = false;
                     pnlCustomInterface.Visible = true;
-                    IdpeKey key = DataSource.Keys.GetKey(SreKeyTypes.FileInterfaceName.ToString());
+                    IdpeKey key = DataSource.Keys.GetKey(IdpeKeyTypes.FileInterfaceName.ToString());
                     if (key != null)
                         txtFileInterfaceName.Text = key.Value;
                     break;

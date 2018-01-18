@@ -143,7 +143,7 @@ namespace Eyedia.IDPE.Interface
             if (status == null)
             {
                 SetStatusText("Checking service status...");
-                status = SreServiceCommunicator.GetPullersStatus();
+                status = ServiceCommunicator.GetPullersStatus();
             }
 
             toolStripButton2.Image = ServiceRunningImage;
@@ -245,7 +245,7 @@ namespace Eyedia.IDPE.Interface
                             , EyediaCoreConfigurationSection.CurrentConfig.TempDirectory));
                     }
                 }
-                string filePath = Path.Combine(EyediaCoreConfigurationSection.CurrentConfig.TempDirectory, "sre");
+                string filePath = Path.Combine(EyediaCoreConfigurationSection.CurrentConfig.TempDirectory, "idpe");
                 if (!Directory.Exists(filePath))
                     Directory.CreateDirectory(filePath);
                 return Path.Combine(filePath, "searchedStrings.txt");
@@ -284,7 +284,7 @@ namespace Eyedia.IDPE.Interface
         {
             try
             {
-                new SreClient().ClearCache();
+                new IdpeClient().ClearCache();
             }
             catch (Exception ex)
             {
@@ -472,7 +472,7 @@ namespace Eyedia.IDPE.Interface
         {
             try
             {
-                new SreClient().ClearLog();
+                new IdpeClient().ClearLog();
             }
             catch
             {

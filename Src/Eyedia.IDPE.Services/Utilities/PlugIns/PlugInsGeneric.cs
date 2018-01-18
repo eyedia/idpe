@@ -52,7 +52,7 @@ namespace Eyedia.IDPE.Services
         public static string ExecuteSQL(IdpeKey connectionKey, string query)
         {
             bool isErrored = false;
-            return new SqlClientManager(connectionKey.Value, (SreKeyTypes)connectionKey.Type).ExecuteQuery(query, ref isErrored);
+            return new SqlClientManager(connectionKey.Value, (IdpeKeyTypes)connectionKey.Type).ExecuteQuery(query, ref isErrored);
         }
 	}
 }

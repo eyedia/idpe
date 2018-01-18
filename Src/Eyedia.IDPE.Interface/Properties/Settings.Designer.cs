@@ -48,7 +48,7 @@ namespace Eyedia.IDPE.Interface.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DTCNXPLTSMSSD05\\SQLEX2005;Initial Catalog=SRE;Integrated Security=Tru" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DTCNXPLTSMSSD05\\SQLEX2005;Initial Catalog=IDPE;Integrated Security=Tru" +
             "e")]
         public string SREConnectionString {
             get {
@@ -59,7 +59,7 @@ namespace Eyedia.IDPE.Interface.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MCIB3ESXT001V13\\SQLEXPRESS;Initial Catalog=sre;Integrated Security=Tr" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MCIB3ESXT001V13\\SQLEXPRESS;Initial Catalog=idpe;Integrated Security=Tr" +
             "ue")]
         public string sreConnectionString1 {
             get {

@@ -44,12 +44,12 @@ namespace Eyedia.IDPE.DataManager
 {
     public static class ExtensionMethods
     {
-        public static bool IsConnectionStringType(this SreKeyTypes type)
+        public static bool IsConnectionStringType(this IdpeKeyTypes type)
         {
-            if ((type == SreKeyTypes.ConnectionStringOracle)
-                                || (type == SreKeyTypes.ConnectionStringSqlCe)                                
-                                || (type == SreKeyTypes.ConnectionStringSqlServer)
-                                || (type == SreKeyTypes.ConnectionStringDB2iSeries))
+            if ((type == IdpeKeyTypes.ConnectionStringOracle)
+                                || (type == IdpeKeyTypes.ConnectionStringSqlCe)                                
+                                || (type == IdpeKeyTypes.ConnectionStringSqlServer)
+                                || (type == IdpeKeyTypes.ConnectionStringDB2iSeries))
                 return true;
 
             return false;
@@ -57,10 +57,10 @@ namespace Eyedia.IDPE.DataManager
 
         public static bool IsConnectionStringType(this int type)
         {
-            if ((type == (int)SreKeyTypes.ConnectionStringOracle)
-                                || (type == (int)SreKeyTypes.ConnectionStringSqlCe)                                
-                                || (type == (int)SreKeyTypes.ConnectionStringSqlServer)
-                                || (type == (int)SreKeyTypes.ConnectionStringDB2iSeries))
+            if ((type == (int)IdpeKeyTypes.ConnectionStringOracle)
+                                || (type == (int)IdpeKeyTypes.ConnectionStringSqlCe)                                
+                                || (type == (int)IdpeKeyTypes.ConnectionStringSqlServer)
+                                || (type == (int)IdpeKeyTypes.ConnectionStringDB2iSeries))
                 return true;
 
             return false;
@@ -68,19 +68,19 @@ namespace Eyedia.IDPE.DataManager
 
         public static DatabaseTypes GetDatabaseType(this IdpeKey key)
         {
-            SreKeyTypes idpeKeyType = (SreKeyTypes)key.Type;
+            IdpeKeyTypes idpeKeyType = (IdpeKeyTypes)key.Type;
             switch (idpeKeyType)
             {
-                case SreKeyTypes.ConnectionStringSqlServer:
+                case IdpeKeyTypes.ConnectionStringSqlServer:
                     return DatabaseTypes.SqlServer;
 
-                case SreKeyTypes.ConnectionStringOracle:
+                case IdpeKeyTypes.ConnectionStringOracle:
                     return DatabaseTypes.Oracle;
 
-                case SreKeyTypes.ConnectionStringDB2iSeries:
+                case IdpeKeyTypes.ConnectionStringDB2iSeries:
                     return DatabaseTypes.DB2iSeries;
 
-                case SreKeyTypes.ConnectionStringSqlCe:
+                case IdpeKeyTypes.ConnectionStringSqlCe:
                     return DatabaseTypes.SqlCe;
 
                 default:
@@ -89,21 +89,21 @@ namespace Eyedia.IDPE.DataManager
 
         }
 
-        public static SreKeyTypes GetSreType(this DatabaseTypes databaseType)
+        public static IdpeKeyTypes GetSreType(this DatabaseTypes databaseType)
         {            
             switch (databaseType)
             {
                 case DatabaseTypes.SqlServer:
-                    return SreKeyTypes.ConnectionStringSqlServer;
+                    return IdpeKeyTypes.ConnectionStringSqlServer;
 
                 case DatabaseTypes.Oracle:
-                    return SreKeyTypes.ConnectionStringOracle;
+                    return IdpeKeyTypes.ConnectionStringOracle;
 
                 case DatabaseTypes.DB2iSeries:
-                    return SreKeyTypes.ConnectionStringDB2iSeries;
+                    return IdpeKeyTypes.ConnectionStringDB2iSeries;
 
                 case DatabaseTypes.SqlCe:
-                    return SreKeyTypes.ConnectionStringSqlCe;
+                    return IdpeKeyTypes.ConnectionStringSqlCe;
 
                 default:
                     throw new Exception(databaseType.ToString() + " is not sretype key!");
@@ -128,7 +128,7 @@ namespace Eyedia.IDPE.DataManager
             return string.IsNullOrEmpty(idpekey.Value) ? string.Empty : idpekey.Value;
         }
 
-        public static string GetKeyValue(this List<IdpeKey> keys, SreKeyTypes keyType)
+        public static string GetKeyValue(this List<IdpeKey> keys, IdpeKeyTypes keyType)
         {
             if (keys == null)
                 return string.Empty;

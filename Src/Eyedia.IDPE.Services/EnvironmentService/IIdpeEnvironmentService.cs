@@ -94,7 +94,7 @@ namespace Eyedia.IDPE.Services
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, ConcurrencyMode = ConcurrencyMode.Single)]
     public class IdpeEnvironmentService: IIdpeEnvironmentService
     {
-        string sysDir = Path.Combine(SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, "100");
+        string sysDir = Path.Combine(IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, "100");
 
         public string Ping(EnvironmentServicePacket packet)
         {
@@ -156,7 +156,7 @@ namespace Eyedia.IDPE.Services
             if (packet.FileTransferPacket.Content != null)
             {
                 //save locally in temp location
-                fileName = Path.Combine(Information.TempDirectorySre, Path.GetFileName(packet.FileTransferPacket.FileName));
+                fileName = Path.Combine(Information.TempDirectoryIdpe, Path.GetFileName(packet.FileTransferPacket.FileName));
                 this.SaveFileStream(fileName, new MemoryStream(packet.FileTransferPacket.Content));
             }
             DeploySdfInternal(fileName);
@@ -180,7 +180,7 @@ namespace Eyedia.IDPE.Services
             if (packet.FileTransferPacket.Content != null)
             {
                 //save locally in temp location
-                fileName = Path.Combine(Information.TempDirectorySre, Path.GetFileName(packet.FileTransferPacket.FileName));
+                fileName = Path.Combine(Information.TempDirectoryIdpe, Path.GetFileName(packet.FileTransferPacket.FileName));
                 this.SaveFileStream(fileName, new MemoryStream(packet.FileTransferPacket.Content));
             }
             ProcessFileInternal(fileName, packet.DataSourceId);
@@ -200,7 +200,7 @@ namespace Eyedia.IDPE.Services
 
         public string SetConfigFile(EnvironmentServicePacket packet)
         {                        
-            string tempFileName = Path.Combine(Information.TempDirectorySre, Path.GetFileName(packet.FileTransferPacket.FileName));
+            string tempFileName = Path.Combine(Information.TempDirectoryIdpe, Path.GetFileName(packet.FileTransferPacket.FileName));
             if (packet.FileTransferPacket.Content != null)
                 this.SaveFileStream(tempFileName, new MemoryStream(packet.FileTransferPacket.Content));
             

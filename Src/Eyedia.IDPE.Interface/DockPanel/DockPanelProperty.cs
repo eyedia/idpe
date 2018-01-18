@@ -140,7 +140,7 @@ namespace Eyedia.IDPE.Interface
                 string currentStatus = "0";
                 try
                 {
-                    currentStatus = new SreClient().IsTemporarilyStopped(_SreDataSource.Id);
+                    currentStatus = new IdpeClient().IsTemporarilyStopped(_SreDataSource.Id);
                     if(currentStatus == "1")
                     {
                         timerBlank.Enabled = true;
@@ -297,7 +297,7 @@ namespace Eyedia.IDPE.Interface
         {
             MainWindow.SetToolStripStatusLabel("Please wait...Clearing cache...");
             Application.DoEvents();
-            if (SreServiceCommunicator.ClearDataSource(_SreDataSource.Id, string.Empty))
+            if (ServiceCommunicator.ClearDataSource(_SreDataSource.Id, string.Empty))
                 MainWindow.SetToolStripStatusLabel("Ready");
             else
                 MainWindow.SetToolStripStatusLabel("Failed to clear cache", true);
@@ -355,7 +355,7 @@ namespace Eyedia.IDPE.Interface
             this.Cursor = Cursors.WaitCursor;
             try
             {
-                SreClient client = new SreClient();
+                IdpeClient client = new IdpeClient();
                 string currentStatus = client.IsTemporarilyStopped(_SreDataSource.Id);
                 if (currentStatus == "0")
                 {

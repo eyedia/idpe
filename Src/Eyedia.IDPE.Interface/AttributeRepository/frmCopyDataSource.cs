@@ -113,7 +113,7 @@ namespace Eyedia.IDPE.Interface
             {
                 for (int i = 0; i < keys.Count; i++)
                 {
-                    if (((SreKeyTypes)keys[i].Type) == SreKeyTypes.Custom)
+                    if (((IdpeKeyTypes)keys[i].Type) == IdpeKeyTypes.Custom)
                     {
                         IdpeKey newKey = new IdpeKey();
 
@@ -251,7 +251,7 @@ namespace Eyedia.IDPE.Interface
             List<IdpeKey> keys = DataManager.GetApplicationKeys(FromDataSource.Id, false);
             foreach (IdpeKey key in keys)
             {
-                if (((SreKeyTypes)key.Type) != SreKeyTypes.Custom)
+                if (((IdpeKeyTypes)key.Type) != IdpeKeyTypes.Custom)
                 {
                     DataManager.Save(key, newDataSource.Id);
                     toolStripStatusLabel1.Text = "Copying key..." + key.Name;

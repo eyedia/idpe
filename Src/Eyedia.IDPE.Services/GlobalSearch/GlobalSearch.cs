@@ -65,7 +65,7 @@ namespace Eyedia.IDPE.Services
                 sql += "where (c.data_Type in ('char', 'nchar', 'varchar', 'nvarchar', 'text', 'ntext')) and (t.table_type = 'table') ";
 
                 bool isErrored = false;
-                table = new SqlClientManager(ConnectionString, SreKeyTypes.ConnectionStringSqlCe).ExecuteQueryAndGetDataTable(sql, ref isErrored);
+                table = new SqlClientManager(ConnectionString, IdpeKeyTypes.ConnectionStringSqlCe).ExecuteQueryAndGetDataTable(sql, ref isErrored);
 
                 foreach(DataRow dr in table.Rows)
                 {
@@ -82,7 +82,7 @@ namespace Eyedia.IDPE.Services
                     dynSql += " from [" + dr["table_name"].ToString() + "]";
                     dynSql += " where [" + dr["column_name"].ToString() + "] like '%" + searchText + "%'";
 
-                    DataTable result = new SqlClientManager(ConnectionString, SreKeyTypes.ConnectionStringSqlCe).ExecuteQueryAndGetDataTable(dynSql, ref isErrored);
+                    DataTable result = new SqlClientManager(ConnectionString, IdpeKeyTypes.ConnectionStringSqlCe).ExecuteQueryAndGetDataTable(dynSql, ref isErrored);
 
                     foreach(DataRow r in result.Rows)
                     {
@@ -154,7 +154,7 @@ namespace Eyedia.IDPE.Services
         private GSearchResultCube FormatResultRule(GSearchResultCube result)
         {
             bool isErrored = false;
-            string info = new SqlClientManager(ConnectionString, SreKeyTypes.ConnectionStringSqlCe)
+            string info = new SqlClientManager(ConnectionString, IdpeKeyTypes.ConnectionStringSqlCe)
                 .ExecuteQuery("select name, rulesettype from idpedatasource ds inner join idperuledatasource rds on rds.datasourceid = ds.id where ruleid = " + result.ReferenceId
                 , ref isErrored);
 
@@ -190,14 +190,14 @@ namespace Eyedia.IDPE.Services
         private GSearchResultCube FormatResultKey(GSearchResultCube result)
         {           
             bool isErrored = false;
-            result.DataSource = new SqlClientManager(ConnectionString, SreKeyTypes.ConnectionStringSqlCe)
+            result.DataSource = new SqlClientManager(ConnectionString, IdpeKeyTypes.ConnectionStringSqlCe)
                 .ExecuteQuery("select name from idpedatasource ds inner join idpekeydatasource kds on kds.datasourceid = ds.id where keyid = " + result.ReferenceId
                 , ref isErrored);
 
             int keyType = 0;
             if (int.TryParse(result.Param1, out keyType))
             {
-                SreKeyTypes idpeKeyType = (SreKeyTypes)keyType;
+                IdpeKeyTypes idpeKeyType = (IdpeKeyTypes)keyType;
                 result.Param1 = idpeKeyType.ToString();
 
                 if (result.Param1.Contains("OutputWriter"))
@@ -215,7 +215,7 @@ namespace Eyedia.IDPE.Services
         {
             result.Type = "";
             bool isErrored = false;
-            DataTable table = new SqlClientManager(ConnectionString, SreKeyTypes.ConnectionStringSqlCe)
+            DataTable table = new SqlClientManager(ConnectionString, IdpeKeyTypes.ConnectionStringSqlCe)
                 .ExecuteQueryAndGetDataTable("select name, issystem from idpedatasource ds inner join idpeattributedatasource ads on ads.datasourceid = ds.id where attributeId = " + result.ReferenceId
                 , ref isErrored);
 

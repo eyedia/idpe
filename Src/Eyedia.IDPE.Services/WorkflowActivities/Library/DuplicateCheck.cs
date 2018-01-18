@@ -139,7 +139,7 @@ namespace Eyedia.IDPE.Services
             {
                 errorMessage = string.Format("Row[*][*]:Duplicate check against database was failed. " +
                    "Please analyze the logs/errors and reprocess the file. " +
-                   "'SRE was able to communicate with database, but returned incorrect records. '{0}' was sent, but retrieved only '{1}'."
+                   "'IDPE was able to communicate with database, but returned incorrect records. '{0}' was sent, but retrieved only '{1}'."
                    , oldCount, filterTable.Rows.Count);
 
                 job.Errors.Add(errorMessage);
@@ -169,7 +169,7 @@ namespace Eyedia.IDPE.Services
             {
                 errorMessage = string.Format("Row[*][*]:Duplicate check against database was failed. " +
                   "Please analyze the logs/errors and reprocess the file. " +
-                  "'SRE was able to communicate with database, but returned incorrect columns. '{0}' was sent, but retrieved only '{1}'."
+                  "'IDPE was able to communicate with database, but returned incorrect columns. '{0}' was sent, but retrieved only '{1}'."
                   , passedColumns.Count, filterTable.Columns.Count);
 
                 job.Errors.Add(errorMessage);
@@ -181,7 +181,7 @@ namespace Eyedia.IDPE.Services
             {
                 errorMessage = "Row[*][*]:Duplicate check against database was failed. " +
                   "Please analyze the logs/errors and reprocess the file. " +
-                  "'SRE was able to communicate with database, but returned incorrect columns.";
+                  "'IDPE was able to communicate with database, but returned incorrect columns.";
 
                 job.Errors.Add(errorMessage);
                 return true;
@@ -191,7 +191,7 @@ namespace Eyedia.IDPE.Services
             {
                 errorMessage = "Row[*][*]:Duplicate check against database was failed. " +
                  "Please analyze the logs/errors and reprocess the file. " +
-                 "'SRE was able to communicate with database, but returned incorrect columns. The very first column should be 'Position'";
+                 "'IDPE was able to communicate with database, but returned incorrect columns. The very first column should be 'Position'";
 
                 job.Errors.Add(errorMessage);
                 return true;
@@ -201,7 +201,7 @@ namespace Eyedia.IDPE.Services
             {
                 errorMessage = "Row[*][*]:Duplicate check against database was failed. " +
                  "Please analyze the logs/errors and reprocess the file. " +
-                 "'SRE was able to communicate with database, but returned incorrect columns. The very last column should be 'IsDuplicate'";
+                 "'IDPE was able to communicate with database, but returned incorrect columns. The very last column should be 'IsDuplicate'";
 
                 job.Errors.Add(errorMessage);
                 return true;
@@ -221,7 +221,7 @@ namespace Eyedia.IDPE.Services
 
             if (errors.Count > 0)
             {
-                job.Errors.Add("Row[*][*]:Duplicate check against database was failed. Please analyze the logs/errors and reprocess the file. 'SRE was able to communicate with database, but returned incorrect columns. ");
+                job.Errors.Add("Row[*][*]:Duplicate check against database was failed. Please analyze the logs/errors and reprocess the file. 'IDPE was able to communicate with database, but returned incorrect columns. ");
                 job.Errors.Add("");
                 job.Errors.AddRange(errors);
                 return true;

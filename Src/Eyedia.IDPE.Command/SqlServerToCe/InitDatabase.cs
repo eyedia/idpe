@@ -41,15 +41,15 @@ namespace Eyedia.IDPE.Command
     {
         public void Initialize(string folder)
         {
-            List<string> sreps = new List<string>(Directory.GetFiles(folder, "*.srep"));
-            foreach (string srep in sreps)
+            List<string> idpeps = new List<string>(Directory.GetFiles(folder, "*.idpep"));
+            foreach (string idpep in idpeps)
             {
-                DataSourcePatch dsp = new DataSourcePatch(srep);
+                DataSourcePatch dsp = new DataSourcePatch(idpep);
                 dsp.Import();
-                Console.WriteLine("{0} imported.", Path.GetFileName(srep));
+                Console.WriteLine("{0} imported.", Path.GetFileName(idpep));
             }
 
-            string[] systemDataSources = Directory.GetFiles(folder, "*system*.srex");
+            string[] systemDataSources = Directory.GetFiles(folder, "*system*.idpex");
 
             DataManager.Manager manager = new DataManager.Manager();
             foreach (string systemDataSource in systemDataSources)
@@ -65,7 +65,7 @@ namespace Eyedia.IDPE.Command
                 Console.WriteLine("{0} imported.", Path.GetFileName(systemDataSource));
             }
 
-            List<string> dataSources = new List<string>(Directory.GetFiles(folder, "*.srex"));
+            List<string> dataSources = new List<string>(Directory.GetFiles(folder, "*.idpex"));
             dataSources.RemoveAll(f => f.Contains("System"));
 
             foreach (string dataSource in dataSources)

@@ -52,7 +52,7 @@ namespace Eyedia.IDPE.Services
 
         public string PickupDlls(string fromLocation = null)
         {
-            string toZipFile = Path.Combine(Information.TempDirectoryTempData, "sre.zip");
+            string toZipFile = Path.Combine(Information.TempDirectoryTempData, "idpe.zip");
             if (File.Exists(toZipFile))
                 File.Delete(toZipFile);
             
@@ -171,7 +171,7 @@ namespace Eyedia.IDPE.Services
             {
                 List<string> allFiles = RequiredFiles;
 
-                IdpeKey key = new Manager().GetKey(SreKeyTypes.AdditionalDeploymentArtifacts);
+                IdpeKey key = new Manager().GetKey(IdpeKeyTypes.AdditionalDeploymentArtifacts);
                 if (key != null)
                     allFiles.AddRange(key.GetUnzippedBinaryValue().Split(",".ToCharArray()));
 

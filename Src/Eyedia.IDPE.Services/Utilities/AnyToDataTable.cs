@@ -58,7 +58,7 @@ namespace Eyedia.IDPE.Services
 
         public List<string> Feed()
         {
-            if (!File.Exists(Job.FileName)) //when SRE multiple instances are running
+            if (!File.Exists(Job.FileName)) //when IDPE multiple instances are running
                 return new List<string>();
 
             List<string> errors = new List<string>();
@@ -124,7 +124,7 @@ namespace Eyedia.IDPE.Services
             CollectOverriddenMapping(overridenMapping);
 
             List<string> errors = new List<string>();    
-            string strType = this.Job.DataSource.Keys.GetKeyValue(SreKeyTypes.DataFeedCustomType);
+            string strType = this.Job.DataSource.Keys.GetKeyValue(IdpeKeyTypes.DataFeedCustomType);
             Type type = Type.GetType(strType);
 
             if (type == null)
@@ -266,17 +266,17 @@ namespace Eyedia.IDPE.Services
         private void FeedCustom()
         {
             List<string> errors = new List<string>();
-            IdpeKey fileInterface = Job.DataSource.Key(SreKeyTypes.FileInterfaceName);
+            IdpeKey fileInterface = Job.DataSource.Key(IdpeKeyTypes.FileInterfaceName);
             if(fileInterface == null)
             {
                 //let's do one check for system datasource, keys may be missing for system ds                
                 new Manager().InsertSystemObjects();
                 Job.DataSource.RefreshKeys();
-                fileInterface = Job.DataSource.Key(SreKeyTypes.FileInterfaceName);
+                fileInterface = Job.DataSource.Key(IdpeKeyTypes.FileInterfaceName);
             }
             if (fileInterface != null)
             {
-                if (File.Exists(Job.FileName)) //when SRE multiple instances are running
+                if (File.Exists(Job.FileName)) //when IDPE multiple instances are running
                 {
                     Job.InputData = GenerateInputDataFromInterface(fileInterface.Value);
                     if ((Job.DataSource.IsFirstRowHeader) && (Job.CsvRows.Count > 0))
@@ -297,7 +297,7 @@ namespace Eyedia.IDPE.Services
         {
             try
             {
-                string renameColumnHeader = Job.DataSource.Keys.GetKeyValue(SreKeyTypes.RenameColumnHeader);
+                string renameColumnHeader = Job.DataSource.Keys.GetKeyValue(IdpeKeyTypes.RenameColumnHeader);
                 if ((string.IsNullOrEmpty(renameColumnHeader))
                     || (renameColumnHeader.ToLower() == "false")
                     || (Job.CsvRows.Count < 1))
@@ -327,7 +327,7 @@ namespace Eyedia.IDPE.Services
             catch (Exception ex)
             {
                 //here try catch is needed, as we are just feeding data we do not know what format the data is.
-                //for example, instead of 10 columns, we might received 7 columns. The case will eventually be handled by SRE
+                //for example, instead of 10 columns, we might received 7 columns. The case will eventually be handled by IDPE
                 //and caller should get notified of the issue.
                 //Hence lets keep any rename column related issue as silent issue (if error).
                 Job.TraceError(string.Format("Can not rename column! DataSource = {0}", Job.DataSource.Id) + Environment.NewLine + ex.ToString());
@@ -452,7 +452,7 @@ namespace Eyedia.IDPE.Services
             List<string> csvRows = new List<string>();
             List<string> warnings = new List<string>();
             int columnCount = 0;
-            XmlFeedMechanism feedMechanism = (XmlFeedMechanism)Enum.Parse(typeof(XmlFeedMechanism), Job.DataSource.Keys.GetKeyValue(SreKeyTypes.XmlFeedMechanism), true);
+            XmlFeedMechanism feedMechanism = (XmlFeedMechanism)Enum.Parse(typeof(XmlFeedMechanism), Job.DataSource.Keys.GetKeyValue(IdpeKeyTypes.XmlFeedMechanism), true);
 
             if (feedMechanism == XmlFeedMechanism.Xslt)
             {
@@ -468,7 +468,7 @@ namespace Eyedia.IDPE.Services
             }
             else if (feedMechanism == XmlFeedMechanism.Custom)
             {
-                Job.InputData = GenerateInputDataFromXml(Job.FileContent, Job.DataSource.Keys.GetKeyValue(SreKeyTypes.FileInterfaceName));
+                Job.InputData = GenerateInputDataFromXml(Job.FileContent, Job.DataSource.Keys.GetKeyValue(IdpeKeyTypes.FileInterfaceName));
             }
             
             Job.ColumnCount = Job.InputData.Columns.Count;

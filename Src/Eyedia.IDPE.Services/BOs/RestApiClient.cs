@@ -35,6 +35,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using Newtonsoft.Json.Linq;
+using System.Data;
+using Newtonsoft.Json;
 
 namespace Eyedia.IDPE.Services
 {
@@ -45,6 +48,27 @@ namespace Eyedia.IDPE.Services
         public string ResponseContent { get; set; }
         public string ResponseErrorMessage { get; set; }
         public int TimeOut { get; set; }
+
+        public JObject ResponseContentJObject
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(ResponseContent) ? JObject.Parse(ResponseContent) : null;
+            }
+        }
+
+        public DataTable ResponseContentDataTable
+        {
+            get
+            {
+                try
+                {
+                    return !string.IsNullOrEmpty(ResponseContent) ? JsonConvert.DeserializeObject<DataTable>(ResponseContent) : null;
+                }
+                catch { }
+                return null;
+            }
+        }
 
         public RestApiClient(string restUrl, int timeOut = 2)
         {

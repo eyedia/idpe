@@ -89,7 +89,7 @@ namespace Eyedia.IDPE.Interface
 
         void Init()
         {
-            _IniPath = AppDomain.CurrentDomain.BaseDirectory + "sre.ini";
+            _IniPath = AppDomain.CurrentDomain.BaseDirectory + "idpe.ini";
             if (File.Exists(_IniPath))
             {
                 StreamReader sr = new StreamReader(_IniPath);

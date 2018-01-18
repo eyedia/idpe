@@ -37,7 +37,7 @@
             this.btnComparisonTool = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.chkEnableServiceCheck = new System.Windows.Forms.CheckBox();
-            this.sreDatabases1 = new Eyedia.IDPE.Interface.Controls.SreDatabases();
+            this.sreDatabases1 = new Eyedia.IDPE.Interface.Controls.ConnectionStringControl();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1.SuspendLayout();
@@ -181,7 +181,7 @@
         private System.Windows.Forms.Button btnComparisonTool;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.CheckBox chkEnableServiceCheck;
-        private Controls.SreDatabases sreDatabases1;
+        private Controls.ConnectionStringControl sreDatabases1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
     }

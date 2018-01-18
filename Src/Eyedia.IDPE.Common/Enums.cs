@@ -164,7 +164,7 @@ namespace Eyedia.IDPE.Common
     }
 
 
-    public enum SreKeyTypes
+    public enum IdpeKeyTypes
     {
         Unknown,
 
@@ -231,7 +231,7 @@ namespace Eyedia.IDPE.Common
 
         /// <summary>
         /// [String]
-        /// Local archive folder. SRE sets this internally
+        /// Local archive folder. IDPE sets this internally
         /// </summary>
         LocalLocation,
 
@@ -243,13 +243,13 @@ namespace Eyedia.IDPE.Common
 
         /// <summary>
         /// [String]
-        /// Local archive folder. SRE sets this internally
+        /// Local archive folder. IDPE sets this internally
         /// </summary>
         OutputFolder,
 
         /// <summary>
         /// [String]
-        /// Local archive folder. SRE sets this internally
+        /// Local archive folder. IDPE sets this internally
         /// </summary>
         LocalArchiveFolder,
 
@@ -261,13 +261,13 @@ namespace Eyedia.IDPE.Common
 
         /// <summary>
         /// [String - Name of any associated string type attribute]
-        /// SRE will be configured to make last line as header in case of map &apos;Fixed Length&apos;, and will map it to the value.
+        /// IDPE will be configured to make last line as header in case of map &apos;Fixed Length&apos;, and will map it to the value.
         /// </summary>
         FixedLengthHeaderAttribute,
 
         /// <summary>
         /// [String - Name of any associated string type attribute]
-        /// SRE will be configured to make last line as footer in case of map &apos;Fixed Length&apos;, and will map it to the value.
+        /// IDPE will be configured to make last line as footer in case of map &apos;Fixed Length&apos;, and will map it to the value.
         /// </summary>
         FixedLengthFooterAttribute,
 
@@ -279,13 +279,13 @@ namespace Eyedia.IDPE.Common
 
         /// <summary>
         /// [String]
-        /// Any custom key. If app owner wants to keep some configuration/information in SRE (later to be used in some plug-ins/interfaces).
+        /// Any custom key. If app owner wants to keep some configuration/information in IDPE (later to be used in some plug-ins/interfaces).
         /// </summary>
         Custom,
 
         /// <summary>
         /// [Bool]
-        /// SRE has a mechanism to generate multiple parameters from database. For more information please read &apos;TODO&apos;. This flag enables/disables this feature.
+        /// IDPE has a mechanism to generate multiple parameters from database. For more information please read &apos;TODO&apos;. This flag enables/disables this feature.
         /// </summary>
         GenerateParametersFromDatabase,
 
@@ -297,14 +297,14 @@ namespace Eyedia.IDPE.Common
 
         /// <summary>
         /// [String - 1 char]
-        /// When loading mechanism is &apos;PullSQL&apos;, if your SQL query output is directly fed into SRE, this should set as 'D' or if you would like an interface to reprocess the SQL
-        /// output and then feed into SRE, you will set this as &apos;I&apos; and also set &apos;PullSqlInterfaceName&apos;
+        /// When loading mechanism is &apos;PullSQL&apos;, if your SQL query output is directly fed into IDPE, this should set as 'D' or if you would like an interface to reprocess the SQL
+        /// output and then feed into IDPE, you will set this as &apos;I&apos; and also set &apos;PullSqlInterfaceName&apos;
         /// </summary>
         PullSqlReturnType,
 
         /// <summary>
         /// [String]
-        /// When loading mechanism is &apos;PullSQL&apos;, and you would need an interface to process the output of the SQL and feed SRE, which means
+        /// When loading mechanism is &apos;PullSQL&apos;, and you would need an interface to process the output of the SQL and feed IDPE, which means
         /// you set &apos;PullSqlReturnType = I&apos;
         /// </summary>
         PullSqlInterfaceName,
@@ -342,10 +342,10 @@ namespace Eyedia.IDPE.Common
 
         /// <summary>
         /// [string]
-        /// -1 = SRE will not sort the files and process as is
-        /// 0 = SRE will sort the files based on extensions before processing. Ascending
-        /// 1 = SRE will sort the files based on extensions before processing. Descending
-        /// ".txt|.dat" = SRE will sort the files based on configured extensions
+        /// -1 = IDPE will not sort the files and process as is
+        /// 0 = IDPE will sort the files based on extensions before processing. Ascending
+        /// 1 = IDPE will sort the files based on extensions before processing. Descending
+        /// ".txt|.dat" = IDPE will sort the files based on configured extensions
         /// </summary>
         ZipFilesSortType,
 
@@ -363,13 +363,13 @@ namespace Eyedia.IDPE.Common
 
         /// <summary>
         /// [String]
-        /// SRE will ignore these types of extensions (e.g - .txt|.dat)
+        /// IDPE will ignore these types of extensions (e.g - .txt|.dat)
         /// </summary>
         ZipIgnoreFileList,
 
         /// <summary>
         /// [String]
-        /// SRE will ignore these types of extensions, but copy the file as is to output folder (e.g - .txt|.dat)
+        /// IDPE will ignore these types of extensions, but copy the file as is to output folder (e.g - .txt|.dat)
         /// </summary>
         ZipIgnoreFileListButCopyToOutputFolder,
 
@@ -449,73 +449,73 @@ namespace Eyedia.IDPE.Common
 
         /// <summary>
         /// [String - Name of any associated string type attribute]
-        /// SRE will be configured to make first line as header1 and will be mapped to the configured attribute.
+        /// IDPE will be configured to make first line as header1 and will be mapped to the configured attribute.
         /// </summary>
         HeaderLine1Attribute,
 
         /// <summary>
         /// [String - Name of any associated string type attribute]
-        /// SRE will be configured to make first line as header2 and will be mapped to the configured attribute.
+        /// IDPE will be configured to make first line as header2 and will be mapped to the configured attribute.
         /// </summary>
         HeaderLine2Attribute,
 
         /// <summary>
         /// [String - Name of any associated string type attribute]
-        /// SRE will be configured to make first line as header3 and will be mapped to the configured attribute.
+        /// IDPE will be configured to make first line as header3 and will be mapped to the configured attribute.
         /// </summary>
         HeaderLine3Attribute,
 
         /// <summary>
         /// [String - Name of any associated string type attribute]
-        /// SRE will be configured to make first line as header4 and will be mapped to the configured attribute.
+        /// IDPE will be configured to make first line as header4 and will be mapped to the configured attribute.
         /// </summary>
         HeaderLine4Attribute,
 
         /// <summary>
         /// [String - Name of any associated string type attribute]
-        /// SRE will be configured to make first line as header5 and will be mapped to the configured attribute.
+        /// IDPE will be configured to make first line as header5 and will be mapped to the configured attribute.
         /// </summary>
         HeaderLine5Attribute,
 
         /// <summary>
         /// [String - Name of any associated string type attribute]
-        /// SRE will be configured to make first line as header6 and will be mapped to the configured attribute.
+        /// IDPE will be configured to make first line as header6 and will be mapped to the configured attribute.
         /// </summary>
         HeaderLine6Attribute,
 
         /// <summary>
         /// [String - Name of any associated string type attribute]
-        /// SRE will be configured to make first line as footer1 and will be mapped to the configured attribute.
+        /// IDPE will be configured to make first line as footer1 and will be mapped to the configured attribute.
         /// </summary>
         FooterLine1Attribute,
 
         /// <summary>
         /// [String - Name of any associated string type attribute]
-        /// SRE will be configured to make first line as footer2 and will be mapped to the configured attribute.
+        /// IDPE will be configured to make first line as footer2 and will be mapped to the configured attribute.
         /// </summary>
         FooterLine2Attribute,
 
         /// <summary>
         /// [String - Name of any associated string type attribute]
-        /// SRE will be configured to make first line as footer3 and will be mapped to the configured attribute.
+        /// IDPE will be configured to make first line as footer3 and will be mapped to the configured attribute.
         /// </summary>
         FooterLine3Attribute,
 
         /// <summary>
         /// [String - Name of any associated string type attribute]
-        /// SRE will be configured to make first line as footer4 and will be mapped to the configured attribute.
+        /// IDPE will be configured to make first line as footer4 and will be mapped to the configured attribute.
         /// </summary>
         FooterLine4Attribute,
 
         /// <summary>
         /// [String - Name of any associated string type attribute]
-        /// SRE will be configured to make first line as footer5 and will be mapped to the configured attribute.
+        /// IDPE will be configured to make first line as footer5 and will be mapped to the configured attribute.
         /// </summary>
         FooterLine5Attribute,
 
         /// <summary>
         /// [String - Name of any associated string type attribute]
-        /// SRE will be configured to make first line as footer6 and will be mapped to the configured attribute.
+        /// IDPE will be configured to make first line as footer6 and will be mapped to the configured attribute.
         /// </summary>
         FooterLine6Attribute,
         
@@ -680,7 +680,7 @@ namespace Eyedia.IDPE.Common
 
     public enum DataFeederTypes
     {
-        [Description("Push-SRE as Service")]
+        [Description("Push-IDPE as Service")]
         Push,
 
         [Description("Pull from FTP Server")]

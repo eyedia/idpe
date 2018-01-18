@@ -131,7 +131,7 @@ namespace Eyedia.IDPE.Services
                     Cache.Instance.Bag.Remove(Id + ".keys");
             }
             this.Keys = LoadKeys(this.Id);
-            string strIsFirstRowIsHeader = this.Keys.GetKeyValue(SreKeyTypes.IsFirstRowHeader);
+            string strIsFirstRowIsHeader = this.Keys.GetKeyValue(IdpeKeyTypes.IsFirstRowHeader);
             bool boolIsFirstRowIsHeader = false;
             if (strIsFirstRowIsHeader != null)
                 bool.TryParse(strIsFirstRowIsHeader, out boolIsFirstRowIsHeader);
@@ -139,14 +139,14 @@ namespace Eyedia.IDPE.Services
 
             #region Adding Derrived Keys
 
-            IdpeKey dkey = Keys.GetKey(SreKeyTypes.EmailAfterFileProcessedAttachOtherFiles.ToString());
+            IdpeKey dkey = Keys.GetKey(IdpeKeyTypes.EmailAfterFileProcessedAttachOtherFiles.ToString());
             if (dkey == null)
             {
                 //this key is used to send any additional files to be sent along with email
                 //this key value can be filled anywhere, including plugins
                 //Expected value is comma separate file names
                 dkey = new IdpeKey();
-                dkey.Name = SreKeyTypes.EmailAfterFileProcessedAttachOtherFiles.ToString();
+                dkey.Name = IdpeKeyTypes.EmailAfterFileProcessedAttachOtherFiles.ToString();
                 dkey.Value = string.Empty;
                 this.Keys.Add(dkey);
             }
@@ -317,7 +317,7 @@ namespace Eyedia.IDPE.Services
         }
 
         /// <summary>
-        /// Returns true if SRE to use default archive location (parallel to 'Pull')
+        /// Returns true if IDPE to use default archive location (parallel to 'Pull')
         /// </summary>
         public bool LocalFileSystemFolderArchiveAuto
         {
@@ -371,9 +371,9 @@ namespace Eyedia.IDPE.Services
         /// </summary>
         /// <param name="idpeKeyType">specific key</param>
         /// <returns></returns>
-        public IdpeKey Key(SreKeyTypes idpeKeyType)
+        public IdpeKey Key(IdpeKeyTypes idpeKeyType)
         {
-            if ((idpeKeyType == SreKeyTypes.Custom)
+            if ((idpeKeyType == IdpeKeyTypes.Custom)
                 || (idpeKeyType.IsConnectionStringType()))
                 return null;
 
@@ -404,7 +404,7 @@ namespace Eyedia.IDPE.Services
         public List<IdpeKey> KeyCustoms()
         {
             return (from e in this.Keys
-                    where e.Type == (int)SreKeyTypes.Custom
+                    where e.Type == (int)IdpeKeyTypes.Custom
                     select e).ToList();
         }
 
@@ -415,7 +415,7 @@ namespace Eyedia.IDPE.Services
         public List<IdpeKey> KeyConnectionStrings()
         {
             return (from e in this.Keys
-                    where ((SreKeyTypes)e.Type).IsConnectionStringType()
+                    where ((IdpeKeyTypes)e.Type).IsConnectionStringType()
                     select e).ToList();
         }
 
@@ -426,7 +426,7 @@ namespace Eyedia.IDPE.Services
         /// <param name="fileName">The attachment name</param>
         public void AddOtherAttachments(string fileName)
         {
-            IdpeKey key = this.Keys.GetKey(SreKeyTypes.EmailAfterFileProcessedAttachOtherFiles.ToString());
+            IdpeKey key = this.Keys.GetKey(IdpeKeyTypes.EmailAfterFileProcessedAttachOtherFiles.ToString());
             if (key != null)
             {
                 if (string.IsNullOrEmpty(key.Value))
@@ -445,7 +445,7 @@ namespace Eyedia.IDPE.Services
         /// </summary>
         public void ClearAdditionalAttachments()
         {
-            IdpeKey key = this.Keys.GetKey(SreKeyTypes.EmailAfterFileProcessedAttachOtherFiles.ToString());
+            IdpeKey key = this.Keys.GetKey(IdpeKeyTypes.EmailAfterFileProcessedAttachOtherFiles.ToString());
             if (key != null)
                 key.Value = string.Empty;
         }
@@ -466,12 +466,12 @@ namespace Eyedia.IDPE.Services
         /// </summary>
         public static string GetPullFolder(int dataSourceId, List<IdpeKey> keys)
         {
-            string folder = Path.Combine(SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, dataSourceId.ToString());
+            string folder = Path.Combine(IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, dataSourceId.ToString());
             if (!IsLocalFileSystemFoldersAreOverriden(keys))
                 return folder;
 
             IdpeKey key = (from e in keys
-                          where e.Type == (int)SreKeyTypes.LocalFileSystemFolderPull
+                          where e.Type == (int)IdpeKeyTypes.LocalFileSystemFolderPull
                           select e).SingleOrDefault();
 
             folder = key.Value;
@@ -485,13 +485,13 @@ namespace Eyedia.IDPE.Services
         /// </summary>
         public static string GetOutputFolder(int dataSourceId, List<IdpeKey> keys)
         {
-            string folder = Path.Combine(SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryOutput, dataSourceId.ToString());
+            string folder = Path.Combine(IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryOutput, dataSourceId.ToString());
             folder = Path.Combine(folder, DateTime.Now.ToDBDateFormat());
             if (!IsLocalFileSystemFoldersAreOverriden(keys))
                 return folder;
 
             IdpeKey key = (from e in keys
-                          where e.Type == (int)SreKeyTypes.LocalFileSystemFolderOutput
+                          where e.Type == (int)IdpeKeyTypes.LocalFileSystemFolderOutput
                           select e).SingleOrDefault();
 
             folder = Path.Combine(key.Value, DateTime.Now.ToDBDateFormat());
@@ -509,12 +509,12 @@ namespace Eyedia.IDPE.Services
             if (keys == null)
                 keys = LoadKeys(dataSourceId);
 
-            string outputExtension = keys.GetKeyValue(SreKeyTypes.OutputFileExtension);
+            string outputExtension = keys.GetKeyValue(IdpeKeyTypes.OutputFileExtension);
             if (string.IsNullOrEmpty(outputExtension))
                 outputExtension = ".xml";
 
             string outputFileName = string.Empty;
-            string outputFileNameKey = keys.GetKeyValue(SreKeyTypes.OutputFileName);
+            string outputFileNameKey = keys.GetKeyValue(IdpeKeyTypes.OutputFileName);
             if (string.IsNullOrEmpty(outputFileNameKey))
             {
                 outputFileName = Path.Combine(outputFolder, inputFileNameOnly + outputExtension);
@@ -548,7 +548,7 @@ namespace Eyedia.IDPE.Services
         /// </summary>
         public static string GetArchiveFolder(int dataSourceId, List<IdpeKey> keys)
         {
-            string folder = Path.Combine(SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryArchive, dataSourceId.ToString());
+            string folder = Path.Combine(IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryArchive, dataSourceId.ToString());
             folder = Path.Combine(folder, DateTime.Now.ToDBDateFormat());
             if (!IsLocalFileSystemFoldersAreOverriden(keys))
                 return folder;
@@ -561,7 +561,7 @@ namespace Eyedia.IDPE.Services
             }
 
             IdpeKey key = (from e in keys
-                          where e.Type == (int)SreKeyTypes.LocalFileSystemFolderArchive
+                          where e.Type == (int)IdpeKeyTypes.LocalFileSystemFolderArchive
                           select e).SingleOrDefault();
 
             folder = Path.Combine(key.Value, DateTime.Now.ToDBDateFormat());
@@ -576,7 +576,7 @@ namespace Eyedia.IDPE.Services
                 return false;
 
             IdpeKey key = (from e in keys
-                          where e.Type == (int)SreKeyTypes.LocalFileSystemFoldersOverriden
+                          where e.Type == (int)IdpeKeyTypes.LocalFileSystemFoldersOverriden
                           select e).SingleOrDefault();
 
             bool result = false;
@@ -588,13 +588,13 @@ namespace Eyedia.IDPE.Services
 
 
         /// <summary>
-        /// Returns true if SRE to use default archive location (parallel to 'Pull')
+        /// Returns true if IDPE to use default archive location (parallel to 'Pull')
         /// </summary>
         public static bool IsLocalFileSystemFolderArchiveAuto(List<IdpeKey> keys)
         {
 
             IdpeKey key = (from e in keys
-                          where e.Type == (int)SreKeyTypes.LocalFileSystemFolderArchiveAuto
+                          where e.Type == (int)IdpeKeyTypes.LocalFileSystemFolderArchiveAuto
                           select e).SingleOrDefault();
 
             bool result = false;

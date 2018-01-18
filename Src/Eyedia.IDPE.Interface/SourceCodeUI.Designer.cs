@@ -113,7 +113,7 @@
             this.txtSourceCodeLocation.Name = "txtSourceCodeLocation";
             this.txtSourceCodeLocation.Size = new System.Drawing.Size(429, 20);
             this.txtSourceCodeLocation.TabIndex = 8;
-            this.txtSourceCodeLocation.Text = "C:\\DEB\\SRE";
+            this.txtSourceCodeLocation.Text = "C:\\DEB\\IDPE";
             // 
             // btnBrowse
             // 
@@ -151,7 +151,7 @@
             this.txtDestinationFolder.Name = "txtDestinationFolder";
             this.txtDestinationFolder.Size = new System.Drawing.Size(429, 20);
             this.txtDestinationFolder.TabIndex = 12;
-            this.txtDestinationFolder.Text = "C:\\Documents and Settings\\u175675\\Desktop\\sre";
+            this.txtDestinationFolder.Text = "C:\\Documents and Settings\\u175675\\Desktop\\idpe";
             // 
             // label1
             // 

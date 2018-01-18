@@ -67,7 +67,7 @@ namespace Eyedia.IDPE.Services
         {
             get
             {
-                return DataSource.Keys.GetKeyValue(SreKeyTypes.EDIX12Xslt);
+                return DataSource.Keys.GetKeyValue(IdpeKeyTypes.EDIX12Xslt);
             }
         }
 

@@ -90,7 +90,7 @@ namespace Eyedia.IDPE.Services
             if (IsFirstRowHeader)
                 sb.AppendLine(CreateHeader());
 
-            bool doNotEncloseWithDoubleQuotes = _Job.DataSource.Keys.GetKeyValue(SreKeyTypes.OutputDelimiterDoNotEncloseWithDoubleQuote).ParseBool();           
+            bool doNotEncloseWithDoubleQuotes = _Job.DataSource.Keys.GetKeyValue(IdpeKeyTypes.OutputDelimiterDoNotEncloseWithDoubleQuote).ParseBool();           
 
             foreach (Row row in rows)
             {

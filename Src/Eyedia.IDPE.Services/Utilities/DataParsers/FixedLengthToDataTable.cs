@@ -59,7 +59,7 @@ namespace Eyedia.IDPE.Services
         public FixedLengthToDataTable(Job job)
             : base(job)
         {
-            IdpeKey schemaKey = Job.DataSource.Key(SreKeyTypes.FixedLengthSchema);
+            IdpeKey schemaKey = Job.DataSource.Key(IdpeKeyTypes.FixedLengthSchema);
             if (schemaKey == null)
                 throw new ApplicationException(string.Format("'FixedLengthSchema' schema is not defined in '{0}'", Job.DataSource.Name));
 

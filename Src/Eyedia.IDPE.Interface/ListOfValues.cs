@@ -305,7 +305,7 @@ namespace Eyedia.IDPE.Interface
             if (lvCodes.SelectedItems.Count > 0)
             {
                 saveFileDialog.FileName = lvCodes.SelectedItems[0].Text;
-                saveFileDialog.Filter = "SRE Patch Files (*.srep)|*.srep|All Files (*.*)|*.*";
+                saveFileDialog.Filter = "IDPE Patch Files (*.idpep)|*.idpep|All Files (*.*)|*.*";
                 if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     DataSourcePatch dsp = new DataSourcePatch();
@@ -322,10 +322,10 @@ namespace Eyedia.IDPE.Interface
 
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            openFileDialog.Filter = "Delimited Files (*.csv)|*.csv|SRE Patch Files (*.srep)|*.srep|All Files (*.*)|*.*";
+            openFileDialog.Filter = "Delimited Files (*.csv)|*.csv|IDPE Patch Files (*.idpep)|*.idpep|All Files (*.*)|*.*";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (Path.GetExtension(openFileDialog.FileName).ToLower() == ".srep")
+                if (Path.GetExtension(openFileDialog.FileName).ToLower() == ".idpep")
                 {
                     DataSourcePatch dsp = new DataSourcePatch(openFileDialog.FileName);
                     dsp.Import();                    

@@ -64,7 +64,7 @@ namespace Eyedia.IDPE.Interface
             List<IdpeAttribute> attributes = manager.GetAttributes(SystemDataSourceId);
             string[] attributeNames = attributes.Where(aa => aa.IsAcceptable == true).Select(a => a.Name).ToArray();
             fixedLengthSchemaGenerator1.Attributes = attributeNames;
-            IdpeKey key = manager.GetKey(DataSourceId, SreKeyTypes.FixedLengthSchemaOutputWriter.ToString());
+            IdpeKey key = manager.GetKey(DataSourceId, IdpeKeyTypes.FixedLengthSchemaOutputWriter.ToString());
             fixedLengthSchemaGenerator1.Schema = (key != null) ? key.Value : string.Empty;
 
         }
@@ -74,9 +74,9 @@ namespace Eyedia.IDPE.Interface
             try
             {
                 IdpeKey key = new IdpeKey();
-                key.Name = SreKeyTypes.FixedLengthSchemaOutputWriter.ToString();
+                key.Name = IdpeKeyTypes.FixedLengthSchemaOutputWriter.ToString();
                 key.Value = fixedLengthSchemaGenerator1.Schema;
-                key.Type = (int)SreKeyTypes.FixedLengthSchemaOutputWriter;
+                key.Type = (int)IdpeKeyTypes.FixedLengthSchemaOutputWriter;
                 new Manager().Save(key, DataSourceId);
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 this.Close();

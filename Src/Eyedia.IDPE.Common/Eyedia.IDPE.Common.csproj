@@ -13,7 +13,8 @@
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>Symplus.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -91,23 +92,23 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReflectionMethods.cs" />
     <Compile Include="SourceCodeManager.cs" />
-    <Compile Include="SreConfigurationSectionEditable.cs" />
-    <Compile Include="SreMessage.cs" />
-    <Compile Include="SreMessageCodeDescriptions.Designer.cs">
+    <Compile Include="IdpeConfigurationSectionEditable.cs" />
+    <Compile Include="IdpeMessage.cs" />
+    <Compile Include="IdpeMessageCodeDescriptions.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SreMessageCodeDescriptions.resx</DependentUpon>
+      <DependentUpon>IdpeMessageCodeDescriptions.resx</DependentUpon>
     </Compile>
-    <Compile Include="SreMessageCodes.cs" />
-    <Compile Include="SreConfigurationSection.cs" />
+    <Compile Include="IdpeMessageCodes.cs" />
+    <Compile Include="IdpeConfigurationSection.cs" />
     <Compile Include="UserCookie.cs" />
     <Compile Include="UserPreferences.cs" />
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SreMessageCodeDescriptions.resx">
+    <EmbeddedResource Include="IdpeMessageCodeDescriptions.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SreMessageCodeDescriptions.Designer.cs</LastGenOutput>
+      <LastGenOutput>IdpeMessageCodeDescriptions.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
@@ -127,9 +128,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Symplus.pfx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CSharpCodeExecutor\ExecuteAndReturnString.txt" />

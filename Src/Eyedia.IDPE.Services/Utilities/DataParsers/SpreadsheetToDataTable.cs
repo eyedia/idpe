@@ -75,7 +75,7 @@ namespace Eyedia.IDPE.Services
         public DataTable ParseData(ref List<string> csvRows, ref List<string> emptyRowWarnings, ref int columnCount)
         {   
             emptyRowWarnings = new List<string>();
-            int spreadSheetNumber = (int)Job.DataSource.Keys.GetKeyValue(SreKeyTypes.SpreadSheetNumber).ParseInt();
+            int spreadSheetNumber = (int)Job.DataSource.Keys.GetKeyValue(IdpeKeyTypes.SpreadSheetNumber).ParseInt();
 
             lock (_lock)
             {
@@ -190,7 +190,7 @@ namespace Eyedia.IDPE.Services
                 {
                     //nothing could be retrieved using Excel Lib.
                     //Lets try using standard mechanism                
-                    if (SreConfigurationSection.CurrentConfig.MicrosoftExcelOLEDataReader.Enabled)
+                    if (IdpeConfigurationSection.CurrentConfig.MicrosoftExcelOLEDataReader.Enabled)
                     {
                         ExtensionMethods.TraceInformation("Could not read using default excel library, trying to read using OLE");
                         DataTable table = ReadUsingOLE(fileName, isFirstRowHeader);
@@ -205,7 +205,7 @@ namespace Eyedia.IDPE.Services
             }
             catch (FileNotFoundException fnfe)
             {
-                //this try/catch is placed when multi instances of SRE runs on same machine
+                //this try/catch is placed when multi instances of IDPE runs on same machine
                 return new DataTable();
             }
 
@@ -217,8 +217,8 @@ namespace Eyedia.IDPE.Services
             //string connectionString = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0;HDR={1}\""
             //    , fileName, _isFirstRowAsColumnNames ? "YES" : "NO");
             string connectionString = string.Format("Provider={0};Data Source={1};Extended Properties=\"Excel {2};HDR={3}\"",
-                SreConfigurationSection.CurrentConfig.MicrosoftExcelOLEDataReader.Provider, fileName,
-                SreConfigurationSection.CurrentConfig.MicrosoftExcelOLEDataReader.Version, isFirstRowHeader ? "YES" : "NO");
+                IdpeConfigurationSection.CurrentConfig.MicrosoftExcelOLEDataReader.Provider, fileName,
+                IdpeConfigurationSection.CurrentConfig.MicrosoftExcelOLEDataReader.Version, isFirstRowHeader ? "YES" : "NO");
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
                 try

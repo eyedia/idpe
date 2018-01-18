@@ -243,7 +243,7 @@ namespace Eyedia.IDPE.Interface
 
         void OnAttributeDelete(object sender, EventArgs e)
         {
-            SreListView listView = sender as SreListView;
+            ListViewControl listView = sender as ListViewControl;
             if (listView.Parent is DockPanelDataSourceAttributes)
             {
                 DisassociateAttributeFromDataSource(m_dm_Attributes.sreListView1);
@@ -256,7 +256,7 @@ namespace Eyedia.IDPE.Interface
 
         void OnAttributeRepositioned(object sender, EventArgs e)
         {
-            SreListView listView = sender as SreListView;
+            ListViewControl listView = sender as ListViewControl;
             if (listView.Parent is DockPanelDataSourceAttributes)
             {
                 SaveAssociations(m_dm_Attributes.sreListView1.ListView);
@@ -266,12 +266,12 @@ namespace Eyedia.IDPE.Interface
                 SaveAssociations(m_dm_SystemAttributes.sreListView1.ListView, true);
             }
 
-            if(SreServiceCommunicator.ClearDataSource(SelectedDataSource.Id, string.Empty))
+            if(ServiceCommunicator.ClearDataSource(SelectedDataSource.Id, string.Empty))
                 SetToolStripStatusLabel("Ready");
             else
                 SetToolStripStatusLabel("Failed to clear cache", true);
         }
-        public void DisassociateAttributeFromDataSource(SreListView sreListView1, bool isSystemDataSource = false)
+        public void DisassociateAttributeFromDataSource(ListViewControl sreListView1, bool isSystemDataSource = false)
         {
             int dataSourceId = isSystemDataSource ? (int)SelectedDataSource.SystemDataSourceId : SelectedDataSource.Id;
             bool saved = false;
@@ -310,7 +310,7 @@ namespace Eyedia.IDPE.Interface
             if (saved)
                 SaveAssociations(sreListView1.ListView, isSystemDataSource, false);
 
-            if(SreServiceCommunicator.ClearDataSource(SelectedDataSource.Id, string.Empty))
+            if(ServiceCommunicator.ClearDataSource(SelectedDataSource.Id, string.Empty))
                 SetToolStripStatusLabel("Ready");
             else
                 SetToolStripStatusLabel("Failed to clear cache", true);
@@ -373,7 +373,7 @@ namespace Eyedia.IDPE.Interface
             m_dm_GlobalAttributes.btnAssociateBoth.Enabled = true;
             m_dm_GlobalAttributes.btnAssociateAttributeDataSource.Enabled = true;
             m_dm_GlobalAttributes.btnAssociateAttributeSystemDataSource.Enabled = true;
-            SreListView sreListView = sender as SreListView;
+            ListViewControl sreListView = sender as ListViewControl;
             if (sreListView != null)
             {
                 if (sreListView.ListView.SelectedItems.Count > 0)
@@ -388,7 +388,7 @@ namespace Eyedia.IDPE.Interface
                         ((SrePropertyGrid)m_dm_Property.propertyGrid.SelectedObject).Save();
                         toolStripStatusLabel1.Text = "Please wait...Clearing cache...";
                         Application.DoEvents();
-                        new SreClient().ClearCache();
+                        new IdpeClient().ClearCache();
                         
                         toolStripStatusLabel1.Text = "Please wait...Refresing...";
                         Application.DoEvents();
@@ -436,7 +436,7 @@ namespace Eyedia.IDPE.Interface
            
             this.Cursor = Cursors.WaitCursor;
             dockPanel.SuspendLayout(true);
-            SreListView sreListView = sender as SreListView;
+            ListViewControl sreListView = sender as ListViewControl;
             if (sreListView != null)
             {
                 if (sreListView.ListView.SelectedItems.Count > 0)
@@ -466,7 +466,7 @@ namespace Eyedia.IDPE.Interface
 
                         toolStripStatusLabel1.Text = "Please wait...Clearing cache...";
                         Application.DoEvents();
-                        if(SreServiceCommunicator.ClearDataSource(SelectedDataSource.Id, string.Empty))
+                        if(ServiceCommunicator.ClearDataSource(SelectedDataSource.Id, string.Empty))
                             SetToolStripStatusLabel("Ready");
                         else
                             SetToolStripStatusLabel("Failed to clear cache", true);
@@ -629,7 +629,7 @@ namespace Eyedia.IDPE.Interface
                 string newcs = string.Format("Data Source='{0}';password=acc3s$", newFile);
                 List<string> scripts = new List<string>(cleanScripts.Split(Environment.NewLine.ToCharArray())).RemoveEmptyStrings();
 
-                SqlClientManager sqlClientManager = new SqlClientManager(newcs, SreKeyTypes.ConnectionStringSqlCe);
+                SqlClientManager sqlClientManager = new SqlClientManager(newcs, IdpeKeyTypes.ConnectionStringSqlCe);
                 foreach (string script in scripts)
                 {
                     sqlClientManager.ExecuteNonQuery(script);
@@ -644,12 +644,12 @@ namespace Eyedia.IDPE.Interface
                     config.ConnectionStrings.ConnectionStrings["cs"].ConnectionString = newcs;
                     config.Save(ConfigurationSaveMode.Modified);
 
-                    string sre = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpe.exe");
+                    string idpe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpe.exe");
                     string srewoa = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpewoa.exe");
 
-                    if (File.Exists(sre))
+                    if (File.Exists(idpe))
                     {
-                        System.Configuration.Configuration sreConfig = ConfigurationManager.OpenExeConfiguration(sre);
+                        System.Configuration.Configuration sreConfig = ConfigurationManager.OpenExeConfiguration(idpe);
                         config.ConnectionStrings.ConnectionStrings["cs"].ConnectionString = newcs;
                         config.Save(ConfigurationSaveMode.Modified);
                     }

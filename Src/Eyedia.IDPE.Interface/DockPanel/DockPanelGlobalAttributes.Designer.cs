@@ -34,7 +34,7 @@ namespace Eyedia.IDPE.Interface
             this.btnAssociateBoth = new System.Windows.Forms.Button();
             this.btnAssociateAttributeSystemDataSource = new System.Windows.Forms.Button();
             this.btnAssociateAttributeDataSource = new System.Windows.Forms.Button();
-            this.sreListView1 = new Eyedia.IDPE.Interface.Controls.SreListView();
+            this.sreListView1 = new Eyedia.IDPE.Interface.Controls.ListViewControl();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.miExport = new System.Windows.Forms.ToolStripMenuItem();
             this.miImport = new System.Windows.Forms.ToolStripMenuItem();
@@ -184,7 +184,7 @@ namespace Eyedia.IDPE.Interface
         private System.Windows.Forms.Panel pnlRight;
         internal System.Windows.Forms.Button btnAssociateAttributeSystemDataSource;
         internal System.Windows.Forms.Button btnAssociateAttributeDataSource;
-        internal Controls.SreListView sreListView1;
+        internal Controls.ListViewControl sreListView1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem miExport;
         private System.Windows.Forms.ToolStripMenuItem miImport;

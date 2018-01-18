@@ -67,7 +67,7 @@ namespace Eyedia.IDPE.Services
                 if (data.CurrentRow.Columns[c].HasBusinessError)
                     continue;
 
-                SreMessage sreMsg = data.CurrentRow.Columns[c].Type.Parse(true);
+                IdpeMessage sreMsg = data.CurrentRow.Columns[c].Type.Parse(true);
                 if (data.CurrentRow.Columns[c].Type is SreCodeset)
                 {
                     SreCodeset sreCodeset = data.CurrentRow.Columns[c].Type as SreCodeset;
@@ -75,7 +75,7 @@ namespace Eyedia.IDPE.Services
                     data.CurrentRow.Columns[c].ValueEnumValue = sreCodeset.ValueEnumValue;
                     data.CurrentRow.Columns[c].ValueEnumReferenceKey = sreCodeset.ReferenceKey;
                 }
-                if ((sreMsg.Code != SreMessageCodes.SRE_SUCCESS) && (sreMsg.Code != data.CurrentRow.Columns[c].Error.Code))
+                if ((sreMsg.Code != IdpeMessageCodes.IDPE_SUCCESS) && (sreMsg.Code != data.CurrentRow.Columns[c].Error.Code))
                 {
                     string oldMsg = data.CurrentRow.Columns[c].Error.Message;
                     data.CurrentRow.Columns[c].Error = sreMsg;
@@ -100,7 +100,7 @@ namespace Eyedia.IDPE.Services
                 //if (data.CurrentRow.ColumnsSystem[c].Name == "AssetId")
                 //    Debugger.Break();
 
-                SreMessage sreMsg = data.CurrentRow.ColumnsSystem[c].Type.Parse(true);
+                IdpeMessage sreMsg = data.CurrentRow.ColumnsSystem[c].Type.Parse(true);
                 if (data.CurrentRow.ColumnsSystem[c].Type is SreCodeset)
                 {
                     SreCodeset sreCodeset = data.CurrentRow.ColumnsSystem[c].Type as SreCodeset;
@@ -109,14 +109,14 @@ namespace Eyedia.IDPE.Services
                     data.CurrentRow.ColumnsSystem[c].ValueEnumReferenceKey = sreCodeset.ReferenceKey;
                 }
                
-                if ((data.CurrentRow.ColumnsSystem[c].HasBusinessError) && (sreMsg.Code != SreMessageCodes.SRE_SUCCESS))
+                if ((data.CurrentRow.ColumnsSystem[c].HasBusinessError) && (sreMsg.Code != IdpeMessageCodes.IDPE_SUCCESS))
                 {
                     //has business error, parsing failed
                     string oldMsg = data.CurrentRow.ColumnsSystem[c].Error.Message;
                     data.CurrentRow.ColumnsSystem[c].Error = sreMsg;
                     data.CurrentRow.ColumnsSystem[c].Error.Message = string.Format("{0},{1}", oldMsg, data.CurrentRow.ColumnsSystem[c].Error.Message);
                 }
-                else if ((data.CurrentRow.ColumnsSystem[c].HasBusinessError) && (sreMsg.Code == SreMessageCodes.SRE_SUCCESS))
+                else if ((data.CurrentRow.ColumnsSystem[c].HasBusinessError) && (sreMsg.Code == IdpeMessageCodes.IDPE_SUCCESS))
                 {
                     //has business error, parsing passed
                     //don't do anything, let the error continue

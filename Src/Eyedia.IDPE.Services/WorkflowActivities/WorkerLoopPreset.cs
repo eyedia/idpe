@@ -103,7 +103,7 @@ namespace Eyedia.IDPE.Services
                     else
                     {
                         containerError = string.Format("Row[{0}][IsValid]:{1}", originalRowPosition, containerError);
-                        attrbIsValid.Error = new SreMessage(containerError);
+                        attrbIsValid.Error = new IdpeMessage(containerError);
 
                     }
 
@@ -111,12 +111,12 @@ namespace Eyedia.IDPE.Services
                     // else it will be null and throw error through out the life cycle.
                     foreach (Attribute a in data.CurrentRow.Columns)
                     {
-                        a.Error = new SreMessage(SreMessageCodes.SRE_FAILED_BLANK);
+                        a.Error = new IdpeMessage(IdpeMessageCodes.IDPE_FAILED_BLANK);
                     }
                     foreach (Attribute a in data.CurrentRow.ColumnsSystem)
                     {
                         if (!a.Name.Equals("IsValid", StringComparison.OrdinalIgnoreCase))
-                            a.Error = new SreMessage(SreMessageCodes.SRE_FAILED_BLANK);
+                            a.Error = new IdpeMessage(IdpeMessageCodes.IDPE_FAILED_BLANK);
                     }
                 }
 

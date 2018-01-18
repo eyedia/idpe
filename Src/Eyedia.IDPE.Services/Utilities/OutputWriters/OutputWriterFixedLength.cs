@@ -108,7 +108,7 @@ namespace Eyedia.IDPE.Services
         private void CountAttributeWidths()
         {
             AttributeWidths = new Dictionary<string, int>();
-            IdpeKey key = _Job.DataSource.Keys.GetKey(SreKeyTypes.FixedLengthSchemaOutputWriter.ToString());
+            IdpeKey key = _Job.DataSource.Keys.GetKey(IdpeKeyTypes.FixedLengthSchemaOutputWriter.ToString());
             if (key == null)
                 throw new BusinessException("Output writer fixed length schema was not defined!");
 

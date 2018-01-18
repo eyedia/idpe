@@ -51,7 +51,7 @@ namespace Eyedia.Core
     {
         public enum HostingEnvironments { Library, WindowsService, Web }
 
-        [ConfigurationProperty("instanceName", DefaultValue = "SRE", IsRequired = true)]
+        [ConfigurationProperty("instanceName", DefaultValue = "IDPE", IsRequired = true)]
         public String InstanceName
         {
             get

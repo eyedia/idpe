@@ -195,7 +195,7 @@ namespace Eyedia.IDPE.Interface
 
         public string FtpLocalLocation
         {
-            get { return string.Format(SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, _DataSourceId); }
+            get { return string.Format(IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, _DataSourceId); }
         }
 
         public string FtpUserName

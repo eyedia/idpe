@@ -164,7 +164,7 @@ namespace Eyedia.IDPE.Services
         public static CSharpCodeInformation GetCSharpCodeInformation(List<IdpeKey> dataSourceKeys, CSharpCodeInformation csharpCodeInformation = null)
         {
             if (csharpCodeInformation == null)
-                csharpCodeInformation = new CSharpCodeInformation(dataSourceKeys.GetKeyValue(SreKeyTypes.CSharpCodeGenerateTable));
+                csharpCodeInformation = new CSharpCodeInformation(dataSourceKeys.GetKeyValue(IdpeKeyTypes.CSharpCodeGenerateTable));
 
             if (string.IsNullOrEmpty(csharpCodeInformation.RawString))
                 throw new Exception("C# Code was not defined!");

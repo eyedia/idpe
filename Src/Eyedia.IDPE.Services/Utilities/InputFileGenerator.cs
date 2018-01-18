@@ -54,7 +54,7 @@ namespace Eyedia.IDPE.Services
         /// <summary>
         /// When implemented by a 'PullSQL' type data source, this is the recommended constructor
         /// </summary>
-        /// <param name="sqlWatcher">The SQL watcher will be passed from SRE context</param>
+        /// <param name="sqlWatcher">The SQL watcher will be passed from IDPE context</param>
         public InputFileGenerator(Watchers sqlWatcher)
         {
             this.SqlWatcher = (SqlWatcher)sqlWatcher;
@@ -63,7 +63,7 @@ namespace Eyedia.IDPE.Services
         /// <summary>
         /// When implemented for scheduler type
         /// </summary>
-        /// <param name="dataSource">The data source will be passed from SRE context</param>
+        /// <param name="dataSource">The data source will be passed from IDPE context</param>
         public InputFileGenerator(DataSource dataSource)
         {
             this.DataSource = dataSource;
@@ -72,7 +72,7 @@ namespace Eyedia.IDPE.Services
         /// <summary>
         /// When implemented by 'Non-PullSQL' type data source, this is the recommended constructor
         /// </summary>
-        /// <param name="data">The data will be passed from SRE context</param>
+        /// <param name="data">The data will be passed from IDPE context</param>
         public InputFileGenerator(WorkerData data)
         {
             this.Data = data;
@@ -81,7 +81,7 @@ namespace Eyedia.IDPE.Services
         /// <summary>
         /// Most commonly used constructor
         /// </summary>
-        /// <param name="job">The job will be passed from SRE context</param>
+        /// <param name="job">The job will be passed from IDPE context</param>
         public InputFileGenerator(Job job)
         {
             this.Job = job;

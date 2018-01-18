@@ -61,7 +61,7 @@ namespace Eyedia.IDPE.Services
             if (_Job.IsErrored)
                 return new StringBuilder();
 
-            CSharpCodeInformation csharpCodeInformation = new CSharpCodeInformation(_Job.DataSource.Keys.GetKeyValue(SreKeyTypes.CSharpCodeOutputWriter));
+            CSharpCodeInformation csharpCodeInformation = new CSharpCodeInformation(_Job.DataSource.Keys.GetKeyValue(IdpeKeyTypes.CSharpCodeOutputWriter));
             ExecuteCSharpCode executeCSharpcode = new ExecuteCSharpCode("Eyedia.IDPE.Common.CSharpCode",
                 ExecuteCSharpCode.CompilerVersions.v40, csharpCodeInformation.GetReferencedAssemblies());
             return new StringBuilder(executeCSharpcode.Execute(csharpCodeInformation.CompleteCode, "ExecuteAndReturnString", new object[] { _Job }).ToString());

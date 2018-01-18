@@ -47,7 +47,7 @@ namespace Eyedia.IDPE.Command
         {
             if (args.Length < 1)
             {
-                Console.WriteLine("usage: srecmd e/d/u/s2c/uc");
+                Console.WriteLine("usage: idpec e/d/u/s2c/uc");
                 Environment.Exit(101);
             }
 
@@ -118,7 +118,7 @@ namespace Eyedia.IDPE.Command
             Console.Write("Encrypting...");
             ConfigEncryptor.CreateKey(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Eyedia.xml"));
             Console.Write(".");
-            ConfigEncryptor.EncryptAppConfigSections(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpe.exe"), "appSettings,connectionStrings,eyediaCoreConfigurationSection,sreConfigurationSection");
+            ConfigEncryptor.EncryptAppConfigSections(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpe.exe"), "appSettings,connectionStrings,eyediaCoreConfigurationSection,idpeConfigurationSection");
             Console.Write(".");
             ConfigEncryptor.EncryptAppConfigSections(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idped.exe"), "appSettings,connectionStrings,eyediaCoreConfigurationSection");
             Console.Write(".");
@@ -132,7 +132,7 @@ namespace Eyedia.IDPE.Command
         private static void Decrypt()
         {            
             Console.Write("Decrypting...");
-            ConfigEncryptor.DecryptAppConfigSections(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpe.exe"), "appSettings,connectionStrings,eyediaCoreConfigurationSection,sreConfigurationSection");
+            ConfigEncryptor.DecryptAppConfigSections(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpe.exe"), "appSettings,connectionStrings,eyediaCoreConfigurationSection,idpeConfigurationSection");
             Console.Write(".");
             ConfigEncryptor.DecryptAppConfigSections(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idped.exe"), "appSettings,connectionStrings,eyediaCoreConfigurationSection");
             Console.Write(".");            
@@ -169,13 +169,13 @@ namespace Eyedia.IDPE.Command
             //EventLog.WriteEntry(Information.EventLogSource, allargs);
             if (args.Length < 1)
             {
-                Console.WriteLine("usage: sreutilcmd securitycode [command [params]]");
+                Console.WriteLine("usage: idpec securitycode [command [params]]");
                 Environment.Exit(101);
             }
 
             if (args[0] != securityCode)
             {
-                Console.WriteLine("usage: sreutilcmd securitycode [command [params]]");
+                Console.WriteLine("usage: idpec securitycode [command [params]]");
                 Console.WriteLine("Invalid security code.");
                 Environment.Exit(102);
             }
@@ -238,15 +238,15 @@ namespace Eyedia.IDPE.Command
                             SqlCe.ExecuteDDL(args[2], args[3], args[4]);
                         break;
 
-                    case "sreclientconfig":
-                        SreClientConfigExtracter.ExtractConfig(args[2]);
+                    case "idpeclientconfig":
+                        IdpeClientConfigExtracter.ExtractConfig(args[2]);
                         break;
 
                     default:
-                        Console.WriteLine("usage: sreutilcmd securitycode renmsi <MSI File> <Build Mode (d/r)>");
-                        Console.WriteLine("usage: sreutilcmd securitycode genmsiconfig <SRE Config File> <Config Name>");
-                        Console.WriteLine("usage: sreutilcmd securitycode encrypt <EXE File> <appSettings,connectionStrings,...>");
-                        Console.WriteLine("usage: sreutilcmd securitycode copyright <disclaimer loc> <source loc>");
+                        Console.WriteLine("usage: idpec securitycode renmsi <MSI File> <Build Mode (d/r)>");
+                        Console.WriteLine("usage: idpec securitycode genmsiconfig <IDPE Config File> <Config Name>");
+                        Console.WriteLine("usage: idpec securitycode encrypt <EXE File> <appSettings,connectionStrings,...>");
+                        Console.WriteLine("usage: idpec securitycode copyright <disclaimer loc> <source loc>");
                         break;
 
                 }
@@ -265,8 +265,8 @@ namespace Eyedia.IDPE.Command
             string dir = AppDomain.CurrentDomain.BaseDirectory;
             if (args.Length == 3)
                 dir = args[2];
-            string outFileName = Path.Combine(dir, "srever.txt");
-            string outFileNamePrev = Path.Combine(dir, "srever.prev.txt");
+            string outFileName = Path.Combine(dir, "idpever.txt");
+            string outFileNamePrev = Path.Combine(dir, "idpever.prev.txt");
             if (File.Exists(outFileName))
                 File.Delete(outFileName);
 
@@ -329,7 +329,7 @@ namespace Eyedia.IDPE.Command
             Console.Write(".");
             SetupWatchFolder(watchFolder);
             Console.Write(".");
-            //ConfigEncryptor.EncryptAppConfigSections(Path.Combine(location, "idpe.exe"), "appSettings,connectionStrings,eyediaCoreConfigurationSection,sreConfigurationSection");
+            //ConfigEncryptor.EncryptAppConfigSections(Path.Combine(location, "idpe.exe"), "appSettings,connectionStrings,eyediaCoreConfigurationSection,idpeConfigurationSection");
             Console.Write(".");
             //ConfigEncryptor.EncryptAppConfigSections(Path.Combine(location, "idped.exe"), "appSettings,connectionStrings,eyediaCoreConfigurationSection");
             Console.Write(".");
@@ -358,9 +358,9 @@ namespace Eyedia.IDPE.Command
                             ServiceInstaller.StopService(instance.ServiceName, true);
                             ServiceInstaller.Uninstall(instance.ServiceName);
                             instance.DeleteFromRegistry(regUtil.SubKey);
-                            File.Delete(string.Format("{0}sre.{1}.exe", AppDomain.CurrentDomain.BaseDirectory, instance.InstanceNumber.ToString("00")));
-                            File.Delete(string.Format("{0}sre.{1}.exe.config",AppDomain.CurrentDomain.BaseDirectory, instance.InstanceNumber.ToString("00")));
-                            File.Delete(AppDomain.CurrentDomain.BaseDirectory + "sre.ini");
+                            File.Delete(string.Format("{0}idpe.{1}.exe", AppDomain.CurrentDomain.BaseDirectory, instance.InstanceNumber.ToString("00")));
+                            File.Delete(string.Format("{0}idpe.{1}.exe.config",AppDomain.CurrentDomain.BaseDirectory, instance.InstanceNumber.ToString("00")));
+                            File.Delete(AppDomain.CurrentDomain.BaseDirectory + "idpe.ini");
                             Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + "Logs", true);
                         }
                         catch { }
@@ -373,12 +373,12 @@ namespace Eyedia.IDPE.Command
 
             try
             {
-                File.Delete(AppDomain.CurrentDomain.BaseDirectory + "sre.ini");
+                File.Delete(AppDomain.CurrentDomain.BaseDirectory + "idpe.ini");
                 Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + "Logs", true);
                 for (int i = 1; i < 5; i++)
                 {
-                    string file1 = string.Format("{0}sre.{1}.exe", AppDomain.CurrentDomain.BaseDirectory, i.ToString("00"));
-                    string file2 = string.Format("{0}sre.{1}.exe.config", AppDomain.CurrentDomain.BaseDirectory, i.ToString("00"));
+                    string file1 = string.Format("{0}idpe.{1}.exe", AppDomain.CurrentDomain.BaseDirectory, i.ToString("00"));
+                    string file2 = string.Format("{0}idpe.{1}.exe.config", AppDomain.CurrentDomain.BaseDirectory, i.ToString("00"));
                     if (File.Exists(file1))
                         File.Delete(file1);
                     if (File.Exists(file2))

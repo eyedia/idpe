@@ -146,10 +146,10 @@ namespace Eyedia.IDPE.Services
             return result;
         }
 
-        SreMessage result;
+        IdpeMessage result;
         private MethodInfo GetMethod(string method, ref object instance)
         {
-            result = new SreMessage(SreMessageCodes.SRE_PLUGIN_METHOD_EXECUTION_FAILED);            
+            result = new IdpeMessage(IdpeMessageCodes.IDPE_PLUGIN_METHOD_EXECUTION_FAILED);            
             MethodInfo thisMethod = null;
             Type thisType = this.GetType();
             Type[] types = new Type[1];
@@ -164,7 +164,7 @@ namespace Eyedia.IDPE.Services
             Error:
             if (thisMethod == null)
             {                
-                result = new SreMessage(SreMessageCodes.SRE_PLUGIN_METHOD_EXECUTION_FAILED_METHOD_NOT_DEFINED);
+                result = new IdpeMessage(IdpeMessageCodes.IDPE_PLUGIN_METHOD_EXECUTION_FAILED_METHOD_NOT_DEFINED);
                 string traceErrMsg = string.Format("'{0}' is not implemented in {1}", method, thisType.FullName);
                 if (_Job != null)
                 {

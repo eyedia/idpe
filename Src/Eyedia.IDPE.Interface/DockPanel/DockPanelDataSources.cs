@@ -134,7 +134,7 @@ namespace Eyedia.IDPE.Interface
             List<IdpeVersion> lastVersions = new Manager().GetVersions(VersionObjectTypes.DataSource, SelectedDataSource.Id);
 
             if (lastVersions.Count >= 2)
-                SreVersionComparer.Compare(VersionObjectTypes.DataSource, SelectedDataSource.Name, lastVersions[0], lastVersions[1]);
+                VersionComparer.Compare(VersionObjectTypes.DataSource, SelectedDataSource.Name, lastVersions[0], lastVersions[1]);
             else
                 MessageBox.Show("Could not retrieve last 2 versions!", "Comparison Tool", MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
@@ -193,7 +193,7 @@ namespace Eyedia.IDPE.Interface
             if (sreListView1.ListView.SelectedItems.Count > 0)
             {
                 saveFileDialog.FileName = sreListView1.ListView.SelectedItems[0].SubItems[0].Text;
-                saveFileDialog.Filter = "SRE Patch Files (*.srep)|*.srep|All Files (*.*)|*.*";
+                saveFileDialog.Filter = "IDPE Patch Files (*.idpep)|*.idpep|All Files (*.*)|*.*";
                 if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     DataSourcePatch dsp = new DataSourcePatch();
@@ -232,7 +232,7 @@ namespace Eyedia.IDPE.Interface
         private void mnuImportKeys_Click(object sender, EventArgs e)
         {
             openFileDialog1.FileName = string.Empty;
-            openFileDialog1.Filter = "SRE Patch Files (*.srep)|*.srep|All Files (*.*)|*.*";
+            openFileDialog1.Filter = "IDPE Patch Files (*.idpep)|*.idpep|All Files (*.*)|*.*";
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 DataSourcePatch dsp = new DataSourcePatch(openFileDialog1.FileName);

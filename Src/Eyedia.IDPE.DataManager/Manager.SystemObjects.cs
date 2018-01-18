@@ -206,32 +206,32 @@ namespace Eyedia.IDPE.DataManager
             OutputFileExtension	.csv	*/
 
             IdpeKey key = new IdpeKey();
-            key.Name = SreKeyTypes.FileInterfaceName.ToString();
-            key.Type = (int)SreKeyTypes.FileInterfaceName;
+            key.Name = IdpeKeyTypes.FileInterfaceName.ToString();
+            key.Type = (int)IdpeKeyTypes.FileInterfaceName;
             key.Value = "Eyedia.IDPE.Services.PacketReceiver, Eyedia.IDPE.Services";
             Save(key, 100, dal, connection, transaction);
 
             key = new IdpeKey();
-            key.Name = SreKeyTypes.OutputPartialRecordsAllowed.ToString();
-            key.Type = (int)SreKeyTypes.OutputPartialRecordsAllowed;
+            key.Name = IdpeKeyTypes.OutputPartialRecordsAllowed.ToString();
+            key.Type = (int)IdpeKeyTypes.OutputPartialRecordsAllowed;
             key.Value = "False";
             Save(key, 100, dal, connection, transaction);
 
             key = new IdpeKey();
-            key.Name = SreKeyTypes.OutputIsFirstRowHeader.ToString();
-            key.Type = (int)SreKeyTypes.OutputIsFirstRowHeader;
+            key.Name = IdpeKeyTypes.OutputIsFirstRowHeader.ToString();
+            key.Type = (int)IdpeKeyTypes.OutputIsFirstRowHeader;
             key.Value = "True";
             Save(key, 100, dal, connection, transaction);
 
             key = new IdpeKey();
-            key.Name = SreKeyTypes.OutputDelimiter.ToString();
-            key.Type = (int)SreKeyTypes.OutputDelimiter;
+            key.Name = IdpeKeyTypes.OutputDelimiter.ToString();
+            key.Type = (int)IdpeKeyTypes.OutputDelimiter;
             key.Value = ",";
             Save(key, 100, dal, connection, transaction);
 
             key = new IdpeKey();
-            key.Name = SreKeyTypes.OutputFileExtension.ToString();
-            key.Type = (int)SreKeyTypes.OutputFileExtension;
+            key.Name = IdpeKeyTypes.OutputFileExtension.ToString();
+            key.Type = (int)IdpeKeyTypes.OutputFileExtension;
             key.Value = ".csv";
             Save(key, 100, dal, connection, transaction);
         }

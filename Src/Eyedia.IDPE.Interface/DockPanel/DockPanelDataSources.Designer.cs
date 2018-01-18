@@ -31,7 +31,7 @@ namespace Eyedia.IDPE.Interface
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DockPanelDataSources));
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.sreListView1 = new Eyedia.IDPE.Interface.Controls.SreListView();
+            this.sreListView1 = new Eyedia.IDPE.Interface.Controls.ListViewControl();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.setAsDefaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
@@ -297,7 +297,7 @@ namespace Eyedia.IDPE.Interface
 
         private System.Windows.Forms.MainMenu mainMenu1;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        internal Controls.SreListView sreListView1;
+        internal Controls.ListViewControl sreListView1;
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem mnuValidate;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;

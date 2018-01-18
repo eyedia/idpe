@@ -54,7 +54,7 @@ namespace Eyedia.IDPE.Interface.RuleEditor
         public bool SaveSreRule(IdpeRule idpeRule)
         {
             new Manager().Save(idpeRule);
-            SreServiceCommunicator.ClearRule(idpeRule.Id, idpeRule.Name);
+            ServiceCommunicator.ClearRule(idpeRule.Id, idpeRule.Name);
             return true;
         }
     }

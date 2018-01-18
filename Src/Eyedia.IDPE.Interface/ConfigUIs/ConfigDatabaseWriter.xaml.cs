@@ -156,20 +156,20 @@ namespace Eyedia.IDPE.Interface
         {
             if (SelectedConnection != null)
             {
-                TableNames = new ObservableCollection<string>(new SqlClientManager(SelectedConnection.Value, (SreKeyTypes)SelectedConnection.Type).GetTableNames());
+                TableNames = new ObservableCollection<string>(new SqlClientManager(SelectedConnection.Value, (IdpeKeyTypes)SelectedConnection.Type).GetTableNames());
                 cmbTableName.ItemsSource = TableNames;
             }
         }
 
         void BindConfigExisting()
         {
-            OutputWriterDatabaseConfiguration = new Manager().GetKey(DataSourceId, SreKeyTypes.OutputWriterDatabaseConfiguration.ToString());
+            OutputWriterDatabaseConfiguration = new Manager().GetKey(DataSourceId, IdpeKeyTypes.OutputWriterDatabaseConfiguration.ToString());
 
             if ((OutputWriterDatabaseConfiguration != null)
                 && (!string.IsNullOrEmpty(OutputWriterDatabaseConfiguration.Name)))
             {
                 ExistingMap = new ColumnMap(DataSourceId, OutputWriterDatabaseConfiguration.Value);
-                TableNames = new ObservableCollection<string>(new SqlClientManager(ExistingMap.ConnectionKey.Value, (SreKeyTypes)ExistingMap.ConnectionKey.Type).GetTableNames());
+                TableNames = new ObservableCollection<string>(new SqlClientManager(ExistingMap.ConnectionKey.Value, (IdpeKeyTypes)ExistingMap.ConnectionKey.Type).GetTableNames());
                 cmbTableName.ItemsSource = TableNames;
             }
             if (ExistingMap != null)
@@ -349,9 +349,9 @@ namespace Eyedia.IDPE.Interface
                 IdpeKey key = new IdpeKey();
                 if (!string.IsNullOrEmpty(sb.ToString()))
                 {
-                    key.Name = SreKeyTypes.OutputWriterDatabaseConfiguration.ToString();
+                    key.Name = IdpeKeyTypes.OutputWriterDatabaseConfiguration.ToString();
                     key.Value = sb.ToString();
-                    key.Type = (int)SreKeyTypes.OutputWriterDatabaseConfiguration;
+                    key.Type = (int)IdpeKeyTypes.OutputWriterDatabaseConfiguration;
                     new Manager().Save(key, dataSourceId);
                 }
                 return 0;

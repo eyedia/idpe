@@ -96,12 +96,12 @@ namespace Eyedia.IDPE.Services
 
            
 
-            string appWatchFilter = Keys.GetKeyValue(SreKeyTypes.WatchFilter);
-            ZipInterfaceName = Keys.GetKeyValue(SreKeyTypes.ZipInterfaceName);
+            string appWatchFilter = Keys.GetKeyValue(IdpeKeyTypes.WatchFilter);
+            ZipInterfaceName = Keys.GetKeyValue(IdpeKeyTypes.ZipInterfaceName);
 
             if ((InputFileExtension.ToLower() == ".zip") || (InputFileExtension.ToLower() == ".rar") || (InputFileExtension.ToLower() == ".tar"))
             {
-                OutputFolder = Path.Combine(EyediaCoreConfigurationSection.CurrentConfig.TempDirectory, Constants.SREBaseFolderName);
+                OutputFolder = Path.Combine(EyediaCoreConfigurationSection.CurrentConfig.TempDirectory, Constants.IdpeBaseFolderName);
                 OutputFolder = Path.Combine(OutputFolder, "RedirectedOutput");
                 OutputFolder = Path.Combine(OutputFolder, DateTime.Now.ToDBDateFormat());
                 OutputFolder = Path.Combine(OutputFolder, DataSourceId.ToString());
@@ -123,7 +123,7 @@ namespace Eyedia.IDPE.Services
                 {
                     if (!InputFileNameOnly.StartsWith(Constants.UnzippedFilePrefix))
                     {
-                        SreMessage warn = new SreMessage(SreMessageCodes.SRE_FILE_TYPE_NOT_SUPPORTED);
+                        IdpeMessage warn = new IdpeMessage(IdpeMessageCodes.IDPE_FILE_TYPE_NOT_SUPPORTED);
                         DataSource dataSource = new DataSource(DataSourceId, string.Empty);
                         WithWarning = string.Format(warn.Message, dataSource.Name, appWatchFilter, Path.GetFileName(InputFileName));
                         ExtensionMethods.TraceInformation(WithWarning);
@@ -176,7 +176,7 @@ namespace Eyedia.IDPE.Services
             }
 
             if (((InputFileExtension.ToLower() == ".zip") || (InputFileExtension.ToLower() == ".rar") || (InputFileExtension.ToLower() == ".tar"))
-                && (Keys.GetKeyValue(SreKeyTypes.ZipDoNotCreateAcknoledgementInOutputFolder).ParseBool()))
+                && (Keys.GetKeyValue(IdpeKeyTypes.ZipDoNotCreateAcknoledgementInOutputFolder).ParseBool()))
             {
                 ExtensionMethods.TraceInformation("Pullers - The data source '{0}' has been configured as not to copy zip acknoledgement file. File will not be created!",
                     DataSourceId);

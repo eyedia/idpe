@@ -101,18 +101,18 @@ namespace Eyedia.IDPE.Services
             {
                 if (!isSystemRow)
                 {
-                    Columns[columnName].Error = new Common.SreMessage(msg);
+                    Columns[columnName].Error = new Common.IdpeMessage(msg);
                     Columns[columnName].HasBusinessError = true;
                 }
                 else
                 {
-                    ColumnsSystem[columnName].Error = new Common.SreMessage(msg);
+                    ColumnsSystem[columnName].Error = new Common.IdpeMessage(msg);
                     ColumnsSystem[columnName].HasBusinessError = true;
                 }
             }
             else
             {
-                IsValidColumn.Error = new Common.SreMessage(msg);
+                IsValidColumn.Error = new Common.IdpeMessage(msg);
                 IsValidColumn.HasBusinessError = true;
             }
 

@@ -101,7 +101,7 @@ namespace Eyedia.IDPE.Interface
                     switch (fileExtension)
                     {
 
-                        case ".srex":
+                        case ".idpex":
                             if (MessageBox.Show("Do you want to import " + args[0] + " ?", "Import Datasource",
                                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
                             {
@@ -110,7 +110,7 @@ namespace Eyedia.IDPE.Interface
                             }
                             break;
 
-                        case ".srep":
+                        case ".idpep":
                             if (MessageBox.Show("Do you want to import " + args[0] + " ?", "Patch",
                                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
                             {
@@ -125,12 +125,12 @@ namespace Eyedia.IDPE.Interface
                     switch (fileExtension)
                     {
 
-                        case ".srex":
+                        case ".idpex":
                             MessageBox.Show("An error occurred while importing data source from " + args[0] + Environment.NewLine + ex.ToString(), "Import Datasource",
                                  MessageBoxButtons.OK, MessageBoxIcon.Question);
                             break;
 
-                        case ".srep":
+                        case ".idpep":
                             MessageBox.Show("An error occurred while importing from " + args[0] + Environment.NewLine + ex.ToString(), "Patch",
                                         MessageBoxButtons.OK, MessageBoxIcon.Question);
                             break;
@@ -228,7 +228,7 @@ namespace Eyedia.IDPE.Interface
 
         #endregion Static Methods
 
-        internal void ImportAttributes(SreListView sreListView, bool isSytem = false)
+        internal void ImportAttributes(ListViewControl sreListView, bool isSytem = false)
         {
 
             openFileDialog1.FileName = string.Empty;
@@ -256,7 +256,7 @@ namespace Eyedia.IDPE.Interface
 
         }
 
-        internal void ExportAttributes(SreListView sreListView, bool isSytem = false)
+        internal void ExportAttributes(ListViewControl sreListView, bool isSytem = false)
         {
             saveFileDialog1.FileName = "attributes.csv";
             saveFileDialog1.Filter = "Comma Delimited Files (*.csv)|*.csv|All Files (*.*)|*.*";

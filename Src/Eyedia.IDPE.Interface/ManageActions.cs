@@ -78,15 +78,15 @@ namespace Eyedia.IDPE.Interface
                 strActions = strActions.Substring(0, strActions.Length - 1);
 
             IdpeKey key = new IdpeKey();
-            key.Name = SreKeyTypes.CustomActions.ToString();
-            key.Type = (int)SreKeyTypes.CustomActions;
+            key.Name = IdpeKeyTypes.CustomActions.ToString();
+            key.Type = (int)IdpeKeyTypes.CustomActions;
             key.Value = strActions;
             new Manager().Save(key);
             
         }
         private void Bind()
         {
-            IdpeKey key = new Manager().GetKey(SreKeyTypes.CustomActions);
+            IdpeKey key = new Manager().GetKey(IdpeKeyTypes.CustomActions);
             if (key != null)
             {
                 if (!key.Value.Contains("|"))

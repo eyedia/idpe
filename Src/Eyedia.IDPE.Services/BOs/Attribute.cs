@@ -56,7 +56,7 @@ namespace Eyedia.IDPE.Services
         int _ValueEnumCode;
         string _ValueEnumValue;
         string _ValueEnumReferenceKey;
-        SreMessage _Result;
+        IdpeMessage _Result;
 
         public event PropertyChangedEventHandler PropertyChanged;
  
@@ -122,7 +122,7 @@ namespace Eyedia.IDPE.Services
                 OriginalValue = value == null ? "NULL" : value;
                 if ((this.ValueUpdationNotPermitted) && (!this._Name.Equals("IsValid", StringComparison.OrdinalIgnoreCase)))
                 {
-                    this._Result = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_VALUE_UPDATION_NOT_PERMITTED);
+                    this._Result = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_VALUE_UPDATION_NOT_PERMITTED);
                 }
                 else if (IsSreMessage(value))
                 {
@@ -322,7 +322,7 @@ namespace Eyedia.IDPE.Services
         public bool IsAssociatedWithSystemRow { get; private set; }
         public bool IsAcceptableOrPrintable { get; private set; }
 
-        public SreMessage Error
+        public IdpeMessage Error
         {
             get
             { return _Result; }
@@ -406,12 +406,12 @@ namespace Eyedia.IDPE.Services
         {
             if (string.IsNullOrEmpty(str)) return false;
 
-            if (str.Contains(typeof(SreMessage).ToString()))
+            if (str.Contains(typeof(IdpeMessage).ToString()))
             {
                 string[] sreMsgInfo = str.Split("|".ToCharArray());
 
-                SreMessageCodes msgCode = (SreMessageCodes)Enum.Parse(typeof(SreMessageCodes), sreMsgInfo[1], true);
-                _Result = new SreMessage(msgCode);
+                IdpeMessageCodes msgCode = (IdpeMessageCodes)Enum.Parse(typeof(IdpeMessageCodes), sreMsgInfo[1], true);
+                _Result = new IdpeMessage(msgCode);
                 _Result.Message = sreMsgInfo[2];
                 return true;
             }

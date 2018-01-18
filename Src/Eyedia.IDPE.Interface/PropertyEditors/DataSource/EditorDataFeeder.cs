@@ -79,40 +79,40 @@ namespace Eyedia.IDPE.Interface
 
                         frmConfig configUI = new frmConfig(true, dsProperty.Id, dsProperty.DataFeederType, selType);
 
-                        IdpeKey key = dsProperty.DataSourceKeys.GetKey(SreKeyTypes.FtpRemoteLocation.ToString());
+                        IdpeKey key = dsProperty.DataSourceKeys.GetKey(IdpeKeyTypes.FtpRemoteLocation.ToString());
                         configUI.FtpRemoteLocation = key != null ? key.Value : string.Empty;
-                        key = dsProperty.DataSourceKeys.GetKey(SreKeyTypes.LocalLocation.ToString());
-                        key = dsProperty.DataSourceKeys.GetKey(SreKeyTypes.FtpUserName.ToString());
+                        key = dsProperty.DataSourceKeys.GetKey(IdpeKeyTypes.LocalLocation.ToString());
+                        key = dsProperty.DataSourceKeys.GetKey(IdpeKeyTypes.FtpUserName.ToString());
                         configUI.FtpUserName = key != null ? key.Value : string.Empty;
-                        key = dsProperty.DataSourceKeys.GetKey(SreKeyTypes.FtpPassword.ToString());
+                        key = dsProperty.DataSourceKeys.GetKey(IdpeKeyTypes.FtpPassword.ToString());
                         configUI.FtpPassword = key != null ? key.Value : string.Empty;
-                        key = dsProperty.DataSourceKeys.GetKey(SreKeyTypes.FtpWatchInterval.ToString());
+                        key = dsProperty.DataSourceKeys.GetKey(IdpeKeyTypes.FtpWatchInterval.ToString());
                         configUI.Interval = int.Parse(key != null ? key.Value : "2");
-                        key = dsProperty.DataSourceKeys.GetKey(SreKeyTypes.WatchFilter.ToString());
+                        key = dsProperty.DataSourceKeys.GetKey(IdpeKeyTypes.WatchFilter.ToString());
                         configUI.WatchFilter = key != null ? key.Value : "All(No Filter)";
 
-                        key = dsProperty.DataSourceKeys.GetKey(SreKeyTypes.FileInterfaceName.ToString());
+                        key = dsProperty.DataSourceKeys.GetKey(IdpeKeyTypes.FileInterfaceName.ToString());
                         if (key != null)
                             configUI.InterfaceName = key.Value;
 
-                        key = dsProperty.DataSourceKeys.GetKey(SreKeyTypes.IsFirstRowHeader.ToString());
+                        key = dsProperty.DataSourceKeys.GetKey(IdpeKeyTypes.IsFirstRowHeader.ToString());
                         if (key != null)
                             configUI.IsFirstRowIsHeader = key.Value.ParseBool();
 
 
-                        key = dsProperty.DataSourceKeys.GetKey(SreKeyTypes.LocalFileSystemFoldersOverriden.ToString());
+                        key = dsProperty.DataSourceKeys.GetKey(IdpeKeyTypes.LocalFileSystemFoldersOverriden.ToString());
                         configUI.LocalFileSystemFoldersOverriden = key != null ? key.Value.ParseBool() : false;
 
-                        key = dsProperty.DataSourceKeys.GetKey(SreKeyTypes.LocalFileSystemFolderArchiveAuto.ToString());
+                        key = dsProperty.DataSourceKeys.GetKey(IdpeKeyTypes.LocalFileSystemFolderArchiveAuto.ToString());
                         configUI.LocalFileSystemFolderArchiveAuto = key != null ? key.Value.ParseBool() : false;
 
-                        key = dsProperty.DataSourceKeys.GetKey(SreKeyTypes.LocalFileSystemFolderPull.ToString());
+                        key = dsProperty.DataSourceKeys.GetKey(IdpeKeyTypes.LocalFileSystemFolderPull.ToString());
                         configUI.LocalFileSystemFolderPullFolder = key != null ? key.Value : string.Empty;
 
-                        key = dsProperty.DataSourceKeys.GetKey(SreKeyTypes.LocalFileSystemFolderArchive.ToString());
+                        key = dsProperty.DataSourceKeys.GetKey(IdpeKeyTypes.LocalFileSystemFolderArchive.ToString());
                         configUI.LocalFileSystemFolderArchiveFolder = key != null ? key.Value : string.Empty;
 
-                        key = dsProperty.DataSourceKeys.GetKey(SreKeyTypes.LocalFileSystemFolderOutput.ToString());
+                        key = dsProperty.DataSourceKeys.GetKey(IdpeKeyTypes.LocalFileSystemFolderOutput.ToString());
                         configUI.LocalFileSystemFolderOutputFolder = key != null ? key.Value : string.Empty;
 
 

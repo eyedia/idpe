@@ -133,7 +133,7 @@ namespace Eyedia.IDPE.Services
             writer.AddAttribute(HtmlTextWriterAttribute.Rel, "stylesheet");
 #endif
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "text/css");
-            writer.AddAttribute(HtmlTextWriterAttribute.Href, this.BasePageName + "/sre.css");
+            writer.AddAttribute(HtmlTextWriterAttribute.Href, this.BasePageName + "/idpe.css");
             //writer.AddAttribute(HtmlTextWriterAttribute.Href, this.Context.Request.Path + this.BasePageName + "/stylesheet");
             writer.RenderBeginTag(HtmlTextWriterTag.Link);
             writer.RenderEndTag();
@@ -145,7 +145,7 @@ namespace Eyedia.IDPE.Services
             //writer.RenderBeginTag(HtmlTextWriterTag.Link);
             //writer.RenderEndTag();
             //writer.WriteLine();
-            writer.Write("<script src=\"{0}/sre.js\" type=\"text/javascript\"></script>", this.BasePageName);
+            writer.Write("<script src=\"{0}/idpe.js\" type=\"text/javascript\"></script>", this.BasePageName);
         }
 
         protected virtual void RenderDocumentEnd(HtmlTextWriter writer)

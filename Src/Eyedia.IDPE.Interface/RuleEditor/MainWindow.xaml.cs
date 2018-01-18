@@ -94,8 +94,8 @@ namespace Eyedia.IDPE.Interface.RuleEditor
                 this.WindowName = sname;
             }
         
-            this._TemplateWithJob = System.IO.Path.Combine(Information.TempDirectorySre, "WithJob.xml");
-            this._TemplateWithData = System.IO.Path.Combine(Information.TempDirectorySre, "WithData.xml");
+            this._TemplateWithJob = System.IO.Path.Combine(Information.TempDirectoryIdpe, "WithJob.xml");
+            this._TemplateWithData = System.IO.Path.Combine(Information.TempDirectoryIdpe, "WithData.xml");
 
             if (!File.Exists(_TemplateWithJob))
             {
@@ -411,16 +411,16 @@ namespace Eyedia.IDPE.Interface.RuleEditor
         private void SaveXaml()
         {
             _activitybuilder.Name = _idpeRule.Name;
-            this._WorkflowDesigner.Save(System.IO.Path.Combine(Information.TempDirectorySre, _idpeRule.Name + ".xml"));           
+            this._WorkflowDesigner.Save(System.IO.Path.Combine(Information.TempDirectoryIdpe, _idpeRule.Name + ".xml"));           
             _idpeRule.Xaml = this._WorkflowDesigner.Text;
         }
 
         private void Save()
         {            
             SaveXaml();
-            new SreVersionManager().KeepVersion(VersionObjectTypes.Rule, _idpeRule.Id);
+            new VersionManager().KeepVersion(VersionObjectTypes.Rule, _idpeRule.Id);
             new Manager().Save(_idpeRule);
-            SreServiceCommunicator.ClearRule(_idpeRule.Id, _idpeRule.Name);            
+            ServiceCommunicator.ClearRule(_idpeRule.Id, _idpeRule.Name);            
         }
 
         public string RuleName { get; set; }

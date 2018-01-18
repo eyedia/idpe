@@ -156,11 +156,11 @@ namespace Eyedia.IDPE.Services
                         // Calculate the elapsed time and stop if the maximum retry        
                         // period has been reached.        
                         TimeSpan timeElapsed = DateTime.Now - fileReceived;
-                        if (timeElapsed.TotalMinutes > SreConfigurationSection.CurrentConfig.LocalFileWatcher.RetryTimeOut)
+                        if (timeElapsed.TotalMinutes > IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.RetryTimeOut)
                         {
                             Registry.Instance.LocalFileWatcher.EnableRaisingEvents = true;
                             ExtensionMethods.TraceError("The file \"{0}\" could not be processed. Time elapsed = '{1}', LocalFileWatcherMaximumRetryPeriod = '{2}'", 
-                                CurrentFile, timeElapsed.TotalMinutes, SreConfigurationSection.CurrentConfig.LocalFileWatcher.RetryTimeOut);
+                                CurrentFile, timeElapsed.TotalMinutes, IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.RetryTimeOut);
                             break;
                         }
                         Thread.Sleep(300);
@@ -251,7 +251,7 @@ namespace Eyedia.IDPE.Services
         }
 
         /// <summary>
-        /// Dispose this object (this will never be called as long as SRE instance is active)
+        /// Dispose this object (this will never be called as long as IDPE instance is active)
         /// </summary>
         public override void Dispose()
         {
@@ -375,7 +375,7 @@ namespace Eyedia.IDPE.Services
                         // Calculate the elapsed time and stop if the maximum retry        
                         // period has been reached.        
                         TimeSpan timeElapsed = DateTime.Now - fileReceived;
-                        if (timeElapsed.TotalMinutes > SreConfigurationSection.CurrentConfig.LocalFileWatcher.RetryTimeOut)
+                        if (timeElapsed.TotalMinutes > IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.RetryTimeOut)
                         {
                             ExtensionMethods.TraceError("The file \"{0}\" could not be copied.", fromFileName);
                             return;

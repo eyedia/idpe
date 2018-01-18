@@ -78,7 +78,7 @@
             this.lblConfigFileName = new System.Windows.Forms.Label();
             this.btnSaveConfig = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.environmentsControl1 = new Eyedia.IDPE.Interface.SreEnvironmentsControl();
+            this.environmentsControl1 = new Eyedia.IDPE.Interface.EnvironmentsControl();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timerServerStatus = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -844,7 +844,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private SreEnvironmentsControl environmentsControl1;
+        private EnvironmentsControl environmentsControl1;
         private System.Windows.Forms.Label lblParam1;
         private System.Windows.Forms.ComboBox cbParam1;
         private System.Windows.Forms.Button btnExecute;

@@ -210,11 +210,11 @@
     <Compile Include="ConfigUIs\ConfigDatabaseWriter.xaml.cs">
       <DependentUpon>ConfigDatabaseWriter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SreEnvironmentsControl.cs">
+    <Compile Include="Controls\EnvironmentsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\SreEnvironmentsControl.Designer.cs">
-      <DependentUpon>SreEnvironmentsControl.cs</DependentUpon>
+    <Compile Include="Controls\EnvironmentsControl.Designer.cs">
+      <DependentUpon>EnvironmentsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\GlobalSearchWidget.cs">
       <SubType>UserControl</SubType>
@@ -222,11 +222,11 @@
     <Compile Include="Controls\GlobalSearchWidget.Designer.cs">
       <DependentUpon>GlobalSearchWidget.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SreVersionControl.cs">
+    <Compile Include="Controls\VersionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\SreVersionControl.Designer.cs">
-      <DependentUpon>SreVersionControl.cs</DependentUpon>
+    <Compile Include="Controls\VersionControl.Designer.cs">
+      <DependentUpon>VersionControl.cs</DependentUpon>
     </Compile>
     <Compile Include="EnvironmentService\DeploymentArtifacts.cs">
       <SubType>Form</SubType>
@@ -311,35 +311,35 @@
     <Compile Include="Controls\SqlConfiguration.Designer.cs">
       <DependentUpon>SqlConfiguration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SreDatabases.cs">
+    <Compile Include="Controls\ConnectionStringControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\SreDatabases.Designer.cs">
-      <DependentUpon>SreDatabases.cs</DependentUpon>
+    <Compile Include="Controls\ConnectionStringControl.Designer.cs">
+      <DependentUpon>ConnectionStringControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SreEmails.cs">
+    <Compile Include="Controls\EmailsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\SreEmails.Designer.cs">
-      <DependentUpon>SreEmails.cs</DependentUpon>
+    <Compile Include="Controls\EmailsControl.Designer.cs">
+      <DependentUpon>EmailsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SreKeys.cs">
+    <Compile Include="Controls\IdpeKeysControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\SreKeys.Designer.cs">
-      <DependentUpon>SreKeys.cs</DependentUpon>
+    <Compile Include="Controls\IdpeKeysControl.Designer.cs">
+      <DependentUpon>IdpeKeysControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SreListView.cs">
+    <Compile Include="Controls\ListViewControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\SreListView.Designer.cs">
-      <DependentUpon>SreListView.cs</DependentUpon>
+    <Compile Include="Controls\ListViewControl.Designer.cs">
+      <DependentUpon>ListViewControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SreRulesEditorControl.cs">
+    <Compile Include="Controls\RulesEditorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\SreRulesEditorControl.Designer.cs">
-      <DependentUpon>SreRulesEditorControl.cs</DependentUpon>
+    <Compile Include="Controls\RulesEditorControl.Designer.cs">
+      <DependentUpon>RulesEditorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\TextGraphics.cs">
       <SubType>UserControl</SubType>
@@ -660,8 +660,8 @@
     <Compile Include="EnvironmentService\EnvironmentWindow.Designer.cs">
       <DependentUpon>EnvironmentWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="SreServiceCommunicator.cs" />
-    <Compile Include="SreVersionComparer.cs" />
+    <Compile Include="ServiceCommunicator.cs" />
+    <Compile Include="VersionComparer.cs" />
     <Compile Include="PropertyEditors\DataSource\SreDataSourceProperty.cs" />
     <Compile Include="SystemDataSources.cs">
       <SubType>Form</SubType>
@@ -683,14 +683,14 @@
     <EmbeddedResource Include="AttributeRepository\RenameDataSource.resx">
       <DependentUpon>RenameDataSource.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\SreEnvironmentsControl.resx">
-      <DependentUpon>SreEnvironmentsControl.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\EnvironmentsControl.resx">
+      <DependentUpon>EnvironmentsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\GlobalSearchWidget.resx">
       <DependentUpon>GlobalSearchWidget.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\SreVersionControl.resx">
-      <DependentUpon>SreVersionControl.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\VersionControl.resx">
+      <DependentUpon>VersionControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EnvironmentService\DeployableKeysWindow.resx">
       <DependentUpon>DeployableKeysWindow.cs</DependentUpon>
@@ -713,11 +713,11 @@
     <EmbeddedResource Include="Controls\DataSourceSummary.resx">
       <DependentUpon>DataSourceSummary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\SreListView.resx">
-      <DependentUpon>SreListView.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\ListViewControl.resx">
+      <DependentUpon>ListViewControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\SreRulesEditorControl.resx">
-      <DependentUpon>SreRulesEditorControl.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\RulesEditorControl.resx">
+      <DependentUpon>RulesEditorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DataSources.resx">
       <DependentUpon>DataSources.cs</DependentUpon>
@@ -822,14 +822,14 @@
     <EmbeddedResource Include="Controls\SqlConfiguration.resx">
       <DependentUpon>SqlConfiguration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\SreDatabases.resx">
-      <DependentUpon>SreDatabases.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\ConnectionStringControl.resx">
+      <DependentUpon>ConnectionStringControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\SreEmails.resx">
-      <DependentUpon>SreEmails.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\EmailsControl.resx">
+      <DependentUpon>EmailsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\SreKeys.resx">
-      <DependentUpon>SreKeys.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\IdpeKeysControl.resx">
+      <DependentUpon>IdpeKeysControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\TextGraphics.resx">
       <DependentUpon>TextGraphics.cs</DependentUpon>

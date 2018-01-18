@@ -295,7 +295,7 @@ namespace Eyedia.IDPE.Services
         #region Helpers
         private void InitConfig()
         {           
-            IdpeKey OutputWriterDatabaseConfiguration = new Manager().GetKey(_Job.DataSource.Id, SreKeyTypes.OutputWriterDatabaseConfiguration.ToString());
+            IdpeKey OutputWriterDatabaseConfiguration = new Manager().GetKey(_Job.DataSource.Id, IdpeKeyTypes.OutputWriterDatabaseConfiguration.ToString());
 
             if ((OutputWriterDatabaseConfiguration != null)
                 && (!string.IsNullOrEmpty(OutputWriterDatabaseConfiguration.Name)))

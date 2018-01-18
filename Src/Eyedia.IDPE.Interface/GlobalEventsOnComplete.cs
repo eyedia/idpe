@@ -109,7 +109,7 @@ namespace Eyedia.IDPE.Interface
                 sreDosHelpCommands = reader.ReadToEnd();
             }
 
-            TextArea textAreaHintContent1 = new TextArea("SRE DOS Commands Help");
+            TextArea textAreaHintContent1 = new TextArea("IDPE DOS Commands Help");
             textAreaHintContent1.Size = new System.Drawing.Size(691, 363);
             textAreaHintContent1.toolStripStatusLabel1.Text = "";
             textAreaHintContent1.txtContent.Text = sreDosHelpCommands;
@@ -129,7 +129,7 @@ namespace Eyedia.IDPE.Interface
 
         private void Bind()
         {
-            IdpeKey key = new Manager().GetKey(SreKeyTypes.GlobalEventsOnComplete);
+            IdpeKey key = new Manager().GetKey(IdpeKeyTypes.GlobalEventsOnComplete);
             if (key != null)
             {
                 s.GlobalEventsOnCompletes gecs = new s.GlobalEventsOnCompletes(key.Value);
@@ -166,8 +166,8 @@ namespace Eyedia.IDPE.Interface
         private void Save(string rawString)
         {
             IdpeKey key = new IdpeKey();
-            key.Name = SreKeyTypes.GlobalEventsOnComplete.ToString();
-            key.Type = (int)SreKeyTypes.GlobalEventsOnComplete;
+            key.Name = IdpeKeyTypes.GlobalEventsOnComplete.ToString();
+            key.Type = (int)IdpeKeyTypes.GlobalEventsOnComplete;
             key.Value = rawString;
             new Manager().Save(key);
         }

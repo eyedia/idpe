@@ -84,7 +84,7 @@ namespace Eyedia.IDPE.Interface
 
         private void BindData()
         {
-            string strfeedMechanism = DataSource.Keys.GetKeyValue(SreKeyTypes.XmlFeedMechanism);
+            string strfeedMechanism = DataSource.Keys.GetKeyValue(IdpeKeyTypes.XmlFeedMechanism);
             if (string.IsNullOrEmpty(strfeedMechanism))
                 return;
 
@@ -92,18 +92,18 @@ namespace Eyedia.IDPE.Interface
             if (feedMechanism == XmlFeedMechanism.Xslt)
             {
                 radXslt.Checked = true;
-                rtbXslt.Text = DataSource.Keys.GetKeyValue(SreKeyTypes.Xslt);
+                rtbXslt.Text = DataSource.Keys.GetKeyValue(IdpeKeyTypes.Xslt);
                 SyntaxHighLighter.HighLight(rtbXslt, _blueKeyWords, _redKeyWords);
             }
             else if (feedMechanism == XmlFeedMechanism.CSharpCode)
             {
                 radCSharpCode.Checked = true;
-                cSharpExpression1.Code = DataSource.Keys.GetKeyValue(SreKeyTypes.CSharpCodeGenerateTable);
+                cSharpExpression1.Code = DataSource.Keys.GetKeyValue(IdpeKeyTypes.CSharpCodeGenerateTable);
             }
             else if (feedMechanism == XmlFeedMechanism.Custom)
             {
                 radCustomInterface.Checked = true;
-                txtInterfaceName.Text = DataSource.Keys.GetKeyValue(SreKeyTypes.FileInterfaceName);
+                txtInterfaceName.Text = DataSource.Keys.GetKeyValue(IdpeKeyTypes.FileInterfaceName);
             }
         }
 
@@ -473,11 +473,11 @@ namespace Eyedia.IDPE.Interface
             manager.UpdateDataFormatType(DataSource.Id, DataFormatTypes.Xml);
 
             IdpeKey key = new IdpeKey();            
-            manager.DeleteKeyFromApplication(DataSource.Id, SreKeyTypes.IsFirstRowHeader.ToString(), false);
+            manager.DeleteKeyFromApplication(DataSource.Id, IdpeKeyTypes.IsFirstRowHeader.ToString(), false);
 
             key = new IdpeKey();
-            key.Name = SreKeyTypes.XmlFeedMechanism.ToString();
-            key.Type = (int)SreKeyTypes.XmlFeedMechanism;
+            key.Name = IdpeKeyTypes.XmlFeedMechanism.ToString();
+            key.Type = (int)IdpeKeyTypes.XmlFeedMechanism;
             if (radXslt.Checked)
             {
                 manager.UpdateDelimiter(DataSource.Id, "|");
@@ -486,13 +486,13 @@ namespace Eyedia.IDPE.Interface
                 manager.Save(key, DataSource.Id);
 
                 key = new IdpeKey();
-                key.Name = SreKeyTypes.Xslt.ToString();
-                key.Type = (int)SreKeyTypes.Xslt;
+                key.Name = IdpeKeyTypes.Xslt.ToString();
+                key.Type = (int)IdpeKeyTypes.Xslt;
                 key.Value = rtbXslt.Text;
                 manager.Save(key, DataSource.Id);
 
-                manager.DeleteKeyFromApplication(DataSource.Id, SreKeyTypes.CSharpCodeGenerateTable.ToString(), true);
-                manager.DeleteKeyFromApplication(DataSource.Id, SreKeyTypes.FileInterfaceName.ToString(), true);
+                manager.DeleteKeyFromApplication(DataSource.Id, IdpeKeyTypes.CSharpCodeGenerateTable.ToString(), true);
+                manager.DeleteKeyFromApplication(DataSource.Id, IdpeKeyTypes.FileInterfaceName.ToString(), true);
             }
             else if (radCSharpCode.Checked)
             {
@@ -500,26 +500,26 @@ namespace Eyedia.IDPE.Interface
                 manager.Save(key, DataSource.Id);
 
                 key = new IdpeKey();
-                key.Name = SreKeyTypes.CSharpCodeGenerateTable.ToString();
-                key.Type = (int)SreKeyTypes.CSharpCodeGenerateTable;
+                key.Name = IdpeKeyTypes.CSharpCodeGenerateTable.ToString();
+                key.Type = (int)IdpeKeyTypes.CSharpCodeGenerateTable;
                 key.Value = cSharpExpression1.Code;
                 manager.Save(key, DataSource.Id);
 
-                manager.DeleteKeyFromApplication(DataSource.Id, SreKeyTypes.Xslt.ToString(), true);
-                manager.DeleteKeyFromApplication(DataSource.Id, SreKeyTypes.FileInterfaceName.ToString(), true);
+                manager.DeleteKeyFromApplication(DataSource.Id, IdpeKeyTypes.Xslt.ToString(), true);
+                manager.DeleteKeyFromApplication(DataSource.Id, IdpeKeyTypes.FileInterfaceName.ToString(), true);
             }
             else if (radCustomInterface.Checked)
             {
                 key.Value = XmlFeedMechanism.Custom.ToString();                
                 manager.Save(key, DataSource.Id);
 
-                key.Name = SreKeyTypes.FileInterfaceName.ToString();
-                key.Type = (int)SreKeyTypes.FileInterfaceName;
+                key.Name = IdpeKeyTypes.FileInterfaceName.ToString();
+                key.Type = (int)IdpeKeyTypes.FileInterfaceName;
                 key.Value = txtInterfaceName.Text;                
                 manager.Save(key, DataSource.Id);
 
-                manager.DeleteKeyFromApplication(DataSource.Id, SreKeyTypes.Xslt.ToString(), true);
-                manager.DeleteKeyFromApplication(DataSource.Id, SreKeyTypes.CSharpCodeGenerateTable.ToString(), true);
+                manager.DeleteKeyFromApplication(DataSource.Id, IdpeKeyTypes.Xslt.ToString(), true);
+                manager.DeleteKeyFromApplication(DataSource.Id, IdpeKeyTypes.CSharpCodeGenerateTable.ToString(), true);
             }
 
            

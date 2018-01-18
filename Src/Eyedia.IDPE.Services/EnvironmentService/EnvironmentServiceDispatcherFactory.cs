@@ -62,7 +62,7 @@ namespace Eyedia.IDPE.Services
         public static SreEnvironments GetEnvironments()
         {
             SreEnvironments envs = new SreEnvironments();
-            IdpeKey key = new Manager().GetKey(SreKeyTypes.Environments);
+            IdpeKey key = new Manager().GetKey(IdpeKeyTypes.Environments);
             if (key != null)
             {
                 try
@@ -99,8 +99,8 @@ namespace Eyedia.IDPE.Services
         public static void SaveEnvironment(SreEnvironments envs)
         {
             IdpeKey key = new IdpeKey();
-            key.Name = SreKeyTypes.Environments.ToString();
-            key.Type = (int)SreKeyTypes.Environments;           
+            key.Name = IdpeKeyTypes.Environments.ToString();
+            key.Type = (int)IdpeKeyTypes.Environments;           
             key.ValueBinary = new Binary(GZipArchive.Compress(envs.Serialize().GetByteArray()));
             new Manager().Save(key);
         }

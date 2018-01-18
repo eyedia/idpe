@@ -305,7 +305,7 @@ namespace Eyedia.IDPE.Services
             {
                 if (!string.IsNullOrEmpty(this.DataSource.Name))
                 {
-                    new SreVersionManager().KeepVersion(VersionObjectTypes.DataSource, this.DataSource.Id);
+                    new VersionManager().KeepVersion(VersionObjectTypes.DataSource, this.DataSource.Id);
                     bool isInserted = false;
                     manager.Save(this.DataSource, ref isInserted, dal, connection, transaction);
                     ImportAttributes(dal, connection, transaction, manager);

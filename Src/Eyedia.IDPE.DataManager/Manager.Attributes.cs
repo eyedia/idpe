@@ -414,7 +414,7 @@ namespace Eyedia.IDPE.DataManager
                     command.AddParameterWithValue("IsAcceptable", attribute.IsAcceptable);                    
                     command.AddParameterWithValue("CreatedTS", DateTime.Now);
                     command.AddParameterWithValue("CreatedBy", Information.LoggedInUser.UserName);
-                    command.AddParameterWithValue("Source", "SRE Util");
+                    command.AddParameterWithValue("Source", "IDPE Util");
 
                 }
                 else
@@ -544,7 +544,7 @@ namespace Eyedia.IDPE.DataManager
                         command.AddParameterWithValue("AttributePrintValueCustom", DBNull.Value);
                     command.AddParameterWithValue("CreatedTS", DateTime.Now);
                     command.AddParameterWithValue("CreatedBy", Information.LoggedInUser == null ? "Debugger" : Information.LoggedInUser.UserName);
-                    command.AddParameterWithValue("Source", "SRE Util");
+                    command.AddParameterWithValue("Source", "IDPE Util");
 
                 }
                 reader.Close();

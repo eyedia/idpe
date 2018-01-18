@@ -49,12 +49,12 @@ namespace Eyedia.IDPE.DataManager
     public class SqlClientManager : IDisposable
     {        
         string _ConnectionString;
-        SreKeyTypes _DatabaseType;
+        IdpeKeyTypes _DatabaseType;
         IDal _Dal = null;
         private bool disposed = false;
 
 
-        public SqlClientManager(string defaultConnectionString, SreKeyTypes databaseType)
+        public SqlClientManager(string defaultConnectionString, IdpeKeyTypes databaseType)
         {
             _ConnectionString = defaultConnectionString;
             _DatabaseType = databaseType;            
@@ -96,21 +96,21 @@ namespace Eyedia.IDPE.DataManager
         #endregion IDisposable
 
         #region Private Methods
-        DatabaseTypes GetDalDBType(SreKeyTypes keytype)
+        DatabaseTypes GetDalDBType(IdpeKeyTypes keytype)
         {
             DatabaseTypes dalDbType = DatabaseTypes.SqlCe;
             switch (keytype)
             {
-                case SreKeyTypes.ConnectionStringSqlCe:
+                case IdpeKeyTypes.ConnectionStringSqlCe:
                     dalDbType = DatabaseTypes.SqlCe;
                     break;                
-                case SreKeyTypes.ConnectionStringSqlServer:
+                case IdpeKeyTypes.ConnectionStringSqlServer:
                     dalDbType = DatabaseTypes.SqlServer;
                     break;
-                case SreKeyTypes.ConnectionStringOracle:
+                case IdpeKeyTypes.ConnectionStringOracle:
                     dalDbType = DatabaseTypes.Oracle;
                     break;
-                case SreKeyTypes.ConnectionStringDB2iSeries:
+                case IdpeKeyTypes.ConnectionStringDB2iSeries:
                     dalDbType = DatabaseTypes.DB2iSeries;
                     break;
             }
@@ -118,7 +118,7 @@ namespace Eyedia.IDPE.DataManager
         }
         #endregion Private Methods
         
-        public void CheckCodeSet(string connectionString, SreKeyTypes databaseType, string tableName, string code, ref string value, ref int enumCode, ref string referenceKey, ref string errorMessage)
+        public void CheckCodeSet(string connectionString, IdpeKeyTypes databaseType, string tableName, string code, ref string value, ref int enumCode, ref string referenceKey, ref string errorMessage)
         {
             errorMessage = "ERROR";
             bool DBReturnedNothing = true;
@@ -195,7 +195,7 @@ namespace Eyedia.IDPE.DataManager
             }            
         }
 
-        public bool CheckReferenceKey(string connectionString, SreKeyTypes databaseType, string query, string data)
+        public bool CheckReferenceKey(string connectionString, IdpeKeyTypes databaseType, string query, string data)
         {
             bool found = false;
             IDbConnection con = null;
@@ -252,11 +252,11 @@ namespace Eyedia.IDPE.DataManager
 
         public string ExecuteQuery(string query, ref bool isErrored)
         {
-            return ExecuteQuery(string.Empty,SreKeyTypes.Unknown, query, ref isErrored);
+            return ExecuteQuery(string.Empty,IdpeKeyTypes.Unknown, query, ref isErrored);
         }
         
 
-        public string ExecuteQuery(string connectionString, SreKeyTypes databaseType, string query, ref bool isErrored)
+        public string ExecuteQuery(string connectionString, IdpeKeyTypes databaseType, string query, ref bool isErrored)
         {
             string returnString = "NULL";
             isErrored = false;
@@ -337,7 +337,7 @@ namespace Eyedia.IDPE.DataManager
             }
         }
 
-        public int ExecuteNonQuery(string query, bool silent = false, string connectionString = null, SreKeyTypes databaseType = SreKeyTypes.ConnectionStringSqlCe)
+        public int ExecuteNonQuery(string query, bool silent = false, string connectionString = null, IdpeKeyTypes databaseType = IdpeKeyTypes.ConnectionStringSqlCe)
         {
             string returnString = string.Empty;
 
@@ -385,10 +385,10 @@ namespace Eyedia.IDPE.DataManager
 
         public DataTable ExecuteQueryAndGetDataTable(string query, ref bool isErrored)
         {
-            return ExecuteQueryAndGetDataTable(string.Empty, SreKeyTypes.Unknown, query, ref isErrored);
+            return ExecuteQueryAndGetDataTable(string.Empty, IdpeKeyTypes.Unknown, query, ref isErrored);
         }
 
-        public DataTable ExecuteQueryAndGetDataTable(string connectionString, SreKeyTypes databaseType, string query, ref bool isErrored)
+        public DataTable ExecuteQueryAndGetDataTable(string connectionString, IdpeKeyTypes databaseType, string query, ref bool isErrored)
         {
             string returnString = string.Empty;
             isErrored = false;
@@ -434,7 +434,7 @@ namespace Eyedia.IDPE.DataManager
             return dataTable;
         }
 
-        public DataTable ExecuteQueryAndGetDataTable(string connectionString, SreKeyTypes databaseType, string query, ref string errorMessage, int timeOut = 5, bool silent = false)
+        public DataTable ExecuteQueryAndGetDataTable(string connectionString, IdpeKeyTypes databaseType, string query, ref string errorMessage, int timeOut = 5, bool silent = false)
         {            
             string returnString = string.Empty;            
             IDbConnection con = null;
@@ -487,15 +487,15 @@ namespace Eyedia.IDPE.DataManager
             string commandText = string.Empty;          
             switch (this._DatabaseType)
             {
-                case SreKeyTypes.ConnectionStringSqlCe:
+                case IdpeKeyTypes.ConnectionStringSqlCe:
                     commandText = "select table_name from information_schema.tables where TABLE_TYPE <> 'VIEW'";
                     break;
 
-                case SreKeyTypes.ConnectionStringSqlServer:
+                case IdpeKeyTypes.ConnectionStringSqlServer:
                     commandText = "select [Name] from sys.tables where type = 'U' order by name";                   
                     break;
 
-                case SreKeyTypes.ConnectionStringOracle:
+                case IdpeKeyTypes.ConnectionStringOracle:
                     commandText = "select tname from tab order by tname";                   
                     break;
             }            
@@ -521,17 +521,17 @@ namespace Eyedia.IDPE.DataManager
             string commandText = string.Empty;
             switch (this._DatabaseType)
             {
-                case SreKeyTypes.ConnectionStringSqlCe:
+                case IdpeKeyTypes.ConnectionStringSqlCe:
                     commandText = string.Format("select ordinal_position ColumnId, column_name ColumnName, data_type DataType from information_schema.columns where TABLE_NAME = '{0}' order by column_name",
                      tableName);
                     break;
 
-                case SreKeyTypes.ConnectionStringSqlServer:
+                case IdpeKeyTypes.ConnectionStringSqlServer:
                     commandText = string.Format("SELECT Column_Id, c.name 'ColumnName',t.Name 'Datatype' FROM sys.columns c INNER JOIN sys.types t ON c.user_type_id = t.user_type_id and object_id = object_id('{0}') and c.is_identity = 0 order by Column_id",
                         tableName);
                     break;
 
-                case SreKeyTypes.ConnectionStringOracle:
+                case IdpeKeyTypes.ConnectionStringOracle:
                     commandText = string.Format("Select COLUMN_ID ColumnId , COLUMN_NAME ColumnName, data_type DataType from all_tab_columns where table_name = '{0}'",  
                         tableName);
                     break;
@@ -592,7 +592,7 @@ namespace Eyedia.IDPE.DataManager
 
         }
 
-        public string GenerateParameter(string connectionString, SreKeyTypes databaseType, string paramName, string query)
+        public string GenerateParameter(string connectionString, IdpeKeyTypes databaseType, string paramName, string query)
         {
             bool isErrored = false;
             return ExecuteQuery(connectionString,databaseType, query, ref isErrored);

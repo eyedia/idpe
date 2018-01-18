@@ -58,7 +58,7 @@ namespace Eyedia.IDPE.Interface
 
             this.textBoxDescription.Text += Environment.NewLine;
             this.textBoxDescription.Text += Environment.NewLine + "Eyedia.Core.dll - " + typeof(Eyedia.Core.Cache).Assembly.GetName().Version;
-            this.textBoxDescription.Text += Environment.NewLine + "Eyedia.IDPE.Common.dll - " + typeof(Eyedia.IDPE.Common.SreKeyTypes).Assembly.GetName().Version;
+            this.textBoxDescription.Text += Environment.NewLine + "Eyedia.IDPE.Common.dll - " + typeof(Eyedia.IDPE.Common.IdpeKeyTypes).Assembly.GetName().Version;
             this.textBoxDescription.Text += Environment.NewLine + "Eyedia.IDPE.DataManager.dll - " + typeof(Eyedia.IDPE.DataManager.Manager).Assembly.GetName().Version;
             this.textBoxDescription.Text += Environment.NewLine + "Eyedia.IDPE.Services.dll - " + typeof(Eyedia.IDPE.Services.Attribute).Assembly.GetName().Version;
             this.textBoxDescription.Text += Environment.NewLine + "IDE - " + typeof(AboutBox).Assembly.GetName().Version;
@@ -186,7 +186,7 @@ namespace Eyedia.IDPE.Interface
             if (_WhatIsBeingTyped == null)
                 return;
 
-            if ((_WhatIsBeingTyped.Equals("sre", StringComparison.OrdinalIgnoreCase))
+            if ((_WhatIsBeingTyped.Equals("idpe", StringComparison.OrdinalIgnoreCase))
                 || (_WhatIsBeingTyped.Equals("asre", StringComparison.OrdinalIgnoreCase)))      //when opened the form from mainform using keyboard shortcut, an 'A' is already typed
             {
                 _WhatIsBeingTyped = string.Empty;

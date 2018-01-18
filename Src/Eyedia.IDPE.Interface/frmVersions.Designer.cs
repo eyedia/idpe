@@ -33,8 +33,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.sreVersionControl1 = new Eyedia.IDPE.Interface.Controls.SreVersionControl();
-            this.sreVersionControl2 = new Eyedia.IDPE.Interface.Controls.SreVersionControl();
+            this.sreVersionControl1 = new Eyedia.IDPE.Interface.Controls.VersionControl();
+            this.sreVersionControl2 = new Eyedia.IDPE.Interface.Controls.VersionControl();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -143,7 +143,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        public Controls.SreVersionControl sreVersionControl1;
-        public Controls.SreVersionControl sreVersionControl2;
+        public Controls.VersionControl sreVersionControl1;
+        public Controls.VersionControl sreVersionControl2;
     }
 }

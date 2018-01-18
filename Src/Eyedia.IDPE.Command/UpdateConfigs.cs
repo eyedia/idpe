@@ -84,6 +84,9 @@ namespace Eyedia.IDPE.Command
                 return;
             }
             eccs.Database.DatabaseType = Core.Data.DatabaseTypes.SqlCe;
+            eccs.Debug = false;
+            eccs.AuthenticationType = Core.Net.AuthenticationTypes.Eyedia;
+
             if (setFolder)
             {
                 if (eccs != null)
@@ -97,7 +100,7 @@ namespace Eyedia.IDPE.Command
                     else if (configName == "idpec.exe")
                         eccs.Trace.File = Path.Combine(DirectoryLogs, "idpec.txt");
                 }
-                SreConfigurationSection idpecs = (SreConfigurationSection)config.GetSection("sreConfigurationSection");
+                IdpeConfigurationSection idpecs = (IdpeConfigurationSection)config.GetSection("idpeConfigurationSection");
                 if (idpecs != null)
                 {
                     idpecs.LocalFileWatcher.BaseDirectory = DirectoryWatchFolder;

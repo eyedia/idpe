@@ -79,7 +79,7 @@ namespace Eyedia.IDPE.Services
 
                 try
                 {
-                    workflowApp.Run(new TimeSpan(0, SreConfigurationSection.CurrentConfig.WorkerTimeOut, 0));
+                    workflowApp.Run(new TimeSpan(0, IdpeConfigurationSection.CurrentConfig.WorkerTimeOut, 0));
                 }
                 catch (TimeoutException timeoutException)
                 {
@@ -100,13 +100,13 @@ namespace Eyedia.IDPE.Services
                 {
                     ExtensionMethods.TraceInformation("All threads are busy, waiting...Threads: [Max allowed:{0}, Completed:{1}, Running:{2}", MaxThreads, NumberOfWorkerRemains, job.NumberOfSlicesProcessing);
                     Trace.Flush();
-                    if (!AllThreadsAreBusy.WaitOne(new TimeSpan(0, SreConfigurationSection.CurrentConfig.TimeOut, 0)))   //config timeout in seconds
+                    if (!AllThreadsAreBusy.WaitOne(new TimeSpan(0, IdpeConfigurationSection.CurrentConfig.TimeOut, 0)))   //config timeout in seconds
                     {
                         //timed out
                         job.AbortRequested = true;
                         job.AbortReason = Services.Job.AbortReasons.TimedOut;
                         string errorMsg = "All threads are busy since long, the complete process has been timed out! Time out (in Minutes) configured as "
-                            + SreConfigurationSection.CurrentConfig.TimeOut + Environment.NewLine;
+                            + IdpeConfigurationSection.CurrentConfig.TimeOut + Environment.NewLine;
                         errorMsg += "Job Id:" + job.JobIdentifier + Environment.NewLine;
                         errorMsg += "File Name:" + job.FileName + Environment.NewLine;
                         errorMsg += "TotalRowsToBeProcessed:" + job.TotalRowsToBeProcessed + Environment.NewLine;
@@ -221,7 +221,7 @@ namespace Eyedia.IDPE.Services
                         if (job.AbortReason == Services.Job.AbortReasons.TimedOut)
                         {
                             errorMessage = string.Format("The Job '{0}' timed out. The time out was set to {1} minutes.",
-                                job.JobIdentifier, SreConfigurationSection.CurrentConfig.TimeOut);
+                                job.JobIdentifier, IdpeConfigurationSection.CurrentConfig.TimeOut);
                             errorMessage += string.Format(" Started at {0} & file {1} had {2} records.", job.StartedAt, job.FileNameOnly, job.TotalRowsToBeProcessed);
                         }
                         else

@@ -45,7 +45,7 @@ namespace Eyedia.IDPE.Common
         public const string DefaultConnectionStringKeyName = "[defaultcs]";
         public const string WCFFilePrefix = "##_##_";
         public const string UnzippedFilePrefix = "~~_~~_";
-        public const string SREBaseFolderName = "sre";
+        public const string IdpeBaseFolderName = "idpe";
         public const string ColumnNamePosition = "xxxxxPositionxxxxx";
         public const string ColumnNameContainerError = "xxxxxContainerErrorxxxxx";
         public const int MaxTempFolderPath = 40;

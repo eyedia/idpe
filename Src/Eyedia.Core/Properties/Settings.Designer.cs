@@ -26,7 +26,7 @@ namespace Eyedia.Core.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SYNLPTMP1WWH7\\SQLExpress;Initial Catalog=sre;Integrated Security=True" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SYNLPTMP1WWH7\\SQLExpress;Initial Catalog=idpe;Integrated Security=True" +
             "")]
         public string sreConnectionString {
             get {

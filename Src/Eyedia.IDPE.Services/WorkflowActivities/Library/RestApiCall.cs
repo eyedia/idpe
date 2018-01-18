@@ -38,6 +38,8 @@ using System.Text;
 using System.Activities;
 using System.ComponentModel;
 using System.Diagnostics;
+using Newtonsoft.Json.Linq;
+using System.Data;
 
 namespace Eyedia.IDPE.Services
 {
@@ -54,6 +56,8 @@ namespace Eyedia.IDPE.Services
         public OutArgument<string> RestResponse { get; set; }
         public OutArgument<string> RestResponseStatusCode { get; set; }
         public OutArgument<string> RestResponseErrorMessage { get; set; }
+        public OutArgument<JObject> RestResponseJObject { get; set; }
+        public OutArgument<DataTable> RestResponseDataTable { get; set; }
 
         protected override void Execute(CodeActivityContext context)
         {
@@ -76,6 +80,8 @@ namespace Eyedia.IDPE.Services
             Trace.Flush();
             RestResponseStatusCode.Set(context, responseStatusCode);
             RestResponse.Set(context, restClient.ResponseContent);
+            RestResponseJObject.Set(context, restClient.ResponseContentJObject);
+            RestResponseDataTable.Set(context, restClient.ResponseContentDataTable);
             RestResponseErrorMessage.Set(context, restClient.ResponseErrorMessage);
         }
     }

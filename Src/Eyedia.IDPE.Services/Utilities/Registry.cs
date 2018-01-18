@@ -145,7 +145,7 @@ namespace Eyedia.IDPE.Services
         //    }
         //    catch(Exception ex)
         //    {
-        //        string errMsg = "Could not clear SRE event log, generally this get called from monitor page."
+        //        string errMsg = "Could not clear IDPE event log, generally this get called from monitor page."
         //           + ex.ToString() + (ex.InnerException == null ? string.Empty : ex.InnerException.Message);
 
         //        if (!EventLog.SourceExists(Information.EventLogSource))
@@ -210,9 +210,9 @@ namespace Eyedia.IDPE.Services
                 Job thisJob = this._Entries[processId] as Job;
                 if (thisJob != null)
                 {
-                    if ((thisJob.IsFinished != true) && (thisJob.StartedAt.AddMinutes(SreConfigurationSection.CurrentConfig.TimeOut) < DateTime.Now))
+                    if ((thisJob.IsFinished != true) && (thisJob.StartedAt.AddMinutes(IdpeConfigurationSection.CurrentConfig.TimeOut) < DateTime.Now))
                     {
-                        ExtensionMethods.TraceInformation("Job '{0}' is timed out / expired, sending abort signal to the job. Time out was set to {1} minutes.", processId, SreConfigurationSection.CurrentConfig.TimeOut);
+                        ExtensionMethods.TraceInformation("Job '{0}' is timed out / expired, sending abort signal to the job. Time out was set to {1} minutes.", processId, IdpeConfigurationSection.CurrentConfig.TimeOut);
                         lock (_lock)
                         {
                             thisJob.AbortRequested = true;
@@ -277,7 +277,7 @@ namespace Eyedia.IDPE.Services
             
 
             ExtensionMethods.TraceInformation("Clearing temp directories.");
-            Directory.Delete(Path.Combine(EyediaCoreConfigurationSection.CurrentConfig.TempDirectory, "sre"), true);
+            Directory.Delete(Path.Combine(EyediaCoreConfigurationSection.CurrentConfig.TempDirectory, "idpe"), true);
             ExtensionMethods.TraceInformation("Done.");
 
             ExtensionMethods.TraceInformation("Clearing data cache...");
@@ -303,7 +303,7 @@ namespace Eyedia.IDPE.Services
 
         public void RefreshGlobalEvents()
         {           
-            IdpeKey key = new Manager().GetKey(SreKeyTypes.GlobalEventsOnComplete);
+            IdpeKey key = new Manager().GetKey(IdpeKeyTypes.GlobalEventsOnComplete);
             if (key != null)
                 GlobalEventsOnCompletes = new GlobalEventsOnCompletes(key.Value);
             else

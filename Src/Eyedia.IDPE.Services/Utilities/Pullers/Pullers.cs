@@ -79,9 +79,9 @@ namespace Eyedia.IDPE.Services
             SqlWatchers = new Dictionary<int, SqlWatcher>();           
             try
             {
-                if (!Directory.Exists(SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull))
-                    Directory.CreateDirectory(SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull);
-                WindowsUtility.SetFolderPermission(SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull);
+                if (!Directory.Exists(IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull))
+                    Directory.CreateDirectory(IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull);
+                WindowsUtility.SetFolderPermission(IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull);
             }
             catch(Exception ex)
             {
@@ -98,12 +98,12 @@ namespace Eyedia.IDPE.Services
           
             foreach (int dataSourceId in allDataSourceIds)
             {
-                string dir = Path.Combine(SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, dataSourceId.ToString());
+                string dir = Path.Combine(IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, dataSourceId.ToString());
                 if (!Directory.Exists(dir))
                     Directory.CreateDirectory(dir);
             }
            
-            string sysDir = Path.Combine(SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, "100");
+            string sysDir = Path.Combine(IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, "100");
             if (!Directory.Exists(sysDir))
                 Directory.CreateDirectory(sysDir);
             
@@ -113,9 +113,7 @@ namespace Eyedia.IDPE.Services
             {
                 List<IdpeKey> keys = Cache.Instance.Bag[dataSource.Id + ".keys"] as List<IdpeKey>;
                 if (keys == null)
-                {
-                    //keys = _Manager.GetApplicationKeys(dataSource.Id, true);
-                    //Cache.Instance.Bag.Add(dataSource.Id + ".keys", keys);                   
+                {                                     
                     keys = DataSource.LoadKeys(dataSource.Id);
                 }
 
@@ -123,17 +121,17 @@ namespace Eyedia.IDPE.Services
                     && ((DataFeederTypes)dataSource.DataFeederType == DataFeederTypes.PullFtp))
                 {
                     #region Initializing FtpPullers
-                    string ftpRemoteLocation = FindSREKeyUsingType(keys, SreKeyTypes.FtpRemoteLocation);
-                    string ftpUserName = FindSREKeyUsingType(keys, SreKeyTypes.FtpUserName);
-                    string ftpPassword = FindSREKeyUsingType(keys, SreKeyTypes.FtpPassword);
-                    string strinterval = FindSREKeyUsingType(keys, SreKeyTypes.FtpWatchInterval);
+                    string ftpRemoteLocation = FindSREKeyUsingType(keys, IdpeKeyTypes.FtpRemoteLocation);
+                    string ftpUserName = FindSREKeyUsingType(keys, IdpeKeyTypes.FtpUserName);
+                    string ftpPassword = FindSREKeyUsingType(keys, IdpeKeyTypes.FtpPassword);
+                    string strinterval = FindSREKeyUsingType(keys, IdpeKeyTypes.FtpWatchInterval);
                     int ftpWatchIntervalInMinutes = 0;
                     int.TryParse(strinterval, out ftpWatchIntervalInMinutes);
                     if (ftpWatchIntervalInMinutes == 0)
                         ftpWatchIntervalInMinutes = 1;
 
-                    string ftpLocalLocation = Path.Combine(SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, dataSource.Id.ToString());
-                    string appOutputFolder = Path.Combine(SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryOutput, dataSource.Id.ToString(), DateTime.Now.ToString("yyyyMMdd"));
+                    string ftpLocalLocation = Path.Combine(IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, dataSource.Id.ToString());
+                    string appOutputFolder = Path.Combine(IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryOutput, dataSource.Id.ToString(), DateTime.Now.ToString("yyyyMMdd"));
 
 
                     Dictionary<string, object> datasourceParameters = new Dictionary<string, object>();
@@ -203,95 +201,6 @@ namespace Eyedia.IDPE.Services
 
         internal void FileDownloaded(FileSystemWatcherEventArgs e)
         {
-            #region Commented1
-            /*
-            int dataSourceId = 0;
-            int.TryParse(e.ApplicationParameters["DataSourceId"].ToString(), out dataSourceId);
-            if (dataSourceId == 0)
-                return;
-
-            string processingBy = "u175675";    //todo            
-            string onlyFileName = Path.GetFileNameWithoutExtension(e.FileName);
-            string fileExt = Path.GetExtension(e.FileName);
-
-            if (_Manager == null)
-                _Manager = new Manager();
-
-            List<IdpeKey> keys = Cache.Instance.Bag[dataSourceId + ".keys"] as List<IdpeKey>;
-            if (keys == null)
-            {
-                //keys = _Manager.GetApplicationKeys(dataSourceId, true);
-                //Cache.Instance.Bag.Add(dataSourceId + ".keys", keys);               
-                keys = DataSource.LoadKeys(dataSourceId);
-            }
-
-            string outputFolder = DataSource.GetOutputFolder(dataSourceId, keys);
-            string actualOutputFolder = outputFolder;
-            string outputFileName = DataSource.GetOutputFileName(dataSourceId, keys, outputFolder, onlyFileName);
-
-            string withError = string.Empty;
-            string withWarning = string.Empty;
-
-            string appWatchFilter = keys.GetKeyValue(SreKeyTypes.WatchFilter);
-            string zipInterfaceName = keys.GetKeyValue(SreKeyTypes.ZipInterfaceName);
-
-            if ((fileExt.ToLower() == ".zip") || (fileExt.ToLower() == ".rar") || (fileExt.ToLower() == ".tar"))
-            {
-                outputFolder = Path.Combine(SymplusCoreConfigurationSection.CurrentConfig.TempDirectory, Constants.SREBaseFolderName);
-                outputFolder = Path.Combine(outputFolder, "RedirectedOutput");
-                outputFolder = Path.Combine(outputFolder, DateTime.Now.ToDBDateFormat());
-                outputFolder = Path.Combine(outputFolder, dataSourceId.ToString());
-            }            
-
-            if ((!string.IsNullOrEmpty(appWatchFilter))
-                && (appWatchFilter != FileExtensionSupportAll))
-            {
-                List<string> filters = new List<string>();
-                if (appWatchFilter.Contains("|"))
-                    filters.AddRange(appWatchFilter.ToLower().Split("|".ToCharArray()));
-                else
-                    filters.Add(appWatchFilter.ToLower());
-
-                var filterOrNot = (from f in filters
-                                   where f == e.FileExtension.ToLower()
-                                   select f).SingleOrDefault();
-                if (filterOrNot == null)
-                {
-                    if (!onlyFileName.StartsWith(Constants.UnzippedFilePrefix))
-                    {
-                        SreMessage warn = new SreMessage(SreMessageCodes.SRE_FILE_TYPE_NOT_SUPPORTED);
-                        DataSource dataSource = new DataSource(dataSourceId, string.Empty);
-                        withWarning = string.Format(warn.Message, dataSource.Name, appWatchFilter, Path.GetFileName(e.FileName));
-                        ExtensionMethods.TraceInformation(withWarning);
-                        new PostMan(dataSource).Send(PostMan.__warningStartTag + withWarning + PostMan.__warningEndTag, "File Ignored");
-                        return;
-                    }
-                }
-            }
-
-            string zipUniuqeId = string.Empty;
-            bool isRequestFromWCF = false;
-            string jobId = string.Empty;
-            if (onlyFileName.StartsWith(Constants.WCFFilePrefix))
-            {
-                isRequestFromWCF = true;
-                jobId = onlyFileName.Replace(Constants.WCFFilePrefix, "");
-                jobId = jobId.Replace(fileExt, "");
-            }
-            else if (onlyFileName.StartsWith(Constants.UnzippedFilePrefix))
-            {
-                zipUniuqeId = ZipFileWatcher.ExtractUniqueId(onlyFileName);
-                outputFolder = Path.Combine(outputFolder, zipUniuqeId);
-                if (!Directory.Exists(outputFolder))
-                    Directory.CreateDirectory(outputFolder);
-
-                outputFileName = Path.Combine(outputFolder, onlyFileName + Path.GetExtension(outputFileName));
-                outputFileName = ZipFileWatcher.ExtractActualFileName(outputFileName);
-            }
-            */
-
-            #endregion Commented1
-
             JobProcessorFileHandler jobProcessorFile = new JobProcessorFileHandler(e);
             jobProcessorFile.PrepareInput();
 
@@ -388,7 +297,7 @@ namespace Eyedia.IDPE.Services
             {
                 #region Getting Ignored Folder
 
-                string ignoredFolder = Path.Combine(SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryIgnored, dataSourceId.ToString());
+                string ignoredFolder = Path.Combine(IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryIgnored, dataSourceId.ToString());
                 ignoredFolder = Path.Combine(ignoredFolder, DateTime.Now.ToDBDateFormat());
                 if (!Directory.Exists(ignoredFolder))
                     Directory.CreateDirectory(ignoredFolder);
@@ -430,7 +339,7 @@ namespace Eyedia.IDPE.Services
         {
 
             IdpeKey key = (from e in keys
-                          where e.Type == (int)SreKeyTypes.LocalFileSystemFoldersOverriden
+                          where e.Type == (int)IdpeKeyTypes.LocalFileSystemFoldersOverriden
                           select e).SingleOrDefault();
 
             bool result = false;
@@ -444,14 +353,14 @@ namespace Eyedia.IDPE.Services
         {
             ExtensionMethods.TraceInformation("Pullers - Initializing local file watcher...");
 
-            _LocalFileSystemWatcher = new LocalFileSystemWatcher(SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryArchive);
+            _LocalFileSystemWatcher = new LocalFileSystemWatcher(IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryArchive);
             Watchers.FileSystemWatcherEventHandler handler = new Watchers.FileSystemWatcherEventHandler(FileDownloaded);
             _LocalFileSystemWatcher.FileDownloaded -= handler;
             _LocalFileSystemWatcher.FileDownloaded += handler;
             _LocalFileSystemWatcher.Run();
 
             ExtensionMethods.TraceInformation("Pullers - Local file watcher initialized  with Pull = '{0}' and Archive = '{1}'.",
-                SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryArchive);
+                IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull, IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryArchive);
 
         }
 
@@ -472,7 +381,7 @@ namespace Eyedia.IDPE.Services
                     // Calculate the elapsed time and stop if the maximum retry        
                     // period has been reached.        
                     TimeSpan timeElapsed = DateTime.Now - fileReceived;
-                    if (timeElapsed.TotalMinutes > SreConfigurationSection.CurrentConfig.LocalFileWatcher.RetryTimeOut)
+                    if (timeElapsed.TotalMinutes > IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.RetryTimeOut)
                     {
                         ExtensionMethods.TraceError("The file \"{0}\" could not be copied.", fromFileName);
                         return;
@@ -503,7 +412,7 @@ namespace Eyedia.IDPE.Services
         }
 
         
-        string FindSREKeyUsingType(List<IdpeKey> keys, SreKeyTypes idpeKeyType)
+        string FindSREKeyUsingType(List<IdpeKey> keys, IdpeKeyTypes idpeKeyType)
         {
             IdpeKey key =(from e in keys
                     where e.Type == (int)idpeKeyType
@@ -512,7 +421,7 @@ namespace Eyedia.IDPE.Services
             return key != null ? key.Value : string.Empty;
         }
 
-        string FindSREKeyUsingName(List<IdpeKey> keys, SreKeyTypes idpeKeyType)
+        string FindSREKeyUsingName(List<IdpeKey> keys, IdpeKeyTypes idpeKeyType)
         {
             IdpeKey key = (from e in keys
                            where e.Name == idpeKeyType.ToString()
@@ -638,13 +547,13 @@ namespace Eyedia.IDPE.Services
                 //send email in positive scenario. If would have failed, an error email would have automatically sent.
                 ExtensionMethods.TraceInformation("Pullers - A job processed, total rows to be processed = {0}, total valid rows = {1}", currentJob.TotalRowsToBeProcessed, currentJob.TotalValid);
                 Trace.Flush();
-                string strEmailAfterFileProcessed = currentJob.DataSource.Keys.GetKeyValue(SreKeyTypes.EmailAfterFileProcessed);
-                string strEmailAfterFileProcessedAttachInputFile = currentJob.DataSource.Keys.GetKeyValue(SreKeyTypes.EmailAfterFileProcessedAttachInputFile);
-                string strEmailAfterFileProcessedAttachOutputFile = currentJob.DataSource.Keys.GetKeyValue(SreKeyTypes.EmailAfterFileProcessedAttachOutputFile);
+                string strEmailAfterFileProcessed = currentJob.DataSource.Keys.GetKeyValue(IdpeKeyTypes.EmailAfterFileProcessed);
+                string strEmailAfterFileProcessedAttachInputFile = currentJob.DataSource.Keys.GetKeyValue(IdpeKeyTypes.EmailAfterFileProcessedAttachInputFile);
+                string strEmailAfterFileProcessedAttachOutputFile = currentJob.DataSource.Keys.GetKeyValue(IdpeKeyTypes.EmailAfterFileProcessedAttachOutputFile);
 
                 if (strEmailAfterFileProcessed.ParseBool())
                 {
-                    string strEmailAfterFileProcessedAttachOtherFiles = currentJob.DataSource.Keys.GetKeyValue(SreKeyTypes.EmailAfterFileProcessedAttachOtherFiles);
+                    string strEmailAfterFileProcessedAttachOtherFiles = currentJob.DataSource.Keys.GetKeyValue(IdpeKeyTypes.EmailAfterFileProcessedAttachOtherFiles);
 
                     string message = string.Format("Pullers - A file from '{0}' was just processed with {1} record(s)!",
                         currentJob.DataSource.Name, currentJob.TotalRowsProcessed);
@@ -720,7 +629,7 @@ namespace Eyedia.IDPE.Services
                 EyediaCoreConfigurationSection.CurrentConfig.AutoRecordsPerThread ? "On" : "Off",
                 EyediaCoreConfigurationSection.CurrentConfig.AutoRecordsPerThread ? Environment.ProcessorCount : EyediaCoreConfigurationSection.CurrentConfig.RecordsPerThread,
                 Eyedia.IDPE.Common.Information.TraceFilter,
-                SreConfigurationSection.CurrentConfig.Tracking.PerformanceCounter ? "On" : "Off");
+                IdpeConfigurationSection.CurrentConfig.Tracking.PerformanceCounter ? "On" : "Off");
         }
 
         

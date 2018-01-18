@@ -202,7 +202,7 @@ namespace Eyedia.IDPE.DataManager
 
         private string GetVersionTempFileName(int referenceId)
         {
-            return Path.Combine(Information.TempDirectorySre, referenceId + ".version.xml");
+            return Path.Combine(Information.TempDirectoryIdpe, referenceId + ".version.xml");
         }        
 
         #endregion Helpers

@@ -76,13 +76,13 @@ namespace Eyedia.IDPE.Common
         }
 
         /// <summary>
-        /// SreConfigurationSection from config file
+        /// IdpeConfigurationSection from config file
         /// </summary>
-        public static SreConfigurationSection SreConfigurationSection
+        public static IdpeConfigurationSection IdpeConfigurationSection
         {
             get
             {             
-                return (SreConfigurationSection)ConfigurationManager.GetSection("sreConfigurationSection");
+                return (IdpeConfigurationSection)ConfigurationManager.GetSection("idpeConfigurationSection");
             }
         }
 
@@ -91,11 +91,11 @@ namespace Eyedia.IDPE.Common
             return ruleName.Equals("DuplicateCheck", StringComparison.OrdinalIgnoreCase);
         }
 
-        public static string TempDirectorySre
+        public static string TempDirectoryIdpe
         {
             get
             {
-                string dir = Path.Combine(EyediaCoreConfigurationSection.CurrentConfig.TempDirectory, Constants.SREBaseFolderName);
+                string dir = Path.Combine(EyediaCoreConfigurationSection.CurrentConfig.TempDirectory, Constants.IdpeBaseFolderName);
                 if (!Directory.Exists(dir))
                     Directory.CreateDirectory(dir);
 
@@ -107,7 +107,7 @@ namespace Eyedia.IDPE.Common
         {
             get
             {
-                string dir = Path.Combine(TempDirectorySre, "TempData");
+                string dir = Path.Combine(TempDirectoryIdpe, "TempData");
                 if (!Directory.Exists(dir))
                     Directory.CreateDirectory(dir);
 

@@ -46,10 +46,10 @@ namespace Eyedia.IDPE.Common
     public class EnvironmentFiles
     {
 
-        const string __stopFileName = "srestop.cmd";
-        const string __startFileName = "srestart.cmd";
-        const string __restartFileName = "srerestart.cmd";
-        const string __setlogonAsFileName = "sresetlogonas.cmd";
+        const string __stopFileName = "idpestop.cmd";
+        const string __startFileName = "idpestart.cmd";
+        const string __restartFileName = "idperestart.cmd";
+        const string __setlogonAsFileName = "idpesetlogonas.cmd";
         const string __defaultconfig = @"<Keys>
   <Key>
     <Name>instances</Name>
@@ -176,18 +176,18 @@ namespace Eyedia.IDPE.Common
                 KillTestBedService();
             System.Threading.Thread.Sleep(1000);
 
-            string srewoa = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpewoa.exe");
-            string srewoa_config = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpewoa.exe.config");
-            if (!File.Exists(srewoa_config))
+            string idpewoa = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpewoa.exe");
+            string idpewoa_config = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpewoa.exe.config");
+            if (!File.Exists(idpewoa_config))
             {
-                string sre_config = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpe.exe.config");
-                if (File.Exists(sre_config))
-                    File.Copy(sre_config, srewoa_config);
+                string idpe_config = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpe.exe.config");
+                if (File.Exists(idpe_config))
+                    File.Copy(idpe_config, idpewoa_config);
                 else
                     return string.Empty;
             }
 
-            Configuration config = ConfigurationManager.OpenExeConfiguration(srewoa);
+            Configuration config = ConfigurationManager.OpenExeConfiguration(idpewoa);
             EyediaCoreConfigurationSection sccs = (EyediaCoreConfigurationSection)config.GetSection("eyediaCoreConfigurationSection");
             sccs.Trace.File = Path.Combine(Path.GetDirectoryName(sccs.Trace.File), "testbed" + Path.GetExtension(sccs.Trace.File));
             config.Save(ConfigurationSaveMode.Modified);
@@ -211,12 +211,12 @@ namespace Eyedia.IDPE.Common
             catch { }
 
             //start the service
-            if (File.Exists(srewoa))
+            if (File.Exists(idpewoa))
             {
-                ProcessStartInfo info = new ProcessStartInfo(srewoa, "-c");
+                ProcessStartInfo info = new ProcessStartInfo(idpewoa, "-c");
                 info.WindowStyle = ProcessWindowStyle.Minimized;
                 Process.Start(info);
-                //Process.Start(srewoa, "-c");
+                //Process.Start(Idpewoa, "-c");
                 return sccs.Trace.File;
             }
             return string.Empty;

@@ -64,7 +64,7 @@ namespace Eyedia.IDPE.Services
                 EyediaCoreConfigurationSection eccs = (EyediaCoreConfigurationSection)config.GetSection("eyediaCoreConfigurationSection");
                 if (eccs == null)
                 {
-                    SreConfigurationSection idpecs = (SreConfigurationSection)config.GetSection("sreConfigurationSection");
+                    IdpeConfigurationSection idpecs = (IdpeConfigurationSection)config.GetSection("idpeConfigurationSection");
                     if (idpecs != null)
                     {
                         localEnv.RootFolder = AppDomain.CurrentDomain.BaseDirectory;

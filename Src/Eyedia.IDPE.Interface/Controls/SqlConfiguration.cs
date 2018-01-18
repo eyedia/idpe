@@ -334,17 +334,17 @@ namespace Eyedia.IDPE.Interface.Controls
 
             List<IdpeKey> keys = new Manager().GetApplicationKeys(DataSourceId, false);
 
-            cmbConnectionString.Text = keys.GetKeyValue(SreKeyTypes.PullSqlConnectionString);
-            txtRunTimeCononectionStringName.Text = keys.GetKeyValue(SreKeyTypes.PullSqlConnectionStringRunTime);
-            string strSqlWatchInterval = keys.GetKeyValue(SreKeyTypes.SqlWatchInterval);
+            cmbConnectionString.Text = keys.GetKeyValue(IdpeKeyTypes.PullSqlConnectionString);
+            txtRunTimeCononectionStringName.Text = keys.GetKeyValue(IdpeKeyTypes.PullSqlConnectionStringRunTime);
+            string strSqlWatchInterval = keys.GetKeyValue(IdpeKeyTypes.SqlWatchInterval);
             numUpDnIntervalSql.Value = (decimal)(!string.IsNullOrEmpty(strSqlWatchInterval) ? strSqlWatchInterval.ParseInt() : 2);
-            PullSqlReturnType = keys.GetKeyValue(SreKeyTypes.PullSqlReturnType);
-            txtQuerySelect.Text = keys.GetKeyValue(SreKeyTypes.SqlQuery);
-            txtQueryUpdate.Text = keys.GetKeyValue(SreKeyTypes.SqlUpdateQueryProcessing);
-            txtQueryRecovery.Text = keys.GetKeyValue(SreKeyTypes.SqlUpdateQueryRecovery);
-            chkFirstRowIsHeader.Checked = bool.Parse(keys.GetKeyValue(SreKeyTypes.IsFirstRowHeader));
-            txtInterfaceName.Text = keys.GetKeyValue(SreKeyTypes.PullSqlInterfaceName);
-            toolTip.SetToolTip(txtInterfaceName, keys.GetKeyValue(SreKeyTypes.PullSqlInterfaceName));
+            PullSqlReturnType = keys.GetKeyValue(IdpeKeyTypes.PullSqlReturnType);
+            txtQuerySelect.Text = keys.GetKeyValue(IdpeKeyTypes.SqlQuery);
+            txtQueryUpdate.Text = keys.GetKeyValue(IdpeKeyTypes.SqlUpdateQueryProcessing);
+            txtQueryRecovery.Text = keys.GetKeyValue(IdpeKeyTypes.SqlUpdateQueryRecovery);
+            chkFirstRowIsHeader.Checked = bool.Parse(keys.GetKeyValue(IdpeKeyTypes.IsFirstRowHeader));
+            txtInterfaceName.Text = keys.GetKeyValue(IdpeKeyTypes.PullSqlInterfaceName);
+            toolTip.SetToolTip(txtInterfaceName, keys.GetKeyValue(IdpeKeyTypes.PullSqlInterfaceName));
 
             SyntaxHighLighter.HighLight(txtQuerySelect);
             SyntaxHighLighter.HighLight(txtQueryUpdate);
@@ -365,7 +365,7 @@ namespace Eyedia.IDPE.Interface.Controls
 
             try
             {
-                command.CommandText = new SreCommandParser(ds).Parse(txtQuerySelect.Text);
+                command.CommandText = new CommandParser(ds).Parse(txtQuerySelect.Text);
 
                 conn.Open();
                 command.Connection = conn;
@@ -418,7 +418,7 @@ namespace Eyedia.IDPE.Interface.Controls
                 return;
 
             DataSource ds = new DataSource(DataSourceId, string.Empty);
-            updateQuery = new SreCommandParser(ds).Parse(updateQuery);
+            updateQuery = new CommandParser(ds).Parse(updateQuery);
             //DoNotClose = false;
             IdpeKey connectionStringKey = cmbConnectionString.SelectedItem as IdpeKey;
             DatabaseTypes databaseType = connectionStringKey.GetDatabaseType();

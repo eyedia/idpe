@@ -162,7 +162,7 @@ namespace Eyedia.IDPE.Services
             #endregion PlugIns
 
      
-            IdpeKey key = DataSource.Key(SreKeyTypes.IsFirstRowHeader);
+            IdpeKey key = DataSource.Key(IdpeKeyTypes.IsFirstRowHeader);
             if (key != null)
                 DataSource.IsFirstRowHeader = key.Value.ParseBool();
 
@@ -172,7 +172,7 @@ namespace Eyedia.IDPE.Services
 
 
             this.SqlClientManager = new SqlClientManager(this.DefaultConnectionString, this.DefaultConnectionType);
-            this.Parameters = new Parameters(this.DataSource.Id, this.DataSource.Name, this.DataSource.Key(SreKeyTypes.GenerateParametersFromDatabase), this.SqlClientManager);
+            this.Parameters = new Parameters(this.DataSource.Id, this.DataSource.Name, this.DataSource.Key(IdpeKeyTypes.GenerateParametersFromDatabase), this.SqlClientManager);
 
             ExtensionMethods.TraceInformation(Environment.NewLine);
             this.TraceInformation("New job '{0}' created.", this.JobIdentifier);
@@ -539,7 +539,7 @@ namespace Eyedia.IDPE.Services
                 {
                     foreach (IdpeKey key in this.DataSource.Keys)
                     {
-                        SreKeyTypes keyType = (SreKeyTypes)key.Type;
+                        IdpeKeyTypes keyType = (IdpeKeyTypes)key.Type;
                         if (keyType.IsConnectionStringType())
                         {
                             _DefaultConnectionString = key.Value;
@@ -565,9 +565,9 @@ namespace Eyedia.IDPE.Services
                 return _DefaultConnectionStringName;
             }
         }
-        SreKeyTypes _DefaultConnectionType;
+        IdpeKeyTypes _DefaultConnectionType;
 
-        public SreKeyTypes DefaultConnectionType
+        public IdpeKeyTypes DefaultConnectionType
         {
             get
             {
@@ -673,8 +673,8 @@ namespace Eyedia.IDPE.Services
 
         private void ExtractHeaderFooter()
         {
-            IdpeKey headerAttribute = DataSource.Key(SreKeyTypes.HeaderLine1Attribute);
-            IdpeKey footerAttribute = DataSource.Key(SreKeyTypes.FooterLine1Attribute);
+            IdpeKey headerAttribute = DataSource.Key(IdpeKeyTypes.HeaderLine1Attribute);
+            IdpeKey footerAttribute = DataSource.Key(IdpeKeyTypes.FooterLine1Attribute);
 
             if ((headerAttribute == null)
                 && (footerAttribute == null))                
@@ -691,7 +691,7 @@ namespace Eyedia.IDPE.Services
                 int howManyFound = 0;
                 for (int i = 1; i <= 6; i++)
                 {
-                    SreKeyTypes keyType = (SreKeyTypes)Enum.Parse(typeof(SreKeyTypes), "HeaderLine" + i + "Attribute");
+                    IdpeKeyTypes keyType = (IdpeKeyTypes)Enum.Parse(typeof(IdpeKeyTypes), "HeaderLine" + i + "Attribute");
                     headerAttribute = DataSource.Key(keyType);
                     if (headerAttribute != null)
                     {
@@ -711,7 +711,7 @@ namespace Eyedia.IDPE.Services
                 howManyFound = 0;
                 for (int i = 6; i >= 1; i--)
                 {
-                    SreKeyTypes keyType = (SreKeyTypes)Enum.Parse(typeof(SreKeyTypes), "FooterLine" + i + "Attribute");
+                    IdpeKeyTypes keyType = (IdpeKeyTypes)Enum.Parse(typeof(IdpeKeyTypes), "FooterLine" + i + "Attribute");
                     footerAttribute = DataSource.Key(keyType);
                     if (footerAttribute == null)
                     {

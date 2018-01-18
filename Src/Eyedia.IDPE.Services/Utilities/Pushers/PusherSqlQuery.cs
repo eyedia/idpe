@@ -111,7 +111,7 @@ namespace Eyedia.IDPE.Services
             IDbCommand commandUpdate = myDal.CreateCommand();
             commandUpdate.Connection = conn;
             commandUpdate.Transaction = transaction;
-            commandUpdate.CommandText = new SreCommandParser(dataSource).Parse(updateQuery);
+            commandUpdate.CommandText = new CommandParser(dataSource).Parse(updateQuery);
 
 
             try

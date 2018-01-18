@@ -168,7 +168,7 @@
             this.chkZipIgnoreFiles.Size = new System.Drawing.Size(361, 24);
             this.chkZipIgnoreFiles.TabIndex = 5;
             this.chkZipIgnoreFiles.Text = "&Ignore these file type(s)........................................";
-            this.toolTip1.SetToolTip(this.chkZipIgnoreFiles, "SRE will ignore these extensions (e.g. .dat|.txt)");
+            this.toolTip1.SetToolTip(this.chkZipIgnoreFiles, "IDPE will ignore these extensions (e.g. .dat|.txt)");
             this.chkZipIgnoreFiles.UseVisualStyleBackColor = true;
             this.chkZipIgnoreFiles.CheckedChanged += new System.EventHandler(this.chkZipIgnoreFiles_CheckedChanged);
             // 
@@ -181,7 +181,7 @@
             this.chkZipIgnoreFilesButCopy.Size = new System.Drawing.Size(381, 24);
             this.chkZipIgnoreFilesButCopy.TabIndex = 7;
             this.chkZipIgnoreFilesButCopy.Text = "Ignore these file type(s), but &copy to output folder";
-            this.toolTip1.SetToolTip(this.chkZipIgnoreFilesButCopy, "SRE will ignore these extensions (e.g. .dat|.txt), but will be copied to output f" +
+            this.toolTip1.SetToolTip(this.chkZipIgnoreFilesButCopy, "IDPE will ignore these extensions (e.g. .dat|.txt), but will be copied to output f" +
         "older");
             this.chkZipIgnoreFilesButCopy.UseVisualStyleBackColor = true;
             this.chkZipIgnoreFilesButCopy.CheckedChanged += new System.EventHandler(this.chkZipIgnoreFilesButCopy_CheckedChanged);
@@ -235,7 +235,7 @@
             this.chkZipDoNotCreateAcknoledgementInOutputFolder.Size = new System.Drawing.Size(278, 24);
             this.chkZipDoNotCreateAcknoledgementInOutputFolder.TabIndex = 45;
             this.chkZipDoNotCreateAcknoledgementInOutputFolder.Text = "Do not create acknoledgement file";
-            this.toolTip1.SetToolTip(this.chkZipDoNotCreateAcknoledgementInOutputFolder, "SRE by default creates a blank file same name as zip file to keep track of origin" +
+            this.toolTip1.SetToolTip(this.chkZipDoNotCreateAcknoledgementInOutputFolder, "IDPE by default creates a blank file same name as zip file to keep track of origin" +
         "al zip file in the output folder");
             this.chkZipDoNotCreateAcknoledgementInOutputFolder.UseVisualStyleBackColor = true;
             // 

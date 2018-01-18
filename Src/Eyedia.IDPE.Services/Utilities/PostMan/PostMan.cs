@@ -301,11 +301,11 @@ namespace Eyedia.IDPE.Services
         private void AddCcAndBcc(MailMessage oMail)
         {
             
-            string emailCc = Keys.GetKeyValue(SreKeyTypes.EmailCc);
+            string emailCc = Keys.GetKeyValue(IdpeKeyTypes.EmailCc);
             if (!string.IsNullOrEmpty(emailCc))
                 oMail.CC.Add(emailCc.Replace(";",","));
 
-            string emailBcc = Keys.GetKeyValue(SreKeyTypes.EmailBcc);
+            string emailBcc = Keys.GetKeyValue(IdpeKeyTypes.EmailBcc);
             if (!string.IsNullOrEmpty(emailBcc))
                 oMail.Bcc.Add(emailBcc.Replace(";", ","));
             

@@ -107,7 +107,7 @@ namespace Eyedia.IDPE.Interface
                 }
                 else
                 {
-                    MessageBox.Show("Workflow Window already open for rule \"" + idpeRule.Name + "\"","SRE warning",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    MessageBox.Show("Workflow Window already open for rule \"" + idpeRule.Name + "\"","IDPE warning",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
                 this.Cursor = Cursors.Default;
                 
@@ -181,7 +181,7 @@ namespace Eyedia.IDPE.Interface
             if (listView.SelectedItems.Count > 0)
             {
                 saveFileDialog.FileName = listView.SelectedItems[0].Text;
-                saveFileDialog.Filter = "SRE Patch Files (*.srep)|*.srep|All Files (*.*)|*.*";
+                saveFileDialog.Filter = "IDPE Patch Files (*.idpep)|*.idpep|All Files (*.*)|*.*";
                 if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     DataSourcePatch dsp = new DataSourcePatch();                   
@@ -196,7 +196,7 @@ namespace Eyedia.IDPE.Interface
 
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {            
-            openFileDialog.Filter = "SRE Patch Files (*.srep)|*.srep|All Files (*.*)|*.*";
+            openFileDialog.Filter = "IDPE Patch Files (*.idpep)|*.idpep|All Files (*.*)|*.*";
             openFileDialog.FileName = "";
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -344,7 +344,7 @@ namespace Eyedia.IDPE.Interface
                 List<IdpeVersion> lastVersions = new Manager().GetVersions(VersionObjectTypes.Rule, rule.Id);
 
                 if (lastVersions.Count >= 2)
-                    SreVersionComparer.Compare(VersionObjectTypes.Rule, rule.Name, lastVersions[0], lastVersions[1]);
+                    VersionComparer.Compare(VersionObjectTypes.Rule, rule.Name, lastVersions[0], lastVersions[1]);
                 else
                     MessageBox.Show("Could not retrieve last 2 versions!", "Comparison Tool", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }

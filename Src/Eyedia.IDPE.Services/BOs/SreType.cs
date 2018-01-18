@@ -80,8 +80,8 @@ namespace Eyedia.IDPE.Services
         string _ConnectionString;
         public string ConnectionString { get { return _ConnectionString; } internal set { _ConnectionString = value; } }
 
-        SreKeyTypes _DatabaseType;
-        public SreKeyTypes DatabaseType { get { return _DatabaseType; } internal set { _DatabaseType = value; } }
+        IdpeKeyTypes _DatabaseType;
+        public IdpeKeyTypes DatabaseType { get { return _DatabaseType; } internal set { _DatabaseType = value; } }
 
         List<IdpeKey> _DataSourceKeys;
         public List<IdpeKey> DataSourceKeys { get { return _DataSourceKeys; } }
@@ -89,8 +89,8 @@ namespace Eyedia.IDPE.Services
         protected int _RecordPosition;
         public int RecordPosition { get { return _RecordPosition; } }
 
-        protected SreMessage _ParseResult;
-        public SreMessage ParseResult { get { return _ParseResult; } }
+        protected IdpeMessage _ParseResult;
+        public IdpeMessage ParseResult { get { return _ParseResult; } }
 
         public bool IsAssociatedWithSystemRow { get; private set; }
 
@@ -112,9 +112,9 @@ namespace Eyedia.IDPE.Services
             _ConnectionString = DataSourceKeys.GetDefaultConnectionString();
             bool result = Init(columnName, value, type, formula, minimum, maximum, isAssociatedWithSystemRow, recordPosition);
             if (result)
-                _ParseResult = new SreMessage(SreMessageCodes.SRE_SUCCESS);
+                _ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_SUCCESS);
             else
-                _ParseResult = new SreMessage(SreMessageCodes.SRE_FAILED);
+                _ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_FAILED);
         }
 
         public SreType(string columnName, string value, AttributeTypes type, string formula, string minimum, string maximum,
@@ -123,9 +123,9 @@ namespace Eyedia.IDPE.Services
             _ConnectionStringKeyName = Constants.DefaultConnectionStringKeyName;
             bool result = Init(columnName, value, type, formula, minimum, maximum, isAssociatedWithSystemRow, recordPosition);
             if (result)
-                _ParseResult = new SreMessage(SreMessageCodes.SRE_SUCCESS);
+                _ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_SUCCESS);
             else
-                _ParseResult = new SreMessage(SreMessageCodes.SRE_FAILED);
+                _ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_FAILED);
         }
 
         bool Init(string columnName, string value, AttributeTypes type, string formula, string minimum, string maximum,
@@ -192,7 +192,7 @@ namespace Eyedia.IDPE.Services
             return result;
         }
 
-        public abstract SreMessage Parse(bool onlyConstraints);
+        public abstract IdpeMessage Parse(bool onlyConstraints);
         public abstract void CheckConstraints();
 
         protected virtual string PrintRowColPosition()
@@ -274,19 +274,19 @@ namespace Eyedia.IDPE.Services
                 TryExtractingSpecificType();
             }
         }
-        public override SreMessage Parse(bool onlyConstraints)
+        public override IdpeMessage Parse(bool onlyConstraints)
         {
             try
             {
                 if (base.Value.ToUpper() != "NULL")
                 {
-                    this._ParseResult = new SreMessage(SreMessageCodes.SRE_SUCCESS);
+                    this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_SUCCESS);
                     if (ValueInt == null)
                     {
                         TryExtractingSpecificType();
                         if (ValueInt == null)  //still null, then throw 
                         {
-                            this._ParseResult = new SreMessage(SreMessageCodes.SRE_INT_TYPE_DATA_VALIDATION_FAILED);
+                            this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_INT_TYPE_DATA_VALIDATION_FAILED);
                             this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Type, base.Value);
                             return this._ParseResult;
                         }
@@ -301,7 +301,7 @@ namespace Eyedia.IDPE.Services
             catch (Exception ex)
             {                
                 ExtensionMethods.TraceError(ex.ToString());
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_INT_TYPE_DATA_VALIDATION_FAILED);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_INT_TYPE_DATA_VALIDATION_FAILED);
                 this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Type, base.Value);
 
             }
@@ -318,15 +318,15 @@ namespace Eyedia.IDPE.Services
             if (!string.IsNullOrEmpty(Maximum))
                 max = (long)Maximum.ParseLong();
 
-            SreMessage result = null;
+            IdpeMessage result = null;
             if ((!string.IsNullOrEmpty(Minimum)) && (ValueInt < min))
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_MINIMUM);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_MINIMUM);
                 this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), ColumnName, Minimum);
             }
             else if ((!string.IsNullOrEmpty(Maximum)) && (ValueInt > max))
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM);
                 this._ParseResult.Message = string.Format(result.Message, PrintRowColPosition(), ColumnName, Maximum);
             }
 
@@ -366,12 +366,12 @@ namespace Eyedia.IDPE.Services
             }
         }
 
-        public override SreMessage Parse(bool onlyConstraints)
+        public override IdpeMessage Parse(bool onlyConstraints)
         {
 
             try
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_SUCCESS);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_SUCCESS);
                 if (base.Value.ToUpper() != "NULL")
                 {
                     if (ValueLong == null)
@@ -379,7 +379,7 @@ namespace Eyedia.IDPE.Services
                         TryExtractingSpecificType();
                         if (ValueLong == null)  //still null, then throw 
                         {
-                            this._ParseResult = new SreMessage(SreMessageCodes.SRE_BIGINT_TYPE_DATA_VALIDATION_FAILED);
+                            this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_BIGINT_TYPE_DATA_VALIDATION_FAILED);
                             this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Type, base.Value);
                             return this._ParseResult;
                         }
@@ -393,7 +393,7 @@ namespace Eyedia.IDPE.Services
             catch (Exception ex)
             {
                 ExtensionMethods.TraceError(ex.ToString());
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_BIGINT_TYPE_DATA_VALIDATION_FAILED);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_BIGINT_TYPE_DATA_VALIDATION_FAILED);
                 this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Type, base.Value);
             }
             _IsParsed = true;
@@ -411,12 +411,12 @@ namespace Eyedia.IDPE.Services
 
             if ((!string.IsNullOrEmpty(Minimum)) && (ValueLong < min))
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_MINIMUM);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_MINIMUM);
                 this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), ColumnName, Minimum);
             }
             else if ((!string.IsNullOrEmpty(Maximum)) && (ValueLong > max))
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM);
                 this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), ColumnName, Maximum);
             }
 
@@ -450,11 +450,11 @@ namespace Eyedia.IDPE.Services
             }
         }
 
-        public override SreMessage Parse(bool onlyConstraints)
+        public override IdpeMessage Parse(bool onlyConstraints)
         {
             try
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_SUCCESS);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_SUCCESS);
                 if (base.Value.ToUpper() != "NULL")
                 {
                     if (ValueDouble == null)
@@ -462,7 +462,7 @@ namespace Eyedia.IDPE.Services
                         TryExtractingSpecificType();
                         if (ValueDouble == null)        //still null
                         {
-                            this._ParseResult = new SreMessage(SreMessageCodes.SRE_DECIMAL_TYPE_DATA_VALIDATION_FAILED);
+                            this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_DECIMAL_TYPE_DATA_VALIDATION_FAILED);
                             this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Type, base.Value);
                         }
                     }
@@ -477,7 +477,7 @@ namespace Eyedia.IDPE.Services
             catch (Exception ex)
             {
                 ExtensionMethods.TraceError(ex.ToString());
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_DECIMAL_TYPE_DATA_VALIDATION_FAILED);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_DECIMAL_TYPE_DATA_VALIDATION_FAILED);
                 this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Type, Value);
             }
             _IsParsed = true;
@@ -495,12 +495,12 @@ namespace Eyedia.IDPE.Services
 
             if ((!string.IsNullOrEmpty(Minimum)) && (ValueDouble < min))
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_MINIMUM);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_MINIMUM);
                 this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), ColumnName, Minimum);
             }
             else if ((!string.IsNullOrEmpty(Maximum)) && (ValueDouble > max))
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM);
                 this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), ColumnName, Maximum);
             }
 
@@ -534,17 +534,17 @@ namespace Eyedia.IDPE.Services
             }
         }
 
-        public override SreMessage Parse(bool onlyConstraints)
+        public override IdpeMessage Parse(bool onlyConstraints)
         {
 
             try
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_SUCCESS);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_SUCCESS);
                 if (base.Value.ToUpper() != "NULL")
                 {
                     if (ValueBool == null)
                     {
-                        this._ParseResult = new SreMessage(SreMessageCodes.SRE_BIT_TYPE_DATA_VALIDATION_FAILED);
+                        this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_BIT_TYPE_DATA_VALIDATION_FAILED);
                         this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Type, Value);
                         return this._ParseResult;
                     }
@@ -555,7 +555,7 @@ namespace Eyedia.IDPE.Services
             }
             catch (Exception ex)
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_BIT_TYPE_DATA_VALIDATION_FAILED);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_BIT_TYPE_DATA_VALIDATION_FAILED);
                 this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Type, Value);
                 ExtensionMethods.TraceError(ex.ToString());
             }
@@ -598,16 +598,16 @@ namespace Eyedia.IDPE.Services
             }
         }
 
-        public override SreMessage Parse(bool onlyConstraints)
+        public override IdpeMessage Parse(bool onlyConstraints)
         {
             try
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_SUCCESS);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_SUCCESS);
                 CheckConstraints();
             }
             catch (Exception ex)
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_STRING_TYPE_DATA_VALIDATION_FAILED);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_STRING_TYPE_DATA_VALIDATION_FAILED);
                 this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Type, Value);
                 ExtensionMethods.TraceError(ex.ToString());
             }
@@ -626,12 +626,12 @@ namespace Eyedia.IDPE.Services
 
             if ((!string.IsNullOrEmpty(Minimum)) && (Value.Length < min))
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_MINIMUM_STRING);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_MINIMUM_STRING);
                 this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), ColumnName, Minimum);
             }
             else if ((!string.IsNullOrEmpty(Maximum)) && (Value.Length > max))
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM_STRING);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM_STRING);
                 this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), ColumnName, Maximum);
             }
         }
@@ -655,11 +655,11 @@ namespace Eyedia.IDPE.Services
                 TryExtractingSpecificType();
             }
         }
-        public override SreMessage Parse(bool onlyConstraints)
+        public override IdpeMessage Parse(bool onlyConstraints)
         {
             try
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_SUCCESS);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_SUCCESS);
                 if (base.Value.ToUpper() != "NULL")
                 {
                     if (ValueDateTime == null)
@@ -667,7 +667,7 @@ namespace Eyedia.IDPE.Services
                         TryExtractingSpecificType();
                         if (ValueDateTime == null)  //still null, then throw 
                         {
-                            this._ParseResult = new SreMessage(SreMessageCodes.SRE_DATE_TYPE_DATA_VALIDATION_FAILED);
+                            this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_DATE_TYPE_DATA_VALIDATION_FAILED);
                             this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Type, base.Value);
                             return this._ParseResult;
                         }
@@ -727,7 +727,7 @@ namespace Eyedia.IDPE.Services
             {
                 if (value < min)
                 {
-                    this._ParseResult = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_MINIMUM_DATETIME_SERVER);
+                    this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_MINIMUM_DATETIME_SERVER);
                     this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Value, min);
                 }
             }
@@ -735,7 +735,7 @@ namespace Eyedia.IDPE.Services
             {
                 if (value > min)
                 {
-                    this._ParseResult = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM_DATETIME_SERVER);
+                    this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM_DATETIME_SERVER);
                     this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Value, min);
                 }
             }
@@ -746,7 +746,7 @@ namespace Eyedia.IDPE.Services
 
                 if (d1 < d2)
                 {
-                    this._ParseResult = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_MINIMUM_DATE_SERVER);
+                    this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_MINIMUM_DATE_SERVER);
                     this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Value, d2);
                 }
             }
@@ -757,7 +757,7 @@ namespace Eyedia.IDPE.Services
 
                 if (d1 > d2)
                 {
-                    this._ParseResult = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM_DATE_SERVER);
+                    this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM_DATE_SERVER);
                     this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Value, d2);
                 }
             }
@@ -781,7 +781,7 @@ namespace Eyedia.IDPE.Services
             {
                 if (value < max)
                 {
-                    this._ParseResult = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_MINIMUM_DATETIME_SERVER);
+                    this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_MINIMUM_DATETIME_SERVER);
                     this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Value, max);
                 }
             }
@@ -789,7 +789,7 @@ namespace Eyedia.IDPE.Services
             {
                 if (value > max)
                 {
-                    this._ParseResult = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM_DATETIME_SERVER);
+                    this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM_DATETIME_SERVER);
                     this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Value, min);
                 }
             }
@@ -800,7 +800,7 @@ namespace Eyedia.IDPE.Services
 
                 if (d1 < d2)
                 {
-                    this._ParseResult = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_MINIMUM_DATE_SERVER);
+                    this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_MINIMUM_DATE_SERVER);
                     this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Value, d2);
                 }
             }
@@ -811,7 +811,7 @@ namespace Eyedia.IDPE.Services
 
                 if (d1 > d2)
                 {
-                    this._ParseResult = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM_DATE_SERVER);
+                    this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM_DATE_SERVER);
                     this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Value, d2);
                 }
             }
@@ -819,7 +819,7 @@ namespace Eyedia.IDPE.Services
 
             if (!((value >= min) && (value <= max)))
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_MINIMUM_MAXIMUM_DATE);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_MINIMUM_MAXIMUM_DATE);
                 this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), value, min, max);
             }
         }
@@ -864,7 +864,7 @@ namespace Eyedia.IDPE.Services
             get { return _ReferenceKey; }
         }
 
-        public override SreMessage Parse(bool onlyConstraints)
+        public override IdpeMessage Parse(bool onlyConstraints)
         {
             try
             {
@@ -886,7 +886,7 @@ namespace Eyedia.IDPE.Services
                     }
                     else
                     {
-                        //check one more time with EnumCode, as SRE supports Value OR EnumCode
+                        //check one more time with EnumCode, as IDPE supports Value OR EnumCode
                         int enumCode = 0;
                         if (int.TryParse(Value, out enumCode))
                         {
@@ -913,18 +913,18 @@ namespace Eyedia.IDPE.Services
 
                 if ((_ValueEnumCode == -1) || (sqlErrorMessage != string.Empty))
                 {
-                    this._ParseResult = new SreMessage(SreMessageCodes.SRE_CODESET_TYPE_DATA_VALIDATION_FAILED);
+                    this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_CODESET_TYPE_DATA_VALIDATION_FAILED);
                     this._ParseResult.Message = string.Format(_ParseResult.Message, PrintRowColPosition(), Value);
                 }
                 else
                 {
                     _ValueEnumValue = _Value;
-                    return new SreMessage(SreMessageCodes.SRE_SUCCESS); //when got value, return success
+                    return new IdpeMessage(IdpeMessageCodes.IDPE_SUCCESS); //when got value, return success
                 }
             }
             catch (Exception ex)
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_CODESET_TYPE_DATA_VALIDATION_FAILED);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_CODESET_TYPE_DATA_VALIDATION_FAILED);
                 this._ParseResult.Message = string.Format(_ParseResult.Message, PrintRowColPosition(), Value);
                 ExtensionMethods.TraceError(ex.ToString());
             }
@@ -984,9 +984,9 @@ namespace Eyedia.IDPE.Services
             base.OverrideFormula(formattedSQLQuery);
         }
 
-        public override SreMessage Parse(bool onlyConstraints)
+        public override IdpeMessage Parse(bool onlyConstraints)
         {
-            this._ParseResult = new SreMessage(SreMessageCodes.SRE_FAILED);
+            this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_FAILED);
             try
             {
                 if (!onlyConstraints)
@@ -996,13 +996,13 @@ namespace Eyedia.IDPE.Services
 
                     if (!SqlClientManager.CheckReferenceKey(ConnectionString, DatabaseType, Formula, Value))
                     {
-                        this._ParseResult = new SreMessage(SreMessageCodes.SRE_REFERENCED_TYPE_DATA_RESULT_NOT_FOUND);
+                        this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_REFERENCED_TYPE_DATA_RESULT_NOT_FOUND);
                         this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Value, ColumnName);
                         return this._ParseResult;
                     }
                     else
                     {
-                        this._ParseResult = new SreMessage(SreMessageCodes.SRE_REFERENCED_TYPE_DATA_RESULT_FOUND);
+                        this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_REFERENCED_TYPE_DATA_RESULT_FOUND);
                         return this._ParseResult;
                     }
                 }
@@ -1032,7 +1032,7 @@ namespace Eyedia.IDPE.Services
             base.OverrideFormula(formattedSQLQuery);
         }
 
-        public override SreMessage Parse(bool onlyConstraints)
+        public override IdpeMessage Parse(bool onlyConstraints)
         {
             try
             {
@@ -1042,13 +1042,13 @@ namespace Eyedia.IDPE.Services
                     ExtensionMethods.TraceInformation("Validating 'Not Referenced' type '{0}' value '{1}', executing query '{1}' with '{2}'", Value, Formula, ConnectionString);
                     if (SqlClientManager.CheckReferenceKey(ConnectionString, DatabaseType, Formula, Value))
                     {
-                        this._ParseResult = new SreMessage(SreMessageCodes.SRE_NOT_REFERENCED_TYPE_DATA_RESULT_FOUND);
+                        this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_NOT_REFERENCED_TYPE_DATA_RESULT_FOUND);
                         this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Value, ColumnName);
                         return this._ParseResult;
                     }
                     else
                     {
-                        this._ParseResult = new SreMessage(SreMessageCodes.SRE_NOT_REFERENCED_TYPE_DATA_RESULT_NOT_FOUND);
+                        this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_NOT_REFERENCED_TYPE_DATA_RESULT_NOT_FOUND);
                         return this._ParseResult;
                     }
                 }
@@ -1091,7 +1091,7 @@ namespace Eyedia.IDPE.Services
             base.OverrideFormula(formattedSQLQuery);
         }
 
-        public override SreMessage Parse(bool onlyConstraints)
+        public override IdpeMessage Parse(bool onlyConstraints)
         {
             try
             {
@@ -1103,7 +1103,7 @@ namespace Eyedia.IDPE.Services
                     _Value = SqlClientManager.ExecuteQuery(ConnectionString, DatabaseType, Formula, ref isErrored);
                     if (isErrored)
                     {
-                        this._ParseResult = new SreMessage(SreMessageCodes.SRE_GENERATED_TYPE_DATA_VALIDATION_FAILED);
+                        this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_GENERATED_TYPE_DATA_VALIDATION_FAILED);
                         this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), string.Empty, ColumnName);
                     }
                 }
@@ -1111,7 +1111,7 @@ namespace Eyedia.IDPE.Services
             }
             catch (Exception ex)
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_GENERATED_TYPE_DATA_VALIDATION_FAILED);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_GENERATED_TYPE_DATA_VALIDATION_FAILED);
                 this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), Formula, ColumnName);
                 ExtensionMethods.TraceError(ex.ToString());
             }
@@ -1130,12 +1130,12 @@ namespace Eyedia.IDPE.Services
 
             if ((!string.IsNullOrEmpty(Minimum)) && (Value.Length < min))
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_MINIMUM);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_MINIMUM);
                 this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), ColumnName, Minimum);
             }
             else if ((!string.IsNullOrEmpty(Maximum)) && (Value.Length > max))
             {
-                this._ParseResult = new SreMessage(SreMessageCodes.SRE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM);
+                this._ParseResult = new IdpeMessage(IdpeMessageCodes.IDPE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM);
                 this._ParseResult.Message = string.Format(this._ParseResult.Message, PrintRowColPosition(), ColumnName, Maximum);
             }
 
@@ -1151,9 +1151,9 @@ namespace Eyedia.IDPE.Services
         {
         }
 
-        public override SreMessage Parse(bool onlyConstraints)
+        public override IdpeMessage Parse(bool onlyConstraints)
         {
-            return new SreMessage(SreMessageCodes.SRE_SUCCESS);
+            return new IdpeMessage(IdpeMessageCodes.IDPE_SUCCESS);
         }
 
         public override void CheckConstraints() { }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.sreDatabases1 = new Eyedia.IDPE.Interface.Controls.SreDatabases();
+            this.sreDatabases1 = new Eyedia.IDPE.Interface.Controls.ConnectionStringControl();
             this.SuspendLayout();
             // 
             // sreDatabases1
@@ -58,6 +58,6 @@
 
         #endregion
 
-        private Controls.SreDatabases sreDatabases1;
+        private Controls.ConnectionStringControl sreDatabases1;
     }
 }

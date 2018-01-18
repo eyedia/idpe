@@ -68,7 +68,7 @@ namespace Eyedia.IDPE.Services
         { 
             get
             {
-                return DataSource.Keys.GetKeyValue(SreKeyTypes.PullSqlConnectionString);
+                return DataSource.Keys.GetKeyValue(IdpeKeyTypes.PullSqlConnectionString);
                 
             }
         }
@@ -77,7 +77,7 @@ namespace Eyedia.IDPE.Services
         {
             get
             {
-                return DataSource.Keys.GetKeyValue(SreKeyTypes.PullSqlConnectionStringRunTime);
+                return DataSource.Keys.GetKeyValue(IdpeKeyTypes.PullSqlConnectionStringRunTime);
 
             }
         }
@@ -111,10 +111,10 @@ namespace Eyedia.IDPE.Services
         {
             get
             {
-                return DataSource.Keys.GetKeyValue(SreKeyTypes.SqlQuery);               
+                return DataSource.Keys.GetKeyValue(IdpeKeyTypes.SqlQuery);               
             }
         }
-        public string UpdateQuery { get { return DataSource.Keys.GetKeyValue(SreKeyTypes.SqlUpdateQueryProcessing); } }
+        public string UpdateQuery { get { return DataSource.Keys.GetKeyValue(IdpeKeyTypes.SqlUpdateQueryProcessing); } }
         public string InterfaceName { get; private set; }        
         public int Interval { get; private set; }
 
@@ -141,19 +141,7 @@ namespace Eyedia.IDPE.Services
                 Trace.Flush();
             }
         }
-        //private List<IdpeKey> Keys
-        //{
-        //    get
-        //    {
-        //        List<IdpeKey> keys = Cache.Instance.Bag[DataSourceId + ".keys"] as List<IdpeKey>;
-        //        if (keys == null)
-        //        {
-        //            keys = new Manager().GetApplicationKeys(DataSourceId, true);
-        //            Cache.Instance.Bag.Add(DataSourceId + ".keys", keys);
-        //        }
-        //        return keys;
-        //    }
-        //}
+        
         #endregion Properties
 
         /// <summary>
@@ -168,14 +156,14 @@ namespace Eyedia.IDPE.Services
             if (string.IsNullOrEmpty(ProcessingBy))
                 ProcessingBy = dataSource.Name;
 
-            string strinterval = DataSource.Keys.GetKeyValue(SreKeyTypes.SqlWatchInterval);
+            string strinterval = DataSource.Keys.GetKeyValue(IdpeKeyTypes.SqlWatchInterval);
             int interval = 0;
             int.TryParse(strinterval, out interval);
             if (interval <= 0) interval = 2;
             this.Interval = interval;
 
-            string appPullFolder = SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull + "\\" + dataSource.Id;
-            string appOutputFolder = SreConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryOutput + "\\" + dataSource.Id + "\\" + DateTime.Now.ToString("yyyyMMdd");
+            string appPullFolder = IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryPull + "\\" + dataSource.Id;
+            string appOutputFolder = IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.DirectoryOutput + "\\" + dataSource.Id + "\\" + DateTime.Now.ToString("yyyyMMdd");
 
             this.DataSourceParameters = new Dictionary<string, object>();
 
@@ -184,11 +172,11 @@ namespace Eyedia.IDPE.Services
             DataSourceParameters.Add("OutputFolder", appOutputFolder);
             DataSourceParameters.Add("ProcessingBy", dataSource.ProcessingBy);
 
-            this.ReturnType = DataSource.Keys.GetKeyValue(SreKeyTypes.PullSqlReturnType);
+            this.ReturnType = DataSource.Keys.GetKeyValue(IdpeKeyTypes.PullSqlReturnType);
             if (this.ReturnType == "I")
             {
               
-                this.InterfaceName = DataSource.Keys.GetKeyValue(SreKeyTypes.PullSqlInterfaceName);
+                this.InterfaceName = DataSource.Keys.GetKeyValue(IdpeKeyTypes.PullSqlInterfaceName);
                 if ((!string.IsNullOrEmpty(this.InterfaceName))
                 && (Type.GetType(this.InterfaceName) != null))
                 {
@@ -357,7 +345,7 @@ namespace Eyedia.IDPE.Services
             IDbCommand command = myDal.CreateCommand();            
             command.Connection = conn;
             command.Transaction = transaction;
-            command.CommandText = new SreCommandParser(DataSource).Parse(SelectQuery);
+            command.CommandText = new CommandParser(DataSource).Parse(SelectQuery);
 
             IDbCommand commandUpdate = null;
             if (!string.IsNullOrEmpty(UpdateQuery))
@@ -365,7 +353,7 @@ namespace Eyedia.IDPE.Services
                 commandUpdate = myDal.CreateCommand();
                 commandUpdate.Connection = conn;
                 commandUpdate.Transaction = transaction;
-                commandUpdate.CommandText = new SreCommandParser(DataSource).Parse(UpdateQuery);
+                commandUpdate.CommandText = new CommandParser(DataSource).Parse(UpdateQuery);
             }
 
             try

@@ -68,7 +68,7 @@ namespace Eyedia.IDPE.Services
         {
             if ((job != null)
                 && (job.DataSource != null))
-                Xslt = job.DataSource.Keys.GetKeyValue(SreKeyTypes.Xslt);
+                Xslt = job.DataSource.Keys.GetKeyValue(IdpeKeyTypes.Xslt);
         }       
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Eyedia.IDPE.Services
             : base(dataSource)
         {
             if(dataSource != null)
-                Xslt = dataSource.Keys.GetKeyValue(SreKeyTypes.Xslt);
+                Xslt = dataSource.Keys.GetKeyValue(IdpeKeyTypes.Xslt);
         }       
 
         /// <summary>

@@ -45,7 +45,7 @@ using Eyedia.IDPE.Common;
 namespace Eyedia.IDPE.Services
 {
     /// <summary>
-    /// SreFileSystemWatcher is used when datasource wants to watch a different folder for files instead of the SRE global path
+    /// SreFileSystemWatcher is used when datasource wants to watch a different folder for files instead of the IDPE global path
     /// </summary>
     public class SreFileSystemWatcher : Watchers
     {
@@ -162,11 +162,11 @@ namespace Eyedia.IDPE.Services
                         // Calculate the elapsed time and stop if the maximum retry        
                         // period has been reached.        
                         TimeSpan timeElapsed = DateTime.Now - fileReceived;
-                        if (timeElapsed.TotalMinutes > SreConfigurationSection.CurrentConfig.LocalFileWatcher.RetryTimeOut)
+                        if (timeElapsed.TotalMinutes > IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.RetryTimeOut)
                         {
                             Registry.Instance.LocalFileWatcher.EnableRaisingEvents = true;
                             ExtensionMethods.TraceError("The file \"{0}\" could not be processed. Time elapsed = '{1}', LocalFileWatcherMaximumRetryPeriod = '{2}'",
-                                CurrentFile, timeElapsed.TotalMinutes, SreConfigurationSection.CurrentConfig.LocalFileWatcher.RetryTimeOut);
+                                CurrentFile, timeElapsed.TotalMinutes, IdpeConfigurationSection.CurrentConfig.LocalFileWatcher.RetryTimeOut);
                             break;
                         }
                         Thread.Sleep(300);

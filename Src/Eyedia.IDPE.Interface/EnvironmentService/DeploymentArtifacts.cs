@@ -59,7 +59,7 @@ namespace Eyedia.IDPE.Interface
         private void Bind()
         {
             AddToListView(DeploymentService.RequiredFiles.ToArray());
-            IdpeKey key = new Manager().GetKey(SreKeyTypes.AdditionalDeploymentArtifacts);
+            IdpeKey key = new Manager().GetKey(IdpeKeyTypes.AdditionalDeploymentArtifacts);
             if (key != null)            
                 AddToListView(key.GetUnzippedBinaryValue().Split(",".ToCharArray()), true);
         }
@@ -101,14 +101,14 @@ namespace Eyedia.IDPE.Interface
             if (!string.IsNullOrEmpty(plugins))
             {
                 IdpeKey key = new IdpeKey();
-                key.Type = (int)SreKeyTypes.AdditionalDeploymentArtifacts;
-                key.Name = SreKeyTypes.AdditionalDeploymentArtifacts.ToString();
+                key.Type = (int)IdpeKeyTypes.AdditionalDeploymentArtifacts;
+                key.Name = IdpeKeyTypes.AdditionalDeploymentArtifacts.ToString();
                 key.SetZippedBinaryValue(plugins);
                 new Manager().Save(key);
             }
             else
             {
-                new Manager().DeleteKey(SreKeyTypes.AdditionalDeploymentArtifacts.ToString());
+                new Manager().DeleteKey(IdpeKeyTypes.AdditionalDeploymentArtifacts.ToString());
             }
         }
         private void AddToListView(string[] files, bool isPlugins = false)

@@ -191,8 +191,8 @@ namespace Eyedia.IDPE.Services
             switch (name)
             {
             
-                case "sre.js":
-                    return new ManifestResourceHandler("sre.js",
+                case "idpe.js":
+                    return new ManifestResourceHandler("idpe.js",
                         "text/css", Encoding.GetEncoding("Windows-1252"));
 
                 case "running.png":
@@ -203,8 +203,8 @@ namespace Eyedia.IDPE.Services
                     return new ManifestResourceHandler("stopped.png",
                         "text/css", Encoding.GetEncoding("Windows-1252"));
                     
-                case "sre.css":
-                    return new ManifestResourceHandler("sre.css",
+                case "idpe.css":
+                    return new ManifestResourceHandler("idpe.css",
                         "text/css", Encoding.GetEncoding("Windows-1252"));
 
                 case "archivelog":
@@ -291,7 +291,7 @@ namespace Eyedia.IDPE.Services
         {
             if (context == null) throw new ArgumentNullException("context");
 
-            Uri url = context.Items["SRE_REQUEST_URL"] as Uri;
+            Uri url = context.Items["IDPE_REQUEST_URL"] as Uri;
             return url != null ? url : context.Request.Url;
         }
     }

@@ -107,7 +107,7 @@ namespace Eyedia.IDPE.Services
        
         private void BindNew()
         {
-            DataTable dtColumns = new SqlClientManager(ConnectionKey.Value, (SreKeyTypes)ConnectionKey.Type).GetTableColumnNames(TargetTableName);
+            DataTable dtColumns = new SqlClientManager(ConnectionKey.Value, (IdpeKeyTypes)ConnectionKey.Type).GetTableColumnNames(TargetTableName);
             if (dtColumns != null)
             {
                 List<string> d = new List<string>();

@@ -87,7 +87,7 @@ namespace Eyedia.IDPE.Interface
         }
 
         private void btnClearCache_Click(object sender, EventArgs e)
-        {
+        {            
             int successCount = 0;
             this.Cursor = Cursors.WaitCursor;
             foreach (ListViewItem item in lvwDataSources.CheckedItems)
@@ -96,10 +96,13 @@ namespace Eyedia.IDPE.Interface
 
                 try
                 {
-                    SreServiceCommunicator.ClearDataSource(selectedDataSource.ExternalSystemId, selectedDataSource.ExternalSystemName);
+                    ServiceCommunicator.ClearDataSource(selectedDataSource.ExternalSystemId, selectedDataSource.ExternalSystemName);
                     successCount++;
                 }
-                catch { }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             this.Cursor = Cursors.Default;
 

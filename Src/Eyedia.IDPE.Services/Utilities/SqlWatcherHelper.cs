@@ -58,7 +58,7 @@ namespace Eyedia.IDPE.Services
         {
             get
             {
-                return Job.DataSource.Keys.GetKeyValue(SreKeyTypes.PullSqlConnectionString);
+                return Job.DataSource.Keys.GetKeyValue(IdpeKeyTypes.PullSqlConnectionString);
 
             }
         }
@@ -67,7 +67,7 @@ namespace Eyedia.IDPE.Services
         {
             get
             {
-                return Job.DataSource.Keys.GetKeyValue(SreKeyTypes.PullSqlConnectionStringRunTime);
+                return Job.DataSource.Keys.GetKeyValue(IdpeKeyTypes.PullSqlConnectionStringRunTime);
 
             }
         }
@@ -108,8 +108,8 @@ namespace Eyedia.IDPE.Services
            // string actualConnectionString = connectionStringKey.Value;
 
 
-            IdpeKey recoveryQueryKey = Job.DataSource.Keys.GetKey(SreKeyTypes.SqlUpdateQueryRecovery.ToString());
-            string recoveryQuery = new SreCommandParser(Job.DataSource).Parse(recoveryQueryKey.Value);
+            IdpeKey recoveryQueryKey = Job.DataSource.Keys.GetKey(IdpeKeyTypes.SqlUpdateQueryRecovery.ToString());
+            string recoveryQuery = new CommandParser(Job.DataSource).Parse(recoveryQueryKey.Value);
 
             ExecuteQuery(recoveryQuery);
 

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.idpeKeys1 = new Eyedia.IDPE.Interface.Controls.SreKeys();
+            this.idpeKeys1 = new Eyedia.IDPE.Interface.Controls.IdpeKeysControl();
             this.SuspendLayout();
             // 
             // idpeKeys1
@@ -58,7 +58,7 @@
 
         #endregion
 
-        private Controls.SreKeys idpeKeys1;
+        private Controls.IdpeKeysControl idpeKeys1;
 
     }
 }

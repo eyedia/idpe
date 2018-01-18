@@ -92,12 +92,12 @@ namespace Eyedia.Core
         }
 
         [CategoryAttribute("Global Settings"),
-        DescriptionAttribute("A string value which identifies this instance(this will contain in subject line of all exception email). e.g. - SRE.PROD"),
-        DefaultValueAttribute("SRE.PROD")]
+        DescriptionAttribute("A string value which identifies this instance(this will contain in subject line of all exception email). e.g. - IDPE.PROD"),
+        DefaultValueAttribute("IDPE.PROD")]
         public String InstanceName { get; set; }
 
         [CategoryAttribute("Global Settings"),
-        DescriptionAttribute("Select one of the hosting environment. This setting helps SRE to take various automatic decisions"),
+        DescriptionAttribute("Select one of the hosting environment. This setting helps IDPE to take various automatic decisions"),
         DefaultValueAttribute(Eyedia.Core.EyediaCoreConfigurationSection.HostingEnvironments.WindowsService)]
         public Eyedia.Core.EyediaCoreConfigurationSection.HostingEnvironments HostingEnvironment { get; set; }
 
@@ -121,7 +121,7 @@ namespace Eyedia.Core
         public Boolean Debug { get; set; }
 
         [CategoryAttribute("Global Settings"),
-        DescriptionAttribute("Temp directory to be used internally. Note - SRE cleans this directory everym mid night"),
+        DescriptionAttribute("Temp directory to be used internally. Note - IDPE cleans this directory everym mid night"),
         DefaultValueAttribute("c:\\temp")]
         public String TempDirectory { get; set; }
 
@@ -160,7 +160,7 @@ namespace Eyedia.Core
 
         /*Email - Start */
         [CategoryAttribute("Email"),
-        DescriptionAttribute("If configured, SRE will send all exception/business errors emails to configured email ids"),
+        DescriptionAttribute("If configured, IDPE will send all exception/business errors emails to configured email ids"),
         DefaultValueAttribute(true)]
         public bool EmailEnabled { get; set; }
 
@@ -214,7 +214,7 @@ namespace Eyedia.Core
         public SourceLevels Filter { get; set; }
 
         [CategoryAttribute("Trace"),
-        DescriptionAttribute("SRE automatically sends all exceptions if enabled"),
+        DescriptionAttribute("IDPE automatically sends all exceptions if enabled"),
         DefaultValueAttribute(true)]
         public bool EmailError { get; set; }
         /*Trace - End */
@@ -226,17 +226,17 @@ namespace Eyedia.Core
         public bool TrackingEnabled { get; set; }
 
         [CategoryAttribute("Tracking"),
-        DescriptionAttribute("If enabled SRE keeps track of elapsed time of all important operations. For example, if a web method is being called within a business rule, SRE can keep track of elapsed time to that call"),
+        DescriptionAttribute("If enabled IDPE keeps track of elapsed time of all important operations. For example, if a web method is being called within a business rule, IDPE can keep track of elapsed time to that call"),
         DefaultValueAttribute(false)]
         public bool PerformanceCounter { get; set; }
 
         [CategoryAttribute("Tracking"),
-        DescriptionAttribute("SRE will capture all exceptions in business rule silently and send email"),
+        DescriptionAttribute("IDPE will capture all exceptions in business rule silently and send email"),
         DefaultValueAttribute(false)]
         public bool SilientBusinessRuleError { get; set; }
 
         [CategoryAttribute("Tracking"),
-        DescriptionAttribute("If update matrix is enabled SRE keeps track of each update to each attribute value"),
+        DescriptionAttribute("If update matrix is enabled IDPE keeps track of each update to each attribute value"),
         DefaultValueAttribute(false)]
         public bool UpdateMatrix { get; set; }
 
@@ -253,42 +253,42 @@ namespace Eyedia.Core
 
         public void Save(Configuration configuration)
         {
-            EyediaCoreConfigurationSection sreSection = (EyediaCoreConfigurationSection)configuration.GetSection("eyediaCoreConfigurationSection");
+            EyediaCoreConfigurationSection coreSection = (EyediaCoreConfigurationSection)configuration.GetSection("eyediaCoreConfigurationSection");
 
-            sreSection.InstanceName = InstanceName;
-            sreSection.HostingEnvironment = HostingEnvironment;
-            sreSection.AuthenticationType = AuthenticationType;
-            sreSection.AuthorizedGroups = AuthorizedGroups;
-            sreSection.Cache = Cache;
-            sreSection.Debug = Debug;
-            sreSection.TempDirectory = TempDirectory;
-            sreSection.OutDirectory = OutDirectory;
-            sreSection.RecordsPerThread = RecordsPerThread;
-            sreSection.MaxThreads = MaxThreads;
-            sreSection.CurrentCulture = CurrentCulture;
+            coreSection.InstanceName = InstanceName;
+            coreSection.HostingEnvironment = HostingEnvironment;
+            coreSection.AuthenticationType = AuthenticationType;
+            coreSection.AuthorizedGroups = AuthorizedGroups;
+            coreSection.Cache = Cache;
+            coreSection.Debug = Debug;
+            coreSection.TempDirectory = TempDirectory;
+            coreSection.OutDirectory = OutDirectory;
+            coreSection.RecordsPerThread = RecordsPerThread;
+            coreSection.MaxThreads = MaxThreads;
+            coreSection.CurrentCulture = CurrentCulture;
 
-            sreSection.Database.DatabaseType = DatabaseType;
+            coreSection.Database.DatabaseType = DatabaseType;
 
-            sreSection.Email.Enabled = EmailEnabled;
-            sreSection.Email.SmtpServer = SmtpServer;
-            sreSection.Email.FromEmail = FromEmail;
-            sreSection.Email.FromDisplayName = FromDisplayName;
-            sreSection.Email.ToEmails = ToEmails;
-            sreSection.Email.UserName = UserName;
-            sreSection.Email.Password = Password;
-            sreSection.Email.MaxNumberOfEmails = MaxNumberOfEmails;
+            coreSection.Email.Enabled = EmailEnabled;
+            coreSection.Email.SmtpServer = SmtpServer;
+            coreSection.Email.FromEmail = FromEmail;
+            coreSection.Email.FromDisplayName = FromDisplayName;
+            coreSection.Email.ToEmails = ToEmails;
+            coreSection.Email.UserName = UserName;
+            coreSection.Email.Password = Password;
+            coreSection.Email.MaxNumberOfEmails = MaxNumberOfEmails;
 
-            sreSection.Trace.Enabled = TraceEnabled;
-            sreSection.Trace.File = File;
-            sreSection.Trace.Filter = Filter;
-            sreSection.Trace.EmailError = EmailError;
+            coreSection.Trace.Enabled = TraceEnabled;
+            coreSection.Trace.File = File;
+            coreSection.Trace.Filter = Filter;
+            coreSection.Trace.EmailError = EmailError;
 
-            sreSection.Tracking.Enabled = TrackingEnabled;
-            sreSection.Tracking.PerformanceCounter = PerformanceCounter;
-            sreSection.Tracking.SilientBusinessRuleError = SilientBusinessRuleError;
-            sreSection.Tracking.UpdateMatrix = UpdateMatrix;
-            sreSection.Tracking.UpdateMatrixFormat = UpdateMatrixFormat;
-            sreSection.Tracking.Value = Value;
+            coreSection.Tracking.Enabled = TrackingEnabled;
+            coreSection.Tracking.PerformanceCounter = PerformanceCounter;
+            coreSection.Tracking.SilientBusinessRuleError = SilientBusinessRuleError;
+            coreSection.Tracking.UpdateMatrix = UpdateMatrix;
+            coreSection.Tracking.UpdateMatrixFormat = UpdateMatrixFormat;
+            coreSection.Tracking.Value = Value;
 
             configuration.ConnectionStrings.ConnectionStrings["cs"].ConnectionString = ConnectionString;
             configuration.Save();

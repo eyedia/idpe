@@ -108,7 +108,7 @@ namespace Eyedia.IDPE.DataManager
             return idpeKeys;
         }
 
-        public IdpeKey GetKey(SreKeyTypes keyType)
+        public IdpeKey GetKey(IdpeKeyTypes keyType)
         {
             string commandText = "select [KeyId],[Name],[Value],[ValueBinary], [Type],[IsDeployable],[NextKeyId],[CreatedTS],[CreatedBy],[ModifiedTS],[ModifiedBy],[Source] from [IdpeKey] where [Type] = " + (int)keyType;
 
@@ -262,7 +262,7 @@ namespace Eyedia.IDPE.DataManager
             commandText += "where kds.DataSourceId = " + dataSourceId;
 
             if (onlyCustomKeys)
-                commandText += " and k.[Type] = " + (int)SreKeyTypes.Custom;
+                commandText += " and k.[Type] = " + (int)IdpeKeyTypes.Custom;
 
             DataTable table = CoreDatabaseObjects.Instance.ExecuteCommand(commandText);
             if (table != null)

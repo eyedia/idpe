@@ -50,15 +50,15 @@ namespace Eyedia.IDPE.Services
     {
         public EnvironmentServiceDispatcherUsingWcf() : base(true) { }
 
-        public static SreEnvironmentServiceClient GetWcfClient(SreEnvironmentConfig toEnvironment)
+        public static IdpeEnvironmentServiceClient GetWcfClient(SreEnvironmentConfig toEnvironment)
         {
-            return new SreEnvironmentServiceClient(new System.ServiceModel.NetTcpBinding(), 
+            return new IdpeEnvironmentServiceClient(new System.ServiceModel.NetTcpBinding(), 
                 new System.ServiceModel.EndpointAddress(toEnvironment.RemoteUrl));
         }
 
-        public static SreEnvironmentServiceClient GetWcfClient(string remoteUrl)
+        public static IdpeEnvironmentServiceClient GetWcfClient(string remoteUrl)
         {
-            return new SreEnvironmentServiceClient(new System.ServiceModel.NetTcpBinding(),
+            return new IdpeEnvironmentServiceClient(new System.ServiceModel.NetTcpBinding(),
                 new System.ServiceModel.EndpointAddress(remoteUrl));
         }
 
@@ -124,7 +124,7 @@ namespace Eyedia.IDPE.Services
         public override List<IdpeDataSource> GetDataSources(SreEnvironmentConfig toEnvironment)
         {
             EnvironmentServicePacket packet = new EnvironmentServicePacket();
-            return GetWcfClient(toEnvironment).GetDataSources(packet);
+            return new List<IdpeDataSource>(GetWcfClient(toEnvironment).GetDataSources(packet));
         }
         public override FileTransferPacket GetConfigFile(SreEnvironmentConfig toEnvironment, string configFileName)
         {

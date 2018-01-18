@@ -103,7 +103,7 @@ namespace Eyedia.IDPE.Interface
             }
 
             textArea.HintContent1 = sreDosHelpCommands;
-            textArea.HintContent1WindowTitle = "SRE DOS Commands Help";
+            textArea.HintContent1WindowTitle = "IDPE DOS Commands Help";
 
             if (textArea.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {

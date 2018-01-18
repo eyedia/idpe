@@ -119,7 +119,7 @@ namespace Eyedia.IDPE.Services
 
         private void ParseCSharpCodes()
         {
-            DataSourceCSharpCodeReferenceExtractor dsccre = new DataSourceCSharpCodeReferenceExtractor(DataSourceId, SreKeyTypes.CSharpCodeGenerateTable);
+            DataSourceCSharpCodeReferenceExtractor dsccre = new DataSourceCSharpCodeReferenceExtractor(DataSourceId, IdpeKeyTypes.CSharpCodeGenerateTable);
             dsccre.Parse();
             ReferencesAttributes.TryAdd("CSharp Code - Input Writer", dsccre.AttributeNames);
             ReferencesSystemAttributes.TryAdd("CSharp Code - Input Writer", dsccre.SystemAttributeNames);
@@ -127,7 +127,7 @@ namespace Eyedia.IDPE.Services
             ReferencesProcessVariables.TryAdd("CSharp Code - Input Writer", dsccre.ProcessVariables);
 
 
-            dsccre = new DataSourceCSharpCodeReferenceExtractor(DataSourceId, SreKeyTypes.CSharpCodeOutputWriter);
+            dsccre = new DataSourceCSharpCodeReferenceExtractor(DataSourceId, IdpeKeyTypes.CSharpCodeOutputWriter);
             dsccre.Parse();
             ReferencesAttributes.TryAdd("CSharp Code - Output Writer", dsccre.AttributeNames);
             ReferencesSystemAttributes.TryAdd("CSharp Code - Output Writer", dsccre.SystemAttributeNames);

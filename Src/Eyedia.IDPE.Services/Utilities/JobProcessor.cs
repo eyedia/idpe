@@ -549,7 +549,7 @@ namespace Eyedia.IDPE.Services
                 {
                     //from WCF - we dont have to process output, wcf function will anyway call it
                     job.JobCompleted.Set();
-                    IdpeKey key = job.DataSource.Key(SreKeyTypes.WcfCallsGenerateStandardOutput);
+                    IdpeKey key = job.DataSource.Key(IdpeKeyTypes.WcfCallsGenerateStandardOutput);
                     bool boolValue = false;
                     if(key != null)
                         boolValue = key.Value.ParseBool();
@@ -963,13 +963,13 @@ namespace Eyedia.IDPE.Services
                 if (row == null) break;
                 foreach (var col in row.Columns)
                 {
-                    if ((col.Error.Code != SreMessageCodes.SRE_FAILED_BLANK) 
+                    if ((col.Error.Code != IdpeMessageCodes.IDPE_FAILED_BLANK) 
                         && (col.Error.Message != string.Empty))
                         allErrors.Add(col.Error.Message);
                 }
                 foreach (var col in row.ColumnsSystem)
                 {
-                    if ((col.Error.Code != SreMessageCodes.SRE_FAILED_BLANK)
+                    if ((col.Error.Code != IdpeMessageCodes.IDPE_FAILED_BLANK)
                         && (col.Error.Message != string.Empty))
                         allErrors.Add(col.Error.Message);
                 }

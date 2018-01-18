@@ -259,7 +259,7 @@ namespace Eyedia.IDPE.Interface.Data
 
                     command.AddParameterWithValue("CreatedTS", DateTime.Now);
                     command.AddParameterWithValue("CreatedBy", Information.LoggedInUser == null ? "Debugger" : Information.LoggedInUser.UserName);
-                    command.AddParameterWithValue("Source", "SRE Util");
+                    command.AddParameterWithValue("Source", "IDPE Util");
 
                 }
                 reader.Close();
@@ -310,7 +310,7 @@ namespace Eyedia.IDPE.Interface.Data
                 command.AddParameterWithValue("IsAcceptable", attribute.IsAcceptable);
                 command.AddParameterWithValue("CreatedTS",DateTime.Now);
                 command.AddParameterWithValue("CreatedBy", System.Security.Principal.WindowsIdentity.GetCurrent().Name);
-                command.AddParameterWithValue("Source", "SRE Util");
+                command.AddParameterWithValue("Source", "IDPE Util");
 
             }
             else
@@ -359,8 +359,8 @@ namespace Eyedia.IDPE.Interface.Data
                 aes.AttributeId = attribute.AttributeId;
                 aes.Position = position;
                 aes.CreatedTS = DateTime.Now;
-                aes.CreatedBy = "SRE Util";
-                aes.Source = "SRE Util";
+                aes.CreatedBy = "IDPE Util";
+                aes.Source = "IDPE Util";
                 appAttributes.Add(aes);
                 position++;
             }

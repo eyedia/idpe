@@ -97,8 +97,8 @@ namespace Eyedia.IDPE.Services
 
             bool isErrored = false;
 
-            string result = new SqlClientManager(string.Empty, SreKeyTypes.ConnectionStringSqlServer)
-                .ExecuteQuery(connectionStringKey.Value, (SreKeyTypes)connectionStringKey.Type, query, ref isErrored);
+            string result = new SqlClientManager(string.Empty, IdpeKeyTypes.ConnectionStringSqlServer)
+                .ExecuteQuery(connectionStringKey.Value, (IdpeKeyTypes)connectionStringKey.Type, query, ref isErrored);
             TraceInformation("Lookup:'{0}', Result:{1}", query, result);
             return result;
         }
@@ -110,8 +110,8 @@ namespace Eyedia.IDPE.Services
                 throw new Exception(string.Format("Can not execute non query, the connection string was null! Connection string key name was '{0}'"
                     , connectionStringKeyName));
 
-            int result = new SqlClientManager(string.Empty, SreKeyTypes.ConnectionStringSqlServer)
-                .ExecuteNonQuery(query, silent, connectionStringKey.Value, (SreKeyTypes)connectionStringKey.Type);
+            int result = new SqlClientManager(string.Empty, IdpeKeyTypes.ConnectionStringSqlServer)
+                .ExecuteNonQuery(query, silent, connectionStringKey.Value, (IdpeKeyTypes)connectionStringKey.Type);
             if (!silent)
                 TraceInformation("ExecuteNonQuery:'{0}', Result:{1}", query, result);
             return result;
@@ -126,8 +126,8 @@ namespace Eyedia.IDPE.Services
 
             bool isErrored = false;
 
-            DataTable table = new SqlClientManager(string.Empty, SreKeyTypes.ConnectionStringSqlServer)
-                .ExecuteQueryAndGetDataTable(connectionStringKey.Value, (SreKeyTypes)connectionStringKey.Type, query, ref isErrored);
+            DataTable table = new SqlClientManager(string.Empty, IdpeKeyTypes.ConnectionStringSqlServer)
+                .ExecuteQueryAndGetDataTable(connectionStringKey.Value, (IdpeKeyTypes)connectionStringKey.Type, query, ref isErrored);
             return table;
         }
 
@@ -138,8 +138,8 @@ namespace Eyedia.IDPE.Services
                 throw new Exception(string.Format("Can not load data table, the connection string was null! Connection string key name was '{0}'"
                     , connectionStringKeyName));
 
-            DataTable table = new SqlClientManager(string.Empty, SreKeyTypes.ConnectionStringSqlServer)
-                .ExecuteQueryAndGetDataTable(connectionStringKey.Value, (SreKeyTypes)connectionStringKey.Type, query, ref isErrored);
+            DataTable table = new SqlClientManager(string.Empty, IdpeKeyTypes.ConnectionStringSqlServer)
+                .ExecuteQueryAndGetDataTable(connectionStringKey.Value, (IdpeKeyTypes)connectionStringKey.Type, query, ref isErrored);
             return table;
         }
 
@@ -150,8 +150,8 @@ namespace Eyedia.IDPE.Services
                 throw new Exception(string.Format("Can not load data table, the connection string was null! Connection string key name was '{0}'"
                     , connectionStringKeyName));
 
-            DataTable table = new SqlClientManager(string.Empty, SreKeyTypes.ConnectionStringSqlServer)
-                .ExecuteQueryAndGetDataTable(connectionStringKey.Value, (SreKeyTypes)connectionStringKey.Type, query, ref errorMessage, timeOut, silent);
+            DataTable table = new SqlClientManager(string.Empty, IdpeKeyTypes.ConnectionStringSqlServer)
+                .ExecuteQueryAndGetDataTable(connectionStringKey.Value, (IdpeKeyTypes)connectionStringKey.Type, query, ref errorMessage, timeOut, silent);
             return table;
         }
 
@@ -173,7 +173,7 @@ namespace Eyedia.IDPE.Services
 
         public static bool AllowPartial(this DataSource dataSource)
         {
-            string strAllowPartial = dataSource.Keys.GetKeyValue(SreKeyTypes.OutputPartialRecordsAllowed);
+            string strAllowPartial = dataSource.Keys.GetKeyValue(IdpeKeyTypes.OutputPartialRecordsAllowed);
             return string.IsNullOrEmpty(strAllowPartial) ? false : strAllowPartial.ParseBool();
         }
 

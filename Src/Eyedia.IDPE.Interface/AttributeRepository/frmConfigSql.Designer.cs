@@ -33,7 +33,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pullSqlConfiguration1 = new Eyedia.IDPE.Interface.Controls.SqlConfiguration();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.idpeRulesEditorControl1 = new Eyedia.IDPE.Interface.SreRulesEditorControl();
+            this.idpeRulesEditorControl1 = new Eyedia.IDPE.Interface.RulesEditorControl();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -121,6 +121,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private SreRulesEditorControl idpeRulesEditorControl1;
+        private RulesEditorControl idpeRulesEditorControl1;
     }
 }

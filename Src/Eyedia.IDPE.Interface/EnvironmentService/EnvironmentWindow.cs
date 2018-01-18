@@ -390,8 +390,8 @@ namespace Eyedia.IDPE.Interface
         {
             
             this.Cursor = Cursors.WaitCursor;
-            if(propGrid.SelectedObject is SreConfigurationSectionEditable)            
-                ((SreConfigurationSectionEditable)propGrid.SelectedObject).
+            if(propGrid.SelectedObject is IdpeConfigurationSectionEditable)            
+                ((IdpeConfigurationSectionEditable)propGrid.SelectedObject).
                    Save(ConfigurationManager.OpenExeConfiguration(GetExeNameFromConfigName(currentConfigFileName)));
             else
                 ((EyediaCoreConfigurationSectionEditable)propGrid.SelectedObject).
@@ -461,26 +461,26 @@ namespace Eyedia.IDPE.Interface
                         Log("Retrieved.");
 
                         //make sure the exes are exist, else config exe won't open                       
-                        if (!File.Exists(Path.Combine(Information.TempDirectorySre, "idpe.exe")))
+                        if (!File.Exists(Path.Combine(Information.TempDirectoryIdpe, "idpe.exe")))
                         {
                             File.Copy(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpe.exe"),
-                                Path.Combine(Information.TempDirectorySre, "idpe.exe"), true);
+                                Path.Combine(Information.TempDirectoryIdpe, "idpe.exe"), true);
                             File.Copy(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpe.exe"),
-                                Path.Combine(Information.TempDirectorySre, "idpe1.exe"), true);
+                                Path.Combine(Information.TempDirectoryIdpe, "idpe1.exe"), true);
                             File.Copy(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpe.exe"),
-                                Path.Combine(Information.TempDirectorySre, "idpe2.exe"), true);
+                                Path.Combine(Information.TempDirectoryIdpe, "idpe2.exe"), true);
                             File.Copy(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpe.exe"),
-                                Path.Combine(Information.TempDirectorySre, "idpe3.exe"), true);
+                                Path.Combine(Information.TempDirectoryIdpe, "idpe3.exe"), true);
                         }
                         
-                        if (!File.Exists(Path.Combine(Information.TempDirectorySre, "idped.exe")))
+                        if (!File.Exists(Path.Combine(Information.TempDirectoryIdpe, "idped.exe")))
                         {
                             File.Copy(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idped.exe"), 
-                                Path.Combine(Information.TempDirectorySre, "idped.exe"), true);
+                                Path.Combine(Information.TempDirectoryIdpe, "idped.exe"), true);
                         }
 
                         lblConfigFileName.Text = SelectedEnvironment.Name + ":" + selConfig.ConfigFileName;
-                        currentConfigFileName = Path.Combine(Information.TempDirectorySre, Path.GetFileName(packet.FileName));
+                        currentConfigFileName = Path.Combine(Information.TempDirectoryIdpe, Path.GetFileName(packet.FileName));
                         this.SaveFileStream(currentConfigFileName, new MemoryStream(packet.Content));
                         currentConfigFileIsRemote = true;
                     }
@@ -496,7 +496,7 @@ namespace Eyedia.IDPE.Interface
                     if (!selConfig.IsService)
                         propGrid.SelectedObject = new EyediaCoreConfigurationSectionEditable(ConfigurationManager.OpenExeConfiguration(GetExeNameFromConfigName(currentConfigFileName)));
                     else
-                        propGrid.SelectedObject = new SreConfigurationSectionEditable(ConfigurationManager.OpenExeConfiguration(GetExeNameFromConfigName(currentConfigFileName)));
+                        propGrid.SelectedObject = new IdpeConfigurationSectionEditable(ConfigurationManager.OpenExeConfiguration(GetExeNameFromConfigName(currentConfigFileName)));
                 }
                 this.Cursor = Cursors.Default;
             }

@@ -148,8 +148,8 @@ namespace Eyedia.IDPE.Interface
                     DataSourceKeys = new Manager().GetKeys(this.DataSource.Id);
                     prop_Name.FieldToChange.SetValue(prop_Name.BrowsableAttribute, true);
                     prop_EditableName.FieldToChange.SetValue(prop_EditableName.BrowsableAttribute, false);
-                    HasHeader = DataSourceKeys.GetKeyValue(SreKeyTypes.IsFirstRowHeader).ParseBool();
-                    OutputHasHeader = DataSourceKeys.GetKeyValue(SreKeyTypes.OutputIsFirstRowHeader).ParseBool();
+                    HasHeader = DataSourceKeys.GetKeyValue(IdpeKeyTypes.IsFirstRowHeader).ParseBool();
+                    OutputHasHeader = DataSourceKeys.GetKeyValue(IdpeKeyTypes.OutputIsFirstRowHeader).ParseBool();
                 }
 
                 DataFeederType = (DataFeederTypes)DataSource.DataFeederType;
@@ -159,7 +159,7 @@ namespace Eyedia.IDPE.Interface
 
                 if(DataFormatType == DataFormatTypes.Custom)
                 {
-                    IdpeKey key = new Manager().GetKey(this.DataSource.Id, SreKeyTypes.FileInterfaceName.ToString());
+                    IdpeKey key = new Manager().GetKey(this.DataSource.Id, IdpeKeyTypes.FileInterfaceName.ToString());
                     if (key != null)
                         ConfigureDataFormat = key.Value;
                 }
@@ -177,7 +177,7 @@ namespace Eyedia.IDPE.Interface
                 OutputDataFormatType = (OutputTypes)DataSource.OutputType;
                 OutputCustomInterfaceName = DataSource.OutputWriterTypeFullName;
 
-                IdpeKey keyTestFileName = new Manager().GetKey(this.DataSource.Id, SreKeyTypes.TestFileName.ToString());
+                IdpeKey keyTestFileName = new Manager().GetKey(this.DataSource.Id, IdpeKeyTypes.TestFileName.ToString());
                 if (keyTestFileName != null)
                     TestFileName = keyTestFileName.Value;
 
@@ -192,8 +192,8 @@ namespace Eyedia.IDPE.Interface
                 if (DataSource.Id == 0)
                     return;//as keys are not available, its a new data source
 
-                SpreadSheetNumber = (int)DataSourceKeys.GetKeyValue(SreKeyTypes.SpreadSheetNumber).ParseInt();
-                WriteStandardOutput = DataSourceKeys.GetKeyValue(SreKeyTypes.WcfCallsGenerateStandardOutput).ParseBool();             
+                SpreadSheetNumber = (int)DataSourceKeys.GetKeyValue(IdpeKeyTypes.SpreadSheetNumber).ParseInt();
+                WriteStandardOutput = DataSourceKeys.GetKeyValue(IdpeKeyTypes.WcfCallsGenerateStandardOutput).ParseBool();             
 
                 if (string.IsNullOrEmpty(DataSource.Delimiter))
                     Delimiter = ",";
@@ -202,13 +202,13 @@ namespace Eyedia.IDPE.Interface
                 else
                     Delimiter = DataSource.Delimiter;
                
-                RenameHeader = DataSourceKeys.GetKeyValue(SreKeyTypes.RenameColumnHeader).ParseBool();
+                RenameHeader = DataSourceKeys.GetKeyValue(IdpeKeyTypes.RenameColumnHeader).ParseBool();
 
                 #region Output
 
-                AllowPartial = DataSourceKeys.GetKeyValue(SreKeyTypes.OutputPartialRecordsAllowed).ParseBool();
+                AllowPartial = DataSourceKeys.GetKeyValue(IdpeKeyTypes.OutputPartialRecordsAllowed).ParseBool();
                
-                string strDelmiterOutput = DataSourceKeys.GetKeyValue(SreKeyTypes.OutputDelimiter);
+                string strDelmiterOutput = DataSourceKeys.GetKeyValue(IdpeKeyTypes.OutputDelimiter);
 
                 if (string.IsNullOrEmpty(strDelmiterOutput))
                     OutputDelimiter = ",";
@@ -217,19 +217,19 @@ namespace Eyedia.IDPE.Interface
                 else
                     OutputDelimiter = strDelmiterOutput;
 
-                string outputFileName = DataSourceKeys.GetKeyValue(SreKeyTypes.OutputFileName);
+                string outputFileName = DataSourceKeys.GetKeyValue(IdpeKeyTypes.OutputFileName);
                 if (!string.IsNullOrEmpty(outputFileName))
                     OutputFileNameFormat = outputFileName;
                 else
                     OutputFileNameFormat = "Same as Input";
 
-                string outputFileExt = DataSourceKeys.GetKeyValue(SreKeyTypes.OutputFileExtension);
+                string outputFileExt = DataSourceKeys.GetKeyValue(IdpeKeyTypes.OutputFileExtension);
                 if (!string.IsNullOrEmpty(outputFileExt))
                     OutputFileExtension = outputFileExt;
                 else
                     OutputFileExtension = ".xml";
                 
-                EncloseWithDoubleQuote = !DataSourceKeys.GetKeyValue(SreKeyTypes.OutputDelimiterDoNotEncloseWithDoubleQuote).ParseBool();
+                EncloseWithDoubleQuote = !DataSourceKeys.GetKeyValue(IdpeKeyTypes.OutputDelimiterDoNotEncloseWithDoubleQuote).ParseBool();
                 #endregion Output
             }
 
@@ -266,7 +266,7 @@ namespace Eyedia.IDPE.Interface
 
         public static void KeepVersion(int dataSourceId)
         {
-            new SreVersionManager().KeepVersion(VersionObjectTypes.DataSource, dataSourceId);
+            new VersionManager().KeepVersion(VersionObjectTypes.DataSource, dataSourceId);
         }
         #region Save Basic
         private void SaveBasic()
@@ -307,12 +307,12 @@ namespace Eyedia.IDPE.Interface
             switch (DataFormatType)
             {
                 case DataFormatTypes.FixedLength:
-                    manager.DeleteKeyFromApplication(this.DataSource.Id, SreKeyTypes.IsFirstRowHeader.ToString(), true);
+                    manager.DeleteKeyFromApplication(this.DataSource.Id, IdpeKeyTypes.IsFirstRowHeader.ToString(), true);
                     break;
 
                 case DataFormatTypes.SpreadSheet:
                     IdpeKey key = new IdpeKey();
-                    key.Name = SreKeyTypes.SpreadSheetNumber.ToString();
+                    key.Name = IdpeKeyTypes.SpreadSheetNumber.ToString();
                     key.Value = SpreadSheetNumber.ToString();
                     manager.Save(key, DataSource.Id);
                     break;
@@ -327,14 +327,14 @@ namespace Eyedia.IDPE.Interface
                 if (HasHeader)
                 {
                     IdpeKey key = new IdpeKey();
-                    key.Name = SreKeyTypes.IsFirstRowHeader.ToString();
+                    key.Name = IdpeKeyTypes.IsFirstRowHeader.ToString();
                     key.Value = "True";
-                    key.Type = (int)SreKeyTypes.IsFirstRowHeader;
+                    key.Type = (int)IdpeKeyTypes.IsFirstRowHeader;
                     manager.Save(key, this.DataSource.Id);
                 }
                 else
                 {
-                    manager.DeleteKeyFromApplication(this.DataSource.Id, SreKeyTypes.IsFirstRowHeader.ToString(), false);
+                    manager.DeleteKeyFromApplication(this.DataSource.Id, IdpeKeyTypes.IsFirstRowHeader.ToString(), false);
                 }
 
             }
@@ -342,27 +342,27 @@ namespace Eyedia.IDPE.Interface
             if (RenameHeader)
             {
                 IdpeKey key = new IdpeKey();
-                key.Name = SreKeyTypes.RenameColumnHeader.ToString();
+                key.Name = IdpeKeyTypes.RenameColumnHeader.ToString();
                 key.Value = "True";
-                key.Type = (int)SreKeyTypes.RenameColumnHeader;
+                key.Type = (int)IdpeKeyTypes.RenameColumnHeader;
                 manager.Save(key, this.DataSource.Id);
             }
             else
             {
-                manager.DeleteKeyFromApplication(this.DataSource.Id, SreKeyTypes.RenameColumnHeader.ToString(), true);
+                manager.DeleteKeyFromApplication(this.DataSource.Id, IdpeKeyTypes.RenameColumnHeader.ToString(), true);
             }
 
             if (!string.IsNullOrEmpty(TestFileName))
             {
                 IdpeKey keyTestFileName = new IdpeKey();
-                keyTestFileName.Name = SreKeyTypes.TestFileName.ToString();
+                keyTestFileName.Name = IdpeKeyTypes.TestFileName.ToString();
                 keyTestFileName.Value = TestFileName;
-                keyTestFileName.Type = (int)SreKeyTypes.TestFileName;
+                keyTestFileName.Type = (int)IdpeKeyTypes.TestFileName;
                 manager.Save(keyTestFileName, this.DataSource.Id);
             }
             else
             {
-                manager.DeleteKeyFromApplication(this.DataSource.Id, SreKeyTypes.TestFileName.ToString(), true);
+                manager.DeleteKeyFromApplication(this.DataSource.Id, IdpeKeyTypes.TestFileName.ToString(), true);
             }
 
             manager.SavePushConfig(this.DataSource.Id, WriteStandardOutput);
@@ -377,52 +377,52 @@ namespace Eyedia.IDPE.Interface
             
             Manager dm = new Manager();
             IdpeKey key = new IdpeKey();
-            key.Name = SreKeyTypes.OutputPartialRecordsAllowed.ToString();
+            key.Name = IdpeKeyTypes.OutputPartialRecordsAllowed.ToString();
             key.Value = AllowPartial.ToString();
-            key.Type = (int)SreKeyTypes.OutputPartialRecordsAllowed;
+            key.Type = (int)IdpeKeyTypes.OutputPartialRecordsAllowed;
             dm.Save(key, DataSource.Id);
 
             key = new IdpeKey();
-            key.Name = SreKeyTypes.OutputIsFirstRowHeader.ToString();
+            key.Name = IdpeKeyTypes.OutputIsFirstRowHeader.ToString();
             key.Value = OutputHasHeader.ToString();
-            key.Type = (int)SreKeyTypes.OutputIsFirstRowHeader;
+            key.Type = (int)IdpeKeyTypes.OutputIsFirstRowHeader;
             dm.Save(key, DataSource.Id);
 
 
             switch (OutputDataFormatType)
             {
                 case OutputTypes.Xml:
-                    dm.DeleteKeyFromApplication(this.DataSource.Id, SreKeyTypes.OutputDelimiter.ToString(), true);
-                    dm.DeleteKeyFromApplication(this.DataSource.Id, SreKeyTypes.OutputIsFirstRowHeader.ToString(), true);
-                    dm.DeleteKeyFromApplication(this.DataSource.Id, SreKeyTypes.OutputDelimiterDoNotEncloseWithDoubleQuote.ToString(), true);
+                    dm.DeleteKeyFromApplication(this.DataSource.Id, IdpeKeyTypes.OutputDelimiter.ToString(), true);
+                    dm.DeleteKeyFromApplication(this.DataSource.Id, IdpeKeyTypes.OutputIsFirstRowHeader.ToString(), true);
+                    dm.DeleteKeyFromApplication(this.DataSource.Id, IdpeKeyTypes.OutputDelimiterDoNotEncloseWithDoubleQuote.ToString(), true);
                     break;
 
                 case OutputTypes.Delimited:
 
                     key = new IdpeKey();
-                    key.Name = SreKeyTypes.OutputDelimiter.ToString();
+                    key.Name = IdpeKeyTypes.OutputDelimiter.ToString();
                     if (OutputDelimiter.ToLower() == "tab")
                         key.Value = "\t";
                     else if (string.IsNullOrEmpty(OutputDelimiter))
                         key.Value = ",";
                     else
                         key.Value = OutputDelimiter;
-                    key.Type = (int)SreKeyTypes.OutputDelimiter;
+                    key.Type = (int)IdpeKeyTypes.OutputDelimiter;
                     dm.Save(key, DataSource.Id);
 
 
                     key = new IdpeKey();
-                    key.Name = SreKeyTypes.OutputDelimiterDoNotEncloseWithDoubleQuote.ToString();
+                    key.Name = IdpeKeyTypes.OutputDelimiterDoNotEncloseWithDoubleQuote.ToString();
                     key.Value = (!EncloseWithDoubleQuote).ToString();
-                    key.Type = (int)SreKeyTypes.OutputDelimiterDoNotEncloseWithDoubleQuote;
+                    key.Type = (int)IdpeKeyTypes.OutputDelimiterDoNotEncloseWithDoubleQuote;
                     dm.Save(key, DataSource.Id);
 
                     break;
 
                 case OutputTypes.FixedLength:
-                    dm.DeleteKeyFromApplication(this.DataSource.Id, SreKeyTypes.OutputDelimiter.ToString(), true);
-                    dm.DeleteKeyFromApplication(this.DataSource.Id, SreKeyTypes.OutputIsFirstRowHeader.ToString(), true);
-                    dm.DeleteKeyFromApplication(this.DataSource.Id, SreKeyTypes.OutputDelimiterDoNotEncloseWithDoubleQuote.ToString(), true);
+                    dm.DeleteKeyFromApplication(this.DataSource.Id, IdpeKeyTypes.OutputDelimiter.ToString(), true);
+                    dm.DeleteKeyFromApplication(this.DataSource.Id, IdpeKeyTypes.OutputIsFirstRowHeader.ToString(), true);
+                    dm.DeleteKeyFromApplication(this.DataSource.Id, IdpeKeyTypes.OutputDelimiterDoNotEncloseWithDoubleQuote.ToString(), true);
                     break;
 
                 case OutputTypes.Database:
@@ -436,27 +436,27 @@ namespace Eyedia.IDPE.Interface
             if (OutputFileNameFormat.ToLower() != "same as input")
             {
                 key = new IdpeKey();
-                key.Name = SreKeyTypes.OutputFileName.ToString();
+                key.Name = IdpeKeyTypes.OutputFileName.ToString();
                 key.Value = OutputFileNameFormat;
-                key.Type = (int)SreKeyTypes.OutputFileName;
+                key.Type = (int)IdpeKeyTypes.OutputFileName;
                 dm.Save(key, DataSource.Id);
             }
             else
             {
-                dm.DeleteKeyFromApplication(this.DataSource.Id, SreKeyTypes.OutputFileName.ToString(), true);
+                dm.DeleteKeyFromApplication(this.DataSource.Id, IdpeKeyTypes.OutputFileName.ToString(), true);
             }
 
             if (OutputFileExtension.ToLower() != ".xml")
             {
                 key = new IdpeKey();
-                key.Name = SreKeyTypes.OutputFileExtension.ToString();
+                key.Name = IdpeKeyTypes.OutputFileExtension.ToString();
                 key.Value = OutputFileExtension;
-                key.Type = (int)SreKeyTypes.OutputFileExtension;
+                key.Type = (int)IdpeKeyTypes.OutputFileExtension;
                 dm.Save(key, DataSource.Id);
             }
             else
             {
-                dm.DeleteKeyFromApplication(this.DataSource.Id, SreKeyTypes.OutputFileExtension.ToString(), true);
+                dm.DeleteKeyFromApplication(this.DataSource.Id, IdpeKeyTypes.OutputFileExtension.ToString(), true);
             }
 
         }

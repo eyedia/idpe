@@ -181,13 +181,13 @@ namespace Eyedia.IDPE.Services
                 || (_Job.DataSource == null))
                 return;
             
-            string strAllowPartial = _Job.DataSource.Keys.GetKeyValue(SreKeyTypes.OutputPartialRecordsAllowed);
+            string strAllowPartial = _Job.DataSource.Keys.GetKeyValue(IdpeKeyTypes.OutputPartialRecordsAllowed);
             AllowPartial = string.IsNullOrEmpty(strAllowPartial) ? false : strAllowPartial.ParseBool();
 
-            Delimiter = _Job.DataSource.Keys.GetKeyValue(SreKeyTypes.OutputDelimiter);
+            Delimiter = _Job.DataSource.Keys.GetKeyValue(IdpeKeyTypes.OutputDelimiter);
             Delimiter = string.IsNullOrEmpty(Delimiter) ? "," : Delimiter;
 
-            string strHasHeader = _Job.DataSource.Keys.GetKeyValue(SreKeyTypes.OutputIsFirstRowHeader);
+            string strHasHeader = _Job.DataSource.Keys.GetKeyValue(IdpeKeyTypes.OutputIsFirstRowHeader);
             IsFirstRowHeader = string.IsNullOrEmpty(strHasHeader) ? false : strHasHeader.ParseBool();
 
         }

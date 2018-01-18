@@ -185,7 +185,7 @@ namespace Eyedia.IDPE.Services
             foreach (IdpeRule rule in this.Rules)
             {
                 Trace.TraceInformation("Inserting:Rule.Name={0}", rule.Name);
-                new SreVersionManager().KeepVersion(VersionObjectTypes.Rule, rule.Id);
+                new VersionManager().KeepVersion(VersionObjectTypes.Rule, rule.Id);
                 dbMgr.Save(rule);
                 Trace.TraceInformation("Done!");
             }

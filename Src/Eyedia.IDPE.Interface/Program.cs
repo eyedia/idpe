@@ -92,7 +92,7 @@ namespace Eyedia.IDPE.Interface
                 try
                 {
                     Configuration config = ConfigurationManager.OpenExeConfiguration(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpe.exe"));
-                    SectionInformation sreSection = config.GetSection("sreConfigurationSection").SectionInformation;
+                    SectionInformation sreSection = config.GetSection("idpeConfigurationSection").SectionInformation;
                     if (sreSection == null) return;
                     string srecmdFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "idpec.exe");
                     if ((!sreSection.IsProtected)

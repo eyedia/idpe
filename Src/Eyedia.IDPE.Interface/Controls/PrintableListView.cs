@@ -158,7 +158,7 @@ namespace Eyedia.IDPE.Interface.Controls
         /// </summary>
         public void PrintPreview()
         {
-            m_printDoc.DocumentName = "SRE Logs";
+            m_printDoc.DocumentName = "IDPE Logs";
 
             m_nPageNumber = 1;
             m_bPrintSel = false;

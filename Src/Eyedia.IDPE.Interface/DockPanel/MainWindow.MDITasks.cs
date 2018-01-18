@@ -83,7 +83,7 @@ namespace Eyedia.IDPE.Interface
             mnItmManageAction4.Visible = false;
             mnItmManageAction5.Visible = false;
 
-            IdpeKey key = new Manager().GetKey(SreKeyTypes.CustomActions);
+            IdpeKey key = new Manager().GetKey(IdpeKeyTypes.CustomActions);
             if (key != null)
             {
                 if (!key.Value.Contains("|"))
@@ -163,7 +163,7 @@ namespace Eyedia.IDPE.Interface
         private void mnItmImportDataSource_Click(object sender, EventArgs e)
         {
             openFileDialog1.FileName = "";
-            openFileDialog1.Filter = "SRE Files (*.srex)|*.srex|All Files (*.*)|*.*";
+            openFileDialog1.Filter = "IDPE Files (*.idpex)|*.idpex|All Files (*.*)|*.*";
             openFileDialog1.Multiselect = true;
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -199,7 +199,7 @@ namespace Eyedia.IDPE.Interface
         private void mnItmImportKeys_Click(object sender, EventArgs e)
         {
             openFileDialog1.FileName = "";
-            openFileDialog1.Filter = "SRE Patch Files (*.srep)|*.srep|All Files (*.*)|*.*";
+            openFileDialog1.Filter = "IDPE Patch Files (*.idpep)|*.idpep|All Files (*.*)|*.*";
             openFileDialog1.Multiselect = true;
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {

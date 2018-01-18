@@ -30,7 +30,7 @@ namespace Eyedia.IDPE.Interface
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DockPanelDataSourceAttributes));
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
-            this.sreListView1 = new Eyedia.IDPE.Interface.Controls.SreListView();
+            this.sreListView1 = new Eyedia.IDPE.Interface.Controls.ListViewControl();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuDisassociate = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
@@ -131,7 +131,7 @@ namespace Eyedia.IDPE.Interface
         #endregion
 
         private System.Windows.Forms.MainMenu mainMenu1;
-        internal Controls.SreListView sreListView1;
+        internal Controls.ListViewControl sreListView1;
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem mnuDisassociate;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
