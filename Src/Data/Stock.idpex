@@ -1,0 +1,124 @@
+<DataSourceBundle xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Eyedia.IDPE.Services"><Attributes xmlns:d2p1="http://schemas.datacontract.org/2004/07/Eyedia.IDPE.DataManager"><d2p1:IdpeAttribute><d2p1:AttributeId>0</d2p1:AttributeId><d2p1:Name>Test</d2p1:Name><d2p1:Type>STRING</d2p1:Type><d2p1:Minimum i:nil="true" /><d2p1:Maximum i:nil="true" /><d2p1:Formula i:nil="true" /><d2p1:IsAcceptable>true</d2p1:IsAcceptable><d2p1:Position i:nil="true" /><d2p1:AttributePrintValueType>0</d2p1:AttributePrintValueType><d2p1:AttributePrintValueCustom /><d2p1:CreatedTS>0001-01-01T00:00:00</d2p1:CreatedTS><d2p1:CreatedBy i:nil="true" /><d2p1:ModifiedTS i:nil="true" /><d2p1:ModifiedBy i:nil="true" /><d2p1:Source i:nil="true" /></d2p1:IdpeAttribute></Attributes><DataSource xmlns:d2p1="http://schemas.datacontract.org/2004/07/Eyedia.IDPE.DataManager"><d2p1:Id>102</d2p1:Id><d2p1:Name>Stock</d2p1:Name><d2p1:Description>Stock</d2p1:Description><d2p1:IsSystem>false</d2p1:IsSystem><d2p1:DataFeederType>2</d2p1:DataFeederType><d2p1:DataFormatType>0</d2p1:DataFormatType><d2p1:Delimiter>,</d2p1:Delimiter><d2p1:SystemDataSourceId>2</d2p1:SystemDataSourceId><d2p1:DataContainerValidatorType /><d2p1:OutputType>1</d2p1:OutputType><d2p1:OutputWriterTypeFullName /><d2p1:PlugInsType /><d2p1:ProcessingBy /><d2p1:PusherType>0</d2p1:PusherType><d2p1:PusherTypeFullName /><d2p1:IsActive>true</d2p1:IsActive><d2p1:CreatedTS>2018-01-17T14:37:34</d2p1:CreatedTS><d2p1:CreatedBy>SYNECHRON\debojyoti.das</d2p1:CreatedBy><d2p1:ModifiedTS i:nil="true" /><d2p1:ModifiedBy i:nil="true" /><d2p1:Source i:nil="true" /></DataSource><IsImporting>false</IsImporting><Keys xmlns:d2p1="http://schemas.datacontract.org/2004/07/Eyedia.IDPE.DataManager"><d2p1:IdpeKey><d2p1:KeyId>0</d2p1:KeyId><d2p1:Name>OutputPartialRecordsAllowed</d2p1:Name><d2p1:Value>False</d2p1:Value><d2p1:ValueBinary xmlns:d4p1="http://schemas.datacontract.org/2004/07/System.Data.Linq" i:nil="true" /><d2p1:Type>59</d2p1:Type><d2p1:IsDeployable>false</d2p1:IsDeployable><d2p1:DataSourceId i:nil="true" /><d2p1:NextKeyId>0</d2p1:NextKeyId><d2p1:CreatedTS i:nil="true" /><d2p1:CreatedBy i:nil="true" /><d2p1:ModifiedTS i:nil="true" /><d2p1:ModifiedBy i:nil="true" /><d2p1:Source i:nil="true" /></d2p1:IdpeKey><d2p1:IdpeKey><d2p1:KeyId>0</d2p1:KeyId><d2p1:Name>TestFileName</d2p1:Name><d2p1:Value>C:\Workspace\GitHub\idpe\Src\Data\Trigger.csv</d2p1:Value><d2p1:ValueBinary xmlns:d4p1="http://schemas.datacontract.org/2004/07/System.Data.Linq" i:nil="true" /><d2p1:Type>82</d2p1:Type><d2p1:IsDeployable>false</d2p1:IsDeployable><d2p1:DataSourceId i:nil="true" /><d2p1:NextKeyId>0</d2p1:NextKeyId><d2p1:CreatedTS i:nil="true" /><d2p1:CreatedBy i:nil="true" /><d2p1:ModifiedTS i:nil="true" /><d2p1:ModifiedBy i:nil="true" /><d2p1:Source i:nil="true" /></d2p1:IdpeKey><d2p1:IdpeKey><d2p1:KeyId>0</d2p1:KeyId><d2p1:Name>OutputIsFirstRowHeader</d2p1:Name><d2p1:Value>True</d2p1:Value><d2p1:ValueBinary xmlns:d4p1="http://schemas.datacontract.org/2004/07/System.Data.Linq" i:nil="true" /><d2p1:Type>61</d2p1:Type><d2p1:IsDeployable>false</d2p1:IsDeployable><d2p1:DataSourceId i:nil="true" /><d2p1:NextKeyId>0</d2p1:NextKeyId><d2p1:CreatedTS i:nil="true" /><d2p1:CreatedBy i:nil="true" /><d2p1:ModifiedTS i:nil="true" /><d2p1:ModifiedBy i:nil="true" /><d2p1:Source i:nil="true" /></d2p1:IdpeKey><d2p1:IdpeKey><d2p1:KeyId>0</d2p1:KeyId><d2p1:Name>OutputDelimiter</d2p1:Name><d2p1:Value>,</d2p1:Value><d2p1:ValueBinary xmlns:d4p1="http://schemas.datacontract.org/2004/07/System.Data.Linq" i:nil="true" /><d2p1:Type>60</d2p1:Type><d2p1:IsDeployable>false</d2p1:IsDeployable><d2p1:DataSourceId i:nil="true" /><d2p1:NextKeyId>0</d2p1:NextKeyId><d2p1:CreatedTS i:nil="true" /><d2p1:CreatedBy i:nil="true" /><d2p1:ModifiedTS i:nil="true" /><d2p1:ModifiedBy i:nil="true" /><d2p1:Source i:nil="true" /></d2p1:IdpeKey><d2p1:IdpeKey><d2p1:KeyId>0</d2p1:KeyId><d2p1:Name>OutputDelimiterDoNotEncloseWithDoubleQuote</d2p1:Name><d2p1:Value>False</d2p1:Value><d2p1:ValueBinary xmlns:d4p1="http://schemas.datacontract.org/2004/07/System.Data.Linq" i:nil="true" /><d2p1:Type>83</d2p1:Type><d2p1:IsDeployable>false</d2p1:IsDeployable><d2p1:DataSourceId i:nil="true" /><d2p1:NextKeyId>0</d2p1:NextKeyId><d2p1:CreatedTS i:nil="true" /><d2p1:CreatedBy i:nil="true" /><d2p1:ModifiedTS i:nil="true" /><d2p1:ModifiedBy i:nil="true" /><d2p1:Source i:nil="true" /></d2p1:IdpeKey><d2p1:IdpeKey><d2p1:KeyId>0</d2p1:KeyId><d2p1:Name>OutputFileExtension</d2p1:Name><d2p1:Value>.txt</d2p1:Value><d2p1:ValueBinary xmlns:d4p1="http://schemas.datacontract.org/2004/07/System.Data.Linq" i:nil="true" /><d2p1:Type>43</d2p1:Type><d2p1:IsDeployable>false</d2p1:IsDeployable><d2p1:DataSourceId i:nil="true" /><d2p1:NextKeyId>0</d2p1:NextKeyId><d2p1:CreatedTS i:nil="true" /><d2p1:CreatedBy i:nil="true" /><d2p1:ModifiedTS i:nil="true" /><d2p1:ModifiedBy i:nil="true" /><d2p1:Source i:nil="true" /></d2p1:IdpeKey></Keys><RuleNames xmlns:d2p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" /><Rules xmlns:d2p1="http://schemas.datacontract.org/2004/07/Eyedia.IDPE.DataManager"><d2p1:IdpeRule><d2p1:Id>0</d2p1:Id><d2p1:Name>Stock - Map</d2p1:Name><d2p1:Description>Stock - Map was created by wizard</d2p1:Description><d2p1:Xaml>&lt;Activity mc:Ignorable="sap sap2010 sads" x:Class="Stock - Map"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:eis="clr-namespace:Eyedia.IDPE.Services;assembly=Eyedia.IDPE.Services"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
+  &lt;x:Members&gt;
+    &lt;x:Property Name="Data" Type="InArgument(eis:WorkerData)" /&gt;
+  &lt;/x:Members&gt;
+  &lt;mva:VisualBasic.Settings&gt;
+    &lt;x:Null /&gt;
+  &lt;/mva:VisualBasic.Settings&gt;
+  &lt;sap2010:WorkflowViewState.IdRef&gt;Stock - Map_1&lt;/sap2010:WorkflowViewState.IdRef&gt;
+  &lt;TextExpression.NamespacesForImplementation&gt;
+    &lt;sco:Collection x:TypeArguments="x:String"&gt;
+      &lt;x:String&gt;System.Activities&lt;/x:String&gt;
+      &lt;x:String&gt;System.Activities.Statements&lt;/x:String&gt;
+      &lt;x:String&gt;System.Activities.Expressions&lt;/x:String&gt;
+      &lt;x:String&gt;System.Activities.Validation&lt;/x:String&gt;
+      &lt;x:String&gt;System.Activities.XamlIntegration&lt;/x:String&gt;
+      &lt;x:String&gt;Microsoft.VisualBasic&lt;/x:String&gt;
+      &lt;x:String&gt;Microsoft.VisualBasic.Activities&lt;/x:String&gt;
+      &lt;x:String&gt;System&lt;/x:String&gt;
+      &lt;x:String&gt;System.Activities.Debugger&lt;/x:String&gt;
+      &lt;x:String&gt;System.Collections.Generic&lt;/x:String&gt;
+      &lt;x:String&gt;System.Data&lt;/x:String&gt;
+      &lt;x:String&gt;System.Linq&lt;/x:String&gt;
+      &lt;x:String&gt;Eyedia.IDPE.Services&lt;/x:String&gt;
+      &lt;x:String&gt;System.Text&lt;/x:String&gt;
+      &lt;x:String&gt;System.Windows.Markup&lt;/x:String&gt;
+      &lt;x:String&gt;Newtonsoft.Json.Linq&lt;/x:String&gt;
+      &lt;x:String&gt;Newtonsoft.Json&lt;/x:String&gt;
+    &lt;/sco:Collection&gt;
+  &lt;/TextExpression.NamespacesForImplementation&gt;
+  &lt;TextExpression.ReferencesForImplementation&gt;
+    &lt;sco:Collection x:TypeArguments="AssemblyReference"&gt;
+      &lt;AssemblyReference&gt;System.Activities&lt;/AssemblyReference&gt;
+      &lt;AssemblyReference&gt;System&lt;/AssemblyReference&gt;
+      &lt;AssemblyReference&gt;mscorlib&lt;/AssemblyReference&gt;
+      &lt;AssemblyReference&gt;System.Xml&lt;/AssemblyReference&gt;
+      &lt;AssemblyReference&gt;System.Core&lt;/AssemblyReference&gt;
+      &lt;AssemblyReference&gt;System.ServiceModel&lt;/AssemblyReference&gt;
+      &lt;AssemblyReference&gt;System.Data&lt;/AssemblyReference&gt;
+      &lt;AssemblyReference&gt;Eyedia.IDPE.Services&lt;/AssemblyReference&gt;
+      &lt;AssemblyReference&gt;PresentationCore&lt;/AssemblyReference&gt;
+      &lt;AssemblyReference&gt;WindowsBase&lt;/AssemblyReference&gt;
+      &lt;AssemblyReference&gt;PresentationFramework&lt;/AssemblyReference&gt;
+      &lt;AssemblyReference&gt;System.Xaml&lt;/AssemblyReference&gt;
+      &lt;AssemblyReference&gt;Newtonsoft.Json&lt;/AssemblyReference&gt;
+      &lt;AssemblyReference&gt;System.Runtime.WindowsRuntime&lt;/AssemblyReference&gt;
+    &lt;/sco:Collection&gt;
+  &lt;/TextExpression.ReferencesForImplementation&gt;
+  &lt;Sequence sap2010:WorkflowViewState.IdRef="Sequence_1"&gt;
+    &lt;Sequence.Variables&gt;
+      &lt;Variable x:TypeArguments="njl:JObject" Name="StockJobject" /&gt;
+    &lt;/Sequence.Variables&gt;
+    &lt;eis:SetDefaultValue Job="{x:Null}" AttributeType="2" Data="[Data]" DefaultValue="0" sap2010:WorkflowViewState.IdRef="SetDefaultValue_1" IfNullOrEmpty="True" /&gt;
+    &lt;eis:RestApiCall Job="{x:Null}" Json="{x:Null}" Method="{x:Null}" RestResponse="{x:Null}" RestResponseDataTable="{x:Null}" RestResponseErrorMessage="{x:Null}" RestResponseStatusCode="{x:Null}" TimeOut="{x:Null}" Data="[Data]" sap2010:WorkflowViewState.IdRef="RestApiCall_1" RestResource="stock/SNAP/quote" RestResponseJObject="[stockJObject]" RestUrl="https://api.iextrading.com/1.0" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="symbol" FromValue="[stockJObject(&amp;quot;symbol&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_1" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;symbol&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="companyName" FromValue="[stockJObject(&amp;quot;companyName&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_2" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;companyName&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="primaryExchange" FromValue="[stockJObject(&amp;quot;primaryExchange&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_3" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;primaryExchange&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="sector" FromValue="[stockJObject(&amp;quot;sector&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_4" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;sector&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="calculationPrice" FromValue="[stockJObject(&amp;quot;calculationPrice&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_5" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;calculationPrice&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="open" FromValue="[stockJObject(&amp;quot;open&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_6" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;open&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="openTime" FromValue="[stockJObject(&amp;quot;openTime&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_7" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;openTime&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="close" FromValue="[stockJObject(&amp;quot;close&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_8" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;close&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="closeTime" FromValue="[stockJObject(&amp;quot;closeTime&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_9" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;closeTime&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="high" FromValue="[stockJObject(&amp;quot;high&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_10" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;high&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="low" FromValue="[stockJObject(&amp;quot;low&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_11" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;low&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="latestPrice" FromValue="[stockJObject(&amp;quot;latestPrice&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_12" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;latestPrice&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="latestSource" FromValue="[stockJObject(&amp;quot;latestSource&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_13" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;latestSource&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="latestTime" FromValue="[stockJObject(&amp;quot;latestTime&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_14" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;latestTime&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="latestVolume" FromValue="[stockJObject(&amp;quot;latestVolume&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_15" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;latestVolume&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="iexRealtimePrice" FromValue="[stockJObject(&amp;quot;iexRealtimePrice&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_16" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;iexRealtimePrice&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="iexRealtimeSize" FromValue="[stockJObject(&amp;quot;iexRealtimeSize&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_17" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;iexRealtimeSize&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="iexLastUpdated" FromValue="[stockJObject(&amp;quot;iexLastUpdated&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_18" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;iexLastUpdated&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="delayedPrice" FromValue="[stockJObject(&amp;quot;delayedPrice&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_19" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;delayedPrice&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="previousClose" FromValue="[stockJObject(&amp;quot;previousClose&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_20" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;previousClose&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="change" FromValue="[stockJObject(&amp;quot;change&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_21" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;change&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="changePercent" FromValue="[stockJObject(&amp;quot;changePercent&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_22" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;changePercent&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="iexMarketPercent" FromValue="[stockJObject(&amp;quot;iexMarketPercent&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_23" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;iexMarketPercent&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="iexVolume" FromValue="[stockJObject(&amp;quot;iexVolume&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_24" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;iexVolume&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="avgTotalVolume" FromValue="[stockJObject(&amp;quot;avgTotalVolume&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_25" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;avgTotalVolume&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="iexBidPrice" FromValue="[stockJObject(&amp;quot;iexBidPrice&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_26" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;iexBidPrice&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="iexBidSize" FromValue="[stockJObject(&amp;quot;iexBidSize&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_27" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;iexBidSize&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="iexAskPrice" FromValue="[stockJObject(&amp;quot;iexAskPrice&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_28" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;iexAskPrice&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="iexAskSize" FromValue="[stockJObject(&amp;quot;iexAskSize&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_29" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;iexAskSize&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="marketCap" FromValue="[stockJObject(&amp;quot;marketCap&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_30" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;marketCap&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="peRatio" FromValue="[stockJObject(&amp;quot;peRatio&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_31" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;peRatio&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="week52High" FromValue="[stockJObject(&amp;quot;week52High&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_32" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;week52High&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="week52Low" FromValue="[stockJObject(&amp;quot;week52Low&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_33" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;week52Low&amp;quot;)]" /&gt;
+    &lt;eis:AssignAttribute FromAttribute="{x:Null}" Data="[Data]" DisplayName="ytdChange" FromValue="[stockJObject(&amp;quot;ytdChange&amp;quot;).ToString()]" sap2010:WorkflowViewState.IdRef="AssignAttribute_34" ToAttribute="[Data.CurrentRow.ColumnsSystem(&amp;quot;ytdChange&amp;quot;)]" /&gt;
+    &lt;sads:DebugSymbol.Symbol&gt;dytDOlxXb3Jrc3BhY2VcSURQRVxUZW1wXGlkcGVcU3RvY2sgLSBNYXAueG1skwE7A2QOAgEBPwU/pQEDAdUBQAVAhwMDAc4BQQVBiAIDAcgBQgVClwIDAcIBQwVDowIDAbwBRAVEiAIDAbYBRQVFpgIDAbABRgVGggIDAaoBRwVHjgIDAaQBSAVIhQIDAZ4BSQVJkQIDAZgBSgVKgwIDAZIBSwVLgAIDAYwBTAVMmAIDAYYBTQVNmwIDAYABTgVOlQICAXpPBU+bAgIBdFAFUKcCAgFuUQVRpAICAWhSBVKhAgIBYlMFU5sCAgFcVAVUngICAVZVBVWJAgIBUFYFVp4CAgFKVwVXpwICAURYBViSAgIBPlkFWaECAgE4WgVamAICATJbBVuVAgIBLFwFXJgCAgEmXQVdlQICASBeBV6SAgIBGl8FX4wCAgEUYAVglQICAQ5hBWGSAgIBCGIFYpICAgECP1Y/WQMB2gE/Nz86AwHZAT9AP0gDAdcBP5wBP6IBAwHWAUCkAkC2AgMB1AFA3gFA5gEDAdIBQMsCQNsCAwHQAUDkAkCEAwMBzwFB0AFBhQIDAcwBQWBBjwEDAcsBQThBQAMByQFC2gFClAIDAcYBQmVCmQEDAcUBQjhCQAMBwwFD4gFDoAIDAcABQ2lDoQEDAb8BQzhDQAMBvQFE0AFEhQIDAboBRGBEjwEDAbkBRDhEQAMBtwFF5AFFowIDAbQBRWpFowEDAbMBRThFQAMBsQFGzAFG/wEDAa4BRl5GiwEDAa0BRjhGQAMBqwFH1AFHiwIDAagBR2JHkwEDAacBRzhHQAMBpQFIzgFIggIDAaIBSF9IjQEDAaEBSDhIQAMBnwFJ1gFJjgIDAZwBSWNJlQEDAZsBSThJQAMBmQFKzQFKgAIDAZYBSl5KiwEDAZUBSjhKQAMBkwFLywFL/QEDAZABS11LiQEDAY8BSzhLQAMBjQFM2wFMlQIDAYoBTGVMmQEDAYkBTDhMQAMBhwFN3QFNmAIDAYQBTWZNmwEDAYMBTThNQAMBgQFO2QFOkgICAX5OZE6XAQIBfU44TkACAXtP3QFPmAICAXhPZk+bAQIBd084T0ACAXVQ5QFQpAICAXJQalCjAQIBcVA4UEACAW9R4wFRoQICAWxRaVGhAQIBa1E4UUACAWlS4QFSngICAWZSaFKfAQIBZVI4UkACAWNT3QFTmAICAWBTZlObAQIBX1M4U0ACAV1U3wFUmwICAVpUZ1SdAQIBWVQ4VEACAVdV0QFVhgICAVRVYFWPAQIBU1U4VUACAVFW3wFWmwICAU5WZ1adAQIBTVY4VkACAUtX5QFXpAICAUhXalejAQIBR1c4V0ACAUVY1wFYjwICAUJYY1iVAQIBQVg4WEACAT9Z4QFZngICATxZaFmfAQIBO1k4WUACATla2wFalQICATZaZVqZAQIBNVo4WkACATNb2QFbkgICATBbZFuXAQIBL1s4W0ACAS1c2wFclQICASpcZVyZAQIBKVw4XEACASdd2QFdkgICASRdZF2XAQIBI104XUACASFe1wFejwICAR5eY16VAQIBHV44XkACARtf0wFfiQICARhfYV+RAQIBF184X0ACARVg2QFgkgICARJgZGCXAQIBEWA4YEACAQ9h1wFhjwICAQxhY2GVAQIBC2E4YUACAQli1wFijwICAQZiY2KVAQIBBWI4YkACAQM=&lt;/sads:DebugSymbol.Symbol&gt;
+  &lt;/Sequence&gt;
+  &lt;sap2010:WorkflowViewState.ViewStateManager&gt;
+    &lt;sap2010:ViewStateManager&gt;
+      &lt;sap2010:ViewStateData Id="SetDefaultValue_1" sap:VirtualizedContainerService.HintSize="200,22" /&gt;
+      &lt;sap2010:ViewStateData Id="RestApiCall_1" sap:VirtualizedContainerService.HintSize="200,22" /&gt;
+      &lt;sap2010:ViewStateData Id="AssignAttribute_1" sap:VirtualizedContainerService.HintSize="200,22" /&gt;
+      &lt;sap2010:ViewStateData Id="AssignAttribute_2" sap:VirtualizedContainerService.HintSize="200,22" /&gt;
+      &lt;sap2010:ViewStateData Id="AssignAttribute_3" sap:VirtualizedContainerService.HintSize="200,22" /&gt;
+      &lt;sap2010:ViewStateData Id="AssignAttribute_4" sap:VirtualizedContainerService.HintSize="200,22" /&gt;
+      &lt;sap2010:ViewStateData Id="AssignAttribute_5" sap:VirtualizedContainerService.HintSize="200,22" /&gt;
+      &lt;sap2010:ViewStateData Id="AssignAttribute_6" sap:VirtualizedContainerService.HintSize="200,22" /&gt;
+      &lt;sap2010:ViewStateData Id="AssignAttribute_7" sap:VirtualizedContainerService.HintSize="200,22" /&gt;
+      &lt;sap2010:ViewStateData Id="AssignAttribute_8" sap:VirtualizedContainerService.HintSize="200,22" /&gt;
+      &lt;sap2010:ViewStateData Id="AssignAttribute_9" sap:VirtualizedContainerService.HintSize="200,22" /&gt;
+      &lt;sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="222,2266"&gt;
+        &lt;sap:WorkflowViewStateService.ViewState&gt;
+          &lt;scg:Dictionary x:TypeArguments="x:String, x:Object"&gt;
+            &lt;x:Boolean x:Key="IsExpanded"&gt;True&lt;/x:Boolean&gt;
+          &lt;/scg:Dictionary&gt;
+        &lt;/sap:WorkflowViewStateService.ViewState&gt;
+      &lt;/sap2010:ViewStateData&gt;
+      &lt;sap2010:ViewStateData Id="Stock - Map_1" sap:VirtualizedContainerService.HintSize="262,2346" /&gt;
+    &lt;/sap2010:ViewStateManager&gt;
+  &lt;/sap2010:WorkflowViewState.ViewStateManager&gt;
+&lt;/Activity&gt;</d2p1:Xaml><d2p1:Priority>1</d2p1:Priority><d2p1:RuleSetType>3</d2p1:RuleSetType><d2p1:CreatedTS>0001-01-01T00:00:00</d2p1:CreatedTS><d2p1:CreatedBy i:nil="true" /><d2p1:ModifiedTS i:nil="true" /><d2p1:ModifiedBy i:nil="true" /><d2p1:Source i:nil="true" /></d2p1:IdpeRule></Rules><SystemDataSourceName>Stock - System</SystemDataSourceName><Version>0</Version></DataSourceBundle>
