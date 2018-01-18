@@ -254,11 +254,9 @@ namespace Eyedia.IDPE.Interface
 
         private void exportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (lbSystemDataSources.SelectedIndex > -1)
-            {
-                frmExportImport exportUI = new frmExportImport(((IdpeDataSource)lbSystemDataSources.SelectedItem).Id);
-                exportUI.ShowDialog();
-            }
+            if (lbSystemDataSources.SelectedIndex > -1)           
+                ImportExport.Export(((IdpeDataSource)lbSystemDataSources.SelectedItem).Id);                
+            
         }
     }
 }

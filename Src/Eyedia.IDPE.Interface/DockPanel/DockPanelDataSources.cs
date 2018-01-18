@@ -183,9 +183,8 @@ namespace Eyedia.IDPE.Interface
         }
 
         private void mnuExport_Click(object sender, EventArgs e)
-        {
-            frmExportImport exportUI = new frmExportImport(SelectedDataSource.Id);
-            exportUI.ShowDialog();
+        {            
+            ImportExport.Export(SelectedDataSource.Id);
         }
 
         private void mnuExportKeys_Click(object sender, EventArgs e)
@@ -210,23 +209,10 @@ namespace Eyedia.IDPE.Interface
         }
 
         private void mnuImport_Click(object sender, EventArgs e)
-        {
-            frmExportImport importUI = new frmExportImport();
-            if (importUI.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {                
-                RefreshData();
-                if (!string.IsNullOrEmpty(importUI.ApplicationName))
-                {
-                    foreach (ListViewItem item in sreListView1.ListView.Items)
-                    {
-                        if (item.SubItems[1].Text == importUI.ApplicationName)
-                        {
-                            item.Selected = true;
-                            break;
-                        }
-                    }
-                }
-            }
+        {            
+            if (ImportExport.Import())           
+                RefreshData();               
+           
         }
 
         private void mnuImportKeys_Click(object sender, EventArgs e)

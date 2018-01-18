@@ -252,6 +252,7 @@
     <Compile Include="GlobalSearch.Designer.cs">
       <DependentUpon>GlobalSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImportExport.cs" />
     <Compile Include="Monitor.Search.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -531,12 +532,6 @@
     </Compile>
     <Compile Include="RuleEditor\frmCopyRule.Designer.cs">
       <DependentUpon>frmCopyRule.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmExportImport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmExportImport.Designer.cs">
-      <DependentUpon>frmExportImport.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\FixedLengthSchemaGenerator.cs">
       <SubType>UserControl</SubType>
@@ -868,10 +863,6 @@
     <EmbeddedResource Include="RuleEditor\frmCopyRule.resx">
       <DependentUpon>frmCopyRule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmExportImport.resx">
-      <DependentUpon>frmExportImport.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="AttributeRepository\frmConfig.resx">
       <DependentUpon>frmConfig.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1179,7 +1170,7 @@ rmdir $(SolutionDir)..\Executables\Resources /s /q
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="False" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_UpdateFileVersion="False" />
+      <UserProperties BuildVersion_UpdateFileVersion="False" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_UseGlobalSettings="False" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
