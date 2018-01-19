@@ -61,8 +61,11 @@ namespace ConTest
         public static void Main()
         {
             GetDummyUser();
+            
 
-
+            StringBuilder sb = new StringBuilder();
+            sb = sb.AppendLine("ss");
+            System.IO.File.WriteAllText(@"C:\Temp\stock.csv", sb.ToString());
             Cache.Instance.Bag.Add("d1", Information.LoggedInUser);
             Cache.Instance.Bag.Add("d2", Information.LoggedInUser);
 

@@ -53,7 +53,12 @@ namespace Eyedia.IDPE.Services
         {
             get
             {
-                return !string.IsNullOrEmpty(ResponseContent) ? JObject.Parse(ResponseContent) : null;
+                try
+                {
+                    return !string.IsNullOrEmpty(ResponseContent) ? JObject.Parse(ResponseContent) : null;
+                }
+                catch { }
+                return null;
             }
         }
 

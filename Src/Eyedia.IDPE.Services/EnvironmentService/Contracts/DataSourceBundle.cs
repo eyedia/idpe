@@ -306,8 +306,10 @@ namespace Eyedia.IDPE.Services
                 if (!string.IsNullOrEmpty(this.DataSource.Name))
                 {
                     new VersionManager().KeepVersion(VersionObjectTypes.DataSource, this.DataSource.Id);
+                    if (this.DataSource.IsSystem == false)
+                        this.DataSource.SystemDataSourceId = manager.GetApplicationId(SystemDataSourceName);    //system data source id may get changed in the target system
                     bool isInserted = false;
-                    manager.Save(this.DataSource, ref isInserted, dal, connection, transaction);
+                    this.DataSource.Id = manager.Save(this.DataSource, ref isInserted, dal, connection, transaction); //data source id may get changed in the target system
                     ImportAttributes(dal, connection, transaction, manager);
                 }
                 ImportKeys(dal, connection, transaction, manager);

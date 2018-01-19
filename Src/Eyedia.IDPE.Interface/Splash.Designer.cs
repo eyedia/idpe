@@ -54,7 +54,7 @@
             this.lblMessage.AutoSize = true;
             this.lblMessage.BackColor = System.Drawing.Color.Transparent;
             this.lblMessage.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lblMessage.Location = new System.Drawing.Point(365, 513);
+            this.lblMessage.Location = new System.Drawing.Point(490, 517);
             this.lblMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(90, 20);
@@ -161,7 +161,7 @@
             // 
             this.lblErrorMessage.BackColor = System.Drawing.Color.Transparent;
             this.lblErrorMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorMessage.Location = new System.Drawing.Point(478, 40);
+            this.lblErrorMessage.Location = new System.Drawing.Point(13, 379);
             this.lblErrorMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblErrorMessage.Name = "lblErrorMessage";
             this.lblErrorMessage.Size = new System.Drawing.Size(355, 134);
@@ -203,7 +203,7 @@
             this.pnlLoginBox.Controls.Add(this.label1, 0, 1);
             this.pnlLoginBox.Controls.Add(this.label2, 0, 2);
             this.pnlLoginBox.Controls.Add(this.cbUserName, 1, 1);
-            this.pnlLoginBox.Location = new System.Drawing.Point(509, 253);
+            this.pnlLoginBox.Location = new System.Drawing.Point(492, 355);
             this.pnlLoginBox.Name = "pnlLoginBox";
             this.pnlLoginBox.RowCount = 4;
             this.pnlLoginBox.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));

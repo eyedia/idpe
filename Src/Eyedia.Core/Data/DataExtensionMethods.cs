@@ -210,6 +210,18 @@ namespace Eyedia.Core.Data
         /// <summary>
         /// Writes data table into comma separated Csv file
         /// </summary>
+        /// <param name="fileContent">The file content</param>
+        /// <param name="fileName">The file name</param>
+        /// <param name="delimiter">The delimiter, default is comma</param>
+        public static bool ToCsv(this StringBuilder fileContent, string fileName, string delimiter = ",")
+        {
+            File.WriteAllText(fileName, fileContent.ToString());
+            return true;
+        }
+
+        /// <summary>
+        /// Writes data table into comma separated Csv file
+        /// </summary>
         /// <param name="dataTable">The data table</param>
         /// <param name="fileName">The file name</param>
         /// <param name="delimiter">The delimiter, default is comma</param>

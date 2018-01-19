@@ -6,7 +6,7 @@ starts the service
 :main
 sc stop "Integrated Data Processing Environment"
 timeout /t 2 /nobreak
-set target=..\..\..\..\IDPE
+set target=..\..\..\IDPE\
 copy Eyedia.IDPE.Interface\bin\Debug\Eyedia*.dll %target%
 copy Eyedia.IDPE.Interface\bin\Debug\idped.exe %target%
 copy Eyedia.IDPE.Interface\bin\Debug\idped.exe.config %target%
