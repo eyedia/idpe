@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Splash));
-            this.picTitle = new System.Windows.Forms.PictureBox();
             this.lblMessage = new System.Windows.Forms.Label();
             this.timerLoad = new System.Windows.Forms.Timer(this.components);
             this.lblVersion = new System.Windows.Forms.Label();
@@ -44,34 +43,18 @@
             this.timerReset = new System.Windows.Forms.Timer(this.components);
             this.lblRecoveryMode = new System.Windows.Forms.Label();
             this.timerBlink = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlLoginBox = new System.Windows.Forms.TableLayoutPanel();
             this.cbUserName = new System.Windows.Forms.ComboBox();
             this.timerExit = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.picTitle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlLoginBox.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // picTitle
-            // 
-            this.picTitle.BackColor = System.Drawing.Color.Transparent;
-            this.picTitle.Image = global::Eyedia.IDPE.Interface.Properties.Resources.SREBanner2;
-            this.picTitle.Location = new System.Drawing.Point(243, 185);
-            this.picTitle.Margin = new System.Windows.Forms.Padding(4);
-            this.picTitle.Name = "picTitle";
-            this.picTitle.Size = new System.Drawing.Size(636, 130);
-            this.picTitle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picTitle.TabIndex = 0;
-            this.picTitle.TabStop = false;
-            this.picTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picTitle_MouseUp);
             // 
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
             this.lblMessage.BackColor = System.Drawing.Color.Transparent;
-            this.lblMessage.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblMessage.Location = new System.Drawing.Point(326, 312);
+            this.lblMessage.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblMessage.Location = new System.Drawing.Point(365, 513);
             this.lblMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(90, 20);
@@ -88,8 +71,8 @@
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.BackColor = System.Drawing.Color.Transparent;
-            this.lblVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.lblVersion.Location = new System.Drawing.Point(721, 151);
+            this.lblVersion.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblVersion.Location = new System.Drawing.Point(711, 15);
             this.lblVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(72, 20);
@@ -100,7 +83,7 @@
             // 
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.label1.ForeColor = System.Drawing.Color.MidnightBlue;
             this.label1.Location = new System.Drawing.Point(4, 37);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
@@ -125,7 +108,7 @@
             // 
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
             this.label2.Location = new System.Drawing.Point(4, 74);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
@@ -137,6 +120,7 @@
             // btnOK
             // 
             this.btnOK.Enabled = false;
+            this.btnOK.ForeColor = System.Drawing.Color.MidnightBlue;
             this.btnOK.Location = new System.Drawing.Point(96, 115);
             this.btnOK.Margin = new System.Windows.Forms.Padding(4);
             this.btnOK.Name = "btnOK";
@@ -163,7 +147,7 @@
             // 
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.label3.ForeColor = System.Drawing.Color.MidnightBlue;
             this.label3.Location = new System.Drawing.Point(4, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
@@ -177,10 +161,10 @@
             // 
             this.lblErrorMessage.BackColor = System.Drawing.Color.Transparent;
             this.lblErrorMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorMessage.Location = new System.Drawing.Point(13, 332);
+            this.lblErrorMessage.Location = new System.Drawing.Point(478, 40);
             this.lblErrorMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblErrorMessage.Name = "lblErrorMessage";
-            this.lblErrorMessage.Size = new System.Drawing.Size(415, 114);
+            this.lblErrorMessage.Size = new System.Drawing.Size(355, 134);
             this.lblErrorMessage.TabIndex = 7;
             // 
             // timerReset
@@ -192,8 +176,8 @@
             // 
             this.lblRecoveryMode.AutoSize = true;
             this.lblRecoveryMode.BackColor = System.Drawing.Color.Transparent;
-            this.lblRecoveryMode.ForeColor = System.Drawing.Color.Red;
-            this.lblRecoveryMode.Location = new System.Drawing.Point(266, 310);
+            this.lblRecoveryMode.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblRecoveryMode.Location = new System.Drawing.Point(801, 517);
             this.lblRecoveryMode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRecoveryMode.Name = "lblRecoveryMode";
             this.lblRecoveryMode.Size = new System.Drawing.Size(52, 20);
@@ -205,17 +189,6 @@
             // 
             this.timerBlink.Interval = 500;
             this.timerBlink.Tick += new System.EventHandler(this.timerBlink_Tick);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Eyedia.IDPE.Interface.Properties.Resources.Logo;
-            this.pictureBox1.Location = new System.Drawing.Point(-68, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(472, 255);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 9;
-            this.pictureBox1.TabStop = false;
             // 
             // pnlLoginBox
             // 
@@ -230,7 +203,7 @@
             this.pnlLoginBox.Controls.Add(this.label1, 0, 1);
             this.pnlLoginBox.Controls.Add(this.label2, 0, 2);
             this.pnlLoginBox.Controls.Add(this.cbUserName, 1, 1);
-            this.pnlLoginBox.Location = new System.Drawing.Point(515, 354);
+            this.pnlLoginBox.Location = new System.Drawing.Point(509, 253);
             this.pnlLoginBox.Name = "pnlLoginBox";
             this.pnlLoginBox.RowCount = 4;
             this.pnlLoginBox.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -268,9 +241,7 @@
             this.Controls.Add(this.lblRecoveryMode);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lblMessage);
-            this.Controls.Add(this.picTitle);
             this.Controls.Add(this.lblErrorMessage);
-            this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -281,8 +252,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Splash_FormClosing);
             this.Load += new System.EventHandler(this.Splash_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Splash_KeyUp);
-            ((System.ComponentModel.ISupportInitialize)(this.picTitle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlLoginBox.ResumeLayout(false);
             this.pnlLoginBox.PerformLayout();
             this.ResumeLayout(false);
@@ -291,8 +260,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox picTitle;
         private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.Timer timerLoad;
         private System.Windows.Forms.Label lblVersion;
@@ -306,7 +273,6 @@
         private System.Windows.Forms.ComboBox cbSdfs;
         private System.Windows.Forms.Label lblRecoveryMode;
         private System.Windows.Forms.Timer timerBlink;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TableLayoutPanel pnlLoginBox;
         private System.Windows.Forms.ComboBox cbUserName;
         private System.Windows.Forms.Timer timerExit;

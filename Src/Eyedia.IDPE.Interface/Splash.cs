@@ -59,7 +59,8 @@ namespace Eyedia.IDPE.Interface
         {
             try
             {
-                InitializeComponent();                
+                InitializeComponent();
+               
                 Init();
             }
             catch (Exception ex)
@@ -456,6 +457,16 @@ namespace Eyedia.IDPE.Interface
 
             if (_ExitTimeOutCount <= 0)
                 Application.Exit();
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
+                return cp;
+            }
         }
     }   
     
