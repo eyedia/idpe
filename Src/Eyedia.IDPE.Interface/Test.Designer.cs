@@ -28,25 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.globalSearchWidget1 = new Eyedia.IDPE.Interface.GlobalSearchWidget();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
-            // globalSearchWidget1
+            // webBrowser1
             // 
-            this.globalSearchWidget1.Location = new System.Drawing.Point(178, 56);
-            this.globalSearchWidget1.Name = "globalSearchWidget1";
-            this.globalSearchWidget1.ShowSearchTextBox = true;
-            this.globalSearchWidget1.Size = new System.Drawing.Size(736, 327);
-            this.globalSearchWidget1.TabIndex = 0;
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(1484, 620);
+            this.webBrowser1.TabIndex = 0;
             // 
             // Test
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(1113, 496);
-            this.Controls.Add(this.globalSearchWidget1);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ClientSize = new System.Drawing.Size(1484, 620);
+            this.Controls.Add(this.webBrowser1);
+            this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Name = "Test";
             this.Text = "Test";
             this.ResumeLayout(false);
@@ -81,6 +82,6 @@
 
         #endregion
 
-        private GlobalSearchWidget globalSearchWidget1;
+        private System.Windows.Forms.WebBrowser webBrowser1;
     }
 }

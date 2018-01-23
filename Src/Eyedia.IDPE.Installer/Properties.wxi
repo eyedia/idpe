@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  
+  <?define ProductName="Integrated Data Processing Environment Service"?>
+  <?define Name="Integrated Data Processing Environment Service"?>
+  <?define Description = Integrated Data Processing Environment .NET framework to build applications on-the-fly by configuring .NET xaml based rules"?>
+  <?define Manufacturer="Eyedia"?>
+  <?define DefaultDatabase="samples.sdf"?>
+  <?define SMTP="your.smtp.com"?>
+  <?define FromEmail="eyedia@debjyoti.com"?>
+  <?define ContactEmail="eyedia@debjyoti.com"?>
+  <?define LicenseFile="license.rtf"?>
+  <?define BannerBmp="Graphics\banner.jpg"?>
+  <?define DlgBmp="Graphics\dlgbmp.jpg"?>  
+  <?define SecurityCode="syne$x" ?>
+  <?define Version="1.1.7.1717" ?>
+  <?define Platform="x64" ?>
+
+  <?if $(var.Platform) = x64 ?>
+  <?define bitness = "(64 bit)" ?>
+  <?define Win64 = "yes" ?>
+  <?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
+  <?else ?>
+  <?define bitness = "(32 bit)" ?>
+  <?define Win64 = "no" ?>
+  <?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
+  <?endif ?>
+</Include>

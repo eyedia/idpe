@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include Properties.wxi?>
+  <Patch
+       AllowRemoval="yes"
+       Manufacturer="$(var.Manufacturer)"
+       MoreInfoURL="http://www.synechron.com/"
+       DisplayName="$(var.ProductName) - Patch $(var.Version)"
+       Description="$(var.ProductName) - Patch $(var.Version)"
+       Classification="Update"
+        >
+
+    <Media Id="5000" Cabinet="SRE.$(var.Version).cab">
+      <PatchBaseline Id="RTM"/>
+    </Media>
+
+    <PatchFamilyRef Id="SamplePatchFamily"/>
+  </Patch>
+
+  <Fragment>   
+    <PatchFamily Id='SamplePatchFamily' Version='$(var.Version)' Supersede='yes' />      
+  </Fragment>
+
+</Wix>

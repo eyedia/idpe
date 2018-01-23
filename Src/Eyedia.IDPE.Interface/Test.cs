@@ -56,7 +56,8 @@ namespace Eyedia.IDPE.Interface
         public Test()
         {
             InitializeComponent();
-           
+            //webBrowser1.ScriptErrorsSuppressed = true;
+            webBrowser1.Url = new Uri(@"file:///C:/Users/Deb/Downloads/vis-4.21.0/vis-4.21.0/examples/network/basicUsage.html");
         }
 
       
