@@ -12,7 +12,7 @@
            a specific number of sub-topics when creating the outline.  Specify
            zero (0) to limit it to top-level sections only.  -->
       <!-- <autoOutline /> -->
-      <para>Data feeders are various mechanism provided by SRE to feed data into it.</para>
+      <para>Data feeders are various mechanism provided by IDPE to feed data into it.</para>
     </introduction>
     <!-- Add one or more top-level section elements.  These are collapsible.
          If using <autoOutline />, add an address attribute to identify it
@@ -26,16 +26,16 @@
 
         <list class="ordered">
           <listItem>
-            <para>PullLocalFileSystem - SRE pulls file as soon as it dropped on a configured location</para>
+            <para>PullLocalFileSystem - IDPE pulls file as soon as it dropped on a configured location</para>
           </listItem>
           <listItem>
-            <para>PullFtp - SRE pulls file(s) every interval from FTP server.</para>
+            <para>PullFtp - IDPE pulls file(s) every interval from FTP server.</para>
           </listItem>
           <listItem>
-            <para>PullSql - SRE pulls data every interval from database server. It supports Oracle, Sql Server and Sql Ce.</para>
+            <para>PullSql - IDPE pulls data every interval from database server. It supports Oracle, Sql Server and Sql Ce.</para>
           </listItem>
           <listItem>
-            <para>Push - External client(e.g. WCF client) pushes data into SRE. Note - SRE can be configured on Web as well as Windows Service.</para>
+            <para>Push - External client(e.g. WCF client) pushes data into IDPE. Note - IDPE can be configured on Web as well as Windows Service.</para>
           </listItem>
         </list>
       </content>     

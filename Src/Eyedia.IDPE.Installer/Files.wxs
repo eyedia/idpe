@@ -10,7 +10,7 @@
 
       <Component Id="db" Guid="a19500ec-622b-4f6f-a134-32a27bb2e811" Win64="yes">
         <File Id="samples.sdf" Name="samples.sdf" Source="..\..\Executables\samples.sdf" Vital="yes" KeyPath="no" DiskId="1" />
-      </Component>
+      </Component>     
       <Directory Id="SAMPLES" Name="Samples">
         <Component Id="Eyedia.IDPE.Samples" Guid="22d76c52-23ac-4934-91f2-4a784cca9740" Win64="yes">
           <File Id="s500.csv" Name="500.csv" Source="..\Data\500.csv" Vital="yes" KeyPath="no" DiskId="1" />
@@ -46,9 +46,8 @@
 
     <ComponentGroup Id="Files">
       <ComponentRef Id="db" />
-      <ComponentRef Id="Eyedia.IDPE.Samples" />
-      <!--<ComponentRef Id="Eyedia.IDPE.SampleCode"/>
-      <ComponentRef Id="Eyedia.IDPE.SampleCode.Binary" />-->
+      <ComponentRef Id="Eyedia.IDPE.Samples" />      
+      <!--<ComponentRef Id="Eyedia.IDPE.SampleCode.Binary" />-->
       <ComponentRef Id="StartMenuShortcutsSamples"/>
     </ComponentGroup>
   </Fragment>

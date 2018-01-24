@@ -5,8 +5,16 @@
     <DirectoryRef Id="INSTALLLOCATION">    
       <Component Id="External.Libraries" Guid="1f336ee2-19e7-4d11-8964-9a7327ad7a0e" Win64="yes">
         <Condition><![CDATA[SERVICEHOSTTYPE = "ws"]]></Condition>
+        <File Id="ErikEJ.SqlCe40.dll" Name="ErikEJ.SqlCe40.dll" Source="..\..\Executables\ErikEJ.SqlCe40.dll" Vital="yes" KeyPath="no" DiskId="1" />
         <File Id="Excel.dll" Name="Excel.dll" Source="..\..\Executables\Excel.dll" Vital="yes" KeyPath="no" DiskId="1" />
-        <File Id="ICSharpCode.SharpZipLib.dll" Name="ICSharpCode.SharpZipLib.dll" Source="..\..\Executables\ICSharpCode.SharpZipLib.dll" Vital="yes" KeyPath="no" DiskId="1" />        
+        <File Id="FileHelpers.dll" Name="FileHelpers.dll" Source="..\..\Executables\FileHelpers.dll" Vital="yes" KeyPath="no" DiskId="1" />
+        <File Id="ICSharpCode.SharpZipLib.dll" Name="ICSharpCode.SharpZipLib.dll" Source="..\..\Executables\ICSharpCode.SharpZipLib.dll" Vital="yes" KeyPath="no" DiskId="1" />
+        <File Id="Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" Source="..\..\Executables\Newtonsoft.Json.dll" Vital="yes" KeyPath="no" DiskId="1" />
+        <File Id="OopFactory.X12.dll" Name="OopFactory.X12.dll" Source="..\..\Executables\OopFactory.X12.dll" Vital="yes" KeyPath="no" DiskId="1" />
+        <File Id="RestSharp.dll" Name="RestSharp.dll" Source="..\..\Executables\RestSharp.dll" Vital="yes" KeyPath="no" DiskId="1" />
+        <File Id="Salient.Data.dll" Name="Salient.Data.dll" Source="..\..\Executables\Salient.Data.dll" Vital="yes" KeyPath="no" DiskId="1" />
+        <File Id="WeifenLuo.WinFormsUI.Docking.dll" Name="WeifenLuo.WinFormsUI.Docking.dll" Source="..\..\Executables\WeifenLuo.WinFormsUI.Docking.dll" Vital="yes" KeyPath="no" DiskId="1" />
+        <File Id="Eyedia.Security.dll" Name="Eyedia.Security.dll" Source="..\..\Executables\Eyedia.Security.dll" Vital="yes" KeyPath="no" DiskId="1" />       
       </Component>
       <Component Id="External.Libraries.Oracle" Guid="aa2a24a7-900c-4058-97d6-feb27f6f2976" Win64="yes">
         <Condition><![CDATA[SERVICEHOSTTYPE = "ws"]]></Condition>        
@@ -17,17 +25,17 @@
         <File Id="Eyedia.Core.dll" Name="Eyedia.Core.dll" Source="..\..\Executables\Eyedia.Core.dll" Vital="yes" KeyPath="no" DiskId="1" />
         <File Id="Eyedia.IDPE.Common.dll" Name="Eyedia.IDPE.Common.dll" Source="..\..\Executables\Eyedia.IDPE.Common.dll" Vital="yes" KeyPath="no" DiskId="1" />
       </Component>
-      <Component Id="Eyedia.IDPE.Utilities" Guid="84b495fe-df1e-49e4-8069-e5f279a645ea" Win64="yes">
+      <Component Id="idped" Guid="84b495fe-df1e-49e4-8069-e5f279a645ea" Win64="yes">
         <Condition><![CDATA[SERVICEHOSTTYPE = "ws"]]></Condition>
         <File Id="idped.exe" Name="idped.exe" Source="..\..\Executables\idped.exe" Vital="yes" KeyPath="yes" DiskId="1">
           <Shortcut Id="desktopShortcut" Directory="DesktopFolder" Name="$(var.ProductName)" WorkingDirectory="INSTALLDIR" Advertise="yes" Icon="DesktopIcon.exe" IconIndex="0" />
           <Shortcut Id="ExeShortcut" Directory="ProgramMenuDir" Name="$(var.ProductName)" Advertise="yes" Icon="StartMenuIcon.exe" IconIndex="0" />
         </File>        
       </Component>
-      <Component Id="Eyedia.IDPE.Utilities.Config" Guid="0c32d311-5c69-48eb-9bf8-33882c478463" Win64="yes">
+      <Component Id="idped.config" Guid="0c32d311-5c69-48eb-9bf8-33882c478463" Win64="yes">
         <File Id="idped.exe.config" Name="idped.exe.config" DefaultVersion="$(var.Version)" Source="..\..\Executables\idped.exe.config" Vital="yes" KeyPath="no" DiskId="1" />
       </Component>
-      <Component Id="Eyedia.IDPE.Utilities.cmd" Guid="bb255841-f7d1-4b16-893a-030a7639f1c4" Win64="yes">
+      <Component Id="idpec" Guid="bb255841-f7d1-4b16-893a-030a7639f1c4" Win64="yes">
         <Condition><![CDATA[SERVICEHOSTTYPE = "ws"]]></Condition>
         <File Id="idpec.exe" Name="idpec.exe" Source="..\..\Executables\idpec.exe" Vital="yes" KeyPath="yes" DiskId="1" />
         <File Id="idpec.exe.config" Name="idpec.exe.config" Source="..\..\Executables\idpec.exe.config" Vital="yes" KeyPath="no" DiskId="1" />
@@ -45,7 +53,7 @@
         <File Id="idpe.exe.config" Name="idpe.exe.config" DefaultVersion="$(var.Version)" Source="..\..\Executables\idpe.exe.config" Vital="yes" KeyPath="no" DiskId="1" />
         <File Id="idpe.exe" Name="idpe.exe" Source="..\..\Executables\idpe.exe" Vital="yes" KeyPath="yes" DiskId="1" />
         <File Id="SymplusRuleEngineService" Name="SymplusRuleEngineService" Source="..\..\Executables\idpe.exe" Vital="yes" KeyPath="no" DiskId="1" />        
-        <ServiceInstall Id="ServiceInstaller" Type="ownProcess" Vital="yes" Name="[INSTANCENAME]" DisplayName="[INSTANCENAME]" Description="[INSTANCEDESCRIPTION]" Start="auto" Account="NT Authority\Network Service" ErrorControl="ignore" Interactive="no">
+        <ServiceInstall Id="ServiceInstaller" Type="ownProcess" Vital="yes" Name="[INSTANCENAME]" DisplayName="[INSTANCENAME]" Description="[INSTANCEDESCRIPTION]" Start="auto" ErrorControl="ignore" Interactive="no">
         </ServiceInstall>        
       </Component>
       <Component Id="RegistryComponent" Guid="ccc462b9-8b4b-48d5-96e3-14d812038ec8" Win64="yes">
@@ -73,7 +81,7 @@
                       Action="setValue" 
                       Permanent="yes"
                       Name="debug" 
-                      ElementPath="/configuration/symplusCoreConfigurationSection[\[]@debug[\]]" 
+                      ElementPath="/configuration/eyediaCoreConfigurationSection[\[]@debug[\]]" 
                       File="[#idped.exe.config]" 
                       Value="false"
                       Sequence="2"/>
@@ -82,7 +90,7 @@
                       Action="setValue" 
                       Name="databaseType"
                       Permanent="yes"
-                      ElementPath="/configuration/symplusCoreConfigurationSection/database[\[]@databaseType[\]]" 
+                      ElementPath="/configuration/eyediaCoreConfigurationSection/database[\[]@databaseType[\]]" 
                       File="[#idped.exe.config]" 
                       Value="SqlCe"
                       Sequence="2"/>        
@@ -90,16 +98,16 @@
       <Component Id="ConfigIdpe" Guid="cecf8103-1098-4e8b-ad84-32a26fe27719" KeyPath="yes" Win64="yes">
         <Condition><![CDATA[SERVICEHOSTTYPE = "ws"]]></Condition>
         <util:XmlFile Id="ConfigIdpecs" Action="setValue" Name="connectionString" ElementPath="/configuration/connectionStrings/add[\[]@name='cs'[\]]" File="[#idpe.exe.config]" Value="Data Source='[INSTALLLOCATION][DEFAULTDB]';password=acc3s$" />
-        <util:XmlFile Id="ConfigIdpeInstanceName" Action="setValue" Name="instanceName" ElementPath="/configuration/symplusCoreConfigurationSection[\[]@instanceName[\]]" File="[#idpe.exe.config]" Value="[INSTANCENAMESHORT]" />
-        <util:XmlFile Id="ConfigIdpeDebug" Action="setValue" Name="debug" ElementPath="/configuration/symplusCoreConfigurationSection[\[]@debug[\]]" File="[#idpe.exe.config]" Value="false" />
-        <util:XmlFile Id="ConfigIdpeCache" Action="setValue" Name="cache" ElementPath="/configuration/symplusCoreConfigurationSection[\[]@cache[\]]" File="[#idpe.exe.config]" Value="true" />
-        <util:XmlFile Id="TempFolder" Action="setValue" Name="tempDirectory" ElementPath="/configuration/symplusCoreConfigurationSection[\[]@tempDirectory[\]]" File="[#idpe.exe.config]" Value="[TEMPFOLDER]" />
-        <util:XmlFile Id="ConfigIdpeDatabaseType" Action="setValue" Name="databaseType" ElementPath="/configuration/symplusCoreConfigurationSection/database[\[]@databaseType[\]]" File="[#idpe.exe.config]" Value="SqlCe" />        
-        <util:XmlFile Id="ConfigIdpeSMTPServer" Action="setValue" Name="smtpServer" ElementPath="/configuration/symplusCoreConfigurationSection/email[\[]@smtpServer[\]]" File="[#idpe.exe.config]" Value="[SMTP]" />
-        <util:XmlFile Id="ConfigIdpeFromEmailId" Action="setValue" Name="fromEmail" ElementPath="/configuration/symplusCoreConfigurationSection/email[\[]@fromEmail[\]]" File="[#idpe.exe.config]" Value="[FROM]" />
-        <util:XmlFile Id="ConfigIdpeToEmailIds" Action="setValue" Name="toEmails" ElementPath="/configuration/symplusCoreConfigurationSection/email[\[]@toEmails[\]]" File="[#idpe.exe.config]" Value="[TO]" />
-        <util:XmlFile Id="CustomTraceEnabled" Action="setValue" Name="enabled" ElementPath="/configuration/symplusCoreConfigurationSection/trace[\[]@enabled[\]]" File="[#idpe.exe.config]" Value="true" />
-        <util:XmlFile Id="CustomTraceFilePath" Action="setValue" Name="file" ElementPath="/configuration/symplusCoreConfigurationSection/trace[\[]@file[\]]" File="[#idpe.exe.config]" Value="[LogFolder]idpe.log" />
+        <util:XmlFile Id="ConfigIdpeInstanceName" Action="setValue" Name="instanceName" ElementPath="/configuration/eyediaCoreConfigurationSection[\[]@instanceName[\]]" File="[#idpe.exe.config]" Value="[INSTANCENAMESHORT]" />
+        <util:XmlFile Id="ConfigIdpeDebug" Action="setValue" Name="debug" ElementPath="/configuration/eyediaCoreConfigurationSection[\[]@debug[\]]" File="[#idpe.exe.config]" Value="false" />
+        <util:XmlFile Id="ConfigIdpeCache" Action="setValue" Name="cache" ElementPath="/configuration/eyediaCoreConfigurationSection[\[]@cache[\]]" File="[#idpe.exe.config]" Value="true" />
+        <util:XmlFile Id="TempFolder" Action="setValue" Name="tempDirectory" ElementPath="/configuration/eyediaCoreConfigurationSection[\[]@tempDirectory[\]]" File="[#idpe.exe.config]" Value="[TEMPFOLDER]" />
+        <util:XmlFile Id="ConfigIdpeDatabaseType" Action="setValue" Name="databaseType" ElementPath="/configuration/eyediaCoreConfigurationSection/database[\[]@databaseType[\]]" File="[#idpe.exe.config]" Value="SqlCe" />        
+        <util:XmlFile Id="ConfigIdpeSMTPServer" Action="setValue" Name="smtpServer" ElementPath="/configuration/eyediaCoreConfigurationSection/email[\[]@smtpServer[\]]" File="[#idpe.exe.config]" Value="[SMTP]" />
+        <util:XmlFile Id="ConfigIdpeFromEmailId" Action="setValue" Name="fromEmail" ElementPath="/configuration/eyediaCoreConfigurationSection/email[\[]@fromEmail[\]]" File="[#idpe.exe.config]" Value="[FROM]" />
+        <util:XmlFile Id="ConfigIdpeToEmailIds" Action="setValue" Name="toEmails" ElementPath="/configuration/eyediaCoreConfigurationSection/email[\[]@toEmails[\]]" File="[#idpe.exe.config]" Value="[TO]" />
+        <util:XmlFile Id="CustomTraceEnabled" Action="setValue" Name="enabled" ElementPath="/configuration/eyediaCoreConfigurationSection/trace[\[]@enabled[\]]" File="[#idpe.exe.config]" Value="true" />
+        <util:XmlFile Id="CustomTraceFilePath" Action="setValue" Name="file" ElementPath="/configuration/eyediaCoreConfigurationSection/trace[\[]@file[\]]" File="[#idpe.exe.config]" Value="[LogFolder]idpe.log" />
         <util:XmlFile Id="LocalFileWatcherFolder" Action="setValue" Name="baseDirectory" ElementPath="/configuration/idpeConfigurationSection/localFileWatcher[\[]@baseDirectory[\]]" File="[#idpe.exe.config]" Value="[WATCHFOLDER]" />
       </Component>
       <Component Id="StartService" Guid="86a0b300-b833-4012-bdda-7973742d5e15" KeyPath="yes" Win64="yes">
@@ -113,9 +121,9 @@
       <ComponentRef Id="InstallDirDataPermissions" />      
       <ComponentRef Id="External.Libraries" />
       <ComponentRef Id="Eyedia.IDPE.Internal.Libraries" />
-      <ComponentRef Id="Eyedia.IDPE.Utilities" />
-      <ComponentRef Id="Eyedia.IDPE.Utilities.Config" />
-      <ComponentRef Id="Eyedia.IDPE.Utilities.cmd" />
+      <ComponentRef Id="idped" />
+      <ComponentRef Id="idped.config" />
+      <ComponentRef Id="idpec" />
       <ComponentRef Id="Eyedia.IDPE.Services.dll" />
       <ComponentRef Id="Eyedia.IDPE.DataManager.dll" />
       <ComponentRef Id="Eyedia.IDPE.WindowsService" />

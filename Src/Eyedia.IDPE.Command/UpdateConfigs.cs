@@ -84,8 +84,9 @@ namespace Eyedia.IDPE.Command
                 return;
             }
             eccs.Database.DatabaseType = Core.Data.DatabaseTypes.SqlCe;
-            eccs.Debug = false;
+            eccs.Debug = false;            
             eccs.AuthenticationType = Core.Net.AuthenticationTypes.Eyedia;
+            eccs.Cache = true;
 
             if (setFolder)
             {

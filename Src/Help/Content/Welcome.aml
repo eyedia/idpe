@@ -13,9 +13,8 @@
            zero (0) to limit it to top-level sections only.  -->
       <!-- <autoOutline /> -->
       <para>
-      Welcome to Symplus Rule Engine(SRE) world to experience how a tiny .Net based rule engine can make data transformation so easy. The SRE uses
-      CodeDom rules which can be easily written using SRE Utilities and the rules can be applied on fly. As you might already know that SRE requires only
-      .Net runtime 3.5 and absolutely no other pre-requisites is required.
+        Integrated Data Processing Environment .NET framework to build applications on-the-fly by 
+        configuring .NET xaml based rules
       </para>
     </introduction>
     <!-- Add one or more top-level section elements.  These are collapsible.
