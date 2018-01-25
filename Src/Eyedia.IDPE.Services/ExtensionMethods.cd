@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Eyedia.IDPE.Services.ExtensionMethods">
+    <Position X="0.5" Y="0.5" Width="10" />
+    <Members>
+      <Method Name="AllowPartial" Hidden="true" />
+      <Method Name="Get" Hidden="true" />
+      <Method Name="GetTracePrefix" Hidden="true" />
+      <Method Name="IsCacheInitialized" Hidden="true" />
+      <Method Name="SetZippedBinaryValue" Hidden="true" />
+      <Method Name="ThrowErrorIfNull" Hidden="true" />
+      <Method Name="TraceError" Hidden="true" />
+      <Method Name="TraceInformation" Hidden="true" />
+      <Method Name="TrimDataSourceName" Hidden="true" />
+      <Method Name="WriteVerbose" Hidden="true" />
+      <Method Name="WriteVerboseLine" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAAAAAAIABAAAADAAAAAIGAABCABgAECAAIAAAAAAAA=</HashCode>
+      <FileName>ExtensionMethods.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -669,6 +669,11 @@ namespace Eyedia.IDPE.Services
         }
 
         public bool IsHavingSpecialHeaderAndOrFooter { get { return !string.IsNullOrEmpty(FileNameWithoutHeaderAndOrFooter); } }
+
+        /// <summary>
+        /// When file with special header footer being processed, system internally separate outs the data and header/footer
+        /// header/footer parsed and then data copied into a new file, generally original file name + some suffix to be parsed normally
+        /// </summary>
         public string FileNameWithoutHeaderAndOrFooter { get; private set; }       
 
         private void ExtractHeaderFooter()

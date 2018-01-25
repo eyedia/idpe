@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="Eyedia.IDPE.Services.Job" HideInheritanceLine="true">
+    <Position X="0.5" Y="1" Width="4" />
+    <Members>
+      <Property Name="BadDataInCsvFormat" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Eyedia.IDPE.Services.Job.AbortReasons" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>BOs\Job.1.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAMGIgQUACSUg0K0AhlAkICCTABwAKMgDMcQCQBBDRA=</HashCode>
+      <FileName>BOs\Job.1.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Eyedia.IDPE.Services.WorkerData">
+    <Position X="5" Y="1" Width="3.5" />
+    <Members>
+      <Property Name="BadDataInCsvFormat" Hidden="true" />
+      <Property Name="ValueUpdationNotPermitted" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAABAAgBDAAgUAAQgAAAAAAAAACAAIAAAAAAQIAAAQ=</HashCode>
+      <FileName>BOs\WorkerData.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Eyedia.IDPE.Services.Attribute">
+    <Position X="9" Y="1" Width="3.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AEASAAQAgDQICRAAKAAB4AyggQAAQgIIIwAqARAEIQI=</HashCode>
+      <FileName>BOs\Attribute.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Eyedia.IDPE.Services.Row" HideInheritanceLine="true">
+    <Position X="5" Y="6" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAQAAACAAAQAEAAAAAAAAAAJEAAAAAAAAAAigAAQ=</HashCode>
+      <FileName>BOs\Row.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Eyedia.IDPE.Services.Column">
+    <Position X="5" Y="10.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BOs\Column.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Eyedia.IDPE.Services.DataSource">
+    <Position X="9" Y="10.25" Width="3.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACEwgSAC0gAAwAGEoGAgQQCIVAAJEKAAAQQAFgBIA=</HashCode>
+      <FileName>BOs\DataSource.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

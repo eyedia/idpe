@@ -169,7 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="ClassDiagram1.cd" />
+    <None Include="ExtensionMethods.cd" />
     <None Include="Data\Core.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Core.designer.cs</LastGenOutput>

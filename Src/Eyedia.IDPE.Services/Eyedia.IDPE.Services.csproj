@@ -304,6 +304,8 @@
     <EmbeddedResource Include="Clients\Client.config" />
     <None Include="Clients\idpeesClient.config" />
     <EmbeddedResource Include="EnvironmentService\sreupdate.cmd" />
+    <None Include="ImportantClasses-1.cd" />
+    <None Include="ExtensionMethods.cd" />
     <None Include="packages.config" />
     <None Include="Release\Finish.bat" />
   </ItemGroup>
