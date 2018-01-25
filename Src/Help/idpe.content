@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Topics>
+  <Topic id="e16fbd56-dd28-4d02-8514-5ad4f1b1717f" visible="True" isDefault="true" title="Welcome" tocTitle="Welcome" />
+  <Topic id="5370626c-2de8-42c4-a637-0a7dbaadb4be" visible="True" title="License Agreement" tocTitle="License Agreement" />
+  <Topic id="d52567f3-4af9-403e-84ec-242f9a94d75b" visible="True" title="Known Issues and Limitations" />
+  <Topic id="2053E30C-B1E5-4AEA-9C0C-F6784F2F8235" visible="True" isExpanded="true" title="Data Feeders">
+    <Topic id="C6089F81-D403-4EDC-85FF-A17F2FC2790B" visible="True" />
+  </Topic>
+  <Topic id="82c19afe-56a1-43b9-91a8-09892a0d6594" visible="True" isExpanded="true" title="Data Formats">
+    <Topic id="5835d16a-9483-4be0-bfeb-8665eb8bc3d1" visible="True" title="Delimited" />
+    <Topic id="3a0ad1dd-0b67-48c2-8daf-df87b74db298" visible="True" />
+    <Topic id="24310e75-5eb6-445d-933c-8444187ef593" visible="True" />
+    <Topic id="021b0952-85b1-4cdd-846c-0e04739dff99" visible="True" />
+    <Topic id="a0005fbf-d86c-44a8-89fc-94116acaef96" visible="True" />
+    <Topic id="04e1f3b7-3b3d-4444-8ac7-d7fa7477e2c4" visible="True" isSelected="true" />
+  </Topic>
+  <Topic id="a9681abb-7b5c-40ee-9903-ca8439741e5c" visible="True" isExpanded="true" title="Getting Started">
+    <Topic id="37511e02-51f9-41c1-9fd4-1ed96b782ea3" visible="True" />
+    <Topic id="ee5eb8e6-f72f-47bc-9862-7d54c62a6e7a" visible="True" title="Samples - Getting familiar with IDPE" />
+  </Topic>
+  <Topic id="a3ad3562-536d-418f-9bd7-6ceb831b8c3d" visible="True" title="Frequently Asked Questions (FAQ)" />
+</Topics>

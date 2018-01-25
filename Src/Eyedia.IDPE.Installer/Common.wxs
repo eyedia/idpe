@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <?include Properties.wxi?>
+  <Fragment>    
+    <DirectoryRef Id="INSTALLLOCATION">
+      <Component Id="LogCurrentVersion" Guid="963ecc9a-af9d-4969-ab1b-dedc052eaba6" Win64="yes">
+        <Condition><![CDATA[SERVICEHOSTTYPE = "ws"]]></Condition>
+        <RegistryKey Id="RegKeyVersion" Action="createAndRemoveOnUninstall" Root="HKLM" Key="SOFTWARE\[Manufacturer]\[ProductName]">
+          <RegistryValue Id="Version" Name="Version" Value="$(var.Version)" Type="string" />          
+        </RegistryKey>
+      </Component>
+      <Component Id="EncryptKey" Guid="c056467b-16c9-4459-b81b-c6f12f6863fb" Win64="yes">
+        <File Id="Eyedia.xml" Name="Eyedia.xml" Source="..\..\Executables\Eyedia.xml" Vital="yes" KeyPath="no" DiskId="1" />        
+      </Component>      
+      <Component Id="InstallDirDataPermissions" Guid="4cceea97-ba8c-476b-a9fa-c4cee85228ac" KeyPath="yes" Win64="yes">
+        <CreateFolder>
+          <!--<util:PermissionEx User="Everyone" GenericAll="yes" />-->
+        </CreateFolder>
+      </Component>
+      <Directory Id="LogFolder" Name ="Logs">
+        <Component Id="LogFolder" Guid="8ac10158-43fa-4ef6-901c-a8275a896213" KeyPath="yes" Win64="yes">
+          <CreateFolder />
+        </Component>
+      </Directory>
+      <Directory Id="DesktopFolder" />
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ProgramMenuDir" Name="$(var.ProductName)">          
+            <Component Id="StartMenuShortcuts1" Guid="83645082-811C-41B4-984C-892375F0581E"  Win64="yes">
+              <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+              <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" />          
+            </Component>          
+          <Directory Id="ProgramMenuDirOthers" Name="Others">
+            <Component Id="StartMenuShortcuts2" Guid="7509a8a5-5ffd-4bcc-a9af-0dd52935f613"  Win64="yes">
+              <RemoveFolder Id="ProgramMenuDirOthers" On="uninstall" />
+              <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" />
+              <Shortcut Id="PullFolder" Name="Pull Folder" Description="Opens pulls folder" Target= "[WindowsFolder]explorer.exe" Arguments="[WATCHFOLDER]\AppData\InBound\Pull" />
+              <Shortcut Id="UninstallProduct" Name="Uninstall" Description="Uninstalls the application" Target="[System64Folder]msiexec.exe" Arguments="/x [ProductCode] /qf" />
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+    </DirectoryRef>   
+    
+    <ComponentGroup Id="SetupCommon">
+      <ComponentRef Id="LogCurrentVersion" />
+      <ComponentRef Id="EncryptKey" />
+      <ComponentRef Id="db" />
+      <ComponentRef Id="LogFolder" />
+      <ComponentRef Id="StartMenuShortcuts1" />
+      <ComponentRef Id="StartMenuShortcuts2" />
+    </ComponentGroup>
+  </Fragment>
+</Wix>

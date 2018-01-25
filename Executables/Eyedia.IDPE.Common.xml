@@ -1,0 +1,840 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Eyedia.IDPE.Common</name>
+    </assembly>
+    <members>
+        <member name="F:Eyedia.IDPE.Common.RuleSetTypes.Unknown">
+            <summary>
+            Unknown rule set type, generally prior to initialize
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.RuleSetTypes.PreValidate">
+            <summary>
+            Once the data set is received, prevalidate rules are applied, generally to the whole data container, duplicate check is the common example
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.RuleSetTypes.RowPreparing">
+            <summary>
+            Before preparing a row, setting default values can be a good example
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.RuleSetTypes.RowPrepared">
+            <summary>
+            After parsing the datatypes, the best place to calculate derrived values
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.RuleSetTypes.RowValidate">
+            <summary>
+            A row can be marked as valid or invalid. Cell values cannot be changed at this stage
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.RuleSetTypes.PostValidate">
+            <summary>
+            Post valid rules are applied to complete data set
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.RuleSetTypes.SqlPullInit">
+            <summary>
+            Before pulling Sql query to pull data, these rules will be applied. Best place to set connection string
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.GlobalEventsOnComplete">
+            <summary>
+            [String]
+            Stores global commands raw string, for more information read GlobalEventsOnComplete
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.ConnectionStringSqlServer">
+            <summary>
+            [String]
+            SQL server connection string
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.ConnectionStringOracle">
+            <summary>
+            [String]
+            Oracle connection string
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.ConnectionStringSqlCe">
+            <summary>
+            [String]
+            SQL CE connection string
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.ConnectionStringDB2iSeries">
+            <summary>
+            [String]
+            DB2 connection string
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.FtpRemoteLocation">
+            <summary>
+            [String]
+            FTP url
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.FtpUserName">
+            <summary>
+            [String]
+            FTP user name
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.FtpPassword">
+            <summary>
+            [String]
+            FTP password
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.FtpPort">
+            <summary>
+            [Int32]
+            FTP port
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.FtpWatchInterval">
+            <summary>
+            [String]
+            FTP Watch interval in minutes
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.LocalLocation">
+            <summary>
+            [String]
+            Local archive folder. IDPE sets this internally
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.WatchFilter">
+            <summary>
+            [String]
+            Watch filter on local file system (e.g - .txt|.csv)
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.OutputFolder">
+            <summary>
+            [String]
+            Local archive folder. IDPE sets this internally
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.LocalArchiveFolder">
+            <summary>
+            [String]
+            Local archive folder. IDPE sets this internally
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.FixedLengthSchema">
+            <summary>
+            [String]
+            &apos;Fixed Length&apos; schema
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.FixedLengthHeaderAttribute">
+            <summary>
+            [String - Name of any associated string type attribute]
+            IDPE will be configured to make last line as header in case of map &apos;Fixed Length&apos;, and will map it to the value.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.FixedLengthFooterAttribute">
+            <summary>
+            [String - Name of any associated string type attribute]
+            IDPE will be configured to make last line as footer in case of map &apos;Fixed Length&apos;, and will map it to the value.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.SqlQuery">
+            <summary>
+            [String]
+            Sql query, mostly used when loading mechanism is &apos;PullSQL&apos;. If if it is not in use @data source, you can use this for any other purpose.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.Custom">
+            <summary>
+            [String]
+            Any custom key. If app owner wants to keep some configuration/information in IDPE (later to be used in some plug-ins/interfaces).
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.GenerateParametersFromDatabase">
+            <summary>
+            [Bool]
+            IDPE has a mechanism to generate multiple parameters from database. For more information please read &apos;TODO&apos;. This flag enables/disables this feature.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.IsFirstRowHeader">
+            <summary>
+            [Bool]
+            If the first row is header. If this is set in case of zip/rar/tar file, this will get applied to all files in the zip
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.PullSqlReturnType">
+            <summary>
+            [String - 1 char]
+            When loading mechanism is &apos;PullSQL&apos;, if your SQL query output is directly fed into IDPE, this should set as 'D' or if you would like an interface to reprocess the SQL
+            output and then feed into IDPE, you will set this as &apos;I&apos; and also set &apos;PullSqlInterfaceName&apos;
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.PullSqlInterfaceName">
+            <summary>
+            [String]
+            When loading mechanism is &apos;PullSQL&apos;, and you would need an interface to process the output of the SQL and feed IDPE, which means
+            you set &apos;PullSqlReturnType = I&apos;
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.PullSqlConnectionString">
+            <summary>
+            [String]
+            When loading mechanism is &apos;PullSQL&apos;, you define your connection string using this
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.SqlWatchInterval">
+            <summary>
+            [Int32]
+            SQL Watch interval in minutes
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.FileInterfaceName">
+            <summary>
+            [String]
+             The full file interface type, which will be used to process individual files (applicable when &apos;ZipFileConfigType = 1&apos;. This is useful when you have custom data inside
+             the file (for example, xml) and you would need an interface to covert the xml into data table.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.ZipInterfaceName">
+            <summary>
+            [String]
+            The full interface type, which will be used to process the zip (applicable when &apos;ZipFileConfigType = 1&apos;
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.ZipDataFileDataFormatType">
+            <summary>
+            [DataFormatTypes]
+            Zip data file format
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.ZipFilesSortType">
+            <summary>
+            [string]
+            -1 = IDPE will not sort the files and process as is
+            0 = IDPE will sort the files based on extensions before processing. Ascending
+            1 = IDPE will sort the files based on extensions before processing. Descending
+            ".txt|.dat" = IDPE will sort the files based on configured extensions
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.SqlUpdateQueryProcessed">
+            <summary>
+            [String]
+            Sql update query, used when loading mechanism is &apos;PullSql&apos;. This query is used to mark data as processed.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.SpreadSheetNumber">
+            <summary>
+            [Int]
+            Spread sheet number of a spreadsheet file
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.ZipIgnoreFileList">
+            <summary>
+            [String]
+            IDPE will ignore these types of extensions (e.g - .txt|.dat)
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.ZipIgnoreFileListButCopyToOutputFolder">
+            <summary>
+            [String]
+            IDPE will ignore these types of extensions, but copy the file as is to output folder (e.g - .txt|.dat)
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.ZipFileConfigType_not_in_use">
+            <summary>
+            [Bool]
+            0 - simple(default) config, 1 - custom config: all the interfaces are overriden with custom interfaces
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.ZipDoNotCreateAcknoledgementInOutputFolder">
+            <summary>
+            [Bool]
+            By default zip/tar/rar (e.g: input.zip) a acknoledgement text file will get created in output folder as &lt;file name&gt;.xml (e.g. input.zip.xml) 
+            which will contain the unique zip id. This can be used to acknoledge that the file has been processed. 
+            If this flag is set to boolean true, the file will not be copied to output folder
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.RenameColumnHeader">
+            <summary>
+            [Bool]
+            Renames file column names according to associated attribute names        
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.DataFeedCustomType">
+            <summary>
+            [String]
+            Data feed through custom type. An array or single object can be passed directly to ProcessManager.Parse() method
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.LocalFileSystemFoldersOverriden">
+            <summary>
+            [bool]
+            Whether data source has overriden 'PullLocalFileSystem' folders
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.LocalFileSystemFolderPull">
+            <summary>
+            [String]
+            Pull folder, when data source wants to override 'PullLocalFileSystem'
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.LocalFileSystemFolderArchive">
+            <summary>
+            [String]
+            Archive folder, when data source wants to override 'PullLocalFileSystem'
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.LocalFileSystemFolderOutput">
+            <summary>
+            [String]
+            Output folder, when data source wants to override 'PullLocalFileSystem'
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.LocalFileSystemFolderArchiveAuto">
+            <summary>
+            [bool]
+            Whether to create auto archive folder (under pull folder), when data source wants to override 'PullLocalFileSystem'
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.OutputFileExtension">
+            <summary>
+            [String]
+            Output file extension(visual),example-.txt,.csv,.data,etc.If not defined it will be .xml by default
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.WcfCallsGenerateStandardOutput">
+            <summary>
+            [bool]
+            If true, all wcf calls output will be written on standard output folder (useful for debugging)
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.DoNotGenerateErroredOutputWhenException">
+            <summary>
+            [bool]
+            If true returns empty string in case of error, else generic message with exception identifier (useful for debugging)
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.HeaderLine1Attribute">
+            <summary>
+            [String - Name of any associated string type attribute]
+            IDPE will be configured to make first line as header1 and will be mapped to the configured attribute.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.HeaderLine2Attribute">
+            <summary>
+            [String - Name of any associated string type attribute]
+            IDPE will be configured to make first line as header2 and will be mapped to the configured attribute.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.HeaderLine3Attribute">
+            <summary>
+            [String - Name of any associated string type attribute]
+            IDPE will be configured to make first line as header3 and will be mapped to the configured attribute.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.HeaderLine4Attribute">
+            <summary>
+            [String - Name of any associated string type attribute]
+            IDPE will be configured to make first line as header4 and will be mapped to the configured attribute.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.HeaderLine5Attribute">
+            <summary>
+            [String - Name of any associated string type attribute]
+            IDPE will be configured to make first line as header5 and will be mapped to the configured attribute.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.HeaderLine6Attribute">
+            <summary>
+            [String - Name of any associated string type attribute]
+            IDPE will be configured to make first line as header6 and will be mapped to the configured attribute.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.FooterLine1Attribute">
+            <summary>
+            [String - Name of any associated string type attribute]
+            IDPE will be configured to make first line as footer1 and will be mapped to the configured attribute.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.FooterLine2Attribute">
+            <summary>
+            [String - Name of any associated string type attribute]
+            IDPE will be configured to make first line as footer2 and will be mapped to the configured attribute.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.FooterLine3Attribute">
+            <summary>
+            [String - Name of any associated string type attribute]
+            IDPE will be configured to make first line as footer3 and will be mapped to the configured attribute.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.FooterLine4Attribute">
+            <summary>
+            [String - Name of any associated string type attribute]
+            IDPE will be configured to make first line as footer4 and will be mapped to the configured attribute.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.FooterLine5Attribute">
+            <summary>
+            [String - Name of any associated string type attribute]
+            IDPE will be configured to make first line as footer5 and will be mapped to the configured attribute.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.FooterLine6Attribute">
+            <summary>
+            [String - Name of any associated string type attribute]
+            IDPE will be configured to make first line as footer6 and will be mapped to the configured attribute.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.OutputFileName">
+            <summary>
+            [String]
+            Output file name (without extension). If not defined, it will be same as input file name
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.OutputPartialRecordsAllowed">
+            <summary>
+            [Bool]
+            If partial records are allowed while writing internal output writers
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.OutputDelimiter">
+            <summary>
+            [String]
+            Output delimiter when using internal delimiter output writer
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.OutputIsFirstRowHeader">
+            <summary>
+            [Bool]
+            If the first row is header when using internal delimiter output writer
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.EmailCc">
+            <summary>
+            [String]
+            Comma separated CC email ids
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.EmailBcc">
+            <summary>
+            [String]
+            Comma separated BCC email ids
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.EmailAfterFileProcessed">
+            <summary>
+            [Bool]
+            if true, sends an email after processing each file
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.EmailAfterFileProcessedAttachInputFile">
+            <summary>
+            [Bool]
+            if true, sends an email after processing each file and attach input file
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.SqlUpdateQueryProcessing">
+            <summary>
+            [String]
+            Sql update query, used when loading mechanism is &apos;PullSql&apos;. This query is used to keep data interim(processing) state
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.SqlUpdateQueryRecovery">
+            <summary>
+            [String]
+            Sql update query, used when loading mechanism is &apos;PullSql&apos;. This query is used to keep data from interim state to error state
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.CSharpCodeOutputWriter">
+            <summary>
+            [String]
+            Dynamic Output writer
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.EDIX12Xslt">
+            <summary>
+            [String]
+            EDIX12 Xslt string
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.Xslt">
+            <summary>
+            [String]
+            Xslt string
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.CSharpCodeGenerateTable">
+            <summary>
+            [String]
+            Dynamic DataTable Generator from file name or file content
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.XmlFeedMechanism">
+            <summary>
+            [XmlFeedMechanism]
+            Xml feed mechanism (Xslt or CSharpCode or Custom Interface)
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.FixedLengthSchemaOutputWriter">
+            <summary>
+            [String]
+            &apos;Fixed Length&apos; schema for output writer.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.OutputWriterDatabaseConfiguration">
+            <summary>
+            [String]
+            Database Output writer configuration including connection string key name, table and mapping information
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.SchedulerInterfaceName_TODO">
+            <summary>
+            [String]
+            Scheduler datasource interface name
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.EmailAfterFileProcessedAttachOutputFile">
+            <summary>
+            [Bool]
+            if true, sends an email after processing each file and attach output file
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.EmailAfterFileProcessedAttachOtherFiles">
+            <summary>
+            [string]
+            Comma separated other files to be attached
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.CustomActions">
+            <summary>
+            [string]
+            Pipe separate tools action items
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.PullSqlConnectionStringRunTime">
+            <summary>
+            [String]
+            When loading mechanism is &apos;PullSQL&apos;, connection string at run time, defined through PulSqlInit rules
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.Environments">
+            <summary>
+            [String]
+            Various environments information and its root path, etc.
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.AdditionalDeploymentArtifacts">
+            <summary>
+            [String]
+            List of external dlls to be deployed
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.TestFileName">
+            <summary>
+            [String]
+            Test file name to process
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.IdpeKeyTypes.OutputDelimiterDoNotEncloseWithDoubleQuote">
+            <summary>
+            [String]
+            Do not enclose each cell value with double quotes, applicable only when output writer is delimiter
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.Information.SQLQueries">
+            <summary>
+            Dictionary to store common sql queries
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.Information.EventLogSource">
+            <summary>
+            Windows event log source
+            </summary>
+        </member>
+        <member name="F:Eyedia.IDPE.Common.Information.EventLogName">
+            <summary>
+            Windows event log group name
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.Information.EyediaCoreConfigurationSection">
+            <summary>
+            eyediaCoreConfigurationSection from config file
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.Information.IdpeConfigurationSection">
+            <summary>
+            IdpeConfigurationSection from config file
+            </summary>
+        </member>
+        <member name="M:Eyedia.IDPE.Common.ReflectionMethods.GetConstants(System.Type)">
+            <SUMMARY>
+            This method will return all the constants from a particular
+            type including the constants from all the base types
+            </SUMMARY>
+            <PARAM NAME="TYPE">type to get the constants for</PARAM>
+            <RETURNS>array of FieldInfos for all the constants</RETURNS>
+        </member>
+        <member name="M:Eyedia.IDPE.Common.SourceCodeManager.CopyStream(System.IO.Stream,System.IO.Stream)">
+            <summary> 
+              Copies data from a source stream to a target stream.</summary> 
+            <param name="source">
+              The source stream to copy from.</param> 
+            <param name="target">
+              The destination stream to copy to.</param> 
+        </member>
+        <member name="T:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_ATTRIBUTE_ASSIGN_FAILED">
+            <summary>
+              Looks up a localized string similar to Attribute assign failed. Please check server log for more details.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_BIGINT_TYPE_DATA_VALIDATION_FAILED">
+            <summary>
+              Looks up a localized string similar to {0}Expecting a &apos;{1}&apos; type data and it failed with value &apos;{2}&apos;.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_BIT_TYPE_DATA_VALIDATION_FAILED">
+            <summary>
+              Looks up a localized string similar to {0}Expecting a &apos;{1}&apos; type data and it failed with value &apos;{2}&apos;.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_CODESET_TYPE_DATA_VALIDATION_FAILED">
+            <summary>
+              Looks up a localized string similar to {0}&apos;{1}&apos; is invalid..
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_CONTAINER_VALIDATION_FAILED">
+            <summary>
+              Looks up a localized string similar to &quot;Conainter validation is failed&quot;.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_CONTAINER_VALIDATION_FAILED_ROW">
+            <summary>
+              Looks up a localized string similar to &quot;Container validation is failed for the row &apos;{0}&apos;. Error is &apos;{1}&apos;&quot;.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_DATE_TYPE_DATA_VALIDATION_FAILED">
+            <summary>
+              Looks up a localized string similar to {0}Expecting a &apos;{1}&apos; type data and it failed with value &apos;{2}&apos;.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_DECIMAL_TYPE_DATA_VALIDATION_FAILED">
+            <summary>
+              Looks up a localized string similar to {0}Expecting a &apos;{1}&apos; type data and it failed with value &apos;{2}&apos;.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_FAILED">
+            <summary>
+              Looks up a localized string similar to Failed!.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_FAILED_BLANK">
+            <summary>
+              Looks up a localized string similar to .
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_FILE_GENERIC">
+            <summary>
+              Looks up a localized string similar to There was an error processing the file.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_FILE_TYPE_NOT_SUPPORTED">
+            <summary>
+              Looks up a localized string similar to &apos;{0}&apos; has been configured to support only &apos;{1}&apos; type(s) of file. The file &apos;{2}&apos; was ignored..
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_GENERATED_TYPE_DATA_VALIDATION_FAILED">
+            <summary>
+              Looks up a localized string similar to {0}Invalid generation formula &apos;{1}&apos; in GENERATED type column {2}..
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_INT_TYPE_DATA_VALIDATION_FAILED">
+            <summary>
+              Looks up a localized string similar to {0}Expecting a &apos;{1}&apos; type data and it failed with value &apos;{2}&apos;.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_NOT_REFERENCED_TYPE_DATA_RESULT_FOUND">
+            <summary>
+              Looks up a localized string similar to {0}&apos;{1}&apos; already exists, existing value not acceptable in {2}. If you sure about correctness, please check other dependent column(s). Existing value might be allowed in case of &apos;Modifications&apos;, &apos;Cancellations&apos;..
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_NOT_REFERENCED_TYPE_DATA_RESULT_NOT_FOUND">
+            <summary>
+              Looks up a localized string similar to .
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_PLUGIN_METHOD_EXECUTION_FAILED">
+            <summary>
+              Looks up a localized string similar to Plugin method execution failed. Error Id = {0}.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_PLUGIN_METHOD_EXECUTION_FAILED_METHOD_NOT_DEFINED">
+            <summary>
+              Looks up a localized string similar to Plugin method not defined or its failed to execute.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_REFERENCED_TYPE_DATA_CAN_NOT_BE_NULL">
+            <summary>
+              Looks up a localized string similar to {0}Invalid value &apos;{1}&apos;. &apos;{2}&apos; can not be empty or blank..
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_REFERENCED_TYPE_DATA_RESULT_FOUND">
+            <summary>
+              Looks up a localized string similar to .
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_REFERENCED_TYPE_DATA_RESULT_NOT_FOUND">
+            <summary>
+              Looks up a localized string similar to {0}Invalid value &apos;{1}&apos;. Referenced type &apos;{2}&apos; not found..
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_STRING_TYPE_DATA_VALIDATION_FAILED">
+            <summary>
+              Looks up a localized string similar to {0}Expecting a &apos;{1}&apos; type data and it failed with value &apos;{2}&apos;.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_SUCCESS">
+            <summary>
+              Looks up a localized string similar to .
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_TYPE_DATA_VALIDATION_FAILED_GENERIC">
+            <summary>
+              Looks up a localized string similar to A critical error occurred. Please contact technical support..
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM">
+            <summary>
+              Looks up a localized string similar to {0}{1} should be less than {2}.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM_DATE_SERVER">
+            <summary>
+              Looks up a localized string similar to {0}&apos;{1:d}&apos; has to be less than current server date &apos;{2:d}&apos;.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM_DATETIME_SERVER">
+            <summary>
+              Looks up a localized string similar to {0}&apos;{1}&apos; has to be less than current server date &amp; time &apos;{2}&apos;.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_TYPE_DATA_VALIDATION_FAILED_MAXIMUM_STRING">
+            <summary>
+              Looks up a localized string similar to {0}Maximum length allowed in &apos;{1}&apos; is {2}.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_TYPE_DATA_VALIDATION_FAILED_MINIMUM">
+            <summary>
+              Looks up a localized string similar to {0}{1} should be greater than {2}.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_TYPE_DATA_VALIDATION_FAILED_MINIMUM_DATE_SERVER">
+            <summary>
+              Looks up a localized string similar to {0}&apos;{1:d}&apos; has to be greater than current server date &apos;{2:d}&apos;.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_TYPE_DATA_VALIDATION_FAILED_MINIMUM_DATETIME_SERVER">
+            <summary>
+              Looks up a localized string similar to {0}&apos;{1}&apos; has to be greater than current server date &amp; time &apos;{2}&apos;.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_TYPE_DATA_VALIDATION_FAILED_MINIMUM_MAXIMUM_DATE">
+            <summary>
+              Looks up a localized string similar to {0}&apos;{1}&apos; has to be greater than or equal to &apos;{2}&apos; and less than or equal to &apos;{3}&apos;.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_TYPE_DATA_VALIDATION_FAILED_MINIMUM_STRING">
+            <summary>
+              Looks up a localized string similar to {0}Length of &apos;{1}&apos; should be at least {2}.
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeMessageCodeDescriptions.IDPE_TYPE_DATA_VALIDATION_FAILED_VALUE_UPDATION_NOT_PERMITTED">
+            <summary>
+              Looks up a localized string similar to A critical error occurred. Value can not be updated at this time, please contact support..
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeConfigurationSection.TimeOut">
+            <summary>
+            All thread timeout in minutes
+            </summary>
+        </member>
+        <member name="P:Eyedia.IDPE.Common.IdpeConfigurationSection.WorkerTimeOut">
+            <summary>
+            Worker timeout in minutes
+            </summary>
+        </member>
+        <member name="T:Mask">
+            <summary>
+            Mask class to provide various utility static helper methods to help most common activities
+            like NullString, EmptyString, SQLDateTime, NullableToGeneric, etc.
+            This class is made partial so that developer can add additional methods in to the same class.
+            </summary>
+        </member>
+        <member name="M:Mask.NullableToGeneric``1(System.Object)">
+            <summary>
+            Converts Nullable data type to Generic data type
+            </summary>
+            <typeparam name="TVal"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mask.NullString(System.String)">
+            <summary>
+            Masks nullable string to empty string, else returns string itself.
+            </summary>
+            <param name="str">String to check</param>
+            <returns></returns>
+        </member>
+        <member name="M:Mask.EmptyString(System.String,System.String)">
+            <summary>
+            Fills string with filler if string is NOT null or is NOT empty or string length is NOT 0    
+            </summary>
+            <param name="str">String to check</param>
+            <param name="filler">Filler to return</param>
+            <returns>string</returns>
+        </member>
+        <member name="M:Mask.SQLDateTime(System.DateTime)">
+            <summary>
+            Checks if DateTime is a valid MS SQL DateTime.
+            Returns 1/1/1753 12:00:00 AM if DateTime is equal to 1/1/0001 12:00:00 AM
+            else returns passed DateTime
+            </summary>
+            <param name="DateTime">DateTime to Check</param>
+            <returns>DateTime</returns>
+        </member>
+        <member name="M:Mask.SQLDateTime(System.String)">
+            <summary>
+            Converts strDateTime to valid DateTime.
+            Returns 1/1/1753 12:00:00 AM if strDateTime is equal to 1/1/0001 12:00:00 AM
+            else returns strDateTime
+            </summary>
+            <param name="strDateTime">DateTime as string to check</param>
+            <returns>DateTime</returns>
+        </member>
+        <member name="M:Mask.SQLDateTime">
+            <summary>
+            Returns valid MS SQL DateTime 1/1/1753 12:00:00 AM
+            </summary>
+            <returns>DateTime</returns>
+        </member>
+    </members>
+</doc>

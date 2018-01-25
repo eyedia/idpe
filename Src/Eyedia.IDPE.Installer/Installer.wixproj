@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" InitialTargets="EnsureWixToolsetInstalled" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>3.10</ProductVersion>
+    <ProjectGuid>981958fd-fd6f-4959-9947-e66f6bf88b44</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>idpe</OutputName>
+    <OutputType>Package</OutputType>
+    <Name>Installer</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>Debug</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Common.wxs" />
+    <Compile Include="Documents.wxs" />
+    <Compile Include="Folders.wxs" />
+    <Compile Include="Main.wxs" />
+    <Compile Include="Files.wxs" />
+    <Compile Include="UI.wxs" />
+    <Compile Include="WindowsService.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Graphics\banner.jpg" />
+    <Content Include="Graphics\bannrbmp.ibd" />
+    <Content Include="Graphics\completi.ibd" />
+    <Content Include="Graphics\custicon.ibd" />
+    <Content Include="Graphics\dlgbmp.ibd" />
+    <Content Include="Graphics\dlgbmp.jpg" />
+    <Content Include="Graphics\exclamic.ibd" />
+    <Content Include="Graphics\info.ibd" />
+    <Content Include="Graphics\insticon.ibd" />
+    <Content Include="Graphics\New.ibd" />
+    <Content Include="Graphics\removico.ibd" />
+    <Content Include="Graphics\repairic.ibd" />
+    <Content Include="Graphics\Up.ibd" />
+    <Content Include="license.rtf" />
+    <Content Include="Properties.wxi" />
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Graphics\" />
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
+  <Target Name="EnsureWixToolsetInstalled" Condition=" '$(WixTargetsImported)' != 'true' ">
+    <Error Text="The WiX Toolset v3.11 (or newer) build tools must be installed to build this project. To download the WiX Toolset, see http://wixtoolset.org/releases/" />
+  </Target>
+  <!--
+	To modify your build process, add your task inside one of the targets below and uncomment it.
+	Other similar extension points exist, see Wix.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+</Project>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+	 xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <?include Properties.wxi?>
+  <Fragment>
+    <iis:WebSite Id="DefaultWebSite" Description='Default Web Site'>
+      <iis:WebAddress Id="AllUnassigned" Port="80" />
+    </iis:WebSite>
+    <CustomAction Id="MakeWepApp20" Directory="INSTALLLOCATION" ExeCommand="[ASPNETREGIIS] -norestart -s W3SVC/1/ROOT/[VIRTUALDIR]" Return="check" />        
+    <DirectoryRef Id="INSTALLLOCATIONWEB">
+      <Directory Id="WebAppFolder" Name ="App_Data">
+        <Component Id="WebAppFolder" Guid="698c5f32-c04f-4507-9b88-3275f6e7d070" KeyPath="yes">
+          <Condition><![CDATA[SERVICEHOSTTYPE = "iis"]]></Condition>
+          <File Id="web.sre.sdf" Name="sre.sdf" Source="..\Libs\sre.sdf" Vital="yes" KeyPath="no" DiskId="1" />
+        </Component>
+      </Directory>     
+    </DirectoryRef>
+    
+    <DirectoryRef Id="INSTALLLOCATION">
+      <Component Id="CopyRootItems" Guid="dfc8d1da-381b-44a2-b4c8-12ddadb46841" KeyPath="yes" >
+        <Condition><![CDATA[SERVICEHOSTTYPE = "iis"]]></Condition>
+        <File Id="Web.config" Name="Web.config"  DefaultVersion="$(var.Version)" Source="..\Services\Host\Web.config" Vital="yes" KeyPath="no" DiskId="1" />
+        <File Id="sre.svc"  DefaultVersion="$(var.Version)" Name="sre.svc" Source="..\Services\Host\sre.svc" Vital="yes" KeyPath="no" DiskId="1" />
+      </Component>      
+      <Component Id="ConfigWeb" Guid="5e48ad39-78a2-490f-8e95-e68707eba23b" KeyPath="yes">
+        <Condition><![CDATA[SERVICEHOSTTYPE = "iis"]]></Condition>
+        <util:XmlFile Id="IISConfigSREcs" Action="setValue" Name="connectionString" ElementPath="//configuration/connectionStrings/add[\[]@name='cs'[\]]" File="[#Web.config]" Value="Data Source='|DataDirectory|\sre.sdf';password=acc3s$;" />
+        <util:XmlFile Id="IISConfigSREDatabaseType" Action="setValue" Name="value" ElementPath="//configuration/appSettings/add[\[]@key='DatabaseType'[\]]" File="[#Web.config]" Value="SqlCe" />
+        <util:XmlFile Id="IISConfigSRESREInstanceName" Action="setValue" Name="value" ElementPath="//configuration/appSettings/add[\[]@key='SREInstanceName'[\]]" File="[#Web.config]" Value="[SREINSTANCENAMESHORT]" />
+        <util:XmlFile Id="IISConfigSRESMTPServer" Action="setValue" Name="value" ElementPath="//configuration/appSettings/add[\[]@key='SMTPServer'[\]]" File="[#Web.config]" Value="[SMTP]" />
+        <util:XmlFile Id="IISConfigSREFromEmailId" Action="setValue" Name="value" ElementPath="//configuration/appSettings/add[\[]@key='FromEmailId'[\]]" File="[#Web.config]" Value="[SREFROM]" />
+        <util:XmlFile Id="IISConfigSREToEmailIds" Action="setValue" Name="value" ElementPath="//configuration/appSettings/add[\[]@key='ToEmailIds'[\]]" File="[#Web.config]" Value="[SRETO]" />
+        <util:XmlFile Id="IISConfigSRESRECache" Action="setValue" Name="value" ElementPath="//configuration/appSettings/add[\[]@key='SRECache'[\]]" File="[#Web.config]" Value="true" />
+        <util:XmlFile Id="IISTempFolder" Action="setValue" Name="value" ElementPath="//configuration/appSettings/add[\[]@key='TempFolder'[\]]" File="[#Web.config]" Value="[SRETEMPFOLDER]" />
+        <util:XmlFile Id="IISCustomTraceEnabled" Action="setValue" Name="value" ElementPath="//configuration/appSettings/add[\[]@key='CustomTraceEnabled'[\]]" File="[#Web.config]" Value="true" />
+        <util:XmlFile Id="IISCustomTraceFilePath" Action="setValue" Name="value" ElementPath="//configuration/appSettings/add[\[]@key='CustomTraceFilePath'[\]]" File="[#Web.config]" Value="[LogFolder]sre.log" />
+        <util:XmlFile Id="SREHostingEnvironment" Action="setValue" Name="value" ElementPath="//configuration/appSettings/add[\[]@key='SREHostingEnvironment'[\]]" File="[#Web.config]" Value="web" />
+      </Component>
+      <!-- Configure virtual dir -->
+      <Component Id="SetVirtualDir" Guid="32193207-9eaf-4649-82a2-8ffb21175757" KeyPath="yes" >
+        <Condition><![CDATA[SERVICEHOSTTYPE = "iis"]]></Condition>        
+        <iis:WebVirtualDir Id="MyWebVirtualDir" Alias="[VIRTUALDIR]" Directory="INSTALLLOCATION"  WebSite="DefaultWebSite">
+          <iis:WebDirProperties Id="MyWebVirtDirProperties" AnonymousAccess="no" BasicAuthentication="no" WindowsAuthentication="yes" />
+          <iis:WebApplication Id="MyWebWebApplication" Name="[VIRTUALDIR]" />
+        </iis:WebVirtualDir>
+      </Component>
+    </DirectoryRef>
+
+    <ComponentGroup Id="SetupIIS">
+      <ComponentRef Id="INSTALLLOCATIONWEB"/>
+      <ComponentRef Id="WebAppFolder" />      
+      <!--<ComponentRef Id="Microsoft.SQLCE" />-->
+      <ComponentRef Id="External.Libraries" />
+      <ComponentRef Id="Symplus.RuleEngine.Internal.Libraries" />
+      <ComponentRef Id="Symplus.RuleEngine.Utilities" />
+      <ComponentRef Id="Symplus.RuleEngine.Utilities.cmd" />
+      <ComponentRef Id="Symplus.RuleEngine.Services.dll" />
+      <ComponentRef Id="Symplus.RuleEngine.DataManager.dll" />
+      <ComponentRef Id="ConfigUtil" />
+      <ComponentRef Id="CopyRootItems"/>
+      <ComponentRef Id="ConfigWeb" />
+      <ComponentRef Id="SetVirtualDir" />
+    </ComponentGroup>
+
+
+    <!-- Configuring app pool -->
+    <!--<Component Id="MyWebAppPoolCmp" Guid="" KeyPath="yes">
+				<util:User Id="MyWebAppPoolUser"
+						   CreateUser="no"
+						   Name="[WEB_APP_POOL_IDENTITY_NAME]"
+						   Password="[WEB_APP_POOL_IDENTITY_PWD]"
+						   Domain="[WEB_APP_POOL_IDENTITY_DOMAIN]" />
+				<iis:WebAppPool Id="MyWebAppPool"
+								Name="[WEB_APP_NAME]"
+								Identity="other"
+								User="MyWebAppPoolUser" />
+			</Component>-->
+  </Fragment>
+
+  
+</Wix>

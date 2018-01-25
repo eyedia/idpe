@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <?include Properties.wxi?>
+  <Fragment>
+    <DirectoryRef Id="INSTALLLOCATION">
+      <Component Id="HelpFile" Guid="f0f480ce-1b43-4570-a213-c8b7308c65f9"  Win64="yes">        
+        <File Id="Eyedia.IDPE.chm" Name="Help.chm" Source="..\..\Executables\Help.chm" Vital="yes" KeyPath="no" DiskId="1" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="ProgramMenuDir">
+      <Component Id="HelpFileShortcut" Guid="e3c70376-e45b-451f-bcac-768b4893b834" Win64="yes">
+        <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" />
+        <Shortcut Id="Help" Name="Help" Description="Help" Target="[INSTALLLOCATION]Help.chm" />        
+      </Component>
+    </DirectoryRef>
+
+    <ComponentGroup Id="Documents">
+      <ComponentRef Id="HelpFile"/>
+      <ComponentRef Id="HelpFileShortcut" />
+    </ComponentGroup>
+  </Fragment>
+</Wix>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <Fragment>
+    <DirectoryRef Id="INSTALLLOCATION">
+      <!--<Component Id="Eyedia.Idpe.Plugins" Guid="b0cffb5e-4f43-468a-8371-162298c61d69">
+        <File Id="scfcg.sdf" Name="scfcg.sdf" Source="..\Host\App_Data\scfcg.sdf" Vital="yes" KeyPath="no" DiskId="1" />        
+        <File Id="idpec.exe.config" Name="idpec.exe.config" Source="..\..\Lib\idpec.exe.config" Vital="yes" KeyPath="no" DiskId="1" />
+        <File Id="Eyedia.Idpe.Plugins.dll" Name="Eyedia.Idpe.Plugins.dll" Source="..\..\Lib\Eyedia.Idpe.Plugins.dll" Vital="yes" KeyPath="no" DiskId="1" />        
+      </Component>-->
+
+      <Component Id="db" Guid="a19500ec-622b-4f6f-a134-32a27bb2e811" Win64="yes">
+        <File Id="samples.sdf" Name="samples.sdf" Source="..\..\Executables\samples.sdf" Vital="yes" KeyPath="no" DiskId="1" />
+      </Component>     
+      <Directory Id="SAMPLES" Name="Samples">
+        <Component Id="Eyedia.IDPE.Samples" Guid="22d76c52-23ac-4934-91f2-4a784cca9740" Win64="yes">
+          <File Id="s500.csv" Name="500.csv" Source="..\Data\500.csv" Vital="yes" KeyPath="no" DiskId="1" />
+          <!--<File Id="s102.csv" Name="102.csv" Source="..\Samples\102.csv" Vital="yes" KeyPath="no" DiskId="1" />
+          <File Id="s102_K.txt" Name="102_K.csv" Source="..\Samples\102_K.csv" Vital="yes" KeyPath="no" DiskId="1" />
+          <File Id="s103.xls" Name="103.xls" Source="..\Samples\103.xls" Vital="yes" KeyPath="no" DiskId="1" />
+          <File Id="s104.csv" Name="104.csv" Source="..\Samples\104.csv" Vital="yes" KeyPath="no" DiskId="1" />
+          <File Id="s104_1.csv" Name="104_1.csv" Source="..\Samples\104_1.csv" Vital="yes" KeyPath="no" DiskId="1" />-->
+        </Component>
+        <!--<Directory Id="SAMPLECODE" Name="SampleCode">
+          <Component Id="Eyedia.IDPE.SampleCode" Guid="de1e9628-bc18-4c4f-acad-4d66ec1781ac">
+            <File Id="DataContainerValidatorYourApp.cs" Name="DataContainerValidatorYourApp.cs" Source="..\Samples\SamplePlugins\DataContainerValidatorYourApp.cs" Vital="yes" KeyPath="no" DiskId="1" />
+            <File Id="OutputWriterYourApp.cs" Name="OutputWriterYourApp.cs" Source="..\Samples\SamplePlugins\OutputWriterYourApp.cs" Vital="yes" KeyPath="no" DiskId="1" />
+            <File Id="YourOwnMethods.cs" Name="YourOwnMethods.cs" Source="..\Samples\SamplePlugins\YourOwnMethods.cs" Vital="yes" KeyPath="no" DiskId="1" />
+          </Component>
+        </Directory>-->
+      </Directory>
+      <!--<Component Id="Eyedia.IDPE.SampleCode.Binary" Guid="51e969ba-c5b5-4dae-b79d-861aa2a34d28">
+       <File Id="YourCompany.YourLibrary.Plugins.dll" Name="YourCompany.YourLibrary.Plugins.dll" Source="..\Samples\YourCompany.YourLibrary.Plugins.dll" Vital="yes" KeyPath="no" DiskId="1" />
+      </Component>-->
+    </DirectoryRef>
+
+    <!--<ComponentGroup Id="SCFFiles">      
+      <ComponentRef Id="SymplusRuleEngine.Plugins" />
+    </ComponentGroup>-->
+
+    <DirectoryRef Id="ProgramMenuDirOthers">
+      <Component Id="StartMenuShortcutsSamples" Guid="ebf9aef0-b330-4915-b231-b902f9f7272e" Win64="yes">
+        <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" />
+        <Shortcut Id="StartMenuShortcutsSamples" Name="Samples" Description="Opens sample folder" Target= "[WindowsFolder]explorer.exe" Arguments="[INSTALLLOCATION]Samples" />
+      </Component>
+    </DirectoryRef>
+
+    <ComponentGroup Id="Files">
+      <ComponentRef Id="db" />
+      <ComponentRef Id="Eyedia.IDPE.Samples" />      
+      <!--<ComponentRef Id="Eyedia.IDPE.SampleCode.Binary" />-->
+      <ComponentRef Id="StartMenuShortcutsSamples"/>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

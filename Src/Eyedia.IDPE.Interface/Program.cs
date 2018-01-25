@@ -65,6 +65,7 @@ namespace Eyedia.IDPE.Interface
                 SetupTrace.SetupTraceListners(Information.EventLogSource, Information.EventLogName);
                 EncryptConfigs();
                 Application.Run(new MainWindow(args));
+                //Application.Run(new Test());
                 //GetDummyUser();
                 //Application.Run(new SreEnvironmentWindow());
 

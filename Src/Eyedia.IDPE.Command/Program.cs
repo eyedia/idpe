@@ -78,7 +78,7 @@ namespace Eyedia.IDPE.Command
                         break;
 
                     case "uc":
-                        UpdateConfigs updateConfigs = new UpdateConfigs();
+                        UpdateConfigs updateConfigs = new UpdateConfigs(@"C:\Workspace\GitHub\idpe\Executables");
                         bool setFolder = false;
                         if (args.Length == 2)
                             setFolder = args[1].ParseBool();
